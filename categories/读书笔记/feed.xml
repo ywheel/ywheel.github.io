@@ -7,16 +7,173 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2013 23:34:07 +0800</lastBuildDate>
     <atom:link href="http://ywheel.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>about</title>
-      <link>http://ywheel.github.io/about/</link>
-      <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
+      <title>计算广告核心问题和挑战</title>
+      <link>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</link>
+      <pubDate>Fri, 23 Aug 2013 23:34:07 +0800</pubDate>
       
-      <guid>http://ywheel.github.io/about/</guid>
-      <description></description>
+      <guid>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;注：内容整理自师徒网：刘鹏 计算广告学
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;广告中的计算问题:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;广告中的计算问题&lt;/h3&gt;
+
+&lt;p&gt;Find the best match between a given user u, in a given context c, and s suitable ad a.&lt;/p&gt;
+
+&lt;h4 id=&#34;从优化角度来看:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;从优化角度来看&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;特征提取：受众定向. 把u和c打上标签的过程&lt;/li&gt;
+&lt;li&gt;微观优化：CTR预测. 投是按照ecpm来投&lt;/li&gt;
+&lt;li&gt;宏观优化：竞价市场机制&lt;/li&gt;
+&lt;li&gt;受限优化：在线分配&lt;/li&gt;
+&lt;li&gt;强化学习：探索与利用。试的过程是探索，优化的过程是利用&lt;/li&gt;
+&lt;li&gt;个性化重定向：推荐技术&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;从系统角度来看:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;从系统角度来看：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;候选查选：实时索引。新的广告能很快上线，超预算的广告能很快的下线&lt;/li&gt;
+&lt;li&gt;特征存储：No-sql技术&lt;/li&gt;
+&lt;li&gt;离线学习：Hadoop&lt;/li&gt;
+&lt;li&gt;在线学习：流计算。如上一个搜索词是什么&lt;/li&gt;
+&lt;li&gt;交易市场：实时竞价&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;在线广告计算的主要挑战:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告计算的主要挑战&lt;/h3&gt;
+
+&lt;h4 id=&#34;大规模:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;大规模&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;百万量级的页面，十亿量级的用户，需要被分析处理&lt;/li&gt;
+&lt;li&gt;高并发在线投放系统（几乎是最高的）&lt;/li&gt;
+&lt;li&gt;latency的严格要求。如Ad exchange要求竞价在100ms内返回&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;动态性:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;动态性&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户的关注和购物兴趣非常快速的变化。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;丰富的查询信息:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;丰富的查询信息&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;需要把用户和上下文中多样的信号一起用于检索广告候选&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;探索与发现:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;探索与发现&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户反馈数据局限于在以往投放中出现的（a,u,c）组合，需要主动探索未观察到的领域，以提高模型正确性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;在线广告系统的roi:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统的ROI&lt;/h3&gt;
+
+&lt;p&gt;eCPM=CTR*CPC*1000&lt;/p&gt;
+
+&lt;h3 id=&#34;搜索-广告与推荐的比较:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;搜索、广告与推荐的比较&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;比较项&lt;/th&gt;
+&lt;th&gt;搜索&lt;/th&gt;
+&lt;th&gt;搜索广告&lt;/th&gt;
+&lt;th&gt;显示广告&lt;/th&gt;
+&lt;th&gt;推荐&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;首要准则&lt;/td&gt;
+&lt;td&gt;相关性&lt;/td&gt;
+&lt;td&gt;投资回报率&lt;/td&gt;
+&lt;td&gt;投资回报率&lt;/td&gt;
+&lt;td&gt;用户兴趣&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;其他需求&lt;/td&gt;
+&lt;td&gt;各垂直领域独立定义&lt;/td&gt;
+&lt;td&gt;质量、安全性&lt;/td&gt;
+&lt;td&gt;质量、安全性&lt;/td&gt;
+&lt;td&gt;多样性，新鲜度&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;索引规模&lt;/td&gt;
+&lt;td&gt;十亿级&lt;/td&gt;
+&lt;td&gt;百万级&amp;ndash;千万级&lt;/td&gt;
+&lt;td&gt;百万级&lt;/td&gt;
+&lt;td&gt;百万级-亿级&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;个性化&lt;/td&gt;
+&lt;td&gt;较少的个性化需求&lt;/td&gt;
+&lt;td&gt;较少的个性化需求&lt;/td&gt;
+&lt;td&gt;亿级用户规模上的个性化&lt;/td&gt;
+&lt;td&gt;亿级用户规模上的个性化&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;检索信号&lt;/td&gt;
+&lt;td&gt;较为集中&lt;/td&gt;
+&lt;td&gt;较为集中&lt;/td&gt;
+&lt;td&gt;较为丰富&lt;/td&gt;
+&lt;td&gt;较为丰富&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DownStream优化&lt;/td&gt;
+&lt;td&gt;不适用&lt;/td&gt;
+&lt;td&gt;不适用&lt;/td&gt;
+&lt;td&gt;不适用&lt;/td&gt;
+&lt;td&gt;适用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;在线广告系统结构:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统结构&lt;/h3&gt;
+
+&lt;h4 id=&#34;在线部分:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线部分：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;高并发投送系统。十毫秒级别的实时决策，百亿次/天的广告投放系统&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;离线部分:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;离线部分：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;受众定向平台。灵活的海量数据挖掘平台。前沿机器学习算法的分布式架构&lt;/li&gt;
+&lt;li&gt;数据高速公路：内部及外部TB级数据实时收集处理。快速给线上系统反馈，另以方便给BI人员分析。&lt;/li&gt;
+&lt;li&gt;流式计算平台：日志的准实时挖掘和反馈，反作弊和计价&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;在线广告系统模块:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统模块&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Ad serving  来自用户和来自ad exchange的ad call&lt;/li&gt;
+&lt;li&gt;Ad retrieval&lt;/li&gt;
+&lt;li&gt;Ad ranking&lt;/li&gt;
+&lt;li&gt;Stream computing&lt;/li&gt;
+&lt;li&gt;Data highway&lt;/li&gt;
+&lt;li&gt;Session log generation 根据用户的search、browse的信息做targeting,基础性日志. 应用：Data warehouse/BI, audience targeting, CTR/eCPM预测模型&lt;/li&gt;
+&lt;li&gt;Data warehouse&lt;/li&gt;
+&lt;li&gt;Customized audience segmentation&lt;/li&gt;
+&lt;li&gt;Page attributes system&lt;/li&gt;
+&lt;li&gt;Audience targeting&lt;/li&gt;
+&lt;li&gt;Ad management system&lt;/li&gt;
+&lt;/ol&gt;
+</description>
     </item>
     
   </channel>
