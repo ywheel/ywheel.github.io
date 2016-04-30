@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>思考感悟 on 轮子们</title>
+    <link>http://ywheel.github.io/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/</link>
+    <description>Recent content in 思考感悟 on 轮子们</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
+    <atom:link href="http://ywheel.github.io/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>about</title>
+      <link>http://ywheel.github.io/about/</link>
+      <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
+      
+      <guid>http://ywheel.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
