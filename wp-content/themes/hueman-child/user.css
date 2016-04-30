@@ -83,7 +83,7 @@ a,
 .jp-play-bar,
 .jp-volume-bar-value,
 .s2 .widget_calendar caption {
-    background-color: #ef6430;
+    background-color: #d36430;
 }
 
 .s2 .alx-tabs-nav li.active a {
@@ -112,6 +112,7 @@ a,
 
 .site-title a {
     float: right;
+    vertical-align: middle;
 }
 
 .nav-cs-icon {

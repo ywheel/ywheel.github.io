@@ -505,7 +505,7 @@ box-shadow: 0 0 2px rgba(255,255,255,0.4);
  *  Section: Header
 /* ------------------------------------------------------------------------- */
 #header { background: #33363b; position: relative; padding-bottom: 60px; }
-#header .pad { padding-top: 28px; padding-bottom: 30px; }
+#header .pad { padding-top: 5px; padding-bottom: 5px; }
 #header .container-inner { position: relative; }
 
 .site-title { font-size: 42px; font-weight: 600; letter-spacing: -0.5px; float: left; line-height: 60px; padding: 10px 0; }

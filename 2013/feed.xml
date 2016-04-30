@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 轮子们</title>
-    <link>http://ywheel.github.io/post/</link>
-    <description>Recent content in Posts on 轮子们</description>
+    <title>2013s on 轮子们</title>
+    <link>http://ywheel.github.io/2013/</link>
+    <description>Recent content in 2013s on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 May 2016 00:51:07 +0800</lastBuildDate>
-    <atom:link href="http://ywheel.github.io/post/feed/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Aug 2013 23:34:07 +0800</lastBuildDate>
+    <atom:link href="http://ywheel.github.io/2013/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>计算广告核心问题和挑战</title>
-      <link>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</link>
-      <pubDate>Sun, 01 May 2016 00:51:07 +0800</pubDate>
+      <link>http://ywheel.github.io/2013/08/23/computational-advertising-01/</link>
+      <pubDate>Fri, 23 Aug 2013 23:34:07 +0800</pubDate>
       
-      <guid>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</guid>
+      <guid>http://ywheel.github.io/2013/08/23/computational-advertising-01/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;注：内容整理自师徒网：刘鹏 计算广告学

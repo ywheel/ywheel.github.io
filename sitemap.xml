@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://ywheel.github.io/</loc>
-    <lastmod>2016-04-28T23:52:12+08:00</lastmod>
+    <lastmod>2016-05-01T00:51:07+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</loc>
+    <lastmod>2016-05-01T00:51:07+08:00</lastmod>
   </url>
   
   <url>
@@ -13,7 +18,7 @@
   </url>
   
   <url>
-    <loc>http://ywheel.github.io/post/2013/08/23/computational-advertising-01/</loc>
+    <loc>http://ywheel.github.io/2013/08/23/computational-advertising-01/</loc>
     <lastmod>2013-08-23T23:34:07+08:00</lastmod>
   </url>
   
