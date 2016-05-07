@@ -2,21 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>思考感悟 on 轮子们</title>
-    <link>http://ywheel.github.io/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/</link>
+    <link>http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/</link>
     <description>Recent content in 思考感悟 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
     <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
-    <atom:link href="http://ywheel.github.io/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>about</title>
-      <link>http://ywheel.github.io/about/</link>
+      <title>关于我</title>
+      <link>http://blog.ywheel.cn/about/</link>
       <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
       
-      <guid>http://ywheel.github.io/about/</guid>
-      <description></description>
+      <guid>http://blog.ywheel.cn/about/</guid>
+      <description>
+
+&lt;p&gt;Hi all, 我叫ywheel, 是一名程序员。&lt;/p&gt;
+
+&lt;h3 id=&#34;我的经历:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的经历&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2006-2013 北京邮电大学本硕&lt;/li&gt;
+&lt;li&gt;2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员&lt;/li&gt;
+&lt;li&gt;2015.5.7-Now 某大数据公司平台研发主管&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;我的技能:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的技能&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主攻Java, 也能搞一些脚本语言如Python, perl, awk。正在学习scala&amp;hellip;&lt;/li&gt;
+&lt;li&gt;目标全栈工程师，遗憾的是目前只能算略懂前端&lt;/li&gt;
+&lt;li&gt;大数据技术栈, Hadoop, CDH, Oozie, Kafka, Storm, Spark&lt;/li&gt;
+&lt;li&gt;逐步承担和和挑战架构设计&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;我的生活:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的生活&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2006-2015 北京九年，之后逃离&lt;/li&gt;
+&lt;li&gt;爱打羽毛球&lt;/li&gt;
+&lt;li&gt;琴棋书画，样样&amp;hellip;都会点，做一名文艺的程序员&lt;/li&gt;
+&lt;li&gt;现实主义者，强迫症、焦虑症患者&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;一些链接:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;一些链接&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Github: &lt;a href=&#34;https://github.com/ywheel&#34;&gt;github.com/ywheel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;个人博客: &lt;a href=&#34;http://blog.ywheel.cn&#34;&gt;http://blog.ywheel.cn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;新浪微博: &lt;a href=&#34;http://weibo.com/ywheel&#34;&gt;weibo.com/ywheel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Email: ywheel@qq.com&lt;/li&gt;
+&lt;li&gt;微信公众号：轮子们&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>
