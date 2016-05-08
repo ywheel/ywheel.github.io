@@ -7,8 +7,44 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 May 2016 00:01:47 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>learn_jquery_6</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</link>
+      <pubDate>Mon, 09 May 2016 00:01:47 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_4</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</link>
+      <pubDate>Mon, 09 May 2016 00:01:45 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_2</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</link>
+      <pubDate>Mon, 09 May 2016 00:01:42 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_1</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</link>
+      <pubDate>Mon, 09 May 2016 00:01:30 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>关于我</title>
@@ -59,7 +95,455 @@
     </item>
     
     <item>
-      <title>计算广告核心问题和挑战</title>
+      <title>合并两个文件的交叉项</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/same_content_in_two_files/</link>
+      <pubDate>Sat, 14 Feb 2015 16:30:53 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/same_content_in_two_files/</guid>
+      <description>&lt;p&gt;题：
+合并两个文件的交叉项。比如：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;file1.txt&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;111111
+222222
+333
+4444
+55555
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;file2.txt&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;7777,abc,abcd
+222222,adfghjk,sdfsdfs
+1111,qwertyu
+55555,zxcvbn,asdfgh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;希望能够得到如下结果：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;222222,adfghjk,sdfsdfs
+55555,zxcvbn,asdfgh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-awk&#34;&gt;awk &#39;BEGIN{FS=&amp;quot;,&amp;quot;}{if(NF==1){a[$1]++;}else if(a[$1]){printf&amp;quot;%s\n&amp;quot;,$0}}&#39; file1.txt file2.txt &amp;gt; file3.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;awk一个好处就是多长的句子都能写在一行里。。。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vbox command</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/vbox_command/</link>
+      <pubDate>Sat, 14 Feb 2015 15:59:44 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/vbox_command/</guid>
+      <description>
+
+&lt;h2 id=&#34;controlling-the-virtualbox-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;Controlling the VirtualBox VM&lt;/h2&gt;
+
+&lt;p&gt;Nowthat we have VirtualBox installed and a VM guest created we need to control andmodify the VM&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-list-vm-information:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to List VM information&lt;/h2&gt;
+
+&lt;h3 id=&#34;how-to-show-the-virtualbox-vm-info:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to show the VirtualBox VM info&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage showvminfo &amp;lt;vmname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-show-the-vm-harddrive-info:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to show the VM Harddrive info&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage showhdinfo &amp;lt;filename&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-list-running-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to list running VM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage list runningvms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-list-available-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to list available VM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage list vms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-list-available-vm-harddrives:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to list available VM Harddrives&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage list hdds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-list-available-iso-s:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to list available ISO’s&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage list dvds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;how-to-control-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to Control VM&lt;/h2&gt;
+
+&lt;h3 id=&#34;how-to-start-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to Start VM&lt;/h3&gt;
+
+&lt;p&gt;nohupand &amp;amp; to place process in background, so VM continues to run after closingconsole.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$nohup VBoxHeadless –startvm &amp;lt;vmname&amp;gt; &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-pause-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to pause VM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; pause
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-resume-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to resume VM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; resume
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-reset-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to reset VM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; reset
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-poweroff-vm-hard-poweroff-eg-pull-the-plug:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to poweroff VM (hard poweroff eg. pull the plug)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; poweroff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-send-poweroff-single-to-vm-tells-vm-os-to-shutdown:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to send poweroff single to VM (tells VM OS to shutdown)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; acpipowerbutton
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-attach-a-dvd-cd-to-a-running-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to attach a DVD / CD to a running vm&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; dvdattach &amp;lt;filename&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;how-to-de-attach-a-dvd-cd-from-a-running-vm:46b2bdf7343ca8500fccae0bc72495c7&#34;&gt;How to de-attach a DVD / CD from a running vm&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;vmadmin$VBoxManage controlvm &amp;lt;vmname&amp;gt; dvdattach none
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>leetcode_002_addtwonumbers</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/leetcode_002_addtwonumbers/</link>
+      <pubDate>Sat, 14 Feb 2015 14:59:23 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/leetcode_002_addtwonumbers/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package ywheel.leetcode._002_add_two_numbers;  
+  
+/** 
+ * You are given two linked lists representing two non-negative numbers. The 
+ * digits are stored in reverse order and each of their nodes contain a single 
+ * digit. Add the two numbers and return it as a linked list. 
+ *  
+ * Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) Output: 7 -&amp;gt; 0 -&amp;gt; 8 
+ *  
+ * @author ywheel 
+ *  
+ */  
+public class AddTwoNumbers {  
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {  
+        ListNode next = null;  
+        ListNode head = null;  
+        int decade = 0;  
+        while (l1 != null || l2 != null || decade &amp;gt; 0) {  
+            int l1_val = l1 == null ? 0 : l1.val;  
+            int l2_val = l2 == null ? 0 : l2.val;  
+            int sum = l1_val + l2_val + decade;  
+            ListNode newNode = new ListNode(sum % 10);  
+            decade = sum / 10;  
+            if (next == null) {  
+                next = newNode;  
+                head = next;  
+            } else {  
+                next.next = newNode;  
+                next = next.next;  
+            }  
+            l1 = l1 == null ? null : l1.next;  
+            l2 = l2 == null ? null : l2.next;  
+        }  
+        return head;  
+    }  
+  
+    public static void main(String[] args) {  
+        AddTwoNumbers solution = new AddTwoNumbers();  
+        // construct two inputs  
+        ListNode l1 = new ListNode(2);  
+        ListNode l11 = new ListNode(4);  
+        ListNode l12 = new ListNode(3);  
+        l1.next = l11;  
+        l11.next = l12;  
+        ListNode l2 = new ListNode(5);  
+        ListNode l21 = new ListNode(6);  
+        ListNode l22 = new ListNode(4);  
+        l2.next = l21;  
+        l21.next = l22;  
+        ListNode resultNode = solution.addTwoNumbers(l1, l2);  
+        if (resultNode != null) {  
+            System.out.print(resultNode.val);  
+        }  
+        while (resultNode.next != null) {  
+            resultNode = resultNode.next;  
+            System.out.print(&amp;quot;-&amp;gt;&amp;quot; + resultNode.val);  
+        }  
+    }  
+}  
+  
+/** 
+ * Definition for singly-linked list. 
+ */  
+class ListNode {  
+    int val;  
+    ListNode next;  
+  
+    ListNode(int x) {  
+        val = x;  
+        next = null;  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>leetcode_001_twosum</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/leetcode_001_twosum/</link>
+      <pubDate>Sat, 14 Feb 2015 13:59:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/leetcode_001_twosum/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package ywheel.leetcode._001_two_sum;  
+  
+import java.util.Arrays;  
+import java.util.Comparator;  
+  
+/** 
+ * Given an array of integers, find two numbers such that they add up to a 
+ * specific target number. 
+ *  
+ * The function twoSum should return indices of the two numbers such that they 
+ * add up to the target, where index1 must be less than index2. Please note that 
+ * your returned answers (both index1 and index2) are not zero-based. You may 
+ * assume that each input would have exactly one solution. 
+ *  
+ * Input: numbers={2, 7, 11, 15}, target=9 Output: index1=1, index2=2 
+ *  
+ * @author ywheel 
+ *  
+ */  
+public class TwoSum {  
+    public int[] twoSum(final int[] numbers, int target) {  
+        Integer[] index = new Integer[numbers.length];  
+        for (int i = 0; i &amp;lt; numbers.length; i++) {  
+            index[i] = i;  
+        }  
+        Arrays.sort(index, new Comparator&amp;lt;Integer&amp;gt;() {  
+            public int compare(Integer o1, Integer o2) {  
+                return Integer.compare(numbers[o1], numbers[o2]);  
+            }  
+        });  
+        int[] result = new int[2];  
+        for (int i = 0; i &amp;lt; numbers.length - 1; i++) {  
+            for (int j = i + 1; j &amp;lt; numbers.length; j++) {  
+                int sum = numbers[index[i]] + numbers[index[j]];  
+                if (sum == target) {  
+                    result[0] = (index[i] &amp;lt; index[j] ? index[i] : index[j]) + 1;  
+                    result[1] = (index[i] &amp;gt; index[j] ? index[i] : index[j]) + 1;  
+                    return result;  
+                } else if (sum &amp;gt; target) {  
+                    break;  
+                }  
+            }  
+        }  
+        return null;  
+    }  
+  
+    public static void main(String[] args) {  
+        TwoSum solution = new TwoSum();  
+        int[] numbers = { 2, 7, 11, 15 };  
+        int target = 9;  
+        int[] results = solution.twoSum(numbers, target);  
+        for (int index = 0; index &amp;lt; results.length; index++) {  
+            System.out  
+                    .print(&amp;quot;index&amp;quot; + (index + 1) + &amp;quot;=&amp;quot; + results[index] + &amp;quot; &amp;quot;);  
+        }  
+  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vim command</title>
+      <link>http://blog.ywheel.cn/post/2013/09/08/vim-command/</link>
+      <pubDate>Sun, 08 Sep 2013 22:47:35 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2013/09/08/vim-command/</guid>
+      <description>
+
+&lt;h3 id=&#34;打开窗口:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;打开窗口&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;:new windowname(filename if saved)
+:split windowname   |   :sp windowname
+:vsplit windowname |  :vsp windowname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;关闭多窗口:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;关闭多窗口&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;q!&lt;/code&gt;, &lt;code&gt;close&lt;/code&gt; 最后一个窗口不能使用close关闭。使用close只是暂时关闭窗口，其内容还在缓存中，只有使用q!、w!或x才能真能退出。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:tabc&lt;/code&gt; 关闭当前窗口&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:tabo&lt;/code&gt; 关闭所有窗口&lt;/p&gt;
+
+&lt;h3 id=&#34;窗口切换:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;窗口切换&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;:ctrl+w+h/j/k/l&lt;/code&gt;，通过j/k可以上下切换，或者:ctrl+w加上下左右键，还可以通过快速双击ctrl+w依次切换窗口。
+4. 调整大小&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:ctrl+w +&lt;/code&gt; 行数增加&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:ctrl+w -&lt;/code&gt; 行数减少&lt;/p&gt;
+
+&lt;h3 id=&#34;打开多文件:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;打开多文件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;vi a b c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;:n&lt;/code&gt; 跳至下一个文件，也可以直接指定要跳的文件，如&lt;code&gt;:n c&lt;/code&gt;，可以直接跳到c文件&lt;/p&gt;
+
+&lt;h3 id=&#34;vi与shell切换:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;vi与shell切换&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;:shell&lt;/code&gt; 可以在不关闭vi的情况下切换到shell命令行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;:exit&lt;/code&gt; 从shell回到vi&lt;/p&gt;
+
+&lt;h3 id=&#34;块复制:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;块复制&lt;/h3&gt;
+
+&lt;p&gt;按&lt;code&gt;v&lt;/code&gt;（字符为单位）或&lt;code&gt;V&lt;/code&gt;（行为单位）进入VISUAL模式，第一次按v，就相当于标记了复制的起点，然后用正常的移动命令，&lt;code&gt;h&lt;/code&gt;,&lt;code&gt;I&lt;/code&gt;,&lt;code&gt;j&lt;/code&gt;,&lt;code&gt;k&lt;/code&gt;可以移动到复制的终点，这时就可以看到这一块被高亮选中了。然后再按&lt;code&gt;y&lt;/code&gt;即可复制。
+精确的剪切，只需要按前所述选中区块，然后按&lt;code&gt;d&lt;/code&gt;即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;多行注释:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;多行注释&lt;/h3&gt;
+
+&lt;p&gt;注释：&lt;code&gt;ctrl+v&lt;/code&gt; 进入列编辑模式,向下或向上移动光标,把需要注释的行的开头标记起来,然后按大写的&lt;code&gt;I&lt;/code&gt;,再插入注释符,比如&amp;rdquo;//&amp;ldquo;,再按Esc,就会全部注释了。&lt;/p&gt;
+
+&lt;p&gt;删除：先按&lt;code&gt;v&lt;/code&gt;,进入visual模式,横向选中列的个数(如&amp;rdquo;/ /&amp;ldquo;注释符号,需要选中两列),再按Esc,再按&lt;code&gt;ctrl+v&lt;/code&gt; 进入列编辑模式,向下或向上移动光标,选中注释部分,然后按d, 就会删除注释符号。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用替换命令:09c7eee3c6520e32c9cfd768d066f5ff&#34;&gt;使用替换命令&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;:%s/^/\/\//g&lt;/code&gt;来在全部内容的行首添加&lt;code&gt;//&lt;/code&gt;号注释
+&lt;code&gt;:2,50s/^/\/\//g&lt;/code&gt;在2~50行首添加&lt;code&gt;//&lt;/code&gt;号注释
+反过来替换既是删除操作。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记3-合约广告系统简介</title>
+      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</link>
+      <pubDate>Sun, 01 Sep 2013 22:43:12 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;注： 内容来自师徒网：刘鹏--计算广告学
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;合约广告系统简介:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;合约广告系统简介&lt;/h2&gt;
+
+&lt;p&gt;Agreement based Advertising，能够解决什么问题?&lt;/p&gt;
+
+&lt;h3 id=&#34;传统媒体-直接媒体购买:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;传统媒体&amp;ndash;直接媒体购买&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;供给方：广告排期系统&lt;/li&gt;
+&lt;li&gt;帮助媒体自动执行多个合同的排期&lt;/li&gt;
+&lt;li&gt;不提供受众定向，可以将广告素材直接插入页面。比如都是静态数据，可以直接放在CDN， latency就短。&lt;/li&gt;
+&lt;li&gt;需求方：代理商&lt;/li&gt;
+&lt;li&gt;帮助广告商策划和执行排期&lt;/li&gt;
+&lt;li&gt;用经验和人工满足广告商质和量的需求&lt;/li&gt;
+&lt;li&gt;代表: 4A公司&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在中国，很多品牌广告还是这样的方式，比如在门户网站按天排期&lt;/p&gt;
+
+&lt;h3 id=&#34;在线广告系统主流做法-担保式投送与广告投放:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;在线广告系统主流做法&amp;ndash;担保式投送与广告投放&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;担保式投送（Guaranteed Delivery，GD）&lt;/li&gt;
+&lt;li&gt;基于合约的广告机制，约定的量未完成需要向广告商补偿&lt;/li&gt;
+&lt;li&gt;量（Quantity）优于质（Quality）的销售方式&lt;/li&gt;
+&lt;li&gt;多采用千次展示付费（Cost per Mille, CPM）方式结算&lt;/li&gt;
+&lt;li&gt;广告投放机（Ad Server）  把广告由静态的页面转到由服务器计算决定&lt;/li&gt;
+&lt;li&gt;CPM方式必然要求广告投送由服务器端完成决策&lt;/li&gt;
+&lt;li&gt;受众定向，CTR预测和流量预测是广告投放机的基础&lt;/li&gt;
+&lt;li&gt;GD合约下，投放机满足合约的量，并尽可能优化各广告主流量的质&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记2-常用广告系统开源工具</title>
+      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</link>
+      <pubDate>Sun, 01 Sep 2013 22:32:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;注：内容来自师徒网， 计算广告学 刘鹏
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;使用开源工具搭建广告系统:a6e90f85f40bd54951247cffab503f43&#34;&gt;使用开源工具搭建广告系统&lt;/h2&gt;
+
+&lt;p&gt;Hadoop：大数据处理的平台
+- HDFS
+- MapReduce&lt;/p&gt;
+
+&lt;h3 id=&#34;离线处理工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;离线处理工具&lt;/h3&gt;
+
+&lt;p&gt;HBase， Hadoop上的列存储数据库。类似的有：BigTable； HypeTable（C语言写的，效率相对高一点）；Cassandra(Facebook, 不过好像他自己也不用了)； mahout（数据挖掘、机器学习算法的MR实现工具）；Elephant-bird: 配合Pig使用；
+两个脚本语言： Pig/Hive， 使用MR实现类SQL的查询；&lt;/p&gt;
+
+&lt;h3 id=&#34;在线工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;在线工具&lt;/h3&gt;
+
+&lt;p&gt;ZooKeeper: 分布式环境下解决一致性问题； Chubby：Google。 Zookeeper可以认为是Chubby的简化版本；
+Avro；Thrift（Facebook）：解决分布式环境里跨语言通信的工具包；
+S4; Storm(twitter) 满足快速计算任务如快速计算粉丝数等；
+Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
+
+&lt;h3 id=&#34;thrift:a6e90f85f40bd54951247cffab503f43&#34;&gt;Thrift&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;跨语言服务快速搭建（C++, Java, Python, ruby, c#）&lt;/li&gt;
+&lt;li&gt;用struct定于语言无关的通信数据结构；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;struct KV
+{1:optional i32 key=10; 2:optional string value=&amp;quot;x&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用service定义RPC服务接口：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;service KVCache{void set(1:i32 key, 2:string value)}; string get(1:i32 key); void delete(1:i32 key);}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将上述声明放在IDL文件（比如service.thrift）中，用thrift -r -gen cpp service.thrift 生成服务框架代码&lt;/li&gt;
+&lt;li&gt;能实现结构体和接口的Backward compatible   （程序的后相兼容，新版本必须兼容老版本的数据接口）&lt;/li&gt;
+&lt;li&gt;类似工具：Hadoop子项目Avro, Google开发的ProtoBuf&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记1-计算广告核心问题和挑战</title>
       <link>http://blog.ywheel.cn/post/2013/08/23/computational-advertising-01/</link>
       <pubDate>Fri, 23 Aug 2013 00:51:07 +0800</pubDate>
       

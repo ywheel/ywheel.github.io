@@ -7,59 +7,146 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 May 2016 00:01:47 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>关于我</title>
-      <link>http://blog.ywheel.cn/about/</link>
-      <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
+      <title>learn_jquery_6</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</link>
+      <pubDate>Mon, 09 May 2016 00:01:47 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/about/</guid>
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_4</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</link>
+      <pubDate>Mon, 09 May 2016 00:01:45 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_2</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</link>
+      <pubDate>Mon, 09 May 2016 00:01:42 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>learn_jquery_1</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</link>
+      <pubDate>Mon, 09 May 2016 00:01:30 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记3-合约广告系统简介</title>
+      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</link>
+      <pubDate>Sun, 01 Sep 2013 22:43:12 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</guid>
       <description>
 
-&lt;p&gt;Hi all, 我叫ywheel, 是一名程序员。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;注： 内容来自师徒网：刘鹏--计算广告学
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;我的经历:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的经历&lt;/h3&gt;
+&lt;h2 id=&#34;合约广告系统简介:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;合约广告系统简介&lt;/h2&gt;
+
+&lt;p&gt;Agreement based Advertising，能够解决什么问题?&lt;/p&gt;
+
+&lt;h3 id=&#34;传统媒体-直接媒体购买:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;传统媒体&amp;ndash;直接媒体购买&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;2006-2013 北京邮电大学本硕&lt;/li&gt;
-&lt;li&gt;2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员&lt;/li&gt;
-&lt;li&gt;2015.5.7-Now 某大数据公司平台研发主管&lt;/li&gt;
+&lt;li&gt;供给方：广告排期系统&lt;/li&gt;
+&lt;li&gt;帮助媒体自动执行多个合同的排期&lt;/li&gt;
+&lt;li&gt;不提供受众定向，可以将广告素材直接插入页面。比如都是静态数据，可以直接放在CDN， latency就短。&lt;/li&gt;
+&lt;li&gt;需求方：代理商&lt;/li&gt;
+&lt;li&gt;帮助广告商策划和执行排期&lt;/li&gt;
+&lt;li&gt;用经验和人工满足广告商质和量的需求&lt;/li&gt;
+&lt;li&gt;代表: 4A公司&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;我的技能:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的技能&lt;/h3&gt;
+&lt;p&gt;在中国，很多品牌广告还是这样的方式，比如在门户网站按天排期&lt;/p&gt;
+
+&lt;h3 id=&#34;在线广告系统主流做法-担保式投送与广告投放:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;在线广告系统主流做法&amp;ndash;担保式投送与广告投放&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;主攻Java, 也能搞一些脚本语言如Python, perl, awk。正在学习scala&amp;hellip;&lt;/li&gt;
-&lt;li&gt;目标全栈工程师，遗憾的是目前只能算略懂前端&lt;/li&gt;
-&lt;li&gt;大数据技术栈, Hadoop, CDH, Oozie, Kafka, Storm, Spark&lt;/li&gt;
-&lt;li&gt;逐步承担和和挑战架构设计&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;我的生活:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的生活&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;2006-2015 北京九年，之后逃离&lt;/li&gt;
-&lt;li&gt;爱打羽毛球&lt;/li&gt;
-&lt;li&gt;琴棋书画，样样&amp;hellip;都会点，做一名文艺的程序员&lt;/li&gt;
-&lt;li&gt;现实主义者，强迫症、焦虑症患者&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;一些链接:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;一些链接&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Github: &lt;a href=&#34;https://github.com/ywheel&#34;&gt;github.com/ywheel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;个人博客: &lt;a href=&#34;http://blog.ywheel.cn&#34;&gt;http://blog.ywheel.cn&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;新浪微博: &lt;a href=&#34;http://weibo.com/ywheel&#34;&gt;weibo.com/ywheel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Email: ywheel@qq.com&lt;/li&gt;
-&lt;li&gt;微信公众号：轮子们&lt;/li&gt;
+&lt;li&gt;担保式投送（Guaranteed Delivery，GD）&lt;/li&gt;
+&lt;li&gt;基于合约的广告机制，约定的量未完成需要向广告商补偿&lt;/li&gt;
+&lt;li&gt;量（Quantity）优于质（Quality）的销售方式&lt;/li&gt;
+&lt;li&gt;多采用千次展示付费（Cost per Mille, CPM）方式结算&lt;/li&gt;
+&lt;li&gt;广告投放机（Ad Server）  把广告由静态的页面转到由服务器计算决定&lt;/li&gt;
+&lt;li&gt;CPM方式必然要求广告投送由服务器端完成决策&lt;/li&gt;
+&lt;li&gt;受众定向，CTR预测和流量预测是广告投放机的基础&lt;/li&gt;
+&lt;li&gt;GD合约下，投放机满足合约的量，并尽可能优化各广告主流量的质&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
-      <title>计算广告核心问题和挑战</title>
+      <title>计算广告学笔记2-常用广告系统开源工具</title>
+      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</link>
+      <pubDate>Sun, 01 Sep 2013 22:32:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;注：内容来自师徒网， 计算广告学 刘鹏
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;使用开源工具搭建广告系统:a6e90f85f40bd54951247cffab503f43&#34;&gt;使用开源工具搭建广告系统&lt;/h2&gt;
+
+&lt;p&gt;Hadoop：大数据处理的平台
+- HDFS
+- MapReduce&lt;/p&gt;
+
+&lt;h3 id=&#34;离线处理工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;离线处理工具&lt;/h3&gt;
+
+&lt;p&gt;HBase， Hadoop上的列存储数据库。类似的有：BigTable； HypeTable（C语言写的，效率相对高一点）；Cassandra(Facebook, 不过好像他自己也不用了)； mahout（数据挖掘、机器学习算法的MR实现工具）；Elephant-bird: 配合Pig使用；
+两个脚本语言： Pig/Hive， 使用MR实现类SQL的查询；&lt;/p&gt;
+
+&lt;h3 id=&#34;在线工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;在线工具&lt;/h3&gt;
+
+&lt;p&gt;ZooKeeper: 分布式环境下解决一致性问题； Chubby：Google。 Zookeeper可以认为是Chubby的简化版本；
+Avro；Thrift（Facebook）：解决分布式环境里跨语言通信的工具包；
+S4; Storm(twitter) 满足快速计算任务如快速计算粉丝数等；
+Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
+
+&lt;h3 id=&#34;thrift:a6e90f85f40bd54951247cffab503f43&#34;&gt;Thrift&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;跨语言服务快速搭建（C++, Java, Python, ruby, c#）&lt;/li&gt;
+&lt;li&gt;用struct定于语言无关的通信数据结构；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;struct KV
+{1:optional i32 key=10; 2:optional string value=&amp;quot;x&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用service定义RPC服务接口：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;service KVCache{void set(1:i32 key, 2:string value)}; string get(1:i32 key); void delete(1:i32 key);}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将上述声明放在IDL文件（比如service.thrift）中，用thrift -r -gen cpp service.thrift 生成服务框架代码&lt;/li&gt;
+&lt;li&gt;能实现结构体和接口的Backward compatible   （程序的后相兼容，新版本必须兼容老版本的数据接口）&lt;/li&gt;
+&lt;li&gt;类似工具：Hadoop子项目Avro, Google开发的ProtoBuf&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记1-计算广告核心问题和挑战</title>
       <link>http://blog.ywheel.cn/post/2013/08/23/computational-advertising-01/</link>
       <pubDate>Fri, 23 Aug 2013 00:51:07 +0800</pubDate>
       
