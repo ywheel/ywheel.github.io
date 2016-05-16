@@ -7,21 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 14 Feb 2015 19:01:47 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 14 Feb 2015 19:40:39 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/post/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>从零开始学习jQuery (六) jQuery中的Ajax</title>
-      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</link>
-      <pubDate>Sat, 14 Feb 2015 19:01:47 +0800</pubDate>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/</link>
+      <pubDate>Sat, 14 Feb 2015 19:40:39 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</guid>
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371782.html
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;jquery-ajax详解:830378e917854f157530d9f1412f65fe&#34;&gt;jQuery Ajax详解&lt;/h3&gt;
+&lt;h3 id=&#34;jquery-ajax详解:e770f1637e8611a721d83423461005d9&#34;&gt;jQuery Ajax详解&lt;/h3&gt;
 
 &lt;p&gt;jQuery提供了几个用于发送Ajax请求的函数. 其中最核心也是最复杂的是jQuery.ajax( options ),所有的其他Ajax函数都是它的一个简化调用. 当我们想要完全控制Ajax时可以使用此结果, 否则还是使用简化方法如get, post, load等更加方便. 所以jQuery.ajax( options ) 方法放到最后一个介绍. 先来介绍最简单的load方法:&lt;/p&gt;
 
@@ -291,7 +291,7 @@ Returns: XMLHttpRequest&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://docs.jquery.com/Ajax/jQuery.ajax#options&#34;&gt;http://docs.jquery.com/Ajax/jQuery.ajax#options&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;ajax相关函数:830378e917854f157530d9f1412f65fe&#34;&gt;Ajax相关函数.&lt;/h3&gt;
+&lt;h3 id=&#34;ajax相关函数:e770f1637e8611a721d83423461005d9&#34;&gt;Ajax相关函数.&lt;/h3&gt;
 
 &lt;p&gt;jQuery提供了一些相关函数能够辅助Ajax函数.&lt;/p&gt;
 
@@ -389,12 +389,11 @@ Returns: String&lt;/p&gt;
 
 &lt;p&gt;提示:代码见 chapter6\7-serialize.htm&lt;/p&gt;
 
-&lt;p&gt;3.serializeArray( )
-Returns: Array&lt;Object&gt;&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;serializeArray( )&lt;/code&gt; Returns:&lt;code&gt;Array&amp;lt;Object&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;说明:&lt;/p&gt;
 
-&lt;p&gt;序列化表格元素 (类似 &amp;lsquo;.serialize()&amp;rsquo; 方法) 返回 JSON 数据结构数据。&lt;/p&gt;
+&lt;p&gt;序列化表格元素 (类似 &lt;code&gt;.serialize()&lt;/code&gt;方法) 返回 JSON 数据结构数据。&lt;/p&gt;
 
 &lt;p&gt;注意，此方法返回的是JSON对象而非JSON字符串。需要使用插件或者第三方库进行字符串化操作。&lt;/p&gt;
 
@@ -402,9 +401,7 @@ Returns: Array&lt;Object&gt;&lt;/p&gt;
 
 &lt;p&gt;看说明文档让我有所失望, 使用此函数获取到的是JSON对象, 但是jQuery中没有提供将JSON对象转化为JSON字符串的方法.&lt;/p&gt;
 
-&lt;p&gt;在JSON官网上没有找到合适的JSON编译器, 最后选用了jquery.json这个jQuery插件:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/jquery-json/&#34;&gt;http://code.google.com/p/jquery-json/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在JSON官网上没有找到合适的JSON编译器, 最后选用了jquery.json这个jQuery插件: &lt;a href=&#34;http://code.google.com/p/jquery-json/&#34;&gt;http://code.google.com/p/jquery-json/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;使用起来异常简单:&lt;/p&gt;
 
@@ -414,16 +411,17 @@ var name = $.evalJSON(encoded).plugin;      //&amp;quot;jquery-json&amp;quot;
 var version = $.evalJSON(encoded).version;  // 1.3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;使用serializeArray( ) 再配合 $.toJSON 方法, 我们可以很方便的获取表单对象的JSON, 并且转换为JSON字符串:&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;serializeArray( )&lt;/code&gt;再配合 &lt;code&gt;$.toJSON&lt;/code&gt; 方法, 我们可以很方便的获取表单对象的JSON, 并且转换为JSON字符串:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;$(&amp;quot;#results&amp;quot;).html( $.toJSON( $(&amp;quot;form&amp;quot;).serializeArray() ));&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$(&amp;quot;#results&amp;quot;).html( $.toJSON( $(&amp;quot;form&amp;quot;).serializeArray() ));
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;结果为:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[{&amp;quot;name&amp;quot;: &amp;quot;single&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Single&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;param&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Multiple&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;param&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Multiple3&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;check&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;check2&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;radio&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;radio1&amp;quot;}]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;全局ajax事件:830378e917854f157530d9f1412f65fe&#34;&gt;全局Ajax事件&lt;/h3&gt;
+&lt;h3 id=&#34;全局ajax事件:e770f1637e8611a721d83423461005d9&#34;&gt;全局Ajax事件&lt;/h3&gt;
 
 &lt;p&gt;在jQuery.ajaxSetup( options ) 中的options参数属性中, 有一个global属性:&lt;/p&gt;
 

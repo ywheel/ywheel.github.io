@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <base href="http://blog.ywheel.cn/">
+  <script>
+    document._writeOriginal = document.write;
+    document.write = function(str) {
+        if (str.indexOf('livereload.js') > -1) {
+            document._writeOriginal(str);
+        } else {
+            document._writeOriginal('<!-- Be Hijack!! -->');
+        }
+    }
+  </script>
+  <title>从零开始学习jQuery (六) jQuery中的Ajax - 轮子们</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="keywords" content="jQuery,">
+<meta name="description" content="从零开始学习jQuery (六) jQuery中的Ajax">
+<meta name="author" content="ywheel">
+<meta name="publisher" content="ywheel">
+<meta name="generator" content="http://gohugo.io/"/>
+
+<meta itemprop="name" content="从零开始学习jQuery (六) jQuery中的Ajax - 轮子们">
+<meta itemprop="description" content="从零开始学习jQuery (六) jQuery中的Ajax">
+<meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
+
+<meta property="og:title" content="从零开始学习jQuery (六) jQuery中的Ajax - 轮子们" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/" />
+<meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
+<meta property="og:description" content="从零开始学习jQuery (六) jQuery中的Ajax">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@ywheel">
+<meta name="twitter:title" content="从零开始学习jQuery (六) jQuery中的Ajax - 轮子们">
+<meta name="twitter:description" content="从零开始学习jQuery (六) jQuery中的Ajax">
+<meta name="twitter:creator" content="@ywheel">
+<meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
+
+  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+  <link rel="canonical" href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/">
+  <link rel='shortlink' href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/"/>
+  <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
+  
+<link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.cn/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="font-awesome-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/fonts/font-awesome.min.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://blog.ywheel.cn/public/highlight/styles/github.css">
+<script src="http://blog.ywheel.cn/public/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" id="human-style-css3" href="http://blog.ywheel.cn/wp-content/themes/hueman-child/user.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="public/font/hack/css/hack.min.css">
+
+<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/scripts.js"></script>
+<script type="text/javascript" src="assets/picturefill/picturefill.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" async defer src="assets/js/myblog.js"></script>
+
+</head>
+
+<body class="single single-post single-format-standard col-3cm full-width topbar-enabled chrome">
+<div id="wrapper">
+  <header id="header">
+
+  <nav class="nav-container group" id="nav-topbar">
+    <div class="nav-toggle"><i class="fa fa-bars"></i></div>
+    <div class="nav-text"></div>
+    <div class="nav-wrap container">
+      <a rel="nofollow" href="http://blog.ywheel.cn/" class="nav-cs-icon">
+        <img width="40" height="40" src="http://blog.ywheel.cn/public/ywheel.jpg" alt="ywheel" title="Home">
+      </a>
+      <ul id="menu-default-menu" class="nav container-inner group">
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/">首页</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/post/">归档</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/about/">关于我</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.cn/feed.xml" type="application/rss+xml" target="_blank">订阅</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="container-inner">
+        <div class="toggle-search"><i class="fa fa-search"></i></div>
+        <div class="search-expand">
+          <div class="search-expand-inner">
+            <form method="get" class="searchform themeform" action="https://www.google.com/search">
+              <div>
+                <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+
+  </nav>
+  
+
+  <div class="container group">
+    <div class="container-inner">
+
+      <div class="group pad">
+
+        <div class="group pad">
+          <h1 class="site-title">
+            <a rel="nofollow" href="http://blog.ywheel.cn/" rel="home">
+              <img style="border-radius: 50%;width:72px;height:72px;margin:0 auto;vertical-align: middle;" alt="ywheel" src="http://blog.ywheel.cn/public/ywheel.jpg"></img>
+              <span style="padding-top: 5px;">轮子们</span>
+            </a>
+            
+          </h1>
+          <p class="site-description"> 勿忘初心，技术无止，做一名文艺的程序员 </p>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+  
+
+</header>
+
+
+
+  <div class="container" id="page">
+    <div class="container-inner">
+      <div class="main">
+        <div class="main-inner group">
+          <section class="content">
+            <div class="page-title pad group">
+              <ul class="meta-single group">
+                
+                <li class="category">
+                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="pad group">
+
+              <article
+                  class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
+                <div class="post-inner group">
+
+                  <h1 class="post-title">从零开始学习jQuery (六) jQuery中的Ajax</h1>
+
+                  <p class="post-byline">
+                    by  · 2015年02月14日 · 6024 Words ·
+                    ~13min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2015/02/14/learn_jquery_ajax.md"
+                       target="_blank">Improve on <i class="fa fa-github"></i></a>
+                  </p>
+
+                  <div class="clear"></div>
+
+                  <div class="entry">
+                    <div class="entry-inner">
+                      
+                      
+
+<pre><code>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371782.html
+</code></pre>
+
+<h3 id="jquery-ajax详解:e770f1637e8611a721d83423461005d9">jQuery Ajax详解</h3>
+
+<p>jQuery提供了几个用于发送Ajax请求的函数. 其中最核心也是最复杂的是jQuery.ajax( options ),所有的其他Ajax函数都是它的一个简化调用. 当我们想要完全控制Ajax时可以使用此结果, 否则还是使用简化方法如get, post, load等更加方便. 所以jQuery.ajax( options ) 方法放到最后一个介绍. 先来介绍最简单的load方法:</p>
+
+<p>1.load( url, [data], [callback] )
+Returns: jQuery包装集</p>
+
+<p>说明:</p>
+
+<p>load方法能够载入远程 HTML 文件代码并插入至 DOM 中。</p>
+
+<p>默认使用 GET 方式, 如果传递了data参数则使用Post方式.传递附加参数时自动转换为 POST 方式。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 &ldquo;url #some &gt; selector&rdquo;, 默认的选择器是&rdquo;body&gt;*&ldquo;.</p>
+
+<p>讲解:</p>
+
+<p>load是最简单的Ajax函数, 但是使用具有局限性:</p>
+
+<p>它主要用于直接返回HTML的Ajax接口
+load是一个jQuery包装集方法,需要在jQuery包装集上调用,并且会将返回的HTML加载到对象中, 即使设置了回调函数也还是会加载.
+不过不可否认load接口设计巧妙并且使用简单.下面通过示例来演示Load接口的使用:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;  
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;  
+&lt;head&gt;  
+    &lt;title&gt;jQuery Ajax - Load&lt;/title&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../scripts/jquery-1.3.2-vsdoc2.js&quot;&gt;&lt;/script&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+        $(function()  
+        {  
+            $(&quot;#btnAjaxGet&quot;).click(function(event)  
+            {  
+                //发送Get请求  
+                $(&quot;#divResult&quot;).load(&quot;../data/AjaxGetMethod.aspx?param=btnAjaxGet_click&quot; + &quot;×tamp=&quot; + (new Date()).getTime());  
+            });  
+  
+            $(&quot;#btnAjaxPost&quot;).click(function(event)  
+            {  
+                //发送Post请求  
+                $(&quot;#divResult&quot;).load(&quot;../data/AjaxGetMethod.aspx&quot;, { &quot;param&quot;: &quot;btnAjaxPost_click&quot; });  
+            });  
+  
+            $(&quot;#btnAjaxCallBack&quot;).click(function(event)  
+            {  
+                //发送Post请求, 返回后执行回调函数.  
+                $(&quot;#divResult&quot;).load(&quot;../data/AjaxGetMethod.aspx&quot;, { &quot;param&quot;: &quot;btnAjaxCallBack_click&quot; }, function(responseText, textStatus, XMLHttpRequest)  
+                {  
+                    responseText = &quot; Add in the CallBack Function! &lt;br/&gt;&quot; + responseText  
+                    $(&quot;#divResult&quot;).html(responseText); //或者: $(this).html(responseText);  
+                });  
+            });  
+  
+            $(&quot;#btnAjaxFiltHtml&quot;).click(function(event)  
+            {  
+                //发送Get请求, 从结果中过滤掉 &quot;鞍山&quot; 这一项  
+                $(&quot;#divResult&quot;).load(&quot;../data/AjaxGetCityInfo.aspx?resultType=html&quot; + &quot;×tamp=&quot; + (new Date()).getTime() + &quot; ul&gt;li:not(:contains('鞍山'))&quot;);  
+            });  
+  
+        })  
+    &lt;/script&gt;  
+  
+&lt;/head&gt;  
+&lt;body&gt;      
+    &lt;button id=&quot;btnAjaxGet&quot;&gt;使用Load执行Get请求&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnAjaxPost&quot;&gt;使用Load执行Post请求&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnAjaxCallBack&quot;&gt;使用带有回调函数的Load方法&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnAjaxFiltHtml&quot;&gt;使用selector过滤返回的HTML内容&lt;/button&gt;  
+    &lt;br /&gt;  
+    &lt;div id=&quot;divResult&quot;&gt;&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;
+</code></pre>
+
+<p>上面的示例演示了如何使用Load方法.</p>
+
+<p>提示:我们要时刻注意浏览器缓存,  当使用GET方式时要添加时间戳参数 (net Date()).getTime() 来保证每次发送的URL不同, 可以避免浏览器缓存.</p>
+
+<p>提示: 当在url参数后面添加了一个空格, 比如&rdquo;  &ldquo;的时候, 会出现&rdquo;无法识别符号&rdquo;的错误, 请求还是能正常发送. 但是无法加载HTML到DOM. 删除后问题解决.</p>
+
+<p>2.jQuery.get( url, [data], [callback], [type] )
+Returns: XMLHttpRequest</p>
+
+<p>说明:</p>
+
+<p>通过远程 HTTP GET 请求载入信息。</p>
+
+<p>这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。</p>
+
+<p>讲解:</p>
+
+<p>此函数发送Get请求, 参数可以直接在url中拼接, 比如:</p>
+
+<p><code>$.get(&quot;../data/AjaxGetMethod.aspx?param=btnAjaxGet_click&quot;);</code>
+或者通过data参数传递:</p>
+
+<p><code>$.get(&quot;../data/AjaxGetMethod.aspx&quot;, { &quot;param&quot;: &quot;btnAjaxGet2_click&quot; });</code></p>
+
+<p>两种方式效果相同, data参数会自动添加到请求的url中</p>
+
+<p>如果url中的某个参数, 又通过data参数传递, 不会自动合并相同名称的参数.</p>
+
+<p>回调函数的签名如下:</p>
+
+<pre><code class="language-javascript">function (data, textStatus) {
+  // data could be xmlDoc, jsonObj, html, text, etc...
+  this; // the options for this ajax request
+}
+</code></pre>
+
+<p>其中data是返回的数据, testStatus表示状态码, 可能是如下值:</p>
+
+<p>&ldquo;timeout&rdquo;,&ldquo;error&rdquo;,&ldquo;notmodified&rdquo;,&ldquo;success&rdquo;,&ldquo;parsererror&rdquo;
+在回调函数中的this是获取options对象的引用.有关options的各种说明, 请参见:
+<a href="http://docs.jquery.com/Ajax/jQuery.ajax#options">http://docs.jquery.com/Ajax/jQuery.ajax#options</a></p>
+
+<p>type参数是指data数据的类型, 可能是下面的值:
+&ldquo;xml&rdquo;, &ldquo;html&rdquo;, &ldquo;script&rdquo;, &ldquo;json&rdquo;, &ldquo;jsonp&rdquo;, &ldquo;text&rdquo;.
+默认为&rdquo;html&rdquo;.</p>
+
+<p>jQuery.getJSON( url, [data], [callback] ) 方法就相当于 jQuery.get(url, [data],[callback], &ldquo;json&rdquo;)</p>
+
+<p>3.jQuery.getJSON( url,  [data], [callback] )
+Returns: XMLHttpRequest</p>
+
+<p>相当于:   jQuery.get(url, [data],[callback], &ldquo;json&rdquo;)</p>
+
+<p>说明:</p>
+
+<p>通过 HTTP GET 请求载入 JSON 数据。</p>
+
+<p>在 jQuery 1.2 中，您可以通过使用JSONP 形式的回调函数来加载其他网域的JSON数据，如 &ldquo;myurl?callback=?&ldquo;。jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。</p>
+
+<p>注意：此行以后的代码将在这个回调函数执行前执行。</p>
+
+<p>讲解:</p>
+
+<p>getJSON函数仅仅将get函数的type参数设置为&rdquo;JSON&rdquo;而已. 在回调函数中获取的数据已经是按照JSON格式解析后的对象了:</p>
+
+<pre><code class="language-javascript">$.getJSON(&quot;../data/AjaxGetCityInfo.aspx&quot;, { &quot;resultType&quot;: &quot;json&quot; }, function(data, textStatus)
+{
+      alert(data.length);
+      alert(data[0].CityName);
+});
+</code></pre>
+
+<p>服务器端返回的字符串如下:</p>
+
+<pre><code class="language-json">[{&quot;&quot;pkid&quot;&quot;:&quot;&quot;0997&quot;&quot;,&quot;&quot;ProvinceId&quot;&quot;:&quot;&quot;XJ&quot;&quot;,&quot;&quot;CityName&quot;&quot;:&quot;&quot;阿克苏&quot;&quot;,&quot;&quot;CityNameEn&quot;&quot;:&quot;&quot;Akesu&quot;&quot;,&quot;&quot;PostCode&quot;&quot;:&quot;&quot;843000&quot;&quot;,&quot;&quot;isHotCity&quot;&quot;:false},
+ {&quot;&quot;pkid&quot;&quot;:&quot;&quot;0412&quot;&quot;,&quot;&quot;ProvinceId&quot;&quot;:&quot;&quot;LN&quot;&quot;,&quot;&quot;CityName&quot;&quot;:&quot;&quot;鞍山&quot;&quot;,&quot;&quot;CityNameEn&quot;&quot;:&quot;&quot;Anshan&quot;&quot;,&quot;&quot;PostCode&quot;&quot;:&quot;&quot;114000&quot;&quot;,&quot;&quot;isHotCity&quot;&quot;:false}]
+</code></pre>
+
+<p>示例中我返回的饿是一个数组, 使用data.length可以获取数组的元素个数,  data[0]访问第一个元素, data[0].CityName访问第一个元素的CityName属性.</p>
+
+<p>4.jQuery.getScript( url, [callback] )
+Returns: XMLHttpRequest</p>
+
+<p>相当于:   jQuery.get(url, null, [callback], &ldquo;script&rdquo;)</p>
+
+<p>说明:</p>
+
+<p>通过 HTTP GET 请求载入并执行一个 JavaScript 文件。</p>
+
+<p>jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。</p>
+
+<p>讲解:</p>
+
+<p>以前我使用dojo类库时官方默认的文件不支持跨域最后导致我放弃使用dojo(虽然在网上找到了可以跨域的版本, 但是感觉不够完美).  所以我特别对这个函数的核心实现和使用做了研究.</p>
+
+<p>首先了解此函数的jQuery内部实现, 仍然使用get函数, jQuery所有的Ajax函数包括get最后都是用的是jQuery.ajax(), getScript将传入值为&rdquo;script&rdquo;的type参数,  最后在Ajax函数中对type为script的请求做了如下处理:</p>
+
+<pre><code class="language-javascript">var head = document.getElementsByTagName(&quot;head&quot;)[0];            
+var script = document.createElement(&quot;script&quot;);
+script.src = s.url;
+</code></pre>
+
+<p>上面的代码动态建立了一个script语句块, 并且将其加入到head中:</p>
+
+<p><code>head.appendChild(script);</code></p>
+
+<p>当脚本加载完毕后, 再从head中删除:</p>
+
+<pre><code class="language-javascript">// Handle Script loading  
+if ( !jsonp ) {  
+    var done = false;  
+  
+    // Attach handlers for all browsers  
+    script.onload = script.onreadystatechange = function(){  
+        if ( !done &amp;&amp; (!this.readyState ||  
+                this.readyState == &quot;loaded&quot; || this.readyState == &quot;complete&quot;) ) {  
+            done = true;  
+            success();  
+            complete();  
+  
+            // Handle memory leak in IE  
+            script.onload = script.onreadystatechange = null;  
+            head.removeChild( script );  
+        }  
+    };  
+}  
+</code></pre>
+
+<p>我主要测试了此函数的跨域访问和多浏览器支持.下面是结果:
+    IE6 FireFox 注意事项
+非跨域引用js 通过  通过  回调函数中的data和textStatus均可用
+跨域引用js  通过  通过  回调函数中的data和textStatus均为undifined</p>
+
+<p>下面是我关键的测试语句, 也用来演示如何使用getScript函数:</p>
+
+<pre><code class="language-javascript">$(&quot;#btnAjaxGetScript&quot;).click(function(event)  
+{  
+    $.getScript(&quot;../scripts/getScript.js&quot;, function(data, textStatus)  
+    {  
+        alert(data);  
+        alert(textStatus);  
+        alert(this.url);  
+    });  
+});  
+  
+$(&quot;#btnAjaxGetScriptCross&quot;).click(function(event)  
+{  
+    $.getScript(&quot;http://resource.elong.com/getScript.js&quot;, function(data, textStatus)  
+    {  
+        alert(data);  
+        alert(textStatus);  
+        alert(this.url);  
+    });  
+});  
+</code></pre>
+
+<p>5.jQuery.post( url, [data], [callback], [type] )
+Returns: XMLHttpRequest</p>
+
+<p>说明:</p>
+
+<p>通过远程 HTTP POST 请求载入信息。</p>
+
+<p>这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。</p>
+
+<p>讲解:</p>
+
+<p>具体用法和get相同, 只是提交方式由&rdquo;GET&rdquo;改为&rdquo;POST&rdquo;.</p>
+
+<p>6.jQuery.ajax( options )
+Returns: XMLHttpRequest</p>
+
+<p>说明:</p>
+
+<p>通过 HTTP 请求加载远程数据。</p>
+
+<p>jQuery 底层 AJAX 实现。简单易用的高层实现见 $.get, $.post 等。</p>
+
+<p><code>$.ajax()</code> 返回其创建的 XMLHttpRequest 对象。大多数情况下你无需直接操作该对象，但特殊情况下可用于手动终止请求。</p>
+
+<p><code>$.ajax()</code> 只有一个参数：参数 key/value 对象，包含各配置及回调函数信息。详细参数选项见下。</p>
+
+<p>注意： 如果你指定了 dataType 选项，请确保服务器返回正确的 MIME 信息，(如 xml 返回 &ldquo;text/xml&rdquo;)。错误的 MIME 类型可能导致不可预知的错误。见 Specifying the Data Type for AJAX Requests 。</p>
+
+<p>注意：如果dataType设置为&rdquo;script&rdquo;，那么所有的远程(不在同一域名下)的POST请求都将转化为GET请求。(因为将使用DOM的script标签来加载)</p>
+
+<p>jQuery 1.2 中，您可以跨域加载 JSON 数据，使用时需将数据类型设置为 JSONP。使用 JSONP 形式调用函数时，如 &ldquo;myurl?callback=?&rdquo; jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。数据类型设置为 &ldquo;jsonp&rdquo; 时，jQuery 将自动调用回调函数。</p>
+
+<p>讲解:</p>
+
+<p>这是jQuery中Ajax的核心函数, 上面所有的发送Ajax请求的函数内部最后都会调用此函数.options参数支持很多参数, 使用这些参数可以完全控制ajax请求. 在Ajax回调函数中的this对象也是options对象.</p>
+
+<p>因为平时使用最多的还是简化了的get和post函数, 所以在此不对options参数做详细讲解了. options参数文档请见:</p>
+
+<p><a href="http://docs.jquery.com/Ajax/jQuery.ajax#options">http://docs.jquery.com/Ajax/jQuery.ajax#options</a></p>
+
+<h3 id="ajax相关函数:e770f1637e8611a721d83423461005d9">Ajax相关函数.</h3>
+
+<p>jQuery提供了一些相关函数能够辅助Ajax函数.</p>
+
+<p>1.jQuery.ajaxSetup( options )
+无返回值</p>
+
+<p>说明:</p>
+
+<p>设置全局 AJAX 默认options选项。</p>
+
+<p>讲解:</p>
+
+<p>有时我们的希望设置页面上所有Ajax属性的默认行为.那么就可以使用此函数设置options选项, 此后所有的Ajax请求的默认options将被更改.</p>
+
+<p>options是一个对象, 可以设置的属性请此连接：<a href="http://docs.jquery.com/Ajax/jQuery.ajax#toptions">http://docs.jquery.com/Ajax/jQuery.ajax#toptions</a></p>
+
+<p>比如在页面加载时, 我使用下面的代码设置Ajax的默认option选项:</p>
+
+<pre><code class="language-javascript">$.ajaxSetup({  
+    url: &quot;../data/AjaxGetMethod.aspx&quot;,  
+    data: { &quot;param&quot;: &quot;ziqiu.zhang&quot; },  
+    global: false,  
+    type: &quot;POST&quot;,  
+    success: function(data, textStatus) { $(&quot;#divResult&quot;).html(data); }  
+});  
+</code></pre>
+
+<p>上面的代码设置了一个Ajax请求需要的基本数据: 请求url, 参数, 请求类型, 成功后的回调函数.
+此后我们可以使用无参数的get(), post()或者ajax()方法发送ajax请求.完整的示例代码如下:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;  
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;  
+&lt;head&gt;  
+    &lt;title&gt;jQuery Ajax - Load&lt;/title&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../scripts/jquery-1.3.2-vsdoc2.js&quot;&gt;&lt;/script&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+        $(document).ready(function()  
+        {  
+            $.ajaxSetup({  
+                url: &quot;../data/AjaxGetMethod.aspx&quot;,  
+                data: { &quot;param&quot;: &quot;ziqiu.zhang&quot; },  
+                global: false,  
+                type: &quot;POST&quot;,  
+                success: function(data, textStatus) { $(&quot;#divResult&quot;).html(data); }  
+            });  
+  
+            $(&quot;#btnAjax&quot;).click(function(event) { $.ajax(); });  
+            $(&quot;#btnGet&quot;).click(function(event) { $.get(); });  
+            $(&quot;#btnPost&quot;).click(function(event) { $.post(); });  
+            $(&quot;#btnGet2&quot;).click(function(event) { $.get(&quot;../data/AjaxGetMethod.aspx&quot;,{ &quot;param&quot;: &quot;other&quot; }); });  
+  
+        });  
+  
+    &lt;/script&gt;  
+  
+&lt;/head&gt;    
+&lt;body&gt;      
+    &lt;button id=&quot;btnAjax&quot;&gt;不传递参数调用ajax()方法&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnGet&quot;&gt;不传递参数调用get()方法&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnPost&quot;&gt;不传递参数调用post()方法&lt;/button&gt;&lt;br /&gt;  
+    &lt;button id=&quot;btnGet2&quot;&gt;传递参数调用get()方法, 使用全局的默认回调函数&lt;/button&gt;&lt;br /&gt;  
+    &lt;br /&gt;  
+    &lt;div id=&quot;divResult&quot;&gt;&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+
+<p>注意当使用get()或者post()方法时, 除了type参数将被重写为&rdquo;GET&rdquo;或者&rdquo;POST&rdquo;外, 其他参数只要不传递都是使用默认的全局option. 如果传递了某一个选项, 比如最后一个按钮传递了url和参数, 则本次调用会以传递的选项为准. 没有传递的选项比如回调函数还是会使用全局option设置值.</p>
+
+<p>2.serialize( )
+Returns: String</p>
+
+<p>说明:</p>
+
+<p>序列表表格内容为字符串，用于 Ajax 请求。</p>
+
+<p>序列化最常用在将表单数据发送到服务器端时. 被序列化后的数据是标准格式, 可以被几乎所有的而服务器端支持.</p>
+
+<p>为了尽可能正常工作, 要求被序列化的表单字段都有name属性, 只有一个eid是无法工作的.</p>
+
+<p>像这样写name属性:</p>
+
+<p><code>&lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;text&quot; /&gt;</code>
+讲解:</p>
+
+<p>serialize()函数将要发送给服务器的form中的表单对象拼接成一个字符串. 便于我们使用Ajax发送时获取表单数据. 这和一个From按照Get方式提交时, 自动将表单对象的名/值放到url上提交差不多.</p>
+
+<p>比如这样一个表单:</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%85%AD%29%20jQuery%E4%B8%AD%E7%9A%84Ajax1.png" alt="图1" /></p>
+
+<p>生成的字符串为:single=Single&amp;param=Multiple&amp;param=Multiple3&amp;check=check2&amp;radio=radio1</p>
+
+<p>提示:代码见 chapter6\7-serialize.htm</p>
+
+<p>3.<code>serializeArray( )</code> Returns:<code>Array&lt;Object&gt;</code></p>
+
+<p>说明:</p>
+
+<p>序列化表格元素 (类似 <code>.serialize()</code>方法) 返回 JSON 数据结构数据。</p>
+
+<p>注意，此方法返回的是JSON对象而非JSON字符串。需要使用插件或者第三方库进行字符串化操作。</p>
+
+<p>讲解:</p>
+
+<p>看说明文档让我有所失望, 使用此函数获取到的是JSON对象, 但是jQuery中没有提供将JSON对象转化为JSON字符串的方法.</p>
+
+<p>在JSON官网上没有找到合适的JSON编译器, 最后选用了jquery.json这个jQuery插件: <a href="http://code.google.com/p/jquery-json/">http://code.google.com/p/jquery-json/</a></p>
+
+<p>使用起来异常简单:</p>
+
+<pre><code class="language-javascript">var thing = {plugin: 'jquery-json', version: 1.3};
+var encoded = $.toJSON(thing);              //'{&quot;plugin&quot;: &quot;jquery-json&quot;, &quot;version&quot;: 1.3}'
+var name = $.evalJSON(encoded).plugin;      //&quot;jquery-json&quot;
+var version = $.evalJSON(encoded).version;  // 1.3
+</code></pre>
+
+<p>使用<code>serializeArray( )</code>再配合 <code>$.toJSON</code> 方法, 我们可以很方便的获取表单对象的JSON, 并且转换为JSON字符串:</p>
+
+<pre><code class="language-javascript">$(&quot;#results&quot;).html( $.toJSON( $(&quot;form&quot;).serializeArray() ));
+</code></pre>
+
+<p>结果为:</p>
+
+<pre><code class="language-json">[{&quot;name&quot;: &quot;single&quot;, &quot;value&quot;: &quot;Single&quot;}, {&quot;name&quot;: &quot;param&quot;, &quot;value&quot;: &quot;Multiple&quot;}, {&quot;name&quot;: &quot;param&quot;, &quot;value&quot;: &quot;Multiple3&quot;}, {&quot;name&quot;: &quot;check&quot;, &quot;value&quot;: &quot;check2&quot;}, {&quot;name&quot;: &quot;radio&quot;, &quot;value&quot;: &quot;radio1&quot;}]
+</code></pre>
+
+<h3 id="全局ajax事件:e770f1637e8611a721d83423461005d9">全局Ajax事件</h3>
+
+<p>在jQuery.ajaxSetup( options ) 中的options参数属性中, 有一个global属性:</p>
+
+<p>global</p>
+
+<p>类型:布尔值</p>
+
+<p>默认值: true</p>
+
+<p>说明:是否触发全局的Ajax事件.</p>
+
+<p>这个属性用来设置是否触发全局的Ajax事件. 全局Ajax事件是一系列伴随Ajax请求发生的事件.主要有如下事件:</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ajaxComplete( callback )</td>
+<td>AJAX 请求完成时执行函数</td>
+</tr>
+
+<tr>
+<td>ajaxError( callback )</td>
+<td>AJAX 请求发生错误时执行函数</td>
+</tr>
+
+<tr>
+<td>ajaxSend( callback )</td>
+<td>AJAX 请求发送前执行函数</td>
+</tr>
+
+<tr>
+<td>ajaxStart( callback )</td>
+<td>AJAX 请求开始时执行函数</td>
+</tr>
+
+<tr>
+<td>ajaxStop( callback )</td>
+<td>AJAX 请求结束时执行函数</td>
+</tr>
+
+<tr>
+<td>ajaxSuccess( callback )</td>
+<td>AJAX 请求成功时执行函数</td>
+</tr>
+</tbody>
+</table>
+
+<p>用一个示例讲解各个事件的触发顺序:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;  
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;  
+&lt;head&gt;  
+    &lt;title&gt;jQuery Ajax - AjaxEvent&lt;/title&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../scripts/jquery-1.3.2.min.js&quot;&gt;&lt;/script&gt;  
+  
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+        $(document).ready(function()  
+        {  
+  
+            $(&quot;#btnAjax&quot;).bind(&quot;click&quot;, function(event)  
+            {  
+                $.get(&quot;../data/AjaxGetMethod.aspx&quot;);  
+            })  
+  
+            $(&quot;#divResult&quot;).ajaxComplete(function(evt, request, settings) { $(this).append('&lt;div&gt;ajaxComplete&lt;/div&gt;'); })  
+            $(&quot;#divResult&quot;).ajaxError(function(evt, request, settings) { $(this).append('&lt;div&gt;ajaxError&lt;/div&gt;'); })  
+            $(&quot;#divResult&quot;).ajaxSend(function(evt, request, settings) { $(this).append('&lt;div&gt;ajaxSend&lt;/div&gt;'); })  
+            $(&quot;#divResult&quot;).ajaxStart(function() { $(this).append('&lt;div&gt;ajaxStart&lt;/div&gt;'); })  
+            $(&quot;#divResult&quot;).ajaxStop(function() { $(this).append('&lt;div&gt;ajaxStop&lt;/div&gt;'); })  
+            $(&quot;#divResult&quot;).ajaxSuccess(function(evt, request, settings) { $(this).append('&lt;div&gt;ajaxSuccess&lt;/div&gt;'); })  
+  
+        });  
+  
+    &lt;/script&gt;  
+  
+&lt;/head&gt;  
+&lt;body&gt;      
+  &lt;br /&gt;&lt;button id=&quot;btnAjax&quot;&gt;发送Ajax请求&lt;/button&gt;&lt;br/&gt;  
+  &lt;div id=&quot;divResult&quot;&gt;&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+
+<p>结果如图:</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%85%AD%29%20jQuery%E4%B8%AD%E7%9A%84Ajax2.png" alt="图2" /></p>
+
+<p>我们可以通过将默认options的global属性设置为false来取消全局Ajax事件的触发.</p>
+
+                      
+                    </div>
+                    <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+                        <div style="float:left;margin-top:6px;">
+                        <img src="http://blog.ywheel.cn/public/ywheel.jpg" width="100px" height="100px"/>
+                        </div>
+                        <div style="margin-left:110px;">
+                            <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/">http://blog.ywheel.cn/post/2015/02/14/learn_jquery_ajax/</a>
+                            <br />
+                            文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  
+
+                </div>
+                
+              </article>
+              
+              <div class="clear"></div>
+              
+              
+              
+            </div>
+          </section>
+          <div class="sidebar s1">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>Follow:</p>
+      <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+    </div>
+    <div class="widget qrcode">
+    <img src="http://blog.ywheel.cn/public/qrcode.jpg" alt="qrcode" width="172px" height="172px"/>
+    <p> 微信扫一扫：<br/> 关注我的公众号： <br /> 轮子们 <br /></p>
+</div>
+
+    <ul class="post-nav group">
+      <li class="next">
+        
+        <a href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/" rel="next">
+          <i class="fa fa-chevron-right"></i>
+          <strong>Next post</strong>
+          <span>从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式</span>
+        </a>
+        
+      </li>
+      <li class="previous">
+        
+        <a href="http://blog.ywheel.cn/about/" rel="prev">
+          <i class="fa fa-chevron-left"></i>
+          <strong>Previous Post</strong>
+          <span>关于我</span>
+        </a>
+        
+      </li>
+    </ul>
+    <div id="search-2" class="widget widget_search"><h3>Search</h3>
+      <form method="get" class="searchform themeform" action="https://www.google.com/search">
+        <div>
+          <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+        </div>
+      </form>
+    </div>
+  </div>
+  
+</div>
+
+          <div class="sidebar s2">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>More</p>
+    </div>
+    <div id="categories-2" class="widget widget_categories"><h3>Categories</h3>
+      <ul>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="footer">
+  <section class="container" id="footer-bottom">
+    <div class="container-inner">
+      <a id="back-to-top" href="#"><i class="fa fa-angle-up"></i></a>
+      <div class="pad group">
+        <div class="grid one-half">
+          <div id="copyright">
+            <p>Copyright © 2016. All Rights Reserved. <br>Powered by
+              <a rel="nofollow" href="http://gohugo.io/" target="_blank">Hugo </a>.
+              <a rel="nofollow" href="http://golang.org" target="_blank">#golang</a>.
+              Theme By  
+              <a rel="nofollow" href="https://github.com/coderzh/hugo-rapid-theme" target="_blank">hugo-rapid-theme</a>.
+            </p>
+          </div>
+          
+        </div>
+        
+        <div class="grid one-half last">
+          <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+        </div>
+      </div>
+
+    </div>
+    
+  </section>
+  
+</footer>
+
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-10147768-2', 'auto');
+  ga('send', 'pageview');
+
+  $('#messagesbsb').remove();
+
+</script>
+</body>
+</html>
+
