@@ -7,44 +7,8 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 09 May 2016 00:01:47 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Apr 2016 23:52:12 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/feed/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>learn_jquery_6</title>
-      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</link>
-      <pubDate>Mon, 09 May 2016 00:01:47 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>learn_jquery_4</title>
-      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</link>
-      <pubDate>Mon, 09 May 2016 00:01:45 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>learn_jquery_2</title>
-      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</link>
-      <pubDate>Mon, 09 May 2016 00:01:42 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>learn_jquery_1</title>
-      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</link>
-      <pubDate>Mon, 09 May 2016 00:01:30 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>关于我</title>
@@ -91,6 +55,1643 @@
 &lt;li&gt;Email: ywheel@qq.com&lt;/li&gt;
 &lt;li&gt;微信公众号：轮子们&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (六) jQuery中的Ajax</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</link>
+      <pubDate>Sat, 14 Feb 2015 19:01:47 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371782.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;jquery-ajax详解:830378e917854f157530d9f1412f65fe&#34;&gt;jQuery Ajax详解&lt;/h3&gt;
+
+&lt;p&gt;jQuery提供了几个用于发送Ajax请求的函数. 其中最核心也是最复杂的是jQuery.ajax( options ),所有的其他Ajax函数都是它的一个简化调用. 当我们想要完全控制Ajax时可以使用此结果, 否则还是使用简化方法如get, post, load等更加方便. 所以jQuery.ajax( options ) 方法放到最后一个介绍. 先来介绍最简单的load方法:&lt;/p&gt;
+
+&lt;p&gt;1.load( url, [data], [callback] )
+Returns: jQuery包装集&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;load方法能够载入远程 HTML 文件代码并插入至 DOM 中。&lt;/p&gt;
+
+&lt;p&gt;默认使用 GET 方式, 如果传递了data参数则使用Post方式.传递附加参数时自动转换为 POST 方式。jQuery 1.2 中，可以指定选择符，来筛选载入的 HTML 文档，DOM 中将仅插入筛选出的 HTML 代码。语法形如 &amp;ldquo;url #some &amp;gt; selector&amp;rdquo;, 默认的选择器是&amp;rdquo;body&amp;gt;*&amp;ldquo;.&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;load是最简单的Ajax函数, 但是使用具有局限性:&lt;/p&gt;
+
+&lt;p&gt;它主要用于直接返回HTML的Ajax接口
+load是一个jQuery包装集方法,需要在jQuery包装集上调用,并且会将返回的HTML加载到对象中, 即使设置了回调函数也还是会加载.
+不过不可否认load接口设计巧妙并且使用简单.下面通过示例来演示Load接口的使用:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;quot;&amp;gt;  
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;  
+&amp;lt;head&amp;gt;  
+    &amp;lt;title&amp;gt;jQuery Ajax - Load&amp;lt;/title&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;../scripts/jquery-1.3.2-vsdoc2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;  
+        $(function()  
+        {  
+            $(&amp;quot;#btnAjaxGet&amp;quot;).click(function(event)  
+            {  
+                //发送Get请求  
+                $(&amp;quot;#divResult&amp;quot;).load(&amp;quot;../data/AjaxGetMethod.aspx?param=btnAjaxGet_click&amp;quot; + &amp;quot;×tamp=&amp;quot; + (new Date()).getTime());  
+            });  
+  
+            $(&amp;quot;#btnAjaxPost&amp;quot;).click(function(event)  
+            {  
+                //发送Post请求  
+                $(&amp;quot;#divResult&amp;quot;).load(&amp;quot;../data/AjaxGetMethod.aspx&amp;quot;, { &amp;quot;param&amp;quot;: &amp;quot;btnAjaxPost_click&amp;quot; });  
+            });  
+  
+            $(&amp;quot;#btnAjaxCallBack&amp;quot;).click(function(event)  
+            {  
+                //发送Post请求, 返回后执行回调函数.  
+                $(&amp;quot;#divResult&amp;quot;).load(&amp;quot;../data/AjaxGetMethod.aspx&amp;quot;, { &amp;quot;param&amp;quot;: &amp;quot;btnAjaxCallBack_click&amp;quot; }, function(responseText, textStatus, XMLHttpRequest)  
+                {  
+                    responseText = &amp;quot; Add in the CallBack Function! &amp;lt;br/&amp;gt;&amp;quot; + responseText  
+                    $(&amp;quot;#divResult&amp;quot;).html(responseText); //或者: $(this).html(responseText);  
+                });  
+            });  
+  
+            $(&amp;quot;#btnAjaxFiltHtml&amp;quot;).click(function(event)  
+            {  
+                //发送Get请求, 从结果中过滤掉 &amp;quot;鞍山&amp;quot; 这一项  
+                $(&amp;quot;#divResult&amp;quot;).load(&amp;quot;../data/AjaxGetCityInfo.aspx?resultType=html&amp;quot; + &amp;quot;×tamp=&amp;quot; + (new Date()).getTime() + &amp;quot; ul&amp;gt;li:not(:contains(&#39;鞍山&#39;))&amp;quot;);  
+            });  
+  
+        })  
+    &amp;lt;/script&amp;gt;  
+  
+&amp;lt;/head&amp;gt;  
+&amp;lt;body&amp;gt;      
+    &amp;lt;button id=&amp;quot;btnAjaxGet&amp;quot;&amp;gt;使用Load执行Get请求&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnAjaxPost&amp;quot;&amp;gt;使用Load执行Post请求&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnAjaxCallBack&amp;quot;&amp;gt;使用带有回调函数的Load方法&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnAjaxFiltHtml&amp;quot;&amp;gt;使用selector过滤返回的HTML内容&amp;lt;/button&amp;gt;  
+    &amp;lt;br /&amp;gt;  
+    &amp;lt;div id=&amp;quot;divResult&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  
+&amp;lt;/body&amp;gt;  
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的示例演示了如何使用Load方法.&lt;/p&gt;
+
+&lt;p&gt;提示:我们要时刻注意浏览器缓存,  当使用GET方式时要添加时间戳参数 (net Date()).getTime() 来保证每次发送的URL不同, 可以避免浏览器缓存.&lt;/p&gt;
+
+&lt;p&gt;提示: 当在url参数后面添加了一个空格, 比如&amp;rdquo;  &amp;ldquo;的时候, 会出现&amp;rdquo;无法识别符号&amp;rdquo;的错误, 请求还是能正常发送. 但是无法加载HTML到DOM. 删除后问题解决.&lt;/p&gt;
+
+&lt;p&gt;2.jQuery.get( url, [data], [callback], [type] )
+Returns: XMLHttpRequest&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;通过远程 HTTP GET 请求载入信息。&lt;/p&gt;
+
+&lt;p&gt;这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;此函数发送Get请求, 参数可以直接在url中拼接, 比如:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$.get(&amp;quot;../data/AjaxGetMethod.aspx?param=btnAjaxGet_click&amp;quot;);&lt;/code&gt;
+或者通过data参数传递:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$.get(&amp;quot;../data/AjaxGetMethod.aspx&amp;quot;, { &amp;quot;param&amp;quot;: &amp;quot;btnAjaxGet2_click&amp;quot; });&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;两种方式效果相同, data参数会自动添加到请求的url中&lt;/p&gt;
+
+&lt;p&gt;如果url中的某个参数, 又通过data参数传递, 不会自动合并相同名称的参数.&lt;/p&gt;
+
+&lt;p&gt;回调函数的签名如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function (data, textStatus) {
+  // data could be xmlDoc, jsonObj, html, text, etc...
+  this; // the options for this ajax request
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中data是返回的数据, testStatus表示状态码, 可能是如下值:&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;timeout&amp;rdquo;,&amp;ldquo;error&amp;rdquo;,&amp;ldquo;notmodified&amp;rdquo;,&amp;ldquo;success&amp;rdquo;,&amp;ldquo;parsererror&amp;rdquo;
+在回调函数中的this是获取options对象的引用.有关options的各种说明, 请参见:
+&lt;a href=&#34;http://docs.jquery.com/Ajax/jQuery.ajax#options&#34;&gt;http://docs.jquery.com/Ajax/jQuery.ajax#options&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;type参数是指data数据的类型, 可能是下面的值:
+&amp;ldquo;xml&amp;rdquo;, &amp;ldquo;html&amp;rdquo;, &amp;ldquo;script&amp;rdquo;, &amp;ldquo;json&amp;rdquo;, &amp;ldquo;jsonp&amp;rdquo;, &amp;ldquo;text&amp;rdquo;.
+默认为&amp;rdquo;html&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;jQuery.getJSON( url, [data], [callback] ) 方法就相当于 jQuery.get(url, [data],[callback], &amp;ldquo;json&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;3.jQuery.getJSON( url,  [data], [callback] )
+Returns: XMLHttpRequest&lt;/p&gt;
+
+&lt;p&gt;相当于:   jQuery.get(url, [data],[callback], &amp;ldquo;json&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;通过 HTTP GET 请求载入 JSON 数据。&lt;/p&gt;
+
+&lt;p&gt;在 jQuery 1.2 中，您可以通过使用JSONP 形式的回调函数来加载其他网域的JSON数据，如 &amp;ldquo;myurl?callback=?&amp;ldquo;。jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。&lt;/p&gt;
+
+&lt;p&gt;注意：此行以后的代码将在这个回调函数执行前执行。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;getJSON函数仅仅将get函数的type参数设置为&amp;rdquo;JSON&amp;rdquo;而已. 在回调函数中获取的数据已经是按照JSON格式解析后的对象了:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$.getJSON(&amp;quot;../data/AjaxGetCityInfo.aspx&amp;quot;, { &amp;quot;resultType&amp;quot;: &amp;quot;json&amp;quot; }, function(data, textStatus)
+{
+      alert(data.length);
+      alert(data[0].CityName);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;服务器端返回的字符串如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[{&amp;quot;&amp;quot;pkid&amp;quot;&amp;quot;:&amp;quot;&amp;quot;0997&amp;quot;&amp;quot;,&amp;quot;&amp;quot;ProvinceId&amp;quot;&amp;quot;:&amp;quot;&amp;quot;XJ&amp;quot;&amp;quot;,&amp;quot;&amp;quot;CityName&amp;quot;&amp;quot;:&amp;quot;&amp;quot;阿克苏&amp;quot;&amp;quot;,&amp;quot;&amp;quot;CityNameEn&amp;quot;&amp;quot;:&amp;quot;&amp;quot;Akesu&amp;quot;&amp;quot;,&amp;quot;&amp;quot;PostCode&amp;quot;&amp;quot;:&amp;quot;&amp;quot;843000&amp;quot;&amp;quot;,&amp;quot;&amp;quot;isHotCity&amp;quot;&amp;quot;:false},
+ {&amp;quot;&amp;quot;pkid&amp;quot;&amp;quot;:&amp;quot;&amp;quot;0412&amp;quot;&amp;quot;,&amp;quot;&amp;quot;ProvinceId&amp;quot;&amp;quot;:&amp;quot;&amp;quot;LN&amp;quot;&amp;quot;,&amp;quot;&amp;quot;CityName&amp;quot;&amp;quot;:&amp;quot;&amp;quot;鞍山&amp;quot;&amp;quot;,&amp;quot;&amp;quot;CityNameEn&amp;quot;&amp;quot;:&amp;quot;&amp;quot;Anshan&amp;quot;&amp;quot;,&amp;quot;&amp;quot;PostCode&amp;quot;&amp;quot;:&amp;quot;&amp;quot;114000&amp;quot;&amp;quot;,&amp;quot;&amp;quot;isHotCity&amp;quot;&amp;quot;:false}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;示例中我返回的饿是一个数组, 使用data.length可以获取数组的元素个数,  data[0]访问第一个元素, data[0].CityName访问第一个元素的CityName属性.&lt;/p&gt;
+
+&lt;p&gt;4.jQuery.getScript( url, [callback] )
+Returns: XMLHttpRequest&lt;/p&gt;
+
+&lt;p&gt;相当于:   jQuery.get(url, null, [callback], &amp;ldquo;script&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;通过 HTTP GET 请求载入并执行一个 JavaScript 文件。&lt;/p&gt;
+
+&lt;p&gt;jQuery 1.2 版本之前，getScript 只能调用同域 JS 文件。 1.2中，您可以跨域调用 JavaScript 文件。注意：Safari 2 或更早的版本不能在全局作用域中同步执行脚本。如果通过 getScript 加入脚本，请加入延时函数。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;以前我使用dojo类库时官方默认的文件不支持跨域最后导致我放弃使用dojo(虽然在网上找到了可以跨域的版本, 但是感觉不够完美).  所以我特别对这个函数的核心实现和使用做了研究.&lt;/p&gt;
+
+&lt;p&gt;首先了解此函数的jQuery内部实现, 仍然使用get函数, jQuery所有的Ajax函数包括get最后都是用的是jQuery.ajax(), getScript将传入值为&amp;rdquo;script&amp;rdquo;的type参数,  最后在Ajax函数中对type为script的请求做了如下处理:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var head = document.getElementsByTagName(&amp;quot;head&amp;quot;)[0];            
+var script = document.createElement(&amp;quot;script&amp;quot;);
+script.src = s.url;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的代码动态建立了一个script语句块, 并且将其加入到head中:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;head.appendChild(script);&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;当脚本加载完毕后, 再从head中删除:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// Handle Script loading  
+if ( !jsonp ) {  
+    var done = false;  
+  
+    // Attach handlers for all browsers  
+    script.onload = script.onreadystatechange = function(){  
+        if ( !done &amp;amp;&amp;amp; (!this.readyState ||  
+                this.readyState == &amp;quot;loaded&amp;quot; || this.readyState == &amp;quot;complete&amp;quot;) ) {  
+            done = true;  
+            success();  
+            complete();  
+  
+            // Handle memory leak in IE  
+            script.onload = script.onreadystatechange = null;  
+            head.removeChild( script );  
+        }  
+    };  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我主要测试了此函数的跨域访问和多浏览器支持.下面是结果:
+    IE6 FireFox 注意事项
+非跨域引用js 通过  通过  回调函数中的data和textStatus均可用
+跨域引用js  通过  通过  回调函数中的data和textStatus均为undifined&lt;/p&gt;
+
+&lt;p&gt;下面是我关键的测试语句, 也用来演示如何使用getScript函数:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$(&amp;quot;#btnAjaxGetScript&amp;quot;).click(function(event)  
+{  
+    $.getScript(&amp;quot;../scripts/getScript.js&amp;quot;, function(data, textStatus)  
+    {  
+        alert(data);  
+        alert(textStatus);  
+        alert(this.url);  
+    });  
+});  
+  
+$(&amp;quot;#btnAjaxGetScriptCross&amp;quot;).click(function(event)  
+{  
+    $.getScript(&amp;quot;http://resource.elong.com/getScript.js&amp;quot;, function(data, textStatus)  
+    {  
+        alert(data);  
+        alert(textStatus);  
+        alert(this.url);  
+    });  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;5.jQuery.post( url, [data], [callback], [type] )
+Returns: XMLHttpRequest&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;通过远程 HTTP POST 请求载入信息。&lt;/p&gt;
+
+&lt;p&gt;这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;具体用法和get相同, 只是提交方式由&amp;rdquo;GET&amp;rdquo;改为&amp;rdquo;POST&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;6.jQuery.ajax( options )
+Returns: XMLHttpRequest&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;通过 HTTP 请求加载远程数据。&lt;/p&gt;
+
+&lt;p&gt;jQuery 底层 AJAX 实现。简单易用的高层实现见 $.get, $.post 等。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax()&lt;/code&gt; 返回其创建的 XMLHttpRequest 对象。大多数情况下你无需直接操作该对象，但特殊情况下可用于手动终止请求。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$.ajax()&lt;/code&gt; 只有一个参数：参数 key/value 对象，包含各配置及回调函数信息。详细参数选项见下。&lt;/p&gt;
+
+&lt;p&gt;注意： 如果你指定了 dataType 选项，请确保服务器返回正确的 MIME 信息，(如 xml 返回 &amp;ldquo;text/xml&amp;rdquo;)。错误的 MIME 类型可能导致不可预知的错误。见 Specifying the Data Type for AJAX Requests 。&lt;/p&gt;
+
+&lt;p&gt;注意：如果dataType设置为&amp;rdquo;script&amp;rdquo;，那么所有的远程(不在同一域名下)的POST请求都将转化为GET请求。(因为将使用DOM的script标签来加载)&lt;/p&gt;
+
+&lt;p&gt;jQuery 1.2 中，您可以跨域加载 JSON 数据，使用时需将数据类型设置为 JSONP。使用 JSONP 形式调用函数时，如 &amp;ldquo;myurl?callback=?&amp;rdquo; jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。数据类型设置为 &amp;ldquo;jsonp&amp;rdquo; 时，jQuery 将自动调用回调函数。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;这是jQuery中Ajax的核心函数, 上面所有的发送Ajax请求的函数内部最后都会调用此函数.options参数支持很多参数, 使用这些参数可以完全控制ajax请求. 在Ajax回调函数中的this对象也是options对象.&lt;/p&gt;
+
+&lt;p&gt;因为平时使用最多的还是简化了的get和post函数, 所以在此不对options参数做详细讲解了. options参数文档请见:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docs.jquery.com/Ajax/jQuery.ajax#options&#34;&gt;http://docs.jquery.com/Ajax/jQuery.ajax#options&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;ajax相关函数:830378e917854f157530d9f1412f65fe&#34;&gt;Ajax相关函数.&lt;/h3&gt;
+
+&lt;p&gt;jQuery提供了一些相关函数能够辅助Ajax函数.&lt;/p&gt;
+
+&lt;p&gt;1.jQuery.ajaxSetup( options )
+无返回值&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;设置全局 AJAX 默认options选项。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;有时我们的希望设置页面上所有Ajax属性的默认行为.那么就可以使用此函数设置options选项, 此后所有的Ajax请求的默认options将被更改.&lt;/p&gt;
+
+&lt;p&gt;options是一个对象, 可以设置的属性请此连接：&lt;a href=&#34;http://docs.jquery.com/Ajax/jQuery.ajax#toptions&#34;&gt;http://docs.jquery.com/Ajax/jQuery.ajax#toptions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;比如在页面加载时, 我使用下面的代码设置Ajax的默认option选项:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$.ajaxSetup({  
+    url: &amp;quot;../data/AjaxGetMethod.aspx&amp;quot;,  
+    data: { &amp;quot;param&amp;quot;: &amp;quot;ziqiu.zhang&amp;quot; },  
+    global: false,  
+    type: &amp;quot;POST&amp;quot;,  
+    success: function(data, textStatus) { $(&amp;quot;#divResult&amp;quot;).html(data); }  
+});  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的代码设置了一个Ajax请求需要的基本数据: 请求url, 参数, 请求类型, 成功后的回调函数.
+此后我们可以使用无参数的get(), post()或者ajax()方法发送ajax请求.完整的示例代码如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;quot;&amp;gt;  
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;  
+&amp;lt;head&amp;gt;  
+    &amp;lt;title&amp;gt;jQuery Ajax - Load&amp;lt;/title&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;../scripts/jquery-1.3.2-vsdoc2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;  
+        $(document).ready(function()  
+        {  
+            $.ajaxSetup({  
+                url: &amp;quot;../data/AjaxGetMethod.aspx&amp;quot;,  
+                data: { &amp;quot;param&amp;quot;: &amp;quot;ziqiu.zhang&amp;quot; },  
+                global: false,  
+                type: &amp;quot;POST&amp;quot;,  
+                success: function(data, textStatus) { $(&amp;quot;#divResult&amp;quot;).html(data); }  
+            });  
+  
+            $(&amp;quot;#btnAjax&amp;quot;).click(function(event) { $.ajax(); });  
+            $(&amp;quot;#btnGet&amp;quot;).click(function(event) { $.get(); });  
+            $(&amp;quot;#btnPost&amp;quot;).click(function(event) { $.post(); });  
+            $(&amp;quot;#btnGet2&amp;quot;).click(function(event) { $.get(&amp;quot;../data/AjaxGetMethod.aspx&amp;quot;,{ &amp;quot;param&amp;quot;: &amp;quot;other&amp;quot; }); });  
+  
+        });  
+  
+    &amp;lt;/script&amp;gt;  
+  
+&amp;lt;/head&amp;gt;    
+&amp;lt;body&amp;gt;      
+    &amp;lt;button id=&amp;quot;btnAjax&amp;quot;&amp;gt;不传递参数调用ajax()方法&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnGet&amp;quot;&amp;gt;不传递参数调用get()方法&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnPost&amp;quot;&amp;gt;不传递参数调用post()方法&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;button id=&amp;quot;btnGet2&amp;quot;&amp;gt;传递参数调用get()方法, 使用全局的默认回调函数&amp;lt;/button&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;br /&amp;gt;  
+    &amp;lt;div id=&amp;quot;divResult&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  
+&amp;lt;/body&amp;gt;  
+&amp;lt;/html&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意当使用get()或者post()方法时, 除了type参数将被重写为&amp;rdquo;GET&amp;rdquo;或者&amp;rdquo;POST&amp;rdquo;外, 其他参数只要不传递都是使用默认的全局option. 如果传递了某一个选项, 比如最后一个按钮传递了url和参数, 则本次调用会以传递的选项为准. 没有传递的选项比如回调函数还是会使用全局option设置值.&lt;/p&gt;
+
+&lt;p&gt;2.serialize( )
+Returns: String&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;序列表表格内容为字符串，用于 Ajax 请求。&lt;/p&gt;
+
+&lt;p&gt;序列化最常用在将表单数据发送到服务器端时. 被序列化后的数据是标准格式, 可以被几乎所有的而服务器端支持.&lt;/p&gt;
+
+&lt;p&gt;为了尽可能正常工作, 要求被序列化的表单字段都有name属性, 只有一个eid是无法工作的.&lt;/p&gt;
+
+&lt;p&gt;像这样写name属性:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;input id=&amp;quot;email&amp;quot; name=&amp;quot;email&amp;quot; type=&amp;quot;text&amp;quot; /&amp;gt;&lt;/code&gt;
+讲解:&lt;/p&gt;
+
+&lt;p&gt;serialize()函数将要发送给服务器的form中的表单对象拼接成一个字符串. 便于我们使用Ajax发送时获取表单数据. 这和一个From按照Get方式提交时, 自动将表单对象的名/值放到url上提交差不多.&lt;/p&gt;
+
+&lt;p&gt;比如这样一个表单:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%85%AD%29%20jQuery%E4%B8%AD%E7%9A%84Ajax1.png&#34; alt=&#34;图1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;生成的字符串为:single=Single&amp;amp;param=Multiple&amp;amp;param=Multiple3&amp;amp;check=check2&amp;amp;radio=radio1&lt;/p&gt;
+
+&lt;p&gt;提示:代码见 chapter6\7-serialize.htm&lt;/p&gt;
+
+&lt;p&gt;3.serializeArray( )
+Returns: Array&lt;Object&gt;&lt;/p&gt;
+
+&lt;p&gt;说明:&lt;/p&gt;
+
+&lt;p&gt;序列化表格元素 (类似 &amp;lsquo;.serialize()&amp;rsquo; 方法) 返回 JSON 数据结构数据。&lt;/p&gt;
+
+&lt;p&gt;注意，此方法返回的是JSON对象而非JSON字符串。需要使用插件或者第三方库进行字符串化操作。&lt;/p&gt;
+
+&lt;p&gt;讲解:&lt;/p&gt;
+
+&lt;p&gt;看说明文档让我有所失望, 使用此函数获取到的是JSON对象, 但是jQuery中没有提供将JSON对象转化为JSON字符串的方法.&lt;/p&gt;
+
+&lt;p&gt;在JSON官网上没有找到合适的JSON编译器, 最后选用了jquery.json这个jQuery插件:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/jquery-json/&#34;&gt;http://code.google.com/p/jquery-json/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;使用起来异常简单:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var thing = {plugin: &#39;jquery-json&#39;, version: 1.3};
+var encoded = $.toJSON(thing);              //&#39;{&amp;quot;plugin&amp;quot;: &amp;quot;jquery-json&amp;quot;, &amp;quot;version&amp;quot;: 1.3}&#39;
+var name = $.evalJSON(encoded).plugin;      //&amp;quot;jquery-json&amp;quot;
+var version = $.evalJSON(encoded).version;  // 1.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用serializeArray( ) 再配合 $.toJSON 方法, 我们可以很方便的获取表单对象的JSON, 并且转换为JSON字符串:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;#results&amp;quot;).html( $.toJSON( $(&amp;quot;form&amp;quot;).serializeArray() ));&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;结果为:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[{&amp;quot;name&amp;quot;: &amp;quot;single&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Single&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;param&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Multiple&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;param&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Multiple3&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;check&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;check2&amp;quot;}, {&amp;quot;name&amp;quot;: &amp;quot;radio&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;radio1&amp;quot;}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;全局ajax事件:830378e917854f157530d9f1412f65fe&#34;&gt;全局Ajax事件&lt;/h3&gt;
+
+&lt;p&gt;在jQuery.ajaxSetup( options ) 中的options参数属性中, 有一个global属性:&lt;/p&gt;
+
+&lt;p&gt;global&lt;/p&gt;
+
+&lt;p&gt;类型:布尔值&lt;/p&gt;
+
+&lt;p&gt;默认值: true&lt;/p&gt;
+
+&lt;p&gt;说明:是否触发全局的Ajax事件.&lt;/p&gt;
+
+&lt;p&gt;这个属性用来设置是否触发全局的Ajax事件. 全局Ajax事件是一系列伴随Ajax请求发生的事件.主要有如下事件:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ajaxComplete( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求完成时执行函数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ajaxError( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求发生错误时执行函数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ajaxSend( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求发送前执行函数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ajaxStart( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求开始时执行函数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ajaxStop( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求结束时执行函数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ajaxSuccess( callback )&lt;/td&gt;
+&lt;td&gt;AJAX 请求成功时执行函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;用一个示例讲解各个事件的触发顺序:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;quot;&amp;gt;  
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;  
+&amp;lt;head&amp;gt;  
+    &amp;lt;title&amp;gt;jQuery Ajax - AjaxEvent&amp;lt;/title&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;../scripts/jquery-1.3.2.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  
+  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;  
+        $(document).ready(function()  
+        {  
+  
+            $(&amp;quot;#btnAjax&amp;quot;).bind(&amp;quot;click&amp;quot;, function(event)  
+            {  
+                $.get(&amp;quot;../data/AjaxGetMethod.aspx&amp;quot;);  
+            })  
+  
+            $(&amp;quot;#divResult&amp;quot;).ajaxComplete(function(evt, request, settings) { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxComplete&amp;lt;/div&amp;gt;&#39;); })  
+            $(&amp;quot;#divResult&amp;quot;).ajaxError(function(evt, request, settings) { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxError&amp;lt;/div&amp;gt;&#39;); })  
+            $(&amp;quot;#divResult&amp;quot;).ajaxSend(function(evt, request, settings) { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxSend&amp;lt;/div&amp;gt;&#39;); })  
+            $(&amp;quot;#divResult&amp;quot;).ajaxStart(function() { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxStart&amp;lt;/div&amp;gt;&#39;); })  
+            $(&amp;quot;#divResult&amp;quot;).ajaxStop(function() { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxStop&amp;lt;/div&amp;gt;&#39;); })  
+            $(&amp;quot;#divResult&amp;quot;).ajaxSuccess(function(evt, request, settings) { $(this).append(&#39;&amp;lt;div&amp;gt;ajaxSuccess&amp;lt;/div&amp;gt;&#39;); })  
+  
+        });  
+  
+    &amp;lt;/script&amp;gt;  
+  
+&amp;lt;/head&amp;gt;  
+&amp;lt;body&amp;gt;      
+  &amp;lt;br /&amp;gt;&amp;lt;button id=&amp;quot;btnAjax&amp;quot;&amp;gt;发送Ajax请求&amp;lt;/button&amp;gt;&amp;lt;br/&amp;gt;  
+  &amp;lt;div id=&amp;quot;divResult&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  
+&amp;lt;/body&amp;gt;  
+&amp;lt;/html&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果如图:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%85%AD%29%20jQuery%E4%B8%AD%E7%9A%84Ajax2.png&#34; alt=&#34;图2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们可以通过将默认options的global属性设置为false来取消全局Ajax事件的触发.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</link>
+      <pubDate>Sat, 14 Feb 2015 18:01:45 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371488.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;区分dom属性和元素属性:19438cf2ad44874cd5ef7817873c2659&#34;&gt;区分DOM属性和元素属性&lt;/h3&gt;
+
+&lt;p&gt;一个img标签:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;img src=&amp;quot;images/image.1.jpg&amp;quot; id=&amp;quot;hibiscus&amp;quot; alt=&amp;quot;Hibiscus&amp;quot; class=&amp;quot;classA&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通常开发人员习惯将id, src, alt等叫做这个元素的&amp;rdquo;属性&amp;rdquo;. 我将其称为&amp;rdquo;元素属性&amp;rdquo;. 但是在解析成DOM对象时, 实际浏览器最后会将标签元素解析成&amp;rdquo;DOM对象&amp;rdquo;, 并且将元素的&amp;rdquo;元素属性&amp;rdquo;存储为&amp;rdquo;DOM属性&amp;rdquo;. 两者是有区别的.   虽然我们设置了元素的src是相对路径:images/image.1.jpg   但是在&amp;rdquo;DOM属性&amp;rdquo;中都会转换成绝对路径:&lt;a href=&#34;http://localhost/images/image.1.jpg&#34;&gt;http://localhost/images/image.1.jpg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;甚至有些&amp;rdquo;元素属性&amp;rdquo;和&amp;rdquo;DOM属性&amp;rdquo;的名称都不一样,比如上面的元素属性class, 转换为DOM属性后对应className.&lt;/p&gt;
+
+&lt;p&gt;牢记, 在JavaScript中我们可以直接获取或设置&amp;rdquo;DOM属性&amp;rdquo;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;  
+    $(function() {  
+        var img1 = document.getElementById(&amp;quot;hibiscus&amp;quot;);  
+        alert(img1.alt);  
+        img1.alt = &amp;quot;Change the alt element attribute&amp;quot;;  
+        alert(img1.alt);  
+    })  
+&amp;lt;/script&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以如果要设置元素的CSS样式类, 要使用的是&amp;rdquo;DOM属性&amp;rdquo;className&amp;rdquo;而不是&amp;rdquo;元素属性&amp;rdquo;class:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;img1.className = &amp;quot;classB&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;操作-dom属性:19438cf2ad44874cd5ef7817873c2659&#34;&gt;操作&amp;rdquo;DOM属性&amp;rdquo;&lt;/h3&gt;
+
+&lt;p&gt;在jQuery中没有包装操作&amp;rdquo;DOM属性&amp;rdquo;的函数, 因为使用javascript获取和设置&amp;rdquo;DOM属性&amp;rdquo;都很简单. 在jQuery提供了each()函数用于遍历jQuery包装集, 其中的this指针是一个DOM对象, 所以我们可以应用这一点配合原生javascript来操作元素的DOM属性:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$(&amp;quot;img&amp;quot;).each(function(index) {  
+    alert(&amp;quot;index:&amp;quot; + index + &amp;quot;, id:&amp;quot; + this.id + &amp;quot;, alt:&amp;quot; + this.alt);  
+    this.alt = &amp;quot;changed&amp;quot;;  
+    alert(&amp;quot;index:&amp;quot; + index + &amp;quot;, id:&amp;quot; + this.id + &amp;quot;, alt:&amp;quot; + this.alt);  
+}); 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是each函数的说明:
+&lt;code&gt;each( callback )&lt;/code&gt;  Returns: jQuery包装集&lt;/p&gt;
+
+&lt;p&gt;对包装集中的每一个元素执行callback方法. 其中callback方法接受一个参数, 表示当前遍历的索引值,从0开始.&lt;/p&gt;
+
+&lt;h3 id=&#34;操作-元素属性:19438cf2ad44874cd5ef7817873c2659&#34;&gt;操作&amp;rdquo;元素属性&amp;rdquo;&lt;/h3&gt;
+
+&lt;p&gt;我们可以使用javascript中的getAttribute和setAttribute来操作元素的&amp;rdquo;元素属性&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;在jQuery中给你提供了attr()包装集函数, 能够同时操作包装集中所有元素的属性:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;attr( name )&lt;/td&gt;
+&lt;td&gt;取得第一个匹配元素的属性值。通过这个方法可以方便地从第一个匹配元素中获取一个属性的值。如果元素没有相应属性，则返回 undefined 。&lt;/td&gt;
+&lt;td&gt;返回文档中第一个图像的src属性值:         $(&amp;ldquo;img&amp;rdquo;).attr(&amp;ldquo;src&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;attr( properties )&lt;/td&gt;
+&lt;td&gt;将一个“名/值”形式的对象设置为所有匹配元素的属性。&lt;br&gt;这是一种在所有匹配元素中批量设置很多属性的最佳方式。 注意，如果你要设置对象的class属性，你必须使用&amp;rsquo;className&amp;rsquo; 作为属性名。或者你可以直接使用.addClass( class ) 和 .removeClass( class ).&lt;/td&gt;
+&lt;td&gt;为所有图像设置src和alt属性:         &lt;code&gt;$(&amp;quot;img&amp;quot;).attr({ src: &amp;quot;test.jpg&amp;quot;, alt: &amp;quot;Test Image&amp;quot; });&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;attr( key, value )&lt;/td&gt;
+&lt;td&gt;为所有匹配的元素设置一个属性值。&lt;/td&gt;
+&lt;td&gt;为所有图像设置src属性:         &lt;code&gt;$(&amp;quot;img&amp;quot;).attr(&amp;quot;src&amp;quot;,&amp;quot;test.jpg&amp;quot;);&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;attr( key, fn )&lt;/td&gt;
+&lt;td&gt;为所有匹配的元素设置一个计算的属性值。&lt;br&gt;不提供值，而是提供一个函数，由这个函数计算的值作为属性值。&lt;/td&gt;
+&lt;td&gt;把src属性的值设置为title属性的值:         &lt;code&gt;$(&amp;quot;img&amp;quot;).attr(&amp;quot;title&amp;quot;, function() { return this.src });&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;removeAttr( name )&lt;/td&gt;
+&lt;td&gt;从每一个匹配的元素中删除一个属性&lt;/td&gt;
+&lt;td&gt;将文档中图像的src属性删除:         &lt;code&gt;$(&amp;quot;img&amp;quot;).removeAttr(&amp;quot;src&amp;quot;);&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;当使用id选择器时常常返回只有一个对象的jQuery包装集, 这个时侯常使用attr(name)函数获得它的元素属性:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function testAttr1(event) {
+   alert($(&amp;quot;#hibiscus&amp;quot;).attr(&amp;quot;class&amp;quot;));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意&lt;code&gt;attr(name)&lt;/code&gt;函数只返回第一个匹配元素的特定元素属性值. 而&lt;code&gt;attr(key, name)&lt;/code&gt;会设置所有包装集中的元素属性:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//修改所有img元素的alt属性
+$(&amp;quot;img&amp;quot;).attr(&amp;quot;alt&amp;quot;, &amp;quot;修改后的alt属性&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而 &lt;code&gt;attr( properties )&lt;/code&gt; 可以一次修改多个元素属性:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;img&amp;quot;).attr({title:&amp;quot;修改后的title&amp;quot;, alt: &amp;quot;同时修改alt属性&amp;quot;});&lt;/code&gt;
+另外虽然我们可以使用 &lt;code&gt;removeAttr( name )&lt;/code&gt; 删除元素属性, 但是对应的DOM属性是不会被删除的, 只会影响DOM属性的值.&lt;/p&gt;
+
+&lt;p&gt;比如将一个input元素的readonly元素属性去掉,会导致对应的DOM属性变成false(即input变成可编辑状态):&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;#inputTest&amp;quot;).removeAttr(&amp;quot;readonly&amp;quot;);&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;修改css样式:19438cf2ad44874cd5ef7817873c2659&#34;&gt;修改CSS样式&lt;/h3&gt;
+
+&lt;p&gt;修改元素的样式, 我们可以修改元素CSS类或者直接修改元素的样式.&lt;/p&gt;
+
+&lt;p&gt;一个元素可以应用多个css类, 但是不幸的是在DOM属性中是用一个以空格分割的字符串存储的, 而不是数组. 所以如果在原始javascript时代我们想对元素添加或者删除多个属性时, 都要自己操作字符串.&lt;/p&gt;
+
+&lt;p&gt;jQuery让这一切变得异常简单. 我们再也不用做那些无聊的工作了.&lt;/p&gt;
+
+&lt;h4 id=&#34;修改css类:19438cf2ad44874cd5ef7817873c2659&#34;&gt;修改CSS类&lt;/h4&gt;
+
+&lt;p&gt;下表是修改CSS类相关的jQuery方法:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;addClass( classes )&lt;/td&gt;
+&lt;td&gt;为每个匹配的元素添加指定的类名。&lt;/td&gt;
+&lt;td&gt;为匹配的元素加上 &amp;lsquo;selected&amp;rsquo; 类:  $(&amp;ldquo;p&amp;rdquo;).addClass(&amp;ldquo;selected&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;hasClass( class )&lt;/td&gt;
+&lt;td&gt;判断包装集中是否至少有一个元素应用了指定的CSS类&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;p&amp;rdquo;).hasClass(&amp;ldquo;selected&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;removeClass( [classes] )&lt;/td&gt;
+&lt;td&gt;从所有匹配的元素中删除全部或者指定的类。  从匹配的元素中删除 &amp;lsquo;selected&amp;rsquo; 类:         $(&amp;ldquo;p&amp;rdquo;).&lt;/td&gt;
+&lt;td&gt;removeClass(&amp;ldquo;selected&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;toggleClass( class )&lt;/td&gt;
+&lt;td&gt;如果存在（不存在）就删除（添加）一个类。  为匹配的元素切换 &amp;lsquo;selected&amp;rsquo; 类:         $(&amp;ldquo;p&amp;rdquo;).&lt;/td&gt;
+&lt;td&gt;toggleClass(&amp;ldquo;selected&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;toggleClass( class, switch )&lt;/td&gt;
+&lt;td&gt;当switch是true时添加类,         当switch是false时删除类&lt;/td&gt;
+&lt;td&gt;每三次点击切换高亮样式:           var count = 0;           $(&amp;ldquo;p&amp;rdquo;).click(function(){             $(this).toggleClass(&amp;ldquo;highlight&amp;rdquo;, count++ % 3 == 0);           });&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;使用上面的方法, 我们可以将元素的CSS类像集合一样修改, 再也不必手工解析字符串.&lt;/p&gt;
+
+&lt;p&gt;注意 &lt;code&gt;addClass( class )&lt;/code&gt; 和&lt;code&gt;removeClass( [classes] )&lt;/code&gt;的参数可以一次传入多个css类, 用空格分割,比如:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;#btnAdd&amp;quot;).bind(&amp;quot;click&amp;quot;, function(event) { $(&amp;quot;p&amp;quot;).addClass(&amp;quot;colorRed borderBlue&amp;quot;); });&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;removeClass方法的参数可选, 如果不传入参数则移除全部CSS类:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;p&amp;quot;).removeClass()&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;修改css样式-1:19438cf2ad44874cd5ef7817873c2659&#34;&gt;修改CSS样式&lt;/h4&gt;
+
+&lt;p&gt;同样当我们想要修改元素的具体某一个CSS样式,即修改元素属性&amp;rdquo;style&amp;rdquo;时,  jQuery也提供了相应的方法:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;css( name )&lt;/td&gt;
+&lt;td&gt;访问第一个匹配元素的样式属性。    取得第一个段落的color样式属性的值:&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;p&amp;rdquo;).css(&amp;ldquo;color&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;css( properties )&lt;/td&gt;
+&lt;td&gt;把一个“名/值对”对象设置为所有匹配元素的样式属性。这是一种在所有匹配的元素上设置大量样式属性的最佳方式。&lt;/td&gt;
+&lt;td&gt;将所有段落的字体颜色设为红色并且背景为蓝色:         $(&amp;ldquo;p&amp;rdquo;).css({ color: &amp;ldquo;#ff0011&amp;rdquo;, background: &amp;ldquo;blue&amp;rdquo; });&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;css( name, value )&lt;/td&gt;
+&lt;td&gt;在所有匹配的元素中，设置一个样式属性的值。&lt;br&gt;数字将自动转化为像素值&lt;/td&gt;
+&lt;td&gt;将所有段落字体设为红色: $(&amp;ldquo;p&amp;rdquo;).css(&amp;ldquo;color&amp;rdquo;,&amp;ldquo;red&amp;rdquo;);&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;获取常用属性:19438cf2ad44874cd5ef7817873c2659&#34;&gt;获取常用属性&lt;/h3&gt;
+
+&lt;p&gt;虽然我们可以通过获取属性,特性以及CSS样式来取得元素的几乎所有信息,  但是注意下面的实验:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;quot;&amp;gt;  
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;  
+&amp;lt;head&amp;gt;  
+    &amp;lt;title&amp;gt;获取对象宽度&amp;lt;/title&amp;gt;  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;scripts/jquery-1.3.2-vsdoc2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;  
+        $(function()  
+        {  
+            alert(&amp;quot;attr(\&amp;quot;width\&amp;quot;):&amp;quot; + $(&amp;quot;#testDiv&amp;quot;).attr(&amp;quot;width&amp;quot;)); //undifined  
+            alert(&amp;quot;css(\&amp;quot;width\&amp;quot;):&amp;quot; + $(&amp;quot;#testDiv&amp;quot;).css(&amp;quot;width&amp;quot;)); //auto(ie6) 或 1264px(ff)  
+            alert(&amp;quot;width():&amp;quot; + $(&amp;quot;#testDiv&amp;quot;).width()); //正确的数值1264  
+            alert(&amp;quot;style.width:&amp;quot; +  $(&amp;quot;#testDiv&amp;quot;)[0].style.width ); //空值  
+        })  
+    &amp;lt;/script&amp;gt;  
+&amp;lt;/head&amp;gt;  
+&amp;lt;body&amp;gt;  
+    &amp;lt;div id=&amp;quot;testDiv&amp;quot;&amp;gt;  
+        测试文本&amp;lt;/div&amp;gt;  
+&amp;lt;/body&amp;gt;  
+&amp;lt;/html&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们希望获取测试图层的宽度,  使用attr方法获取&amp;rdquo;元素特性&amp;rdquo;为undifined, 因为并没有为div添加width. 而使用css()方法虽然可以获取到style属性的值, 但是在不同浏览器里返回的结果不同, IE6下返回auto, 而FF下虽然返回了正确的数值但是后面带有&amp;rdquo;px&amp;rdquo;. 所以jQuery提供了width()方法, 此方法返回的是正确的不带px的数值.&lt;/p&gt;
+
+&lt;p&gt;针对上面的问题, jQuery为常用的属性提供了获取和设置的方法, 比如width()用户获取元素的宽度, 而 width(val)用来设置元素宽度.&lt;/p&gt;
+
+&lt;p&gt;下面这些方法可以用来获取元素的常用属性值:&lt;/p&gt;
+
+&lt;h4 id=&#34;宽和高相关-height-and-width:19438cf2ad44874cd5ef7817873c2659&#34;&gt;宽和高相关 Height and Width&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;height( )&lt;/td&gt;
+&lt;td&gt;取得第一个匹配元素当前计算的高度值（px）。&lt;/td&gt;
+&lt;td&gt;获取第一段的高:         $(&amp;ldquo;p&amp;rdquo;).height();&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;height( val )&lt;/td&gt;
+&lt;td&gt;为每个匹配的元素设置CSS高度(hidth)属性的值。如果没有明确指定单位（如：em或%），使用px。&lt;/td&gt;
+&lt;td&gt;把所有段落的高设为 20:     $(&amp;ldquo;p&amp;rdquo;).height(20);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;width( )&lt;/td&gt;
+&lt;td&gt;取得第一个匹配元素当前计算的宽度值（px）。&lt;/td&gt;
+&lt;td&gt;获取第一段的宽:         $(&amp;ldquo;p&amp;rdquo;).width();&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;width( val )&lt;/td&gt;
+&lt;td&gt;为每个匹配的元素设置CSS宽度(width)属性的值。如果没有明确指定单位（如：em或%），使用px。&lt;/td&gt;
+&lt;td&gt;将所有段落的宽设为 20:       $(&amp;ldquo;p&amp;rdquo;).width(20);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;innerHeight( )&lt;/td&gt;
+&lt;td&gt;获取第一个匹配元素内部区域高度（包括补白、不包括边框）。           此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;见最后示例&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;innerWidth( )&lt;/td&gt;
+&lt;td&gt;获取第一个匹配元素内部区域宽度（包括补白、不包括边框）。           此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;见最后示例&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;outerHeight( [margin] )&lt;/td&gt;
+&lt;td&gt;获取第一个匹配元素外部高度（默认包括补白和边框）。           此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;见最后示例&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;outerWidth( [margin] )&lt;/td&gt;
+&lt;td&gt;获取第一个匹配元素外部宽度（默认包括补白和边框）。           此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;见最后示例&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;关于在获取长宽的函数中, 要区别&amp;rdquo;inner&amp;rdquo;, &amp;ldquo;outer&amp;rdquo;和height/width这三种函数的区别:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%9B%9B%29%20%E4%BD%BF%E7%94%A8jQuery%E6%93%8D%E4%BD%9C%E5%85%83%E7%B4%A0%E7%9A%84%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%A0%B7%E5%BC%8F.png&#34; alt=&#34;图1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;outerWith可以接受一个bool值参数表示是否计算margin值.&lt;/p&gt;
+
+&lt;p&gt;相信此图一目了然各个函数所索取的范围. 图片以width为例说明的, height的各个函数同理.&lt;/p&gt;
+
+&lt;h4 id=&#34;位置相关-positioning:19438cf2ad44874cd5ef7817873c2659&#34;&gt;位置相关 Positioning&lt;/h4&gt;
+
+&lt;p&gt;另外在一些设计套弹出对象的脚本中,常常需要动态获取弹出坐标并且设置元素的位置.&lt;/p&gt;
+
+&lt;p&gt;但是很多的计算位置的方法存在着浏览器兼容性问题,  jQuery中为我们提供了位置相关的各个函数:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;offset( )&lt;/td&gt;
+&lt;td&gt;获取匹配元素在当前窗口的相对偏移。返回的对象包含两个整形属性：top 和 left。此方法只对可见元素有效。&lt;/td&gt;
+&lt;td&gt;获取第二段的偏移:         var p = $(&amp;ldquo;p:last&amp;rdquo;);           var offset = p.offset();           p.html( &amp;ldquo;left: &amp;ldquo; + offset.left + &amp;ldquo;, top: &amp;ldquo; + offset.top );&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;position( )&lt;/td&gt;
+&lt;td&gt;获取匹配元素相对父元素的偏移。&lt;/td&gt;
+&lt;td&gt;返回的对象包含两个整形属性：top 和 left。为精确计算结果，请在补白、边框和填充属性上使用像素单位。此方法只对可见元素有效。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scrollTop( )&lt;/td&gt;
+&lt;td&gt;获取匹配元素相对滚动条顶部的偏移。此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;获取第一段相对滚动条顶部的偏移:         var p = $(&amp;ldquo;p:first&amp;rdquo;);           $(&amp;ldquo;p:last&amp;rdquo;).text( &amp;ldquo;scrollTop:&amp;rdquo; + p.scrollTop() );&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scrollTop( val )&lt;/td&gt;
+&lt;td&gt;传递参数值时，设置垂直滚动条顶部偏移为该值。此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;设定垂直滚动条值:        $(&amp;ldquo;div.demo&amp;rdquo;).scrollTop(300);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scrollLeft( )&lt;/td&gt;
+&lt;td&gt;获取匹配元素相对滚动条左侧的偏移。此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;获取第一段相对滚动条左侧的偏移:         var p = $(&amp;ldquo;p:first&amp;rdquo;);           $(&amp;ldquo;p:last&amp;rdquo;).text( &amp;ldquo;scrollLeft:&amp;rdquo; + p.scrollLeft() );&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scrollLeft( val )&lt;/td&gt;
+&lt;td&gt;传递参数值时，设置水平滚动条左侧偏移为该值。此方法对可见和隐藏元素均有效。&lt;/td&gt;
+&lt;td&gt;设置相对滚动条左侧的偏移:        $(&amp;ldquo;div.demo&amp;rdquo;).scrollLeft(300);&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (二) 万能的选择器</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</link>
+      <pubDate>Sat, 14 Feb 2015 17:31:42 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;节选转载自 http://www.cnblogs.com/engine1984/archive/2012/02/28/2371214.html
+秋出品!博客园首发! 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;dom对象和jquery包装集:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;Dom对象和jQuery包装集&lt;/h3&gt;
+
+&lt;p&gt;无论是在写程序还是看API文档,  我们要时刻注意区分Dom对象和jQuery包装集.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Dom对象&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在传统的JavaScript开发中,我们都是首先获取Dom对象,比如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var div = document.getElementById(&amp;quot;testDiv&amp;quot;);  
+var divs = document.getElementsByTagName(&amp;quot;div&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们经常使用 document.getElementById 方法根据id获取单个Dom对象, 或者使用 document.getElementsByTagName 方法根据HTML标签名称获取Dom对象集合.&lt;/p&gt;
+
+&lt;p&gt;另外在事件函数中, 可以通过在方法函数中使用this引用事件触发对象(但是在多播事件函数中IE6存在问题), 或者使用event对象的target(FF)或srcElement(iIE6)获取到引发事件的Dom对象.&lt;/p&gt;
+
+&lt;p&gt;注意我们这里获取到的都是Dom对象, Dom对象也有不同的类型比如input, div, span等.  Dom对象只有有限的属性和方法:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E4%BA%8C%29%20%E4%B8%87%E8%83%BD%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A81.png&#34; alt=&#34;图1&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jQuery包装集&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;jQuery包装集可以说是Dom对象的扩充.在jQuery的世界中将所有的对象, 无论是一个还是一组, 都封装成一个jQuery包装集,比如获取包含一个元素的jQuery包装集:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var jQueryObject = $(&amp;quot;#testDiv&amp;quot;);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;jQuery包装集都是作为一个对象一起调用的. jQuery包装集拥有丰富的属性和方法, 这些都是jQuery特有的:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E4%BA%8C%29%20%E4%B8%87%E8%83%BD%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A82.png&#34; alt=&#34;图2&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Dom对象与jQuery对象的转换&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;(1) Dom转jQuery包装集&lt;/p&gt;
+
+&lt;p&gt;如果要使用jQuery提供的函数,  就要首先构造jQuery包装集.  我们可以使用本文即将介绍的jQuery选择器直接构造jQuery包装集,比如: &lt;code&gt;$(&amp;quot;#testDiv&amp;quot;);&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;上面语句构造的包装集只含有一个id是testDiv的元素.&lt;/p&gt;
+
+&lt;p&gt;或者我们已经获取了一个Dom元素,比如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var div = document.getElementById(&amp;quot;testDiv&amp;quot;);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的代码中div是一个Dom元素, 我们可以将Dom元素转换成jQuery包装集:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var domToJQueryObject = $(div);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;小窍门:因为有了智能感知, 所以我们可以通过智能感知的方法列表来判断一个对象啊是Dom对象还是jQuery包装集.&lt;/p&gt;
+
+&lt;p&gt;(2) jQuery包装集转Dom对象&lt;/p&gt;
+
+&lt;p&gt;jQuery包装集是一个集合, 所以我们可以通过索引器访问其中的某一个元素:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var domObject = $(&amp;quot;#testDiv&amp;quot;)[0];  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意, 通过索引器返回的不再是jQuery包装集, 而是一个Dom对象!&lt;/p&gt;
+
+&lt;p&gt;jQuery包装集的某些遍历方法,比如each()中, 可以传递遍历函数, 在遍历函数中的this也是Dom元素,比如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$(&amp;quot;#testDiv&amp;quot;).each(function() { alert(this) })  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们要使用jQuery的方法操作Dom对象,怎么办? 用上面介绍过的转换方法即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;$(&amp;quot;#testDiv&amp;quot;).each(function() { $(this).html(&amp;quot;修改内容&amp;quot;) })  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;小结: 先让大家明确Dom对象和jQuery包装集的概念, 将极大的加快我们的学习速度. 我在学习jQuery的过程中就花了很长时间没有领悟到两者的具体差异, 因为书上并没有专门讲解两者的区别, 所以经常被&amp;rdquo;this指针为何不能调用jQuery方法&amp;rdquo;等问题迷惑.  直到某一天豁然开朗, 发现只要能够区分这两者, 就能够在写程序时变得清清楚楚.&lt;/p&gt;
+
+&lt;h3 id=&#34;什么是jquery选择器:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;什么是jQuery选择器&lt;/h3&gt;
+
+&lt;p&gt;在Dom编程中我们只能使用有限的函数根据id或者TagName获取Dom对象.&lt;/p&gt;
+
+&lt;p&gt;在jQuery中则完全不同,jQuery提供了异常强大的选择器用来帮助我们获取页面上的对象, 并且将对象以jQuery包装集的形式返回.&lt;/p&gt;
+
+&lt;p&gt;首先来看看什么是选择器:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//根据ID获取jQuery包装集  
+var jQueryObject = $(&amp;quot;#testDiv&amp;quot;);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上例中使用了ID选择器, 选取id为testDiv的Dom对象并将它放入jQuery包装集, 最后以jQuery包装集的形式返回.&lt;/p&gt;
+
+&lt;p&gt;&amp;rdquo;$&amp;ldquo;符号在jQuery中代表对jQuery对象的引用, &amp;ldquo;jQuery&amp;rdquo;是核心对象, 其中包含下列方法:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jQuery( expression, context )&lt;/code&gt; Returns: jQuery&lt;/p&gt;
+
+&lt;p&gt;这个函数接收一个CSS选择器的字符串，然后用这个字符串去匹配一组元素。&lt;/p&gt;
+
+&lt;p&gt;This function accepts a string containing a CSS selector which is then used to match a set of elements.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jQuery( html, ownerDocument )&lt;/code&gt; Returns: jQuery&lt;/p&gt;
+
+&lt;p&gt;根据HTML原始字符串动态创建Dom元素.&lt;/p&gt;
+
+&lt;p&gt;Create DOM elements on-the-fly from the provided String of raw HTML.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jQuery( elements )&lt;/code&gt; Returns: jQuery&lt;/p&gt;
+
+&lt;p&gt;将一个或多个Dom对象封装jQuery函数功能(即封装为jQuery包装集)&lt;/p&gt;
+
+&lt;p&gt;Wrap jQuery functionality around a single or multiple DOM Element(s).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jQuery( callback )&lt;/code&gt; Returns: jQuery&lt;/p&gt;
+
+&lt;p&gt;$(document).ready()的简写方式&lt;/p&gt;
+
+&lt;p&gt;A shorthand for &lt;code&gt;$(document).ready()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;上面摘选自jQuery官方手册.Returns的类型为jQuery即表示返回的是jQuery包装集.其中第一个方法有些问题, 官方接口写的是CSS选择器, 但是实际上这个方法不仅仅支持CSS选择器, 而是所有jQuery支持的选择器, 有些甚至是jQuery自定义的选择器(在CSS标准中不存在的选择器). 为了能让大家理解的更清楚,  我将方法修改如下:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jQuery( selector, context )&lt;/code&gt; Returns: jQuery 包装集&lt;/p&gt;
+
+&lt;p&gt;根据选择器选取匹配的对象, 以jQuery包装集的形式返回. context可以是Dom对象集合或jQuery包装集, 传入则表示要从context中选择匹配的对象, 不传入则表示范围为文档对象(即页面全部对象).&lt;/p&gt;
+
+&lt;p&gt;上面这个方法就是我们选择器使用的核心方法.可以用&amp;rdquo;$&amp;ldquo;代替jQuery让语法更简介, 比如下面两句话的效果相同:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//根据ID获取jQuery包装集  
+ var jQueryObject = $(&amp;quot;#testDiv&amp;quot;);  
+  
+//$是jQuery对象的引用:  
+var jQueryObject = jQuery(&amp;quot;#testDiv&amp;quot;);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来让我们系统的学习jQuery选择器.&lt;/p&gt;
+
+&lt;h3 id=&#34;jquery选择器全解:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;jQuery选择器全解&lt;/h3&gt;
+
+&lt;p&gt;通俗的讲, Selector选择器就是&amp;rdquo;一个表示特殊语意的字符串&amp;rdquo;. 只要把选择器字符串传入上面的方法中就能够选择不同的Dom对象并且以jQuery包装集的形式返回.&lt;/p&gt;
+
+&lt;p&gt;但是如何将jQuery选择器分类让我犯难. 因为书上的分类和jQuery官方的分类截然不同. 最后我决定以实用为主, 暂时不去了解CSS3选择器标准, 而按照jQuery官方的分类进行讲解.&lt;/p&gt;
+
+&lt;p&gt;jQuery的选择器支持CSS3选择器标准. 下面是W3C最新的CSS3选择器标准:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.w3.org/TR/css3-selectors/&#34;&gt;http://www.w3.org/TR/css3-selectors/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;标准中的选择器都可以在jQuery中使用.&lt;/p&gt;
+
+&lt;p&gt;jQuery选择器按照功能主要分为&amp;rdquo;选择&amp;rdquo;和&amp;rdquo;过滤&amp;rdquo;. 并且是配合使用的. 可以同时使用组合成一个选择器字符串. 主要的区别是&amp;rdquo;过滤&amp;rdquo;作用的选择器是指定条件从前面匹配的内容中筛选, &amp;ldquo;过滤&amp;rdquo;选择器也可以单独使用, 表示从全部&amp;rdquo;*&amp;ldquo;中筛选. 比如:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;:[title]&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;等同于:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$(&amp;quot;*:[title]&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;而&amp;rdquo;选择&amp;rdquo;功能的选择器则不会有默认的范围, 因为作用是&amp;rdquo;选择&amp;rdquo;而不是&amp;rdquo;过滤&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;下面的选择器分类中,  带有&amp;rdquo;过滤器&amp;rdquo;的分类表示是&amp;rdquo;过滤&amp;rdquo;选择器,  否则就是&amp;rdquo;选择&amp;rdquo;功能的选择器.&lt;/p&gt;
+
+&lt;p&gt;jQuery选择器分为如下几类:&lt;/p&gt;
+
+&lt;p&gt;[说明]&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;点击&amp;rdquo;名称&amp;rdquo;会跳转到此方法的jQuery官方说明文档.&lt;/li&gt;
+&lt;li&gt;可以在下节中的jQuery选择器实验室测试各种选择器&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;基础选择器-basics:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;基础选择器 Basics&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;#id&lt;/td&gt;
+&lt;td&gt;根据元素Id选择&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;divId&amp;rdquo;) 选择ID为divId的元素&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;element&lt;/td&gt;
+&lt;td&gt;根据元素的名称选择&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;a&amp;rdquo;)选择所有&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;元素&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;.class&lt;/td&gt;
+&lt;td&gt;根据元素的css类选择&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;.bgRed&amp;rdquo;) 选择所用CSS类为bgRed的元素&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;选择所有元素&lt;/td&gt;
+&lt;td&gt;$(&amp;rdquo;*&amp;ldquo;)选择页面所有元素&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;selector1,selector2,selectorN&lt;/td&gt;
+&lt;td&gt;可以将几个选择器用&amp;rdquo;,&amp;ldquo;分隔开然后再拼成一个选择器字符串.会同时选中这几个选择器匹配的内容.&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;#divId, a, .bgRed&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;[学习建议]:
+大家暂时记住基础选择器即可, 可以直接跳到下一节&amp;rdquo;jQuery选择器实验室&amp;rdquo;进行动手练习, 以后再回来慢慢学习全部的选择器, 或者用到的时候再回来查询.&lt;/p&gt;
+
+&lt;h4 id=&#34;层次选择器-hierarchy:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;层次选择器 Hierarchy&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ancestor descendant&lt;/td&gt;
+&lt;td&gt;使用&amp;rdquo;form input&amp;rdquo;的形式选中form中的所有input元素.即ancestor(祖先)为from, descendant(子孙)为input.&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;.bgRed div&amp;rdquo;) 选择CSS类为bgRed的元素中的所有&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;parent &amp;gt; child&lt;/td&gt;
+&lt;td&gt;选择parent的直接子节点child.  child必须包含在parent中并且父类是parent元素.&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;.myList&amp;gt;li&amp;rdquo;) 选择CSS类为myList元素中的直接子节点&lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;对象.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;prev + next&lt;/td&gt;
+&lt;td&gt;prev和next是两个同级别的元素. 选中在prev元素后面的next元素.&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;#hibiscus+img&amp;rdquo;)选在id为hibiscus元素后面的img对象.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;prev ~ siblings&lt;/td&gt;
+&lt;td&gt;选择prev后面的根据siblings过滤的元素&lt;br&gt;注:siblings是过滤器&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;#someDiv~[title]&amp;ldquo;)选择id为someDiv的对象后面所有带有title属性的元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;基本过滤器-basic-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;基本过滤器 Basic Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:first&lt;/td&gt;
+&lt;td&gt;匹配找到的第一个元素&lt;/td&gt;
+&lt;td&gt;查找表格的第一行:$(&amp;ldquo;tr:first&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:last&lt;/td&gt;
+&lt;td&gt;匹配找到的最后一个元素&lt;/td&gt;
+&lt;td&gt;查找表格的最后一行:$(&amp;ldquo;tr:last&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:not(selector)&lt;/td&gt;
+&lt;td&gt;去除所有与给定选择器匹配的元素&lt;/td&gt;
+&lt;td&gt;查找所有未选中的 input 元素: $(&amp;ldquo;input:not(:checked)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:even&lt;/td&gt;
+&lt;td&gt;匹配所有索引值为偶数的元素，从 0 开始计数&lt;/td&gt;
+&lt;td&gt;查找表格的1、3、5&amp;hellip;行:$(&amp;ldquo;tr:even&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:odd&lt;/td&gt;
+&lt;td&gt;匹配所有索引值为奇数的元素，从 0 开始计数&lt;/td&gt;
+&lt;td&gt;查找表格的2、4、6行:$(&amp;ldquo;tr:odd&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:eq(index)&lt;/td&gt;
+&lt;td&gt;匹配一个给定索引值的元素         注:index从 0 开始计数&lt;/td&gt;
+&lt;td&gt;查找第二行:$(&amp;ldquo;tr:eq(1)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:gt(index)&lt;/td&gt;
+&lt;td&gt;匹配所有大于给定索引值的元素         注:index从 0 开始计数&lt;/td&gt;
+&lt;td&gt;查找第二第三行，即索引值是1和2，也就是比0大:$(&amp;ldquo;tr:gt(0)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:lt(index)&lt;/td&gt;
+&lt;td&gt;选择结果集中索引小于 N 的 elements         注:index从 0 开始计数&lt;/td&gt;
+&lt;td&gt;查找第一第二行，即索引值是0和1，也就是比2小:$(&amp;ldquo;tr:lt(2)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:header&lt;/td&gt;
+&lt;td&gt;选择所有h1,h2,h3一类的header标签.&lt;/td&gt;
+&lt;td&gt;给页面内所有标题加上背景色: $(&amp;rdquo;:header&amp;rdquo;).css(&amp;ldquo;background&amp;rdquo;,&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:animated&lt;/td&gt;
+&lt;td&gt;匹配所有正在执行动画效果的元素&lt;/td&gt;
+&lt;td&gt;只有对不在执行动画效果的元素执行一个动画特效:        $(&amp;ldquo;#run&amp;rdquo;).click(function(){$(&amp;ldquo;div:not(:animated)&amp;ldquo;).animate({ left: &amp;ldquo;+=20&amp;rdquo; }, 1000);});&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;内容过滤器-content-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;内容过滤器 Content Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:contains(text)&lt;/td&gt;
+&lt;td&gt;匹配包含给定文本的元素&lt;/td&gt;
+&lt;td&gt;查找所有包含 &amp;ldquo;John&amp;rdquo; 的 div 元素:$(&amp;ldquo;div:contains(&amp;lsquo;John&amp;rsquo;)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:empty&lt;/td&gt;
+&lt;td&gt;匹配所有不包含子元素或者文本的空元素&lt;/td&gt;
+&lt;td&gt;查找所有不包含子元素或者文本的空元素:$(&amp;ldquo;td:empty&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:has(selector)&lt;/td&gt;
+&lt;td&gt;匹配含有选择器所匹配的元素的元素&lt;/td&gt;
+&lt;td&gt;给所有包含 p 元素的 div 元素添加一个 text 类: $(&amp;ldquo;div:has(p)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:parent&lt;/td&gt;
+&lt;td&gt;匹配含有子元素或者文本的元素&lt;/td&gt;
+&lt;td&gt;查找所有含有子元素或者文本的 td 元素:$(&amp;ldquo;td:parent&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;可见性过滤器-visibility-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;可见性过滤器  Visibility Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:hidden&lt;/td&gt;
+&lt;td&gt;匹配所有的不可见元素&lt;br&gt;注:在1.3.2版本中, hidden匹配自身或者父类在文档中不占用空间的元素.如果使用CSS visibility属性让其不显示但是占位,则不输入hidden.&lt;/td&gt;
+&lt;td&gt;查找所有不可见的 tr 元素:$(&amp;ldquo;tr:hidden&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:visible&lt;/td&gt;
+&lt;td&gt;匹配所有的可见元素&lt;/td&gt;
+&lt;td&gt;查找所有可见的 tr 元素:$(&amp;ldquo;tr:visible&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;属性过滤器-attribute-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;属性过滤器 Attribute Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[attribute]&lt;/td&gt;
+&lt;td&gt;匹配包含给定属性的元素&lt;/td&gt;
+&lt;td&gt;查找所有含有 id 属性的 div 元素:         $(&amp;ldquo;div[id]&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attribute=value]&lt;/td&gt;
+&lt;td&gt;匹配给定的属性是某个特定值的元素&lt;/td&gt;
+&lt;td&gt;查找所有 name 属性是 newsletter 的 input 元素:         $(&amp;ldquo;input[name=&amp;lsquo;newsletter&amp;rsquo;]&amp;ldquo;).attr(&amp;ldquo;checked&amp;rdquo;, true);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attribute!=value]&lt;/td&gt;
+&lt;td&gt;匹配给定的属性是不包含某个特定值的元素&lt;/td&gt;
+&lt;td&gt;查找所有 name 属性不是 newsletter 的 input 元素:         $(&amp;ldquo;input[name!=&amp;lsquo;newsletter&amp;rsquo;]&amp;ldquo;).attr(&amp;ldquo;checked&amp;rdquo;, true);&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attribute^=value]&lt;/td&gt;
+&lt;td&gt;匹配给定的属性是以某些值开始的元素&lt;/td&gt;
+&lt;td&gt;$(&amp;ldquo;input[name^=&amp;lsquo;news&amp;rsquo;]&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attribute$=value]&lt;/td&gt;
+&lt;td&gt;匹配给定的属性是以某些值结尾的元素&lt;/td&gt;
+&lt;td&gt;查找所有 name 以 &amp;lsquo;letter&amp;rsquo; 结尾的 input 元素:         $(&amp;ldquo;input[name$=&amp;lsquo;letter&amp;rsquo;]&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attribute*=value]&lt;/td&gt;
+&lt;td&gt;匹配给定的属性是以包含某些值的元素&lt;/td&gt;
+&lt;td&gt;查找所有 name 包含 &amp;lsquo;man&amp;rsquo; 的 input 元素:           $(&amp;ldquo;input[name*=&amp;lsquo;man&amp;rsquo;]&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;[attributeFilter1][attributeFilter2][attributeFilterN]&lt;/td&gt;
+&lt;td&gt;复合属性选择器，需要同时满足多个条件时使用。&lt;/td&gt;
+&lt;td&gt;找到所有含有 id 属性，并且它的 name 属性是以 man 结尾的:         $(&amp;ldquo;input[id][name$=&amp;lsquo;man&amp;rsquo;]&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;子元素过滤器-child-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;子元素过滤器 Child Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:nth-child(index/even/odd/equation)&lt;/td&gt;
+&lt;td&gt;匹配其父元素下的第N个子或奇偶元素&lt;br&gt;&amp;lsquo;:eq(index)&amp;rsquo; 只匹配一个元素，而这个将为每一个父元素匹配子元素。:nth-child从1开始的，而:eq()是从0算起的！&lt;br&gt;可以使用:           nth-child(even)           :nth-child(odd)           :nth-child(3n)           :nth-child(2)           :nth-child(3n+1)           :nth-child(3n+2)&lt;/td&gt;
+&lt;td&gt;在每个 ul 查找第 2 个li:         $(&amp;ldquo;ul li:nth-child(2)&amp;ldquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:first-child&lt;/td&gt;
+&lt;td&gt;匹配第一个子元素&lt;br&gt;&amp;lsquo;:first&amp;rsquo; 只匹配一个元素，而此选择符将为每个父元素匹配一个子元素&lt;/td&gt;
+&lt;td&gt;在每个 ul 中查找第一个 li:         $(&amp;ldquo;ul li:first-child&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:last-child&lt;/td&gt;
+&lt;td&gt;匹配最后一个子元素&lt;br&gt;&amp;lsquo;:last&amp;rsquo;只匹配一个元素，而此选择符将为每个父元素匹配一个子元素&lt;/td&gt;
+&lt;td&gt;在每个 ul 中查找最后一个 li:         $(&amp;ldquo;ul li:last-child&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:only-child&lt;/td&gt;
+&lt;td&gt;如果某个元素是父元素中唯一的子元素，那将会被匹配&lt;br&gt;如果父元素中含有其他元素，那将不会被匹配。&lt;/td&gt;
+&lt;td&gt;在 ul 中查找是唯一子元素的 li:         $(&amp;ldquo;ul li:only-child&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;表单选择器-forms:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;表单选择器 Forms&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:input&lt;/td&gt;
+&lt;td&gt;匹配所有 input, textarea, select 和 button 元素&lt;/td&gt;
+&lt;td&gt;查找所有的input元素:         $(&amp;rdquo;:input&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:text&lt;/td&gt;
+&lt;td&gt;匹配所有的文本框&lt;/td&gt;
+&lt;td&gt;查找所有文本框:         $(&amp;rdquo;:text&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:password&lt;/td&gt;
+&lt;td&gt;匹配所有密码框&lt;/td&gt;
+&lt;td&gt;查找所有密码框:         $(&amp;rdquo;:password&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:radio&lt;/td&gt;
+&lt;td&gt;匹配所有单选按钮&lt;/td&gt;
+&lt;td&gt;查找所有单选按钮&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:checkbox&lt;/td&gt;
+&lt;td&gt;匹配所有复选框&lt;/td&gt;
+&lt;td&gt;查找所有复选框:         $(&amp;rdquo;:checkbox&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:submit&lt;/td&gt;
+&lt;td&gt;匹配所有提交按钮&lt;/td&gt;
+&lt;td&gt;查找所有提交按钮:         $(&amp;rdquo;:submit&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:image&lt;/td&gt;
+&lt;td&gt;匹配所有图像域&lt;/td&gt;
+&lt;td&gt;匹配所有图像域:         $(&amp;rdquo;:image&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:reset&lt;/td&gt;
+&lt;td&gt;匹配所有重置按钮&lt;/td&gt;
+&lt;td&gt;查找所有重置按钮:         $(&amp;rdquo;:reset&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:button&lt;/td&gt;
+&lt;td&gt;匹配所有按钮&lt;/td&gt;
+&lt;td&gt;查找所有按钮:         $(&amp;rdquo;:button&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:file&lt;/td&gt;
+&lt;td&gt;匹配所有文件域&lt;/td&gt;
+&lt;td&gt;查找所有文件域:         $(&amp;rdquo;:file&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;表单过滤器-form-filters:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;表单过滤器 Form Filters&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;:enabled&lt;/td&gt;
+&lt;td&gt;匹配所有可用元素&lt;/td&gt;
+&lt;td&gt;查找所有可用的input元素:         $(&amp;ldquo;input:enabled&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:disabled&lt;/td&gt;
+&lt;td&gt;匹配所有不可用元素&lt;/td&gt;
+&lt;td&gt;查找所有不可用的input元素:         $(&amp;ldquo;input:disabled&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:checked&lt;/td&gt;
+&lt;td&gt;匹配所有选中的被选中元素(复选框、单选框等，不包括select中的option)&lt;/td&gt;
+&lt;td&gt;查找所有选中的复选框元素:         $(&amp;ldquo;input:checked&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;:selected&lt;/td&gt;
+&lt;td&gt;匹配所有选中的option元素&lt;/td&gt;
+&lt;td&gt;查找所有选中的选项元素:         $(&amp;ldquo;select option:selected&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;jquery选择器实验室:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;jQuery选择器实验室&lt;/h4&gt;
+
+&lt;p&gt;jQuery选择器实验室使用的是&amp;rdquo;jQuery实战&amp;rdquo;一书中的代码, 感觉对于学习选择器很有帮助.&lt;/p&gt;
+
+&lt;p&gt;我们的实验对象是一个拥有很多元素的页面:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E4%BA%8C%29%20%E4%B8%87%E8%83%BD%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A83.png&#34; alt=&#34;图3&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在实验室页面的&amp;rdquo;Selector&amp;rdquo;输入框中输入jQuery选择器表达式,  所有匹配表达式的元素会显示红框:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E4%BA%8C%29%20%E4%B8%87%E8%83%BD%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A84.png&#34; alt=&#34;图4&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图所示,  在输入&amp;rdquo;.myList&amp;rdquo;后点击&amp;rdquo;Apply&amp;rdquo;, 下面的输出框会显示运行结果, 右侧会将选中的元素用红框显示.&lt;/p&gt;
+
+&lt;p&gt;代码在本章最后可以下载.&lt;/p&gt;
+
+&lt;h4 id=&#34;api文档:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;API文档&lt;/h4&gt;
+
+&lt;p&gt;jQuery官方API: &lt;a href=&#34;http://docs.jquery.com/&#34;&gt;http://docs.jquery.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;中文在线api:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;中文在线API&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jquery.org.cn/visual/cn/index.xml&#34;&gt;http://jquery.org.cn/visual/cn/index.xml&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;中文jquery手册下载:a15b5c3a9e447963efd316936fa40ab5&#34;&gt;中文jQuery手册下载&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://files.cnblogs.com/zhangziqiu/jquery_api.rar&#34;&gt;http://files.cnblogs.com/zhangziqiu/jquery_api.rar&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (一) 开天辟地入门篇</title>
+      <link>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</link>
+      <pubDate>Sat, 14 Feb 2015 17:01:30 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2015/02/14/learn_jquery_1/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code&gt;节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371105.html
+子秋出品!博客园首发!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;什么是jquery:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;什么是jQuery&lt;/h2&gt;
+
+&lt;p&gt;jQuery是一套JavaScript脚本库.  在我的博客中可以找到&amp;rdquo;Javascript轻量级脚本库&amp;rdquo;系列文章. Javascript脚本库类似于.NET的类库, 我们将一些工具方法或对象方法封装在类库中, 方便用户使用.&lt;/p&gt;
+
+&lt;p&gt;注意jQuery是脚本库, 而不是脚本框架. &amp;ldquo;库&amp;rdquo;不等于&amp;rdquo;框架&amp;rdquo;, 比如&amp;rdquo;System程序集&amp;rdquo;是类库,而&amp;rdquo;ASP.NET MVC&amp;rdquo;是框架. jQuery并不能帮助我们解决脚本的引用管理和功能管理,这些都是脚本框架要做的事.&lt;/p&gt;
+
+&lt;p&gt;脚本库能够帮助我们完成编码逻辑,实现业务功能. 使用jQuery将极大的提高编写javascript代码的效率, 让写出来的代码更加优雅, 更加健壮. 同时网络上丰富的jQuery插件也让我们的工作变成了&amp;rdquo;有了jQuery,天天喝茶水&amp;rdquo;&amp;ndash;因为我们已经站在巨人的肩膀上了.&lt;/p&gt;
+
+&lt;p&gt;创建一个ASP.NET MVC项目时, 会发现已经自动引入了jQuery类库. jQuery几乎是微软的御用脚本库了!完美的集成度和智能感知的支持,让.NET和jQuery天衣无缝结合在一起!所以用.NET就要选用jQuery而非Dojo,ExtJS等.&lt;/p&gt;
+
+&lt;h2 id=&#34;jquery有如下特点:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;jQuery有如下特点:&lt;/h2&gt;
+
+&lt;h3 id=&#34;提供了强大的功能函数:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;提供了强大的功能函数&lt;/h3&gt;
+
+&lt;p&gt;使用这些功能函数, 能够帮助我们快速完成各种功能, 而且会让我们的代码异常简洁.&lt;/p&gt;
+
+&lt;h3 id=&#34;解决浏览器兼容性问题:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;解决浏览器兼容性问题&lt;/h3&gt;
+
+&lt;p&gt;javascript脚本在不同浏览器的兼容性一直是Web开发人员的噩梦,  常常一个页面在IE7,Firefox下运行正常, 在IE6下就出现莫名其妙的问题. 针对不同的浏览器编写不同的脚本是一件痛苦的事情. 有了jQuery我们将从这个噩梦中醒来, 比如在jQuery中的Event事件对象已经被格式化成所有浏览器通用的, 从前要根据event获取事件触发者, 在ie下是event.srcElements 而ff等标准浏览器下下是event.target. jQuery则通过统一event对象,让我们可以在所有浏览器中使用event.target获取事件对象.&lt;/p&gt;
+
+&lt;h3 id=&#34;实现丰富的ui:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;实现丰富的UI&lt;/h3&gt;
+
+&lt;p&gt;jQuery可以实现比如渐变弹出, 图层移动等动画效果, 让我们获得更好的用户体验. 单以渐变效果为例, 从前我自己写了一个可以兼容ie和ff的渐变动画, 使用大量javascript代码实现, 费心费力不说, 写完后没有太多帮助过一段时间就忘记了. 再开发类似的功能还要再次费心费力. 如今使用jQuery就可以帮助我们快速完成此类应用.&lt;/p&gt;
+
+&lt;h3 id=&#34;纠正错误的脚本知识:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;纠正错误的脚本知识&lt;/h3&gt;
+
+&lt;p&gt;这一条是我提出的, 原因就是大部分开发人员对于javascript存在错误的认识. 比如在页面中编写加载时即执行的操作DOM的语句, 在HTML元素或者document对象上直接添加&amp;rdquo;onclick&amp;rdquo;属性,  不知道onclick其实是一个匿名函数等等.  拥有这些错误脚本知识的技术人员也能完成所有的开发工作, 但是这样的程序是不健壮的. 比如&amp;rdquo;在页面中编写加载时即执行的操作DOM的语句&amp;rdquo;, 当页面代码很小用户加载很快时没有问题, 当页面加载稍慢时就会出现浏览器&amp;rdquo;终止操作&amp;rdquo;的错误.jQuery提供了很多简便的方法帮助我们解决这些问题, 一旦使用jQuery你就将纠正这些错误的知识&amp;ndash;因为我们都是用标准的正确的jQuery脚本编写方法!&lt;/p&gt;
+
+&lt;h3 id=&#34;太多了-等待我们一一去发现:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;太多了! 等待我们一一去发现.&lt;/h3&gt;
+
+&lt;h2 id=&#34;hello-world-jquery:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;Hello World jQuery&lt;/h2&gt;
+
+&lt;p&gt;按照惯例, 我们来编写jQuery的Hello World程序, 来迈出使用jQuery的第一步.&lt;/p&gt;
+
+&lt;p&gt;在本文最后可以下本章的完整源代码.&lt;/p&gt;
+
+&lt;h3 id=&#34;下载jquery类库:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;下载jQuery类库&lt;/h3&gt;
+
+&lt;p&gt;jQuery的项目下载放在了Google Code上, 下载地址:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/jqueryjs/downloads/list&#34;&gt;http://code.google.com/p/jqueryjs/downloads/list&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上面的地址是总下载列表, 里面有很多版本和类型的jQuery库, 主要分为如下几类:&lt;/p&gt;
+
+&lt;p&gt;min: 压缩后的jQuery类库,  在正式环境上使用.如:jquery-1.3.2.min.js&lt;/p&gt;
+
+&lt;p&gt;vsdoc: 在Visual Studio中需要引入此版本的jquery类库才能启用智能感知.如：jquery-1.3.2-vsdoc2.js&lt;/p&gt;
+
+&lt;p&gt;release包: 里面有没有压缩的jquery代码, 以及文档和示例程序. 如:jquery-1.3.2-release.zip&lt;/p&gt;
+
+&lt;h3 id=&#34;编写程序:cdba6848ab4d20deeb8924e4b10dd3c5&#34;&gt;编写程序&lt;/h3&gt;
+
+&lt;p&gt;创建一个HTML页面, 引入jQuery类库并且编写如下代码:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&amp;quot;&amp;gt;  
+  
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;  
+&amp;lt;head&amp;gt;  
+    &amp;lt;title&amp;gt;Hello World jQuery!&amp;lt;/title&amp;gt;  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;scripts/jquery-1.3.2-vsdoc2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  
+&amp;lt;/head&amp;gt;  
+&amp;lt;body&amp;gt;  
+    &amp;lt;div id=&amp;quot;divMsg&amp;quot;&amp;gt;Hello World!&amp;lt;/div&amp;gt;  
+    &amp;lt;input id=&amp;quot;btnShow&amp;quot; type=&amp;quot;button&amp;quot; value=&amp;quot;显示&amp;quot; /&amp;gt;  
+    &amp;lt;input id=&amp;quot;btnHide&amp;quot; type=&amp;quot;button&amp;quot; value=&amp;quot;隐藏&amp;quot; /&amp;gt;&amp;lt;br /&amp;gt;  
+    &amp;lt;input id=&amp;quot;btnChange&amp;quot; type=&amp;quot;button&amp;quot; value=&amp;quot;修改内容为 Hello World, too!&amp;quot; /&amp;gt;  
+    &amp;lt;script type=&amp;quot;text/javascript&amp;quot; &amp;gt;  
+        $(&amp;quot;#btnShow&amp;quot;).bind(&amp;quot;click&amp;quot;, function(event) { $(&amp;quot;#divMsg&amp;quot;).show(); });  
+        $(&amp;quot;#btnHide&amp;quot;).bind(&amp;quot;click&amp;quot;, function(event) { $(&amp;quot;#divMsg&amp;quot;).hide(); });  
+        $(&amp;quot;#btnChange&amp;quot;).bind(&amp;quot;click&amp;quot;, function(event) { $(&amp;quot;#divMsg&amp;quot;).html(&amp;quot;Hello World, too!&amp;quot;); });        
+    &amp;lt;/script&amp;gt;  
+&amp;lt;/body&amp;gt;  
+&amp;lt;/html&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果如下:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E4%B8%80%29%20%E5%BC%80%E5%A4%A9%E8%BE%9F%E5%9C%B0%E5%85%A5%E9%97%A8%E7%AF%87.png&#34; alt=&#34;图1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;页面上有三个按钮, 分别用来控制Hello World的显示,隐藏和修改其内容.&lt;/p&gt;
+
+&lt;p&gt;此示例使用了:&lt;/p&gt;
+
+&lt;p&gt;(1) jQuery的Id选择器: $(&amp;ldquo;#btnShow&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;(2) 事件绑定函数 bind()&lt;/p&gt;
+
+&lt;p&gt;(3) 显示和隐藏函数. show()和hide()&lt;/p&gt;
+
+&lt;p&gt;(4) 修改元素内部html的函数html()&lt;/p&gt;
 </description>
     </item>
     

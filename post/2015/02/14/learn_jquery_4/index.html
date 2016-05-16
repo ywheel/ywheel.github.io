@@ -12,30 +12,30 @@
         }
     }
   </script>
-  <title>learn_jquery_4 - 轮子们</title>
+  <title>从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式 - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="xxx,">
-<meta name="description" content="">
+<meta name="keywords" content="jQuery,">
+<meta name="description" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="learn_jquery_4 - 轮子们">
-<meta itemprop="description" content="">
+<meta itemprop="name" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式 - 轮子们">
+<meta itemprop="description" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式">
 <meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
-<meta property="og:title" content="learn_jquery_4 - 轮子们" />
+<meta property="og:title" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式 - 轮子们" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_4/" />
 <meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
-<meta property="og:description" content="">
+<meta property="og:description" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="learn_jquery_4 - 轮子们">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式 - 轮子们">
+<meta name="twitter:description" content="从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
@@ -161,15 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="category tag">读书笔记</a>
-                </li>
-                
-                <li class="category">
                   <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
-                </li>
-                
-                <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/" rel="category tag">思考感悟</a>
                 </li>
                 
               </ul>
@@ -181,11 +173,11 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">learn_jquery_4</h1>
+                  <h1 class="post-title">从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式</h1>
 
                   <p class="post-byline">
-                    by  · 2016年05月09日 · 0 Words ·
-                    ~0min reading time |
+                    by  · 2015年02月14日 · 4089 Words ·
+                    ~9min reading time |
                     <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2015/02/14/learn_jquery_4.md"
                        target="_blank">Improve on <i class="fa fa-github"></i></a>
                   </p>
@@ -196,6 +188,377 @@
                     <div class="entry-inner">
                       
                       
+
+<pre><code>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371488.html
+</code></pre>
+
+<h3 id="区分dom属性和元素属性:19438cf2ad44874cd5ef7817873c2659">区分DOM属性和元素属性</h3>
+
+<p>一个img标签:</p>
+
+<pre><code class="language-html">&lt;img src=&quot;images/image.1.jpg&quot; id=&quot;hibiscus&quot; alt=&quot;Hibiscus&quot; class=&quot;classA&quot; /&gt;
+</code></pre>
+
+<p>通常开发人员习惯将id, src, alt等叫做这个元素的&rdquo;属性&rdquo;. 我将其称为&rdquo;元素属性&rdquo;. 但是在解析成DOM对象时, 实际浏览器最后会将标签元素解析成&rdquo;DOM对象&rdquo;, 并且将元素的&rdquo;元素属性&rdquo;存储为&rdquo;DOM属性&rdquo;. 两者是有区别的.   虽然我们设置了元素的src是相对路径:images/image.1.jpg   但是在&rdquo;DOM属性&rdquo;中都会转换成绝对路径:<a href="http://localhost/images/image.1.jpg">http://localhost/images/image.1.jpg</a>.</p>
+
+<p>甚至有些&rdquo;元素属性&rdquo;和&rdquo;DOM属性&rdquo;的名称都不一样,比如上面的元素属性class, 转换为DOM属性后对应className.</p>
+
+<p>牢记, 在JavaScript中我们可以直接获取或设置&rdquo;DOM属性&rdquo;:</p>
+
+<pre><code class="language-javascript">&lt;script type=&quot;text/javascript&quot;&gt;  
+    $(function() {  
+        var img1 = document.getElementById(&quot;hibiscus&quot;);  
+        alert(img1.alt);  
+        img1.alt = &quot;Change the alt element attribute&quot;;  
+        alert(img1.alt);  
+    })  
+&lt;/script&gt;  
+</code></pre>
+
+<p>所以如果要设置元素的CSS样式类, 要使用的是&rdquo;DOM属性&rdquo;className&rdquo;而不是&rdquo;元素属性&rdquo;class:</p>
+
+<p><code>img1.className = &quot;classB&quot;;</code></p>
+
+<h3 id="操作-dom属性:19438cf2ad44874cd5ef7817873c2659">操作&rdquo;DOM属性&rdquo;</h3>
+
+<p>在jQuery中没有包装操作&rdquo;DOM属性&rdquo;的函数, 因为使用javascript获取和设置&rdquo;DOM属性&rdquo;都很简单. 在jQuery提供了each()函数用于遍历jQuery包装集, 其中的this指针是一个DOM对象, 所以我们可以应用这一点配合原生javascript来操作元素的DOM属性:</p>
+
+<pre><code class="language-javascript">$(&quot;img&quot;).each(function(index) {  
+    alert(&quot;index:&quot; + index + &quot;, id:&quot; + this.id + &quot;, alt:&quot; + this.alt);  
+    this.alt = &quot;changed&quot;;  
+    alert(&quot;index:&quot; + index + &quot;, id:&quot; + this.id + &quot;, alt:&quot; + this.alt);  
+}); 
+</code></pre>
+
+<p>下面是each函数的说明:
+<code>each( callback )</code>  Returns: jQuery包装集</p>
+
+<p>对包装集中的每一个元素执行callback方法. 其中callback方法接受一个参数, 表示当前遍历的索引值,从0开始.</p>
+
+<h3 id="操作-元素属性:19438cf2ad44874cd5ef7817873c2659">操作&rdquo;元素属性&rdquo;</h3>
+
+<p>我们可以使用javascript中的getAttribute和setAttribute来操作元素的&rdquo;元素属性&rdquo;.</p>
+
+<p>在jQuery中给你提供了attr()包装集函数, 能够同时操作包装集中所有元素的属性:</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>attr( name )</td>
+<td>取得第一个匹配元素的属性值。通过这个方法可以方便地从第一个匹配元素中获取一个属性的值。如果元素没有相应属性，则返回 undefined 。</td>
+<td>返回文档中第一个图像的src属性值:         $(&ldquo;img&rdquo;).attr(&ldquo;src&rdquo;);</td>
+</tr>
+
+<tr>
+<td>attr( properties )</td>
+<td>将一个“名/值”形式的对象设置为所有匹配元素的属性。<br>这是一种在所有匹配元素中批量设置很多属性的最佳方式。 注意，如果你要设置对象的class属性，你必须使用&rsquo;className&rsquo; 作为属性名。或者你可以直接使用.addClass( class ) 和 .removeClass( class ).</td>
+<td>为所有图像设置src和alt属性:         <code>$(&quot;img&quot;).attr({ src: &quot;test.jpg&quot;, alt: &quot;Test Image&quot; });</code></td>
+</tr>
+
+<tr>
+<td>attr( key, value )</td>
+<td>为所有匹配的元素设置一个属性值。</td>
+<td>为所有图像设置src属性:         <code>$(&quot;img&quot;).attr(&quot;src&quot;,&quot;test.jpg&quot;);</code></td>
+</tr>
+
+<tr>
+<td>attr( key, fn )</td>
+<td>为所有匹配的元素设置一个计算的属性值。<br>不提供值，而是提供一个函数，由这个函数计算的值作为属性值。</td>
+<td>把src属性的值设置为title属性的值:         <code>$(&quot;img&quot;).attr(&quot;title&quot;, function() { return this.src });</code></td>
+</tr>
+
+<tr>
+<td>removeAttr( name )</td>
+<td>从每一个匹配的元素中删除一个属性</td>
+<td>将文档中图像的src属性删除:         <code>$(&quot;img&quot;).removeAttr(&quot;src&quot;);</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>当使用id选择器时常常返回只有一个对象的jQuery包装集, 这个时侯常使用attr(name)函数获得它的元素属性:</p>
+
+<pre><code class="language-javascript">function testAttr1(event) {
+   alert($(&quot;#hibiscus&quot;).attr(&quot;class&quot;));
+}
+</code></pre>
+
+<p>注意<code>attr(name)</code>函数只返回第一个匹配元素的特定元素属性值. 而<code>attr(key, name)</code>会设置所有包装集中的元素属性:</p>
+
+<pre><code class="language-javascript">//修改所有img元素的alt属性
+$(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
+</code></pre>
+
+<p>而 <code>attr( properties )</code> 可以一次修改多个元素属性:</p>
+
+<p><code>$(&quot;img&quot;).attr({title:&quot;修改后的title&quot;, alt: &quot;同时修改alt属性&quot;});</code>
+另外虽然我们可以使用 <code>removeAttr( name )</code> 删除元素属性, 但是对应的DOM属性是不会被删除的, 只会影响DOM属性的值.</p>
+
+<p>比如将一个input元素的readonly元素属性去掉,会导致对应的DOM属性变成false(即input变成可编辑状态):</p>
+
+<p><code>$(&quot;#inputTest&quot;).removeAttr(&quot;readonly&quot;);</code></p>
+
+<h3 id="修改css样式:19438cf2ad44874cd5ef7817873c2659">修改CSS样式</h3>
+
+<p>修改元素的样式, 我们可以修改元素CSS类或者直接修改元素的样式.</p>
+
+<p>一个元素可以应用多个css类, 但是不幸的是在DOM属性中是用一个以空格分割的字符串存储的, 而不是数组. 所以如果在原始javascript时代我们想对元素添加或者删除多个属性时, 都要自己操作字符串.</p>
+
+<p>jQuery让这一切变得异常简单. 我们再也不用做那些无聊的工作了.</p>
+
+<h4 id="修改css类:19438cf2ad44874cd5ef7817873c2659">修改CSS类</h4>
+
+<p>下表是修改CSS类相关的jQuery方法:</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>addClass( classes )</td>
+<td>为每个匹配的元素添加指定的类名。</td>
+<td>为匹配的元素加上 &lsquo;selected&rsquo; 类:  $(&ldquo;p&rdquo;).addClass(&ldquo;selected&rdquo;);</td>
+</tr>
+
+<tr>
+<td>hasClass( class )</td>
+<td>判断包装集中是否至少有一个元素应用了指定的CSS类</td>
+<td>$(&ldquo;p&rdquo;).hasClass(&ldquo;selected&rdquo;);</td>
+</tr>
+
+<tr>
+<td>removeClass( [classes] )</td>
+<td>从所有匹配的元素中删除全部或者指定的类。  从匹配的元素中删除 &lsquo;selected&rsquo; 类:         $(&ldquo;p&rdquo;).</td>
+<td>removeClass(&ldquo;selected&rdquo;);</td>
+</tr>
+
+<tr>
+<td>toggleClass( class )</td>
+<td>如果存在（不存在）就删除（添加）一个类。  为匹配的元素切换 &lsquo;selected&rsquo; 类:         $(&ldquo;p&rdquo;).</td>
+<td>toggleClass(&ldquo;selected&rdquo;);</td>
+</tr>
+
+<tr>
+<td>toggleClass( class, switch )</td>
+<td>当switch是true时添加类,         当switch是false时删除类</td>
+<td>每三次点击切换高亮样式:           var count = 0;           $(&ldquo;p&rdquo;).click(function(){             $(this).toggleClass(&ldquo;highlight&rdquo;, count++ % 3 == 0);           });</td>
+</tr>
+</tbody>
+</table>
+
+<p>使用上面的方法, 我们可以将元素的CSS类像集合一样修改, 再也不必手工解析字符串.</p>
+
+<p>注意 <code>addClass( class )</code> 和<code>removeClass( [classes] )</code>的参数可以一次传入多个css类, 用空格分割,比如:</p>
+
+<p><code>$(&quot;#btnAdd&quot;).bind(&quot;click&quot;, function(event) { $(&quot;p&quot;).addClass(&quot;colorRed borderBlue&quot;); });</code></p>
+
+<p>removeClass方法的参数可选, 如果不传入参数则移除全部CSS类:</p>
+
+<p><code>$(&quot;p&quot;).removeClass()</code></p>
+
+<h4 id="修改css样式-1:19438cf2ad44874cd5ef7817873c2659">修改CSS样式</h4>
+
+<p>同样当我们想要修改元素的具体某一个CSS样式,即修改元素属性&rdquo;style&rdquo;时,  jQuery也提供了相应的方法:</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>css( name )</td>
+<td>访问第一个匹配元素的样式属性。    取得第一个段落的color样式属性的值:</td>
+<td>$(&ldquo;p&rdquo;).css(&ldquo;color&rdquo;);</td>
+</tr>
+
+<tr>
+<td>css( properties )</td>
+<td>把一个“名/值对”对象设置为所有匹配元素的样式属性。这是一种在所有匹配的元素上设置大量样式属性的最佳方式。</td>
+<td>将所有段落的字体颜色设为红色并且背景为蓝色:         $(&ldquo;p&rdquo;).css({ color: &ldquo;#ff0011&rdquo;, background: &ldquo;blue&rdquo; });</td>
+</tr>
+
+<tr>
+<td>css( name, value )</td>
+<td>在所有匹配的元素中，设置一个样式属性的值。<br>数字将自动转化为像素值</td>
+<td>将所有段落字体设为红色: $(&ldquo;p&rdquo;).css(&ldquo;color&rdquo;,&ldquo;red&rdquo;);</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="获取常用属性:19438cf2ad44874cd5ef7817873c2659">获取常用属性</h3>
+
+<p>虽然我们可以通过获取属性,特性以及CSS样式来取得元素的几乎所有信息,  但是注意下面的实验:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;  
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;  
+&lt;head&gt;  
+    &lt;title&gt;获取对象宽度&lt;/title&gt;  
+    &lt;script type=&quot;text/javascript&quot; src=&quot;scripts/jquery-1.3.2-vsdoc2.js&quot;&gt;&lt;/script&gt;  
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+        $(function()  
+        {  
+            alert(&quot;attr(\&quot;width\&quot;):&quot; + $(&quot;#testDiv&quot;).attr(&quot;width&quot;)); //undifined  
+            alert(&quot;css(\&quot;width\&quot;):&quot; + $(&quot;#testDiv&quot;).css(&quot;width&quot;)); //auto(ie6) 或 1264px(ff)  
+            alert(&quot;width():&quot; + $(&quot;#testDiv&quot;).width()); //正确的数值1264  
+            alert(&quot;style.width:&quot; +  $(&quot;#testDiv&quot;)[0].style.width ); //空值  
+        })  
+    &lt;/script&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+    &lt;div id=&quot;testDiv&quot;&gt;  
+        测试文本&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+</code></pre>
+
+<p>我们希望获取测试图层的宽度,  使用attr方法获取&rdquo;元素特性&rdquo;为undifined, 因为并没有为div添加width. 而使用css()方法虽然可以获取到style属性的值, 但是在不同浏览器里返回的结果不同, IE6下返回auto, 而FF下虽然返回了正确的数值但是后面带有&rdquo;px&rdquo;. 所以jQuery提供了width()方法, 此方法返回的是正确的不带px的数值.</p>
+
+<p>针对上面的问题, jQuery为常用的属性提供了获取和设置的方法, 比如width()用户获取元素的宽度, 而 width(val)用来设置元素宽度.</p>
+
+<p>下面这些方法可以用来获取元素的常用属性值:</p>
+
+<h4 id="宽和高相关-height-and-width:19438cf2ad44874cd5ef7817873c2659">宽和高相关 Height and Width</h4>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>height( )</td>
+<td>取得第一个匹配元素当前计算的高度值（px）。</td>
+<td>获取第一段的高:         $(&ldquo;p&rdquo;).height();</td>
+</tr>
+
+<tr>
+<td>height( val )</td>
+<td>为每个匹配的元素设置CSS高度(hidth)属性的值。如果没有明确指定单位（如：em或%），使用px。</td>
+<td>把所有段落的高设为 20:     $(&ldquo;p&rdquo;).height(20);</td>
+</tr>
+
+<tr>
+<td>width( )</td>
+<td>取得第一个匹配元素当前计算的宽度值（px）。</td>
+<td>获取第一段的宽:         $(&ldquo;p&rdquo;).width();</td>
+</tr>
+
+<tr>
+<td>width( val )</td>
+<td>为每个匹配的元素设置CSS宽度(width)属性的值。如果没有明确指定单位（如：em或%），使用px。</td>
+<td>将所有段落的宽设为 20:       $(&ldquo;p&rdquo;).width(20);</td>
+</tr>
+
+<tr>
+<td>innerHeight( )</td>
+<td>获取第一个匹配元素内部区域高度（包括补白、不包括边框）。           此方法对可见和隐藏元素均有效。</td>
+<td>见最后示例</td>
+</tr>
+
+<tr>
+<td>innerWidth( )</td>
+<td>获取第一个匹配元素内部区域宽度（包括补白、不包括边框）。           此方法对可见和隐藏元素均有效。</td>
+<td>见最后示例</td>
+</tr>
+
+<tr>
+<td>outerHeight( [margin] )</td>
+<td>获取第一个匹配元素外部高度（默认包括补白和边框）。           此方法对可见和隐藏元素均有效。</td>
+<td>见最后示例</td>
+</tr>
+
+<tr>
+<td>outerWidth( [margin] )</td>
+<td>获取第一个匹配元素外部宽度（默认包括补白和边框）。           此方法对可见和隐藏元素均有效。</td>
+<td>见最后示例</td>
+</tr>
+</tbody>
+</table>
+
+<p>关于在获取长宽的函数中, 要区别&rdquo;inner&rdquo;, &ldquo;outer&rdquo;和height/width这三种函数的区别:</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0jQuery%20%28%E5%9B%9B%29%20%E4%BD%BF%E7%94%A8jQuery%E6%93%8D%E4%BD%9C%E5%85%83%E7%B4%A0%E7%9A%84%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%A0%B7%E5%BC%8F.png" alt="图1" /></p>
+
+<p>outerWith可以接受一个bool值参数表示是否计算margin值.</p>
+
+<p>相信此图一目了然各个函数所索取的范围. 图片以width为例说明的, height的各个函数同理.</p>
+
+<h4 id="位置相关-positioning:19438cf2ad44874cd5ef7817873c2659">位置相关 Positioning</h4>
+
+<p>另外在一些设计套弹出对象的脚本中,常常需要动态获取弹出坐标并且设置元素的位置.</p>
+
+<p>但是很多的计算位置的方法存在着浏览器兼容性问题,  jQuery中为我们提供了位置相关的各个函数:</p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>offset( )</td>
+<td>获取匹配元素在当前窗口的相对偏移。返回的对象包含两个整形属性：top 和 left。此方法只对可见元素有效。</td>
+<td>获取第二段的偏移:         var p = $(&ldquo;p:last&rdquo;);           var offset = p.offset();           p.html( &ldquo;left: &ldquo; + offset.left + &ldquo;, top: &ldquo; + offset.top );</td>
+</tr>
+
+<tr>
+<td>position( )</td>
+<td>获取匹配元素相对父元素的偏移。</td>
+<td>返回的对象包含两个整形属性：top 和 left。为精确计算结果，请在补白、边框和填充属性上使用像素单位。此方法只对可见元素有效。</td>
+</tr>
+
+<tr>
+<td>scrollTop( )</td>
+<td>获取匹配元素相对滚动条顶部的偏移。此方法对可见和隐藏元素均有效。</td>
+<td>获取第一段相对滚动条顶部的偏移:         var p = $(&ldquo;p:first&rdquo;);           $(&ldquo;p:last&rdquo;).text( &ldquo;scrollTop:&rdquo; + p.scrollTop() );</td>
+</tr>
+
+<tr>
+<td>scrollTop( val )</td>
+<td>传递参数值时，设置垂直滚动条顶部偏移为该值。此方法对可见和隐藏元素均有效。</td>
+<td>设定垂直滚动条值:        $(&ldquo;div.demo&rdquo;).scrollTop(300);</td>
+</tr>
+
+<tr>
+<td>scrollLeft( )</td>
+<td>获取匹配元素相对滚动条左侧的偏移。此方法对可见和隐藏元素均有效。</td>
+<td>获取第一段相对滚动条左侧的偏移:         var p = $(&ldquo;p:first&rdquo;);           $(&ldquo;p:last&rdquo;).text( &ldquo;scrollLeft:&rdquo; + p.scrollLeft() );</td>
+</tr>
+
+<tr>
+<td>scrollLeft( val )</td>
+<td>传递参数值时，设置水平滚动条左侧偏移为该值。此方法对可见和隐藏元素均有效。</td>
+<td>设置相对滚动条左侧的偏移:        $(&ldquo;div.demo&rdquo;).scrollLeft(300);</td>
+</tr>
+</tbody>
+</table>
+
                       
                     </div>
                     <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
@@ -255,7 +618,7 @@
         <a href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_2/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>learn_jquery_2</span>
+          <span>从零开始学习jQuery (二) 万能的选择器</span>
         </a>
         
       </li>
@@ -264,7 +627,7 @@
         <a href="http://blog.ywheel.cn/post/2015/02/14/learn_jquery_6/" rel="prev">
           <i class="fa fa-chevron-left"></i>
           <strong>Previous Post</strong>
-          <span>learn_jquery_6</span>
+          <span>从零开始学习jQuery (六) jQuery中的Ajax</span>
         </a>
         
       </li>
