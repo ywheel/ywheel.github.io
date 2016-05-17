@@ -12,36 +12,36 @@
         }
     }
   </script>
-  <title>关于我 - 轮子们</title>
+  <title>LeetCode主题整理(4)链表及相关问题 - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-<meta name="description" content="Hi all, 我叫ywheel, 是一名程序员。 我的经历 2006-2013 北京邮电大学本硕 2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员 2015.5.7-Now 某大数据公司平台研发主">
+<meta name="keywords" content="leetcode,">
+<meta name="description" content="leetcode">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="关于我 - 轮子们">
-<meta itemprop="description" content="Hi all, 我叫ywheel, 是一名程序员。 我的经历 2006-2013 北京邮电大学本硕 2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员 2015.5.7-Now 某大数据公司平台研发主">
+<meta itemprop="name" content="LeetCode主题整理(4)链表及相关问题 - 轮子们">
+<meta itemprop="description" content="leetcode">
 <meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
-<meta property="og:title" content="关于我 - 轮子们" />
+<meta property="og:title" content="LeetCode主题整理(4)链表及相关问题 - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.cn/about/" />
+<meta property="og:url" content="http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/" />
 <meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
-<meta property="og:description" content="Hi all, 我叫ywheel, 是一名程序员。 我的经历 2006-2013 北京邮电大学本硕 2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员 2015.5.7-Now 某大数据公司平台研发主">
+<meta property="og:description" content="leetcode">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="关于我 - 轮子们">
-<meta name="twitter:description" content="Hi all, 我叫ywheel, 是一名程序员。 我的经历 2006-2013 北京邮电大学本硕 2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员 2015.5.7-Now 某大数据公司平台研发主">
+<meta name="twitter:title" content="LeetCode主题整理(4)链表及相关问题 - 轮子们">
+<meta name="twitter:description" content="leetcode">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.cn/about/">
-  <link rel='shortlink' href="http://blog.ywheel.cn/about/"/>
+  <link rel="canonical" href="http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/">
+  <link rel='shortlink' href="http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/"/>
   <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
   
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
@@ -161,7 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/" rel="category tag">思考感悟</a>
+                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
                 </li>
                 
               </ul>
@@ -173,12 +173,12 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">关于我</h1>
+                  <h1 class="post-title">LeetCode主题整理(4)链表及相关问题</h1>
 
                   <p class="post-byline">
-                    by  · 2016年04月28日 · 257 Words ·
-                    ~1min reading time |
-                    <a href="https://github.com/ywheel/my-blog/blob/master/content/about.md"
+                    by  · 2015年03月11日 · 721 Words ·
+                    ~2min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2015/03/11/leetcode_linked_list.md"
                        target="_blank">Improve on <i class="fa fa-github"></i></a>
                   </p>
 
@@ -189,43 +189,76 @@
                       
                       
 
-<p>Hi all, 我叫ywheel, 是一名程序员。</p>
+<pre><code>转载自：http://blog.csdn.net/feliciafay/article/details/18944093
+</code></pre>
 
-<h3 id="我的经历:6083a88ee3411b0d17ce02d738f69d47">我的经历</h3>
+<h3 id="topic-1-反转链表:ac6eb2e8e47254236eacd8079d974b95">Topic 1 反转链表</h3>
 
-<ul>
-<li>2006-2013 北京邮电大学本硕</li>
-<li>2013-2015 亚马逊（中国）SDE, Amazon Clicks中国团队最早成员</li>
-<li>2015.5.7-Now 某大数据公司平台研发主管</li>
-</ul>
+<h4 id="reverse-linked-list-ii:ac6eb2e8e47254236eacd8079d974b95">Reverse Linked List II</h4>
 
-<h3 id="我的技能:6083a88ee3411b0d17ce02d738f69d47">我的技能</h3>
+<p>在第m~n个节点中反转单链表，注意这道题可以把代码写得很长，如果分为区间一[0,m-1],区间二[m-n],区间三[n+1,end]这三个区间的话。也可以写得很短，如果仔细观察发现其实只需要考虑第一个区间是否为NULL就可以了。</p>
 
-<ul>
-<li>主攻Java, 也能搞一些脚本语言如Python, perl, awk。正在学习scala&hellip;</li>
-<li>目标全栈工程师，遗憾的是目前只能算略懂前端</li>
-<li>大数据技术栈, Hadoop, CDH, Oozie, Kafka, Storm, Spark</li>
-<li>逐步承担和和挑战架构设计</li>
-</ul>
+<h4 id="reverse-nodes-in-k-group:ac6eb2e8e47254236eacd8079d974b95">Reverse Nodes in K Group</h4>
 
-<h3 id="我的生活:6083a88ee3411b0d17ce02d738f69d47">我的生活</h3>
+<p>每K个节点为一个单位，反转第1个单位之后，反转第2个单位，反转第i个单位，反转最后一个单位，如果最后一个单位不足K个，就不进行反转。非常有意思的一道题目，依然可以写得很短，也可以写得很长。如果你用递归的办法去写，可以很快写完。如果你用迭代的办法去写，都会比较长。不管是否是调用了Reverse Linked List II中的函数，或者直接写一个大循环。</p>
 
-<ul>
-<li>2006-2015 北京九年，之后逃离</li>
-<li>爱打羽毛球</li>
-<li>琴棋书画，样样&hellip;都会点，做一名文艺的程序员</li>
-<li>现实主义者，强迫症、焦虑症患者</li>
-</ul>
+<h4 id="reorder-list:ac6eb2e8e47254236eacd8079d974b95">Reorder List</h4>
 
-<h3 id="一些链接:6083a88ee3411b0d17ce02d738f69d47">一些链接</h3>
+<p>仔细观察后，发现本题的规律是，把链表后半段反转，然后依次插入到链表的前半段。</p>
 
-<ul>
-<li>Github: <a href="https://github.com/ywheel">github.com/ywheel</a></li>
-<li>个人博客: <a href="http://blog.ywheel.cn">http://blog.ywheel.cn</a></li>
-<li>新浪微博: <a href="http://weibo.com/ywheel">weibo.com/ywheel</a></li>
-<li>Email: ywheel@qq.com</li>
-<li>微信公众号：轮子们</li>
-</ul>
+<h4 id="rotate-list:ac6eb2e8e47254236eacd8079d974b95">Rotate List</h4>
+
+<p>旋转链表。</p>
+
+<h3 id="topic-2-从数组排序迁移到链表排序:ac6eb2e8e47254236eacd8079d974b95">Topic 2 从数组排序迁移到链表排序</h3>
+
+<h4 id="insertion-sort-list:ac6eb2e8e47254236eacd8079d974b95">Insertion Sort List</h4>
+
+<p>用链表来模拟插入排序</p>
+
+<h4 id="partition:ac6eb2e8e47254236eacd8079d974b95">Partition</h4>
+
+<p>用链表来模拟快排中的partition</p>
+
+<h4 id="sort-list:ac6eb2e8e47254236eacd8079d974b95">Sort List</h4>
+
+<p>用链表来进行归并排序，完成时间复杂度为O(N lgN),空间复杂度为O(1)的排序</p>
+
+<h4 id="merge-two-sorted-lists:ac6eb2e8e47254236eacd8079d974b95">Merge Two Sorted Lists</h4>
+
+<p>归并两个已经排好序的链表</p>
+
+<h4 id="merge-k-sorted-lists:ac6eb2e8e47254236eacd8079d974b95">Merge K Sorted Lists</h4>
+
+<p>归并K个已经排好序的链表</p>
+
+<h3 id="topic-3-环形链表:ac6eb2e8e47254236eacd8079d974b95">Topic 3 环形链表</h3>
+
+<h4 id="linked-list-cycle:ac6eb2e8e47254236eacd8079d974b95">Linked List Cycle</h4>
+
+<p>判断一个链表是否有环</p>
+
+<h4 id="linked-list-cycle-ii:ac6eb2e8e47254236eacd8079d974b95">Linked List Cycle II</h4>
+
+<p>如果一个链表有环，找到环的起始位置</p>
+
+<h3 id="topic-4-其它问题:ac6eb2e8e47254236eacd8079d974b95">Topic 4 其它问题</h3>
+
+<h4 id="copy-list-with-random-pointer:ac6eb2e8e47254236eacd8079d974b95">Copy List with Random Pointer</h4>
+
+<p>拷贝链表，链表的节点除了有next指针，还有random指针，指向任意一个点。</p>
+
+<h4 id="remove-nth-node-from-end-of-list:ac6eb2e8e47254236eacd8079d974b95">Remove Nth Node From End of List</h4>
+
+<p>删除从后向前数的第N个节点</p>
+
+<h4 id="remove-duplicates-from-sorted-list:ac6eb2e8e47254236eacd8079d974b95">Remove Duplicates from Sorted List</h4>
+
+<p>去掉链表中的重复元素，使得原来链表中的所有元素都出现并且只出现一次。</p>
+
+<h4 id="remove-duplicates-from-sorted-list-ii:ac6eb2e8e47254236eacd8079d974b95">Remove Duplicates from Sorted List II</h4>
+
+<p>去掉链表中的重复元素，使得原来链表中的非重复元素都出现并且只出现一次，重复元素不出现。</p>
 
                       
                     </div>
@@ -235,7 +268,7 @@
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/about/">http://blog.ywheel.cn/about/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/">http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -283,14 +316,20 @@
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.cn/post/2015/03/17/grep_and_or_not/" rel="next">
+        <a href="http://blog.ywheel.cn/post/2015/03/11/leetcode_66/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>Grep命令的与或非</span>
+          <span>LeetCode 066 Plus one</span>
         </a>
         
       </li>
       <li class="previous">
+        
+        <a href="http://blog.ywheel.cn/post/2015/03/11/leetcode_summary/" rel="prev">
+          <i class="fa fa-chevron-left"></i>
+          <strong>Previous Post</strong>
+          <span>LeetCode 题目总结/分类</span>
+        </a>
         
       </li>
     </ul>
