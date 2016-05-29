@@ -12,36 +12,36 @@
         }
     }
   </script>
-  <title>老家 - 轮子们</title>
+  <title>HUE Introduction and Contribution - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="老家,亲情,">
-<meta name="description" content="老家">
+<meta name="keywords" content="hue,cloudera,hadoop,">
+<meta name="description" content="HUE Introduction and how to contribute">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="老家 - 轮子们">
-<meta itemprop="description" content="老家">
+<meta itemprop="name" content="HUE Introduction and Contribution - 轮子们">
+<meta itemprop="description" content="HUE Introduction and how to contribute">
 <meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
-<meta property="og:title" content="老家 - 轮子们" />
+<meta property="og:title" content="HUE Introduction and Contribution - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.cn/post/2016/05/18/family/" />
+<meta property="og:url" content="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/" />
 <meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
-<meta property="og:description" content="老家">
+<meta property="og:description" content="HUE Introduction and how to contribute">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="老家 - 轮子们">
-<meta name="twitter:description" content="老家">
+<meta name="twitter:title" content="HUE Introduction and Contribution - 轮子们">
+<meta name="twitter:description" content="HUE Introduction and how to contribute">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/05/18/family/">
-  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/05/18/family/"/>
+  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/">
+  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/"/>
   <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
   
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
@@ -161,7 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/" rel="category tag">思考感悟</a>
+                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
                 </li>
                 
               </ul>
@@ -173,12 +173,12 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">老家</h1>
+                  <h1 class="post-title">HUE Introduction and Contribution</h1>
 
                   <p class="post-byline">
-                    by  · 2016年05月18日 · 2209 Words ·
-                    ~5min reading time |
-                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/05/18/family.md"
+                    by  · 2016年05月29日 · 2700 Words ·
+                    ~6min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/05/29/hue_introduction.md"
                        target="_blank">Improve on <i class="fa fa-github"></i></a>
                   </p>
 
@@ -187,38 +187,113 @@
                   <div class="entry">
                     <div class="entry-inner">
                       
-                      <p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E8%80%81%E5%AE%B6.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="老家门前的三棵枣树" /></p>
+                      
 
-<p>图：老家门前的三棵枣树</p>
+<p>前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。</p>
 
-<p>5年前的今天，老家拆除了，在老家的原址上，早已盖起一栋新楼。这边文章就是在老家拆除后的几天写的，用来纪念我们心中的&rdquo;老家&rdquo;。</p>
+<h2 id="hue是什么:4d91db11f2d84cff72c863adcd70ce66">HUE是什么</h2>
+
+<p>HUE=<strong>Hadoop User Experience</strong></p>
+
+<p>Hue是一个开源的Apache Hadoop UI系统，由Cloudera Desktop演化而来，最后Cloudera公司将其贡献给Apache基金会的Hadoop社区，它是基于Python Web框架Django实现的。</p>
+
+<p>通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等。</p>
+
+<h2 id="hue链接:4d91db11f2d84cff72c863adcd70ce66">HUE链接</h2>
+
+<ul>
+<li>Site: <a href="http://gethue.com/">http://gethue.com/</a></li>
+<li>Github: <a href="https://github.com/cloudera/hue">https://github.com/cloudera/hue</a></li>
+<li>Reviews: <a href="https://review.cloudera.org">https://review.cloudera.org</a></li>
+</ul>
+
+<h2 id="核心功能:4d91db11f2d84cff72c863adcd70ce66">核心功能</h2>
+
+<ul>
+<li>SQL编辑器，支持Hive, Impala, MySQL, Oracle, PostgreSQL, SparkSQL, Solr SQL, Phoenix&hellip;</li>
+<li>搜索引擎Solr的各种图表</li>
+<li>Spark和Hadoop的友好界面支持</li>
+<li>支持调度系统Apache Oozie，可进行workflow的编辑、查看</li>
+</ul>
+
+<p>HUE提供的这些功能相比Hadoop生态各组件提供的界面更加友好，但是一些需要debug的场景可能还是需要使用原生系统才能更加深入的找到错误的原因。</p>
+
+<p>HUE中查看Oozie workflow时，也可以很方面的看到整个workflow的DAG图，不过在最新版本中已经将DAG图去掉了，只能看到workflow中的action列表和他们之间的跳转关系，想要看DAG图的仍然可以使用oozie原生的界面系统查看。</p>
+
+<h3 id="hue登录:4d91db11f2d84cff72c863adcd70ce66">HUE登录</h3>
+
+<p>如果自己搭建了HUE，则可以使用管理员账户创建一个新的用户，然后使用新的用户进行登录，见下图：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%E7%99%BB%E5%BD%95.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE登录图" /></p>
+
+<p>使用<a href="http://gethue.com/">HUE官网</a>上的live demo可以尝鲜。如果大家自己没有搭建大数据平台，没有安装HUE的话，可以先在该demo上尝试。点击<a href="http://demo.gethue.com/">Play with the live Demo now!</a>,将会进入HUE的&rdquo;我的文档&rdquo;：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Demo.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Demo图" /></p>
+
+<h3 id="hdfs文件浏览:4d91db11f2d84cff72c863adcd70ce66">HDFS文件浏览</h3>
+
+<p>HUE可以很方面的浏览HDFS中的目录和文件，并且进行文件和目录的创建、复制、删除、下载以及修改权限等操作。</p>
+
+<p>HDFS实现了一个和POSIX系统类似的文件和目录的权限模型。每个文件和目录有一个所有者（owner）和一个组（group）。文件或目录对其所有者、同组的其他用户以及所有其他用户分别有着不同的权限。<strong>但，用户身份机制对HDFS本身来说只是外部特性。HDFS并不提供创建用户身份、创建组或处理用户凭证等功能。</strong> 使用HUE访问HDFS时，HDFS简单的将HUE上的用户名和组的名称进行权限的校验。</p>
+
+<p>在Live Demo中,点击&rdquo;文件浏览器&rdquo;, 进入HDFS的家目录：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20File%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE HDFS图" /></p>
+
+<p><strong>PS:</strong> Live Demo中禁了文件上传功能。</p>
+
+<h3 id="作业浏览:4d91db11f2d84cff72c863adcd70ce66">作业浏览</h3>
+
+<p>点击Job Browser，可以查看作业列表，并且可以通过点击右上角的&rdquo;成功&rdquo;,&ldquo;正在运行&rdquo;,&ldquo;失败&rdquo;,&ldquo;停止&rdquo;来筛选不同状态的作业：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Job%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Job Browser" /></p>
+
+<p>我们在实际工作中发现，当集群(CDH5.2) 配置了HA后，当active的ResourceManager自动切换后(比如NN1上的ResourceManager是active，而NN2是standby，当NN1出现故障， NN2上的ResourceManager转变为active状态)，HUE的job browser将不能够正确显示。只有当修复故障后，将NN1上的ResourceManager重新变成active状态，HUE的job browser才能正常工作。不知道这个问题在后续版本是否已经得到修复。</p>
+
+<h3 id="hive查询:4d91db11f2d84cff72c863adcd70ce66">Hive查询</h3>
+
+<p>HUE的beeswax app提供友好方便的Hive查询功能，能够选择不同的Hive数据库，编写HQL语句，提交查询任务，并且能够在界面下方看到查询作业运行的日志。在得到结果后，还提供进行简单的图表分析能力。</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Hive查询" /></p>
+
+<p>点击&rdquo;Data Browsers&rdquo;-&gt;&ldquo;Metastore表&rdquo;，还可以看到Hive中的数据库，数据库中的表以及各个表的元数据等信息。</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive%20MetaStore.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Hive MetaStore" /></p>
+
+<h3 id="oozie-workflow编辑:4d91db11f2d84cff72c863adcd70ce66">Oozie Workflow编辑</h3>
+
+<p>HUE也提供了很好的Oozie的集成，能够在HUE上创建和编辑Bundles, Coordinator, Workflow. Oozie的介绍可以去<a href="https://oozie.apache.org/">官网</a>查看。下图为在HUE上创建一个新的workflow，在该界面上，可以直接拖动不同的组件，变成DAG中的节点，并且设置各个action的流转逻辑。</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Editor.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE WF Editor" /></p>
+
+<p>当然Oozie也可以通过命令行的方式提交B,C,W. 不过是使用HUE创建的workflow，或者是通过命令行提交的workflow，都可以在HUE上查看运行的状况：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE WF Browser" /></p>
+
+<p>只是通过命令行提交的workflow就不可以在HUE上进行编辑了。使用配置文件、命令行提交的方式能够保证在生产环境上运行的和在测试环境上运行的版本一致，而使用HUE界面编辑的方式虽然方便，但也可能会带来人工操作在生产环境中失误的风险，有利也有弊吧。</p>
+
+<h2 id="contribution:4d91db11f2d84cff72c863adcd70ce66">Contribution</h2>
+
+<p>我在给同事准备培训材料的时候，到HUE的github上去查找资料。在看到HUE的主要功能时，github上的原文是这样的：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Features%20old.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Features old" /></p>
+
+<p>恰好我司主要使用的数据库是PostgreSQL，看到PostGresl感觉怪怪的，于是Google了一把，PostgreSQL有两个名字：PostgreSQL和Postgres，目前<a href="https://www.postgresql.org/">官方网站</a>上的名字仍然是PostgreSQL. 不管PostGresl是否有什么典故，但是PostgreSQL一定是对的。因此，我去查了下如何给HUE提交代码修改。在Github上能找到wiki: <a href="https://github.com/cloudera/hue/wiki/Contribute-to-HUE">Contribute to HUE</a>, HUE有自己的JIRA和Review Board, 但也说了<code>The Hue project gladly welcomes any patches or pull requests!</code></p>
+
+<p>于是我在github上给HUE发了一个<a href="https://github.com/cloudera/hue/issues/371">Issue</a>和一个<a href="https://github.com/cloudera/hue/pull/372">Pull Request</a>。几天后Pull Request被接收，merge到了master分支上，可以看到这个<a href="https://github.com/cloudera/hue/commit/61e80b3cd2820c68f2103e8cef34d50734f02c09">Commit</a>。</p>
+
+<p>在这里记录一下更新的步骤：
+1. Fork HUE的工程，比如 <a href="https://github.com/ywheel/hue">ywheel/hue</a>
+2. 创建一个新的分支，不要使用master分支提交修改。比如我创建了<a href="https://github.com/ywheel/hue/tree/fix-postgresql-spelling">fix-postgresql-spelling</a>分支。
+3. 将代码pull下来，修改后commit，提交到<a href="https://github.com/ywheel/hue/tree/fix-postgresql-spelling">fix-postgresql-spelling</a>分支。
+4. 创建issue。当HUE的工程上创建<a href="https://github.com/cloudera/hue/issues/371">issue</a>, 描述清楚问题，提交。
+5. 点击&rsquo;Pull Request&rsquo;, 选择目的工程和分支，比如cloudera/hue的master分支。填写comment, 说明已创建的issue, create pull request.</p>
+
+<p>接下来就是等了，等该提交被review, 被merge到master分支, 等你自己的名字出现在<a href="https://github.com/cloudera/hue/graphs/contributors">Contributors</a>里面, <strong>then everything DONE!</strong></p>
 
 <hr />
 
-<p>老家在经历了几十年的风雨后，终于到了该退休的年龄。爸爸在每当下大雨时就担心老家会不会扛不住，这种担心也在前两天彻底结束。昨天给家里通电话，得知老家已经拆的只剩下半身高的红砖墙，紧接着红砖墙也会被拆掉，在老家的那片土地上会重新盖起一栋新楼。</p>
-
-<p>老家，也只能是记忆中的老家了。</p>
-
-<p>童年有很多时间在老家度过。甚至上了小学后，只要放假不上课，还经常闹着要回老家。在那里可以玩一些很有意思的事情。还记得门口的那块大石头，常年经受水滴的拍击，在石头的表面凹进去很大一块，也许这就是“水滴石穿”的典例吧。八仙桌的竹椅子，被装上滚轮的改装摇篮，门口地里的蚯蚓，菜园里的土青蛙，屋檐下的打谷机，还有门口的三棵枣树，守护红枣的水枪。。。小时候的玩意儿还是很丰富多彩。</p>
-
-<p>尤其是那三棵枣树，每当暑假，红枣挂满枝头，爷爷奶奶都要召集家中所有的小孩回到老家打红枣。长辈们用长竹竿敲打树枝，红枣自然会掉下来，然后我们小孩就负责从地上把红枣捡回来，就算经常被“天上”掉下来的红枣砸到头，也不亦乐乎地忙活着捡红枣。邻居家的小孩就站在旁边看着，吞着口水。偶尔有一两颗红枣敲好掉到他们跟前，他们就立马捡起来就跑。上小学的时候，枣树上结的红枣还是挺多的，一般都能打下两箩筐满满的红枣，也会分给隔壁邻居一些。</p>
-
-<p>“古有‘先生不知何许人也，亦不详其姓字，宅边有五柳树，因以为号焉’，我家门口有三棵枣树，好读书，更要好好读书。。。”这是爷爷指导我们写的作文。爷爷是革命年代的读书人，学的国文，善于吟诗作赋，对对子，写的一手好毛笔字，另外还是一位“江湖郎中”，有一套治疗胃病的特效药方。我小时候，经常会有人不远千里从隔壁隔壁县一直打听，直到打听到老家里，那时电话远没有普及，所以病人只能到处托人打听，药方确实特效，所以爷爷也声名远扬。也经常会有村里的不识字的老人，拿着儿女寄来的信件找爷爷读，然后回信。爷爷对我们很好，毛笔字也是经过他的启蒙，他很享受教育孙辈的感觉，他还指导我们写过一首诗，叫《电灯》：有电真方便，开灯亮堂堂。公孙在一起，读书写文章。
-小学四年级后，我们开始自己骑车。于是每次回老家，我家四口人就骑着四辆自行车浩浩荡荡得骑上大半小时。每次在老家聚集，门口都停满了自行车。从四姑父买了全家第一辆摩托车，才开始逐渐改变交通工具被腿和自行车垄断的状况。</p>
-
-<p>上初中后，慢慢习惯在县城住的生活，卫生条件也好一些。老家没有卫生间，电视没有有线，只有很少的几个台。我们也都开始青春期的叛逆，慢慢不愿回去那个看不了电视，上厕所环境不好，洗澡也没卫生间的老家。除了每年暑假例行的打红枣的时候，都回去帮忙，然后各小家分一包回去。枣树却越来越不给力，红枣数量逐年递减，还有隔壁的小孩也长大，学会爬树和偷枣，所以我们得回去看守枣树。直到初三那年，突然某天半夜还在打点滴却睡着的我被叫醒，点滴还没完就强行拔针，一家人匆忙得坐着救护车赶回老家，还是没能见上爷爷最后一面。爷爷早以写好自己的挽联，教过我们好几次，但是我们却都没太放在心上。到最后爷爷过世，没人能完整的记起挽联的内容，一直后悔不已。</p>
-
-<p>爷爷一直教育我们要好好读书。当年他考上师范的时候，全村人一起拱他读书。在这方面，他一直是全家人的榜样。他过世后，我们两兄弟也很争气，拿了我们初中的第二和第三名考上了高中。</p>
-
-<p>上了高中后，爸爸也买了摩托车，去老家就更方便了。摩托车比自行车快多了，而且在回老家的路上有一个又长又抖的坡，不再那么费力以至于得自己下车推着上坡了。村口也慢慢修了路，没有了那条弯曲而又满是泥泞的土路。基本上那会开始，在老家门口停的车，摩托比自行车要多了。大家庭的人口也在增长，表哥表姐陆续开始结婚，为家族添丁。还好老家门口的院子空间大，够摆放那么多车。</p>
-
-<p>上大学后，回老家的机会就更少了，基本不会在老家住了。交通也方便，再晚也能回到县城住。记得有一年暑假回去，弟弟说哥哥你们可回来了，就等你们来打红枣，树顶上那些都快被鸟儿吃完了。于是又干起小时候的活，忙活一阵把那三棵枣树上的红枣都打下来，但总共却只有很少很少了。洗好后大家分一分吃几颗，都快吃完了。枣树也年纪大了，红枣的产量早已不及当年的两大箩筐。</p>
-
-<p>老家也年纪大了，最近几年，只要一下大雨，爸爸就担心老家会不会倒。好像是大一那年，老家后的一间年代更久一点的房子在一个雷雨交加的夜晚倒塌了。在我的记忆中，小时候还在那间房子里玩过捉迷藏，我躲在里面的稻草堆里。因为是同样的土砖房，老家也难免会有同样的命运。不过由于老家曾经修缮过，把最底层的承重的土砖换成了红砖，使用年限又增加了几年。</p>
-
-<p>大家的交通工具又有了新变化，慢慢的，老家前的院子里不再只停着两个轮子的车子了。一两辆小车就要把院子停满。叔叔说以后要盖一间带大车库的新“老家”，老家的拆除也提上日程。该来的总要来的。。。</p>
-
-<p>现在的老家，只剩一些砖头了。为了不让老家在某个雨天轰然倒下，伤及还在老家住着的叔叔一家还有奶奶，也怕损坏老家的一些家具财务，所以还是选择了自己拆除。就在5月18号，开始拆除老家。在老家的原址上，将来会重新盖一栋新楼。也许会有一个大车库，就算以后兄弟们每人开辆车回去也能放下；也许会有一个精装修的卫生间，卫生条件也跟上城里的脚步；也许会有一个很大的院子，院子里还有三棵年老的枣树。。。</p>
+<p>ps: 虽然改了个单词拼写就出来说简直是丢人，不过算是一个good start, 希望能在不久的将来真的能给开源项目（特别是流行的大数据生态中的开源项目）贡献代码，加油!</p>
 
                       
                     </div>
@@ -228,7 +303,7 @@
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/05/18/family/">http://blog.ywheel.cn/post/2016/05/18/family/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/">http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -276,20 +351,14 @@
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.cn/about/" rel="next">
+        <a href="http://blog.ywheel.cn/post/2016/05/18/family/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>关于我</span>
+          <span>老家</span>
         </a>
         
       </li>
       <li class="previous">
-        
-        <a href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/" rel="prev">
-          <i class="fa fa-chevron-left"></i>
-          <strong>Previous Post</strong>
-          <span>HUE Introduction and Contribution</span>
-        </a>
         
       </li>
     </ul>

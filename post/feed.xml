@@ -7,8 +7,124 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 18 May 2016 02:41:01 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 May 2016 21:31:44 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/post/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>HUE Introduction and Contribution</title>
+      <link>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</link>
+      <pubDate>Sun, 29 May 2016 21:31:44 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</guid>
+      <description>
+
+&lt;p&gt;前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。&lt;/p&gt;
+
+&lt;h2 id=&#34;hue是什么:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE是什么&lt;/h2&gt;
+
+&lt;p&gt;HUE=&lt;strong&gt;Hadoop User Experience&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hue是一个开源的Apache Hadoop UI系统，由Cloudera Desktop演化而来，最后Cloudera公司将其贡献给Apache基金会的Hadoop社区，它是基于Python Web框架Django实现的。&lt;/p&gt;
+
+&lt;p&gt;通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等。&lt;/p&gt;
+
+&lt;h2 id=&#34;hue链接:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE链接&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Site: &lt;a href=&#34;http://gethue.com/&#34;&gt;http://gethue.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github: &lt;a href=&#34;https://github.com/cloudera/hue&#34;&gt;https://github.com/cloudera/hue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Reviews: &lt;a href=&#34;https://review.cloudera.org&#34;&gt;https://review.cloudera.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;核心功能:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;核心功能&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SQL编辑器，支持Hive, Impala, MySQL, Oracle, PostgreSQL, SparkSQL, Solr SQL, Phoenix&amp;hellip;&lt;/li&gt;
+&lt;li&gt;搜索引擎Solr的各种图表&lt;/li&gt;
+&lt;li&gt;Spark和Hadoop的友好界面支持&lt;/li&gt;
+&lt;li&gt;支持调度系统Apache Oozie，可进行workflow的编辑、查看&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HUE提供的这些功能相比Hadoop生态各组件提供的界面更加友好，但是一些需要debug的场景可能还是需要使用原生系统才能更加深入的找到错误的原因。&lt;/p&gt;
+
+&lt;p&gt;HUE中查看Oozie workflow时，也可以很方面的看到整个workflow的DAG图，不过在最新版本中已经将DAG图去掉了，只能看到workflow中的action列表和他们之间的跳转关系，想要看DAG图的仍然可以使用oozie原生的界面系统查看。&lt;/p&gt;
+
+&lt;h3 id=&#34;hue登录:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE登录&lt;/h3&gt;
+
+&lt;p&gt;如果自己搭建了HUE，则可以使用管理员账户创建一个新的用户，然后使用新的用户进行登录，见下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%E7%99%BB%E5%BD%95.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE登录图&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用&lt;a href=&#34;http://gethue.com/&#34;&gt;HUE官网&lt;/a&gt;上的live demo可以尝鲜。如果大家自己没有搭建大数据平台，没有安装HUE的话，可以先在该demo上尝试。点击&lt;a href=&#34;http://demo.gethue.com/&#34;&gt;Play with the live Demo now!&lt;/a&gt;,将会进入HUE的&amp;rdquo;我的文档&amp;rdquo;：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Demo.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Demo图&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;hdfs文件浏览:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HDFS文件浏览&lt;/h3&gt;
+
+&lt;p&gt;HUE可以很方面的浏览HDFS中的目录和文件，并且进行文件和目录的创建、复制、删除、下载以及修改权限等操作。&lt;/p&gt;
+
+&lt;p&gt;HDFS实现了一个和POSIX系统类似的文件和目录的权限模型。每个文件和目录有一个所有者（owner）和一个组（group）。文件或目录对其所有者、同组的其他用户以及所有其他用户分别有着不同的权限。&lt;strong&gt;但，用户身份机制对HDFS本身来说只是外部特性。HDFS并不提供创建用户身份、创建组或处理用户凭证等功能。&lt;/strong&gt; 使用HUE访问HDFS时，HDFS简单的将HUE上的用户名和组的名称进行权限的校验。&lt;/p&gt;
+
+&lt;p&gt;在Live Demo中,点击&amp;rdquo;文件浏览器&amp;rdquo;, 进入HDFS的家目录：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20File%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE HDFS图&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PS:&lt;/strong&gt; Live Demo中禁了文件上传功能。&lt;/p&gt;
+
+&lt;h3 id=&#34;作业浏览:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;作业浏览&lt;/h3&gt;
+
+&lt;p&gt;点击Job Browser，可以查看作业列表，并且可以通过点击右上角的&amp;rdquo;成功&amp;rdquo;,&amp;ldquo;正在运行&amp;rdquo;,&amp;ldquo;失败&amp;rdquo;,&amp;ldquo;停止&amp;rdquo;来筛选不同状态的作业：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Job%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Job Browser&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们在实际工作中发现，当集群(CDH5.2) 配置了HA后，当active的ResourceManager自动切换后(比如NN1上的ResourceManager是active，而NN2是standby，当NN1出现故障， NN2上的ResourceManager转变为active状态)，HUE的job browser将不能够正确显示。只有当修复故障后，将NN1上的ResourceManager重新变成active状态，HUE的job browser才能正常工作。不知道这个问题在后续版本是否已经得到修复。&lt;/p&gt;
+
+&lt;h3 id=&#34;hive查询:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Hive查询&lt;/h3&gt;
+
+&lt;p&gt;HUE的beeswax app提供友好方便的Hive查询功能，能够选择不同的Hive数据库，编写HQL语句，提交查询任务，并且能够在界面下方看到查询作业运行的日志。在得到结果后，还提供进行简单的图表分析能力。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Hive查询&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击&amp;rdquo;Data Browsers&amp;rdquo;-&amp;gt;&amp;ldquo;Metastore表&amp;rdquo;，还可以看到Hive中的数据库，数据库中的表以及各个表的元数据等信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive%20MetaStore.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Hive MetaStore&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;oozie-workflow编辑:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Oozie Workflow编辑&lt;/h3&gt;
+
+&lt;p&gt;HUE也提供了很好的Oozie的集成，能够在HUE上创建和编辑Bundles, Coordinator, Workflow. Oozie的介绍可以去&lt;a href=&#34;https://oozie.apache.org/&#34;&gt;官网&lt;/a&gt;查看。下图为在HUE上创建一个新的workflow，在该界面上，可以直接拖动不同的组件，变成DAG中的节点，并且设置各个action的流转逻辑。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Editor.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE WF Editor&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当然Oozie也可以通过命令行的方式提交B,C,W. 不过是使用HUE创建的workflow，或者是通过命令行提交的workflow，都可以在HUE上查看运行的状况：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE WF Browser&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;只是通过命令行提交的workflow就不可以在HUE上进行编辑了。使用配置文件、命令行提交的方式能够保证在生产环境上运行的和在测试环境上运行的版本一致，而使用HUE界面编辑的方式虽然方便，但也可能会带来人工操作在生产环境中失误的风险，有利也有弊吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;contribution:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Contribution&lt;/h2&gt;
+
+&lt;p&gt;我在给同事准备培训材料的时候，到HUE的github上去查找资料。在看到HUE的主要功能时，github上的原文是这样的：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Features%20old.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Features old&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;恰好我司主要使用的数据库是PostgreSQL，看到PostGresl感觉怪怪的，于是Google了一把，PostgreSQL有两个名字：PostgreSQL和Postgres，目前&lt;a href=&#34;https://www.postgresql.org/&#34;&gt;官方网站&lt;/a&gt;上的名字仍然是PostgreSQL. 不管PostGresl是否有什么典故，但是PostgreSQL一定是对的。因此，我去查了下如何给HUE提交代码修改。在Github上能找到wiki: &lt;a href=&#34;https://github.com/cloudera/hue/wiki/Contribute-to-HUE&#34;&gt;Contribute to HUE&lt;/a&gt;, HUE有自己的JIRA和Review Board, 但也说了&lt;code&gt;The Hue project gladly welcomes any patches or pull requests!&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;于是我在github上给HUE发了一个&lt;a href=&#34;https://github.com/cloudera/hue/issues/371&#34;&gt;Issue&lt;/a&gt;和一个&lt;a href=&#34;https://github.com/cloudera/hue/pull/372&#34;&gt;Pull Request&lt;/a&gt;。几天后Pull Request被接收，merge到了master分支上，可以看到这个&lt;a href=&#34;https://github.com/cloudera/hue/commit/61e80b3cd2820c68f2103e8cef34d50734f02c09&#34;&gt;Commit&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;在这里记录一下更新的步骤：
+1. Fork HUE的工程，比如 &lt;a href=&#34;https://github.com/ywheel/hue&#34;&gt;ywheel/hue&lt;/a&gt;
+2. 创建一个新的分支，不要使用master分支提交修改。比如我创建了&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。
+3. 将代码pull下来，修改后commit，提交到&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。
+4. 创建issue。当HUE的工程上创建&lt;a href=&#34;https://github.com/cloudera/hue/issues/371&#34;&gt;issue&lt;/a&gt;, 描述清楚问题，提交。
+5. 点击&amp;rsquo;Pull Request&amp;rsquo;, 选择目的工程和分支，比如cloudera/hue的master分支。填写comment, 说明已创建的issue, create pull request.&lt;/p&gt;
+
+&lt;p&gt;接下来就是等了，等该提交被review, 被merge到master分支, 等你自己的名字出现在&lt;a href=&#34;https://github.com/cloudera/hue/graphs/contributors&#34;&gt;Contributors&lt;/a&gt;里面, &lt;strong&gt;then everything DONE!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;ps: 虽然改了个单词拼写就出来说简直是丢人，不过算是一个good start, 希望能在不久的将来真的能给开源项目（特别是流行的大数据生态中的开源项目）贡献代码，加油!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>老家</title>
@@ -1254,46 +1370,6 @@ public class GenerateParentheses {
 }  
 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 32 Longest Valid Parentheses</title>
-      <link>http://blog.ywheel.cn/post/2015/03/08/leetcode_32/</link>
-      <pubDate>Sun, 08 Mar 2015 22:20:08 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/03/08/leetcode_32/</guid>
-      <description>&lt;p&gt;题目大意是给定一个只有左右括号组成的字符串，求最长的valid字串长度，比如“()”的最长valid字串长度为2，“)()())”的最长valid字串为&amp;rdquo;()()&amp;ldquo;，则长度为4.&lt;/p&gt;
-
-&lt;p&gt;拿到这个题目第一反应就是用Stack，但是Stack里面装什么呢？如何表示Valid最大长度？后来想到是否能够把还没匹配好的括号的index放到stack中，如果有匹配的就pop，没有就push。当pop的时候判断stack是否为空，如果空了，则该index之前的字串都是valid；如果不为空，则该index与stack中的peek之差就是当前valid子串的长度。
-代码如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Solution {  
-    public int longestValidParentheses(String s) {  
-        int max = 0;  
-        if (s == null || s.isEmpty()) return max;  
-        int len = s.length();  
-        Stack&amp;lt;Integer&amp;gt; stack = new Stack&amp;lt;Integer&amp;gt;();  
-        for (int i=0; i&amp;lt;len; i++) {  
-            char c = s.charAt(i);  
-            if (c == &#39;)&#39; &amp;amp;&amp;amp; !stack.isEmpty() &amp;amp;&amp;amp; s.charAt(stack.peek()) == &#39;(&#39;) {  
-                stack.pop();  
-                if (stack.isEmpty()) {  
-                    max  = i+1;  
-                } else {  
-                    int valid_len = i - stack.peek();  
-                    max = max &amp;gt; valid_len ? max : valid_len;  
-                }  
-            } else {  
-                stack.push(i);  
-            }  
-        }  
-        return max;  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;看到一篇博文，也可以用一维DP去解，等有空时再细研究。附上链接：&lt;a href=&#34;https://leetcodenotes.wordpress.com/2013/10/19/leetcode-longest-valid-parentheses-%E8%BF%99%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%BB%84%E5%90%88%EF%BC%8C%E6%9C%80%E9%95%BF%E7%9A%84valid%E6%8B%AC%E5%8F%B7%E7%BB%84%E5%90%88%E6%9C%89%E5%A4%9A/&#34;&gt;点击打开链接&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
