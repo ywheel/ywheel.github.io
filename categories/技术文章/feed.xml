@@ -111,12 +111,15 @@
 
 &lt;p&gt;于是我在github上给HUE发了一个&lt;a href=&#34;https://github.com/cloudera/hue/issues/371&#34;&gt;Issue&lt;/a&gt;和一个&lt;a href=&#34;https://github.com/cloudera/hue/pull/372&#34;&gt;Pull Request&lt;/a&gt;。几天后Pull Request被接收，merge到了master分支上，可以看到这个&lt;a href=&#34;https://github.com/cloudera/hue/commit/61e80b3cd2820c68f2103e8cef34d50734f02c09&#34;&gt;Commit&lt;/a&gt;。&lt;/p&gt;
 
-&lt;p&gt;在这里记录一下更新的步骤：
-1. Fork HUE的工程，比如 &lt;a href=&#34;https://github.com/ywheel/hue&#34;&gt;ywheel/hue&lt;/a&gt;
-2. 创建一个新的分支，不要使用master分支提交修改。比如我创建了&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。
-3. 将代码pull下来，修改后commit，提交到&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。
-4. 创建issue。当HUE的工程上创建&lt;a href=&#34;https://github.com/cloudera/hue/issues/371&#34;&gt;issue&lt;/a&gt;, 描述清楚问题，提交。
-5. 点击&amp;rsquo;Pull Request&amp;rsquo;, 选择目的工程和分支，比如cloudera/hue的master分支。填写comment, 说明已创建的issue, create pull request.&lt;/p&gt;
+&lt;p&gt;在这里记录一下更新的步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Fork HUE的工程，比如 &lt;a href=&#34;https://github.com/ywheel/hue&#34;&gt;ywheel/hue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;创建一个新的分支，不要使用master分支提交修改。比如我创建了&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。&lt;/li&gt;
+&lt;li&gt;将代码pull下来，修改后commit，提交到&lt;a href=&#34;https://github.com/ywheel/hue/tree/fix-postgresql-spelling&#34;&gt;fix-postgresql-spelling&lt;/a&gt;分支。&lt;/li&gt;
+&lt;li&gt;创建issue。当HUE的工程上创建&lt;a href=&#34;https://github.com/cloudera/hue/issues/371&#34;&gt;issue&lt;/a&gt;, 描述清楚问题，提交。&lt;/li&gt;
+&lt;li&gt;点击&amp;rsquo;Pull Request&amp;rsquo;, 选择目的工程和分支，比如cloudera/hue的master分支。填写comment, 说明已创建的issue, create pull request.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;接下来就是等了，等该提交被review, 被merge到master分支, 等你自己的名字出现在&lt;a href=&#34;https://github.com/cloudera/hue/graphs/contributors&#34;&gt;Contributors&lt;/a&gt;里面, &lt;strong&gt;then everything DONE!&lt;/strong&gt;&lt;/p&gt;
 
