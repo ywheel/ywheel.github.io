@@ -12,36 +12,36 @@
         }
     }
   </script>
-  <title>HUE Introduction and Contribution - 轮子们</title>
+  <title>高三楼 - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="hue,cloudera,hadoop,">
-<meta name="description" content="HUE Introduction and how to contribute">
+<meta name="keywords" content="高考,">
+<meta name="description" content="高考十年">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="HUE Introduction and Contribution - 轮子们">
-<meta itemprop="description" content="HUE Introduction and how to contribute">
+<meta itemprop="name" content="高三楼 - 轮子们">
+<meta itemprop="description" content="高考十年">
 <meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
-<meta property="og:title" content="HUE Introduction and Contribution - 轮子们" />
+<meta property="og:title" content="高三楼 - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/" />
+<meta property="og:url" content="http://blog.ywheel.cn/post/2016/06/05/examination/" />
 <meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
-<meta property="og:description" content="HUE Introduction and how to contribute">
+<meta property="og:description" content="高考十年">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="HUE Introduction and Contribution - 轮子们">
-<meta name="twitter:description" content="HUE Introduction and how to contribute">
+<meta name="twitter:title" content="高三楼 - 轮子们">
+<meta name="twitter:description" content="高考十年">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/">
-  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/"/>
+  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/06/05/examination/">
+  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/06/05/examination/"/>
   <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
   
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
@@ -161,7 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                  <a href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/" rel="category tag">思考感悟</a>
                 </li>
                 
               </ul>
@@ -173,12 +173,12 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">HUE Introduction and Contribution</h1>
+                  <h1 class="post-title">高三楼</h1>
 
                   <p class="post-byline">
-                    by  · 2016年05月29日 · 2695 Words ·
-                    ~6min reading time |
-                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/05/29/hue_introduction.md"
+                    by  · 2016年06月05日 · 2158 Words ·
+                    ~5min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/06/05/examination.md"
                        target="_blank">Improve on <i class="fa fa-github"></i></a>
                   </p>
 
@@ -187,116 +187,33 @@
                   <div class="entry">
                     <div class="entry-inner">
                       
-                      
-
-<p>前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。</p>
-
-<h2 id="hue是什么:4d91db11f2d84cff72c863adcd70ce66">HUE是什么</h2>
-
-<p>HUE=<strong>Hadoop User Experience</strong></p>
-
-<p>Hue是一个开源的Apache Hadoop UI系统，由Cloudera Desktop演化而来，最后Cloudera公司将其贡献给Apache基金会的Hadoop社区，它是基于Python Web框架Django实现的。</p>
-
-<p>通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等。</p>
-
-<h2 id="hue链接:4d91db11f2d84cff72c863adcd70ce66">HUE链接</h2>
-
-<ul>
-<li>Site: <a href="http://gethue.com/">http://gethue.com/</a></li>
-<li>Github: <a href="https://github.com/cloudera/hue">https://github.com/cloudera/hue</a></li>
-<li>Reviews: <a href="https://review.cloudera.org">https://review.cloudera.org</a></li>
-</ul>
-
-<h2 id="核心功能:4d91db11f2d84cff72c863adcd70ce66">核心功能</h2>
-
-<ul>
-<li>SQL编辑器，支持Hive, Impala, MySQL, Oracle, PostgreSQL, SparkSQL, Solr SQL, Phoenix&hellip;</li>
-<li>搜索引擎Solr的各种图表</li>
-<li>Spark和Hadoop的友好界面支持</li>
-<li>支持调度系统Apache Oozie，可进行workflow的编辑、查看</li>
-</ul>
-
-<p>HUE提供的这些功能相比Hadoop生态各组件提供的界面更加友好，但是一些需要debug的场景可能还是需要使用原生系统才能更加深入的找到错误的原因。</p>
-
-<p>HUE中查看Oozie workflow时，也可以很方便的看到整个workflow的DAG图，不过在最新版本中已经将DAG图去掉了，只能看到workflow中的action列表和他们之间的跳转关系，想要看DAG图的仍然可以使用oozie原生的界面系统查看。</p>
-
-<h3 id="hue登录:4d91db11f2d84cff72c863adcd70ce66">HUE登录</h3>
-
-<p>如果自己搭建了HUE，则可以使用管理员账户创建一个新的用户，然后使用新的用户进行登录，见下图：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%E7%99%BB%E5%BD%95.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE登录图" /></p>
-
-<p>使用<a href="http://gethue.com/">HUE官网</a>上的live demo可以尝鲜。如果大家自己没有搭建大数据平台，没有安装HUE的话，可以先在该demo上尝试。点击<a href="http://demo.gethue.com/">Play with the live Demo now!</a>,将会进入HUE的&rdquo;我的文档&rdquo;：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Demo.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Demo图" /></p>
-
-<h3 id="hdfs文件浏览:4d91db11f2d84cff72c863adcd70ce66">HDFS文件浏览</h3>
-
-<p>HUE可以很方便的浏览HDFS中的目录和文件，并且进行文件和目录的创建、复制、删除、下载以及修改权限等操作。</p>
-
-<p>HDFS实现了一个和POSIX系统类似的文件和目录的权限模型。每个文件和目录有一个所有者（owner）和一个组（group）。文件或目录对其所有者、同组的其他用户以及所有其他用户分别有着不同的权限。<strong>但，用户身份机制对HDFS本身来说只是外部特性。HDFS并不提供创建用户身份、创建组或处理用户凭证等功能。</strong> 使用HUE访问HDFS时，HDFS简单的将HUE上的用户名和组的名称进行权限的校验。</p>
-
-<p>在Live Demo中,点击&rdquo;文件浏览器&rdquo;, 进入HDFS的家目录：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20File%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE HDFS图" /></p>
-
-<p><strong>PS:</strong> Live Demo中禁了文件上传功能。</p>
-
-<h3 id="作业浏览:4d91db11f2d84cff72c863adcd70ce66">作业浏览</h3>
-
-<p>点击Job Browser，可以查看作业列表，并且可以通过点击右上角的&rdquo;成功&rdquo;,&ldquo;正在运行&rdquo;,&ldquo;失败&rdquo;,&ldquo;停止&rdquo;来筛选不同状态的作业：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Job%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Job Browser" /></p>
-
-<p>我们在实际工作中发现，当集群(CDH5.2) 配置了HA后，当active的ResourceManager自动切换后(比如NN1上的ResourceManager是active，而NN2是standby，当NN1出现故障， NN2上的ResourceManager转变为active状态)，HUE的job browser将不能够正确显示。只有当修复故障后，将NN1上的ResourceManager重新变成active状态，HUE的job browser才能正常工作。不知道这个问题在后续版本是否已经得到修复。</p>
-
-<h3 id="hive查询:4d91db11f2d84cff72c863adcd70ce66">Hive查询</h3>
-
-<p>HUE的beeswax app提供友好方便的Hive查询功能，能够选择不同的Hive数据库，编写HQL语句，提交查询任务，并且能够在界面下方看到查询作业运行的日志。在得到结果后，还提供进行简单的图表分析能力。</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Hive查询" /></p>
-
-<p>点击&rdquo;Data Browsers&rdquo;-&gt;&ldquo;Metastore表&rdquo;，还可以看到Hive中的数据库，数据库中的表以及各个表的元数据等信息。</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive%20MetaStore.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Hive MetaStore" /></p>
-
-<h3 id="oozie-workflow编辑:4d91db11f2d84cff72c863adcd70ce66">Oozie Workflow编辑</h3>
-
-<p>HUE也提供了很好的Oozie的集成，能够在HUE上创建和编辑Bundles, Coordinator, Workflow. Oozie的介绍可以去<a href="https://oozie.apache.org/">官网</a>查看。下图为在HUE上创建一个新的workflow，在该界面上，可以直接拖动不同的组件，变成DAG中的节点，并且设置各个action的流转逻辑。</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Editor.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE WF Editor" /></p>
-
-<p>当然Oozie也可以通过命令行的方式提交B,C,W. 不过是使用HUE创建的workflow，或者是通过命令行提交的workflow，都可以在HUE上查看运行的状况：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Workflow%20Browser.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE WF Browser" /></p>
-
-<p>只是通过命令行提交的workflow就不可以在HUE上进行编辑了。使用配置文件、命令行提交的方式能够保证在生产环境上运行的和在测试环境上运行的版本一致，而使用HUE界面编辑的方式虽然方便，但也可能会带来人工操作在生产环境中失误的风险，有利也有弊吧。</p>
-
-<h2 id="contribution:4d91db11f2d84cff72c863adcd70ce66">Contribution</h2>
-
-<p>我在给同事准备培训材料的时候，到HUE的github上去查找资料。在看到HUE的主要功能时，github上的原文是这样的：</p>
-
-<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Features%20old.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Features old" /></p>
-
-<p>恰好我司主要使用的数据库是PostgreSQL，看到PostGresl感觉怪怪的，于是Google了一把，PostgreSQL有两个名字：PostgreSQL和Postgres，目前<a href="https://www.postgresql.org/">官方网站</a>上的名字仍然是PostgreSQL. 不管PostGresl是否有什么典故，但是PostgreSQL一定是对的。因此，我去查了下如何给HUE提交代码修改。在Github上能找到wiki: <a href="https://github.com/cloudera/hue/wiki/Contribute-to-HUE">Contribute to HUE</a>, HUE有自己的JIRA和Review Board, 但也说了<code>The Hue project gladly welcomes any patches or pull requests!</code></p>
-
-<p>于是我在github上给HUE发了一个<a href="https://github.com/cloudera/hue/issues/371">Issue</a>和一个<a href="https://github.com/cloudera/hue/pull/372">Pull Request</a>。几天后Pull Request被接收，merge到了master分支上，可以看到这个<a href="https://github.com/cloudera/hue/commit/61e80b3cd2820c68f2103e8cef34d50734f02c09">Commit</a>。</p>
-
-<p>在这里记录一下更新的步骤：</p>
-
-<ol>
-<li>Fork HUE的工程，比如 <a href="https://github.com/ywheel/hue">ywheel/hue</a></li>
-<li>创建一个新的分支，不要使用master分支提交修改。比如我创建了<a href="https://github.com/ywheel/hue/tree/fix-postgresql-spelling">fix-postgresql-spelling</a>分支。</li>
-<li>将代码pull下来，修改后commit，提交到<a href="https://github.com/ywheel/hue/tree/fix-postgresql-spelling">fix-postgresql-spelling</a>分支。</li>
-<li>创建issue。当HUE的工程上创建<a href="https://github.com/cloudera/hue/issues/371">issue</a>, 描述清楚问题，提交。</li>
-<li>点击&rsquo;Pull Request&rsquo;, 选择目的工程和分支，比如cloudera/hue的master分支。填写comment, 说明已创建的issue, create pull request.</li>
-</ol>
-
-<p>接下来就是等了，等该提交被review, 被merge到master分支, 等你自己的名字出现在<a href="https://github.com/cloudera/hue/graphs/contributors">Contributors</a>里面, <strong>then everything DONE!</strong></p>
+                      <p>明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们或在大洋彼岸思念故乡，而又有一群小P孩要自己把握命运。虽说高考并不十分公平，但至少给了我们机会，从小地方到大都市，从家乡土话到京腔甚至life translated。再过十年，人生又大不相同，而十年之前，就在那高三楼里为现在的自己艰苦卓绝着。。。</p>
 
 <hr />
 
-<p>ps: 虽然改了个单词拼写就出来说简直是丢人，不过算是一个good start, 希望能在不久的将来真的能给开源项目（特别是流行的大数据生态中的开源项目）贡献代码，加油!</p>
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E9%AB%98%E8%80%83%E5%AE%A3%E8%A8%80.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="高考宣言" /></p>
+
+<hr />
+
+<p>在那一年，其实也没感觉它破，本来，高三的生活是艰苦的，然后那时的教室环境跟这个生活的状态还很和谐。</p>
+
+<p>印象中黑板就是在水泥墙上刷一块黑漆，前后黑板都是。黑板檫从来都是檫不干净黑板，黑板已经是到处布满裂缝，出板报也给我们带来相当的难度。到高考之前的最后一次板报，干脆就直接贴了。在高考前100天左右的时候，黑板报贴满了我们的高考宣言，上晚自习，后门开着的时候，风吹进来，吹的贴在黑板报上的高考宣言哗哗的响，似乎也要吹起我们的梦想。</p>
+
+<p>没锁的后门，对着没玻璃的纸窗户，还记得考完最后一次去教室就是从后门进去的。高三的时候，我们经常拿后门当篮筐，拿着乒乓往门和墙围成的空隙投篮，或者拿着乒乓做着比如胯下换手扣篮这样的动作，这几乎跟跳起来摸电扇一样成为了我们班的经典课外活动，甚至直接拿着篮球去投篮，直到把日光灯打下来。说到摸电扇，那是相当的怀念啊~~把两边的桌子稍微挪挪，空出一个跑道，然后冲，跳，在家也是摸电扇练弹跳的，可惜到大学弹跳就荒废了…不过还得注意脚底下，地板是水泥的，年代久了，自然到处坑坑洼洼。那个时候两个星期一次换位置，经常换到那种要去捡块石片垫垫才能把桌子放稳的地方，换坐位搬桌子那场面，相当的壮观啊…</p>
+
+<p>刚上高中的时候，学校在每个教室新安装了音响系统，结束了英语老师提着放音机上课的历史。然后学校领导总在跟我们说这个东西花了学校很多钱，要好好保护。于是好好的音响放着，我们都不敢动。于是班上决定去买个放音机自己放听力，可是没想到的是居然买来之后就一直坏在那，修也修不好，各种郁闷。放音机放在班上一张多余的桌子上，每次考试时由于考场安排问题，每个班都要搬出几张桌子到其他考场，于是那个满是粉笔灰的桌子光荣的成为了考试专用桌。用这张桌子的哥们肯定很郁闷，他吸进去的粉笔灰肯定比他考的分多~~</p>
+
+<p>教室外的走廊，是老班经常出没的地方。上课老走神的我经常可以看到窗外的老班也在看着我，然后我就假装着应和着老师的讲课避开老班的视线，隔一会又不自主的偷偷看窗外，可是总能又看见他又偷偷的看着我…那时我们班相当活跃，基本上一下课，总会有很多同学跑到走廊上去吹风看风景，跟隔壁另一个实验班形成很鲜明的对比，走廊的一边站满了闲人，另一边却一个人也没有。高三楼两边分别是男女厕所，于是在走廊上就可以看见那些匆匆上厕所的人。经常在还没开始上课或者放学之后，站在那看着路上满满的自行车和车上的女孩…走廊前面有一些树，树的高度貌似已经超过了高三楼，有时阳光洒过来，被树挡了大半，却始终挡不了老班从对面办公室看过来的目光。他总是那么准的知道，谁谁谁今天上早读又迟到了…</p>
+
+<p>高三楼的后面也有树，而且是大树。好像还钉了牌子说是国家保护的树，树上经常有很多的鸟，印象中在某次考试之前还在那看见了乌鸦。树下面就是我们停自行车的地方了。那时自行车被我们叫成“铁”，铁们都停在了铁架下面，因为车棚没有顶，只剩下断了脚的铁架，于是那大树就成了车棚顶。在下雨的时候，雨水透过“车棚”把我们的铁淋个透，有时还从车棚带点乳白色粘乎乎的东西下来。那时下雨，不仅是铁们遭殃，在我们教室天花板的后面一个角，也会跟着雨天而变得湿湿的，不过比隔壁实验班拿个桶或盆啊什么的来盛从天花板上滴下的雨强点，只是让我们担心那个角会不会由于哪天太湿了而支持不住天花板。</p>
+
+<p>于是为了降低这种可能，学校在某天决定把高三楼顶上的淤泥清理一下来减轻那个角的负担。然后各种积累在高三楼顶的东西被工人们一铲子一铲子的扔下来。天上真的掉东西了，只是掉的不是黄金，也掉的不是地方，我们的铁们就这样查点被天上掉的东西活埋了。鸟们在树上叫着，似乎在说比起这些，它们往我们的铁上掉的东西好多了…</p>
+
+<p>也许是那些天上飞来之物很有营养，让各种飞虫繁衍的飞快。于是在之后的某天夜自习的时候同学一打开窗，飞虫像水利工程泄洪一样拥进来，然后就是女生尖叫的声音，还有某些硬甲虫撞击日光灯的声音。高三楼的日光灯都是在天花板上吊两跟绳下来吊着，灯座是木制的，起辉器和线很乱，上面结满了蜘蛛网。蜘蛛网还成了灭飞虫的功丞，网住了很多飞虫。不过还是不能阻止飞虫们以平均四五秒就有一只降落在你身上的情形。于是我们买来蚊香，买来灭蚊剂。用蚊香的结果是自习的时候宛如在仙境，到处飘着烟。还有次把全班同学叫出去，然后关上门拿着灭蚊剂一阵狂喷，结果是连续几天我们都是踩着一层的“尸体”怀着很深的愧疚感在上课，阿门…</p>
+
+<p>高考就要来了，教室里贴满了我写的激励的标语，后面黑板报两边是老班写的对联。在这样的激励下，我们最终还是迎来了高考。那时每考完一科都要回去到高三楼小小的集合一下。高考每年都有意外，而我们那年是很多意外。考完数学之后，年级主任站在高三楼的楼梯口等待着回去的同学们，他从我们脸上看到的只有失落，我们从他脸上看到的，也只有失落…</p>
+
+<p>不管怎样，高三就在高三楼里度过了，高三楼，见证了我们的成长，见证了我们的失落，见证了我们的欢喜，也一样见证了我们的泪水。我们走后，下一届的高三接着搬了进来，开始了他们在高三楼的高三…</p>
 
                       
                     </div>
@@ -306,7 +223,7 @@
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/">http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/06/05/examination/">http://blog.ywheel.cn/post/2016/06/05/examination/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -323,7 +240,7 @@
               
               
               <section id="comments" class="themeform">
-<div class="ds-thread" data-thread-key="/post/2016/05/29/hue_introduction/" data-title="HUE Introduction and Contribution" data-url="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/"></div>
+<div class="ds-thread" data-thread-key="/post/2016/06/05/examination/" data-title="高三楼" data-url="http://blog.ywheel.cn/post/2016/06/05/examination/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"ywheel"};
 	(function() {
@@ -367,20 +284,14 @@ var duoshuoQuery = {short_name:"ywheel"};
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.cn/post/2016/05/18/family/" rel="next">
+        <a href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>老家</span>
+          <span>HUE Introduction and Contribution</span>
         </a>
         
       </li>
       <li class="previous">
-        
-        <a href="http://blog.ywheel.cn/post/2016/06/05/examination/" rel="prev">
-          <i class="fa fa-chevron-left"></i>
-          <strong>Previous Post</strong>
-          <span>高三楼</span>
-        </a>
         
       </li>
     </ul>
