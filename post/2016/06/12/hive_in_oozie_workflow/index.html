@@ -12,36 +12,36 @@
         }
     }
   </script>
-  <title>高三楼 - 轮子们</title>
+  <title>Hive In Oozie Workflow - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="高考,">
-<meta name="description" content="高考十年">
+<meta name="keywords" content="hive, oozie,">
+<meta name="description" content="hive aciton in oozie workflow">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="高三楼 - 轮子们">
-<meta itemprop="description" content="高考十年">
+<meta itemprop="name" content="Hive In Oozie Workflow - 轮子们">
+<meta itemprop="description" content="hive aciton in oozie workflow">
 <meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
-<meta property="og:title" content="高三楼 - 轮子们" />
+<meta property="og:title" content="Hive In Oozie Workflow - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.cn/post/2016/06/05/examination/" />
+<meta property="og:url" content="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/" />
 <meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
-<meta property="og:description" content="高考十年">
+<meta property="og:description" content="hive aciton in oozie workflow">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="高三楼 - 轮子们">
-<meta name="twitter:description" content="高考十年">
+<meta name="twitter:title" content="Hive In Oozie Workflow - 轮子们">
+<meta name="twitter:description" content="hive aciton in oozie workflow">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/06/05/examination/">
-  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/06/05/examination/"/>
+  <link rel="canonical" href="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/">
+  <link rel='shortlink' href="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/"/>
   <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
   
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
@@ -161,7 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/" rel="category tag">思考感悟</a>
+                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
                 </li>
                 
               </ul>
@@ -173,12 +173,12 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">高三楼</h1>
+                  <h1 class="post-title">Hive In Oozie Workflow</h1>
 
                   <p class="post-byline">
-                    by  · 2016年06月05日 · 2158 Words ·
-                    ~5min reading time |
-                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/06/05/examination.md"
+                    by  · 2016年06月12日 · 1964 Words ·
+                    ~4min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2016/06/12/hive_in_oozie_workflow.md"
                        target="_blank">Improve on <i class="fa fa-github"></i></a>
                   </p>
 
@@ -187,31 +187,181 @@
                   <div class="entry">
                     <div class="entry-inner">
                       
-                      <p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/%E5%A5%8B%E6%96%97.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="奋斗" /></p>
+                      
 
-<p>明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们或在大洋彼岸思念故乡，而又有一群小P孩要自己把握命运。虽说高考并不十分公平，但至少给了我们机会，从小地方到大都市，从家乡土话到京腔甚至life translated。再过十年，人生又大不相同，而十年之前，就在那高三楼里为现在的自己艰苦卓绝着。。。</p>
+<p>在公司搭建和维护大数据平台，并提供给其他数据分析人员使用，hive就是那些非程序员使用的最多（几乎是唯一）的一个服务。当然，在每天的数据处理中，我们为了简化编码工作量，以及使用到数据分析人员积累的成果，可以直接使用或简单修改他们提供的hql脚本进行数据处理，并且使用Oozie调度hive作业。</p>
 
-<hr />
+<p>在此介绍一下Hive action的编写，也记录一下曾经在这方面踩到的坑。</p>
 
-<p>在那一年，其实也没感觉它破，本来，高三的生活是艰苦的，然后那时的教室环境跟这个生活的状态还很和谐。</p>
+<h2 id="hive-action:e8691cca3f4bd84c62e729da70d1a038">Hive Action</h2>
 
-<p>印象中黑板就是在水泥墙上刷一块黑漆，前后黑板都是。黑板檫从来都是檫不干净黑板，黑板已经是到处布满裂缝，出板报也给我们带来相当的难度。到高考之前的最后一次板报，干脆就直接贴了。在高考前100天左右的时候，黑板报贴满了我们的高考宣言，上晚自习，后门开着的时候，风吹进来，吹的贴在黑板报上的高考宣言哗哗的响，似乎也要吹起我们的梦想。</p>
+<p>在Oozie的workflow配置中添加一个hive action非常简单。</p>
 
-<p>没锁的后门，对着没玻璃的纸窗户，还记得考完最后一次去教室就是从后门进去的。高三的时候，我们经常拿后门当篮筐，拿着乒乓往门和墙围成的空隙投篮，或者拿着乒乓做着比如胯下换手扣篮这样的动作，这几乎跟跳起来摸电扇一样成为了我们班的经典课外活动，甚至直接拿着篮球去投篮，直到把日光灯打下来。说到摸电扇，那是相当的怀念啊~~把两边的桌子稍微挪挪，空出一个跑道，然后冲，跳，在家也是摸电扇练弹跳的，可惜到大学弹跳就荒废了…不过还得注意脚底下，地板是水泥的，年代久了，自然到处坑坑洼洼。那个时候两个星期一次换位置，经常换到那种要去捡块石片垫垫才能把桌子放稳的地方，换坐位搬桌子那场面，相当的壮观啊…</p>
+<p>Hive action运行一个Hive作业, Oozie workflow将等待Hive作业运行完成后再进入下一个action。 在hive action中，需要配置诸如job-tracker, name-node, hive scripts等参数，当然在Hive action中也能配置在启动hive作业之前创建或删除HDFS目录。</p>
 
-<p>刚上高中的时候，学校在每个教室新安装了音响系统，结束了英语老师提着放音机上课的历史。然后学校领导总在跟我们说这个东西花了学校很多钱，要好好保护。于是好好的音响放着，我们都不敢动。于是班上决定去买个放音机自己放听力，可是没想到的是居然买来之后就一直坏在那，修也修不好，各种郁闷。放音机放在班上一张多余的桌子上，每次考试时由于考场安排问题，每个班都要搬出几张桌子到其他考场，于是那个满是粉笔灰的桌子光荣的成为了考试专用桌。用这张桌子的哥们肯定很郁闷，他吸进去的粉笔灰肯定比他考的分多~~</p>
+<p>在Oozie workflow的hive action中，也可以支持hive脚本的参数变量，使用<code>${VARIABLES}</code>来表示。</p>
 
-<p>教室外的走廊，是老班经常出没的地方。上课老走神的我经常可以看到窗外的老班也在看着我，然后我就假装着应和着老师的讲课避开老班的视线，隔一会又不自主的偷偷看窗外，可是总能又看见他又偷偷的看着我…那时我们班相当活跃，基本上一下课，总会有很多同学跑到走廊上去吹风看风景，跟隔壁另一个实验班形成很鲜明的对比，走廊的一边站满了闲人，另一边却一个人也没有。高三楼两边分别是男女厕所，于是在走廊上就可以看见那些匆匆上厕所的人。经常在还没开始上课或者放学之后，站在那看着路上满满的自行车和车上的女孩…走廊前面有一些树，树的高度貌似已经超过了高三楼，有时阳光洒过来，被树挡了大半，却始终挡不了老班从对面办公室看过来的目光。他总是那么准的知道，谁谁谁今天上早读又迟到了…</p>
+<p>以下是官网中对hive action的语法例子：</p>
 
-<p>高三楼的后面也有树，而且是大树。好像还钉了牌子说是国家保护的树，树上经常有很多的鸟，印象中在某次考试之前还在那看见了乌鸦。树下面就是我们停自行车的地方了。那时自行车被我们叫成“铁”，铁们都停在了铁架下面，因为车棚没有顶，只剩下断了脚的铁架，于是那大树就成了车棚顶。在下雨的时候，雨水透过“车棚”把我们的铁淋个透，有时还从车棚带点乳白色粘乎乎的东西下来。那时下雨，不仅是铁们遭殃，在我们教室天花板的后面一个角，也会跟着雨天而变得湿湿的，不过比隔壁实验班拿个桶或盆啊什么的来盛从天花板上滴下的雨强点，只是让我们担心那个角会不会由于哪天太湿了而支持不住天花板。</p>
+<pre><code class="language-xml">&lt;workflow-app name=&quot;[WF-DEF-NAME]&quot; xmlns=&quot;uri:oozie:workflow:0.1&quot;&gt;
+    ...
+    &lt;action name=&quot;[NODE-NAME]&quot;&gt;
+        &lt;hive xmlns=&quot;uri:oozie:hive-action:0.2&quot;&gt;
+            &lt;job-tracker&gt;[JOB-TRACKER]&lt;/job-tracker&gt;
+            &lt;name-node&gt;[NAME-NODE]&lt;/name-node&gt;
+            &lt;prepare&gt;
+               &lt;delete path=&quot;[PATH]&quot;/&gt;
+               ...
+               &lt;mkdir path=&quot;[PATH]&quot;/&gt;
+               ...
+            &lt;/prepare&gt;
+            &lt;job-xml&gt;[HIVE SETTINGS FILE]&lt;/job-xml&gt;
+            &lt;configuration&gt;
+                &lt;property&gt;
+                    &lt;name&gt;[PROPERTY-NAME]&lt;/name&gt;
+                    &lt;value&gt;[PROPERTY-VALUE]&lt;/value&gt;
+                &lt;/property&gt;
+                ...
+            &lt;/configuration&gt;
+            &lt;script&gt;[HIVE-SCRIPT]&lt;/script&gt;
+            &lt;param&gt;[PARAM-VALUE]&lt;/param&gt;
+                ...
+            &lt;param&gt;[PARAM-VALUE]&lt;/param&gt;
+            &lt;file&gt;[FILE-PATH]&lt;/file&gt;
+            ...
+            &lt;archive&gt;[FILE-PATH]&lt;/archive&gt;
+            ...
+        &lt;/hive&gt;
+        &lt;ok to=&quot;[NODE-NAME]&quot;/&gt;
+        &lt;error to=&quot;[NODE-NAME]&quot;/&gt;
+    &lt;/action&gt;
+    ...
+&lt;/workflow-app&gt;
+</code></pre>
 
-<p>于是为了降低这种可能，学校在某天决定把高三楼顶上的淤泥清理一下来减轻那个角的负担。然后各种积累在高三楼顶的东西被工人们一铲子一铲子的扔下来。天上真的掉东西了，只是掉的不是黄金，也掉的不是地方，我们的铁们就这样查点被天上掉的东西活埋了。鸟们在树上叫着，似乎在说比起这些，它们往我们的铁上掉的东西好多了…</p>
+<p>介绍一下这个语法中有几个参数：</p>
 
-<p>也许是那些天上飞来之物很有营养，让各种飞虫繁衍的飞快。于是在之后的某天夜自习的时候同学一打开窗，飞虫像水利工程泄洪一样拥进来，然后就是女生尖叫的声音，还有某些硬甲虫撞击日光灯的声音。高三楼的日光灯都是在天花板上吊两跟绳下来吊着，灯座是木制的，起辉器和线很乱，上面结满了蜘蛛网。蜘蛛网还成了灭飞虫的功丞，网住了很多飞虫。不过还是不能阻止飞虫们以平均四五秒就有一只降落在你身上的情形。于是我们买来蚊香，买来灭蚊剂。用蚊香的结果是自习的时候宛如在仙境，到处飘着烟。还有次把全班同学叫出去，然后关上门拿着灭蚊剂一阵狂喷，结果是连续几天我们都是踩着一层的“尸体”怀着很深的愧疚感在上课，阿门…</p>
+<ol>
+<li><code>prepare</code> 如果需要在hive作业之前创建或删除HDFS目录，则可以增加<code>prepare</code>参数，指定需要创建或删除的HDFS路径。</li>
+<li><code>job-xml</code> 指定hive-site.xml所在HDFS上的路径；如果是CDH搭建的集群，则可以在任何一台hive gateway机器上的<code>/etc/hive/conf</code>目录下找到该配置文件。如果不指定该文件路径，hive action就不work。</li>
+<li><code>configuration</code> 包含传递给hive作业的参数，可以没有这个配置项，这样就全部使用默认配置</li>
+<li><code>script</code> 指定hql脚本所在HDFS上的路径；这个参数是hive action必须的。这个hql脚本中，可以使用<code>${VARIABLES}</code>来表示参数，获取在hive action中定义的<code>param</code>参数配置</li>
+<li><code>param</code> 定义在hql脚本中所需要的变量值</li>
+</ol>
 
-<p>高考就要来了，教室里贴满了我写的激励的标语，后面黑板报两边是老班写的对联。在这样的激励下，我们最终还是迎来了高考。那时每考完一科都要回去到高三楼小小的集合一下。高考每年都有意外，而我们那年是很多意外。考完数学之后，年级主任站在高三楼的楼梯口等待着回去的同学们，他从我们脸上看到的只有失落，我们从他脸上看到的，也只有失落…</p>
+<p>如下是我在生产环境中使用hive action的一个样例：</p>
 
-<p>不管怎样，高三就在高三楼里度过了，高三楼，见证了我们的成长，见证了我们的失落，见证了我们的欢喜，也一样见证了我们的泪水。我们走后，下一届的高三接着搬了进来，开始了他们在高三楼的高三…</p>
+<pre><code class="language-xml">    &lt;action name=&quot;HiveAction&quot;&gt;
+        &lt;hive xmlns=&quot;uri:oozie:hive-action:0.2&quot;&gt;
+            &lt;job-tracker&gt;${jobTracker}&lt;/job-tracker&gt;
+            &lt;name-node&gt;${nameNode}&lt;/name-node&gt;
+            &lt;!-- Need to upload hive-site.xml file to HDFS from local disk (/etc/hive/conf) first
+            --&gt;
+            &lt;job-xml&gt;${HDFS_PREFIX}/file/xml/hive-site.xml&lt;/job-xml&gt;
+            &lt;!--
+            TODO: Maybe we need to delete the old path here
+            &lt;prepare&gt;
+                &lt;delete path=&quot;${jobOutput}&quot;/&gt;
+            &lt;/prepare&gt;
+            --&gt;
+            &lt;!--
+            &lt;configuration&gt;
+                &lt;property&gt;
+                    &lt;name&gt;mapred.compress.map.output&lt;/name&gt;
+                    &lt;value&gt;true&lt;/value&gt;
+                &lt;/property&gt;
+            &lt;/configuration&gt;
+            --&gt;
+            &lt;script&gt;${HDFS_PREFIX}/file/hql/hive_query.hql&lt;/script&gt;
+            &lt;param&gt;inputLogDay=${inputLogDay}&lt;/param&gt;
+            &lt;param&gt;inputPath=${OUTPUT_DIR}&lt;/param&gt;
+            &lt;param&gt;hiveDBname=${hiveDBname}&lt;/param&gt;
+        &lt;/hive&gt;
+        &lt;ok to=&quot;end&quot;/&gt;
+        &lt;error to=&quot;kill&quot;/&gt;
+    &lt;/action&gt;
+</code></pre>
+
+<h2 id="output-data-exceeds-its-limit:e8691cca3f4bd84c62e729da70d1a038">Output data exceeds its limit</h2>
+
+<p>在上面的样例中可以看到，oozie workflow中的hive action不关心hql文件中定义的hive查询逻辑，在oozie workflow中做到了尽量简单，而hive的逻辑正确性保障和作业执行成功的保障都需要hql本身来完成。</p>
+
+<p>我就在生产环境就碰到了个诡异的问题： <code>org.apache.oozie.action.hadoop.LauncherException: Output data exceeds its limit [2048]</code></p>
+
+<p>查找了一下原因，Oozie默认最大输出的数据大小为2K，即2048B；而在hive action中，执行hql脚本时提交的MR作业的ID（比如job_1464936467641_1657）均会被记录下来并且返回给Oozie，如果在一个hql脚本中，hive查询语句过多将会导致Oozie收到的结果数据超过2k大小，于是就抛这个错误。解决办法, 添加如下配置到Oozie-site.xml中，重启Oozie服务生效：</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+    &lt;name&gt;oozie.action.max.output.data&lt;/name&gt;
+    &lt;value&gt;204800&lt;/value&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>PS：如果是CDH搭建的集群，那么可以在 <code>集群-&gt;Oozie-&gt;配置-&gt;Oozie Server Default Group-&gt;高级-&gt;oozie-site.xml 的 Oozie Server 高级配置代码段（安全阀）</code>中添加上述配置。</p>
+
+<p>PS: 尝试过在Hive action中的<code>configuration</code>参数中添加这样的配置，但经过测试发现并不work.</p>
+
+<h2 id="outofmemoryerror:e8691cca3f4bd84c62e729da70d1a038">OutOfMemoryError</h2>
+
+<p>当执行一个hql脚本时，脚本中包含多个查询语句（好吧，又是好几百个），其中每个语句都经过测试能够正常运行并成功结束，但是放在一起被Oozie调用后缺抛如下错误：</p>
+
+<pre><code>Launching Job 613 out of 857
+Number of reduce tasks is set to 0 since there's no reduce operator
+java.lang.OutOfMemoryError: Java heap space
+    at org.apache.hadoop.hdfs.util.ByteArrayManager$NewByteArrayWithoutLimit.newByteArray(ByteArrayManager.java:308)
+    at org.apache.hadoop.hdfs.DFSOutputStream.createPacket(DFSOutputStream.java:192)
+    at org.apache.hadoop.hdfs.DFSOutputStream.writeChunk(DFSOutputStream.java:1883)
+    at org.apache.hadoop.fs.FSOutputSummer.writeChecksumChunks(FSOutputSummer.java:206)
+    at org.apache.hadoop.fs.FSOutputSummer.write1(FSOutputSummer.java:124)
+    at org.apache.hadoop.fs.FSOutputSummer.write(FSOutputSummer.java:110)
+    at org.apache.hadoop.fs.FSDataOutputStream$PositionCache.write(FSDataOutputStream.java:58)
+    at java.io.DataOutputStream.write(DataOutputStream.java:107)
+    at org.apache.hadoop.io.IOUtils.copyBytes(IOUtils.java:87)
+    at org.apache.hadoop.io.IOUtils.copyBytes(IOUtils.java:59)
+    at org.apache.hadoop.io.IOUtils.copyBytes(IOUtils.java:119)
+    at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:366)
+    at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:338)
+    at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:1905)
+    at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:1873)
+    at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:1838)
+    at org.apache.hadoop.mapreduce.JobSubmitter.copyJar(JobSubmitter.java:375)
+    at org.apache.hadoop.mapreduce.JobSubmitter.copyAndConfigureFiles(JobSubmitter.java:256)
+    at org.apache.hadoop.mapreduce.JobSubmitter.copyAndConfigureFiles(JobSubmitter.java:390)
+    at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:483)
+    at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1306)
+    at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1303)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at javax.security.auth.Subject.doAs(Subject.java:415)
+    at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1671)
+    at org.apache.hadoop.mapreduce.Job.submit(Job.java:1303)
+    at org.apache.hadoop.mapred.JobClient$1.run(JobClient.java:564)
+    at org.apache.hadoop.mapred.JobClient$1.run(JobClient.java:559)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at javax.security.auth.Subject.doAs(Subject.java:415)
+    at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1671)
+    at org.apache.hadoop.mapred.JobClient.submitJobInternal(JobClient.java:559)
+FAILED: Execution Error, return code -101 from org.apache.hadoop.hive.ql.exec.mr.MapRedTask. Java heap space
+MapReduce Jobs Launched: 
+</code></pre>
+
+<p>从上述日志分析，这个hql包含很多个job，在执行过程中失败（<code>Launching Job 613 out of 857</code>）. 直接解决这个问题的方式就是：加大内存。我们知道，Oozie实现hive action的方式为先启动一个launcher（一个只有Map的Job），即client，用于提交hive任务；实际上进行数据处理的job是hive提交的MR作业。在这个错误中，是launcher发生了<code>OutOfMemoryError</code>。</p>
+
+<p>解决办法也很简单，在hive action的<code>configuration</code>中添加如下配置，增大launcher的内存：</p>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;oozie.launcher.mapreduce.map.memory.mb&lt;/name&gt;
+        &lt;value&gt;4096&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;oozie.launcher.mapreduce.map.java.opts&lt;/name&gt;
+        &lt;value&gt;-Xmx3400m&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>其实把这些参数的<code>oozie.launcher</code>前缀去掉就是Hadoop的参数配置，Oozie在提交Launcher作业时，会将这些参数传递给YARN。</p>
+
+<p>当然，root cause还是hql脚本没有经过优化，一个脚本包含的查询太多。深入理解业务后，精简hive查询，优化hql脚本，合理设计Oozie workflow才是正确的解决方案。</p>
 
                       
                     </div>
@@ -221,7 +371,7 @@
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/06/05/examination/">http://blog.ywheel.cn/post/2016/06/05/examination/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/">http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -238,7 +388,7 @@
               
               
               <section id="comments" class="themeform">
-<div class="ds-thread" data-thread-key="/post/2016/06/05/examination/" data-title="高三楼" data-url="http://blog.ywheel.cn/post/2016/06/05/examination/"></div>
+<div class="ds-thread" data-thread-key="/post/2016/06/12/hive_in_oozie_workflow/" data-title="Hive In Oozie Workflow" data-url="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"ywheel"};
 	(function() {
@@ -288,20 +438,14 @@ var duoshuoQuery = {short_name:"ywheel"};
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.cn/post/2016/05/29/hue_introduction/" rel="next">
+        <a href="http://blog.ywheel.cn/post/2016/06/05/examination/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>HUE Introduction and Contribution</span>
+          <span>高三楼</span>
         </a>
         
       </li>
       <li class="previous">
-        
-        <a href="http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/" rel="prev">
-          <i class="fa fa-chevron-left"></i>
-          <strong>Previous Post</strong>
-          <span>Hive In Oozie Workflow</span>
-        </a>
         
       </li>
     </ul>
