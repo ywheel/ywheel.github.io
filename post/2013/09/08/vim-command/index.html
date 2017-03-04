@@ -189,14 +189,14 @@
                       
                       
 
-<h3 id="打开窗口:09c7eee3c6520e32c9cfd768d066f5ff">打开窗口</h3>
+<h3 id="打开窗口">打开窗口</h3>
 
 <pre><code>:new windowname(filename if saved)
 :split windowname   |   :sp windowname
 :vsplit windowname |  :vsp windowname
 </code></pre>
 
-<h3 id="关闭多窗口:09c7eee3c6520e32c9cfd768d066f5ff">关闭多窗口</h3>
+<h3 id="关闭多窗口">关闭多窗口</h3>
 
 <p><code>q!</code>, <code>close</code> 最后一个窗口不能使用close关闭。使用close只是暂时关闭窗口，其内容还在缓存中，只有使用q!、w!或x才能真能退出。</p>
 
@@ -204,7 +204,7 @@
 
 <p><code>:tabo</code> 关闭所有窗口</p>
 
-<h3 id="窗口切换:09c7eee3c6520e32c9cfd768d066f5ff">窗口切换</h3>
+<h3 id="窗口切换">窗口切换</h3>
 
 <p><code>:ctrl+w+h/j/k/l</code>，通过j/k可以上下切换，或者:ctrl+w加上下左右键，还可以通过快速双击ctrl+w依次切换窗口。
 4. 调整大小</p>
@@ -213,31 +213,31 @@
 
 <p><code>:ctrl+w -</code> 行数减少</p>
 
-<h3 id="打开多文件:09c7eee3c6520e32c9cfd768d066f5ff">打开多文件</h3>
+<h3 id="打开多文件">打开多文件</h3>
 
 <pre><code>vi a b c
 </code></pre>
 
 <p><code>:n</code> 跳至下一个文件，也可以直接指定要跳的文件，如<code>:n c</code>，可以直接跳到c文件</p>
 
-<h3 id="vi与shell切换:09c7eee3c6520e32c9cfd768d066f5ff">vi与shell切换</h3>
+<h3 id="vi与shell切换">vi与shell切换</h3>
 
 <p><code>:shell</code> 可以在不关闭vi的情况下切换到shell命令行</p>
 
 <p><code>:exit</code> 从shell回到vi</p>
 
-<h3 id="块复制:09c7eee3c6520e32c9cfd768d066f5ff">块复制</h3>
+<h3 id="块复制">块复制</h3>
 
 <p>按<code>v</code>（字符为单位）或<code>V</code>（行为单位）进入VISUAL模式，第一次按v，就相当于标记了复制的起点，然后用正常的移动命令，<code>h</code>,<code>I</code>,<code>j</code>,<code>k</code>可以移动到复制的终点，这时就可以看到这一块被高亮选中了。然后再按<code>y</code>即可复制。
 精确的剪切，只需要按前所述选中区块，然后按<code>d</code>即可。</p>
 
-<h3 id="多行注释:09c7eee3c6520e32c9cfd768d066f5ff">多行注释</h3>
+<h3 id="多行注释">多行注释</h3>
 
 <p>注释：<code>ctrl+v</code> 进入列编辑模式,向下或向上移动光标,把需要注释的行的开头标记起来,然后按大写的<code>I</code>,再插入注释符,比如&rdquo;//&ldquo;,再按Esc,就会全部注释了。</p>
 
 <p>删除：先按<code>v</code>,进入visual模式,横向选中列的个数(如&rdquo;/ /&ldquo;注释符号,需要选中两列),再按Esc,再按<code>ctrl+v</code> 进入列编辑模式,向下或向上移动光标,选中注释部分,然后按d, 就会删除注释符号。</p>
 
-<h3 id="使用替换命令:09c7eee3c6520e32c9cfd768d066f5ff">使用替换命令</h3>
+<h3 id="使用替换命令">使用替换命令</h3>
 
 <p><code>:%s/^/\/\//g</code>来在全部内容的行首添加<code>//</code>号注释
 <code>:2,50s/^/\/\//g</code>在2~50行首添加<code>//</code>号注释

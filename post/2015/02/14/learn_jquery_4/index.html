@@ -192,7 +192,7 @@
 <pre><code>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371488.html
 </code></pre>
 
-<h3 id="区分dom属性和元素属性:19438cf2ad44874cd5ef7817873c2659">区分DOM属性和元素属性</h3>
+<h3 id="区分dom属性和元素属性">区分DOM属性和元素属性</h3>
 
 <p>一个img标签:</p>
 
@@ -219,7 +219,7 @@
 
 <p><code>img1.className = &quot;classB&quot;;</code></p>
 
-<h3 id="操作-dom属性:19438cf2ad44874cd5ef7817873c2659">操作&rdquo;DOM属性&rdquo;</h3>
+<h3 id="操作-dom属性">操作&rdquo;DOM属性&rdquo;</h3>
 
 <p>在jQuery中没有包装操作&rdquo;DOM属性&rdquo;的函数, 因为使用javascript获取和设置&rdquo;DOM属性&rdquo;都很简单. 在jQuery提供了each()函数用于遍历jQuery包装集, 其中的this指针是一个DOM对象, 所以我们可以应用这一点配合原生javascript来操作元素的DOM属性:</p>
 
@@ -235,7 +235,7 @@
 
 <p>对包装集中的每一个元素执行callback方法. 其中callback方法接受一个参数, 表示当前遍历的索引值,从0开始.</p>
 
-<h3 id="操作-元素属性:19438cf2ad44874cd5ef7817873c2659">操作&rdquo;元素属性&rdquo;</h3>
+<h3 id="操作-元素属性">操作&rdquo;元素属性&rdquo;</h3>
 
 <p>我们可以使用javascript中的getAttribute和setAttribute来操作元素的&rdquo;元素属性&rdquo;.</p>
 
@@ -305,7 +305,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 
 <p><code>$(&quot;#inputTest&quot;).removeAttr(&quot;readonly&quot;);</code></p>
 
-<h3 id="修改css样式:19438cf2ad44874cd5ef7817873c2659">修改CSS样式</h3>
+<h3 id="修改css样式">修改CSS样式</h3>
 
 <p>修改元素的样式, 我们可以修改元素CSS类或者直接修改元素的样式.</p>
 
@@ -313,7 +313,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 
 <p>jQuery让这一切变得异常简单. 我们再也不用做那些无聊的工作了.</p>
 
-<h4 id="修改css类:19438cf2ad44874cd5ef7817873c2659">修改CSS类</h4>
+<h4 id="修改css类">修改CSS类</h4>
 
 <p>下表是修改CSS类相关的jQuery方法:</p>
 
@@ -369,7 +369,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 
 <p><code>$(&quot;p&quot;).removeClass()</code></p>
 
-<h4 id="修改css样式-1:19438cf2ad44874cd5ef7817873c2659">修改CSS样式</h4>
+<h4 id="修改css样式-1">修改CSS样式</h4>
 
 <p>同样当我们想要修改元素的具体某一个CSS样式,即修改元素属性&rdquo;style&rdquo;时,  jQuery也提供了相应的方法:</p>
 
@@ -403,7 +403,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 </tbody>
 </table>
 
-<h3 id="获取常用属性:19438cf2ad44874cd5ef7817873c2659">获取常用属性</h3>
+<h3 id="获取常用属性">获取常用属性</h3>
 
 <p>虽然我们可以通过获取属性,特性以及CSS样式来取得元素的几乎所有信息,  但是注意下面的实验:</p>
 
@@ -435,7 +435,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 
 <p>下面这些方法可以用来获取元素的常用属性值:</p>
 
-<h4 id="宽和高相关-height-and-width:19438cf2ad44874cd5ef7817873c2659">宽和高相关 Height and Width</h4>
+<h4 id="宽和高相关-height-and-width">宽和高相关 Height and Width</h4>
 
 <table>
 <thead>
@@ -505,7 +505,7 @@ $(&quot;img&quot;).attr(&quot;alt&quot;, &quot;修改后的alt属性&quot;);
 
 <p>相信此图一目了然各个函数所索取的范围. 图片以width为例说明的, height的各个函数同理.</p>
 
-<h4 id="位置相关-positioning:19438cf2ad44874cd5ef7817873c2659">位置相关 Positioning</h4>
+<h4 id="位置相关-positioning">位置相关 Positioning</h4>
 
 <p>另外在一些设计套弹出对象的脚本中,常常需要动态获取弹出坐标并且设置元素的位置.</p>
 

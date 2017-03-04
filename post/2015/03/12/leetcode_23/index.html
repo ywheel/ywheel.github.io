@@ -195,20 +195,20 @@
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 </code></pre>
 
-<h3 id="解法一:2f76cdb9ba8135cac819db3ef84952c8">解法一</h3>
+<h3 id="解法一">解法一</h3>
 
 <p>将K个链表做K-1次归并，每次归并是对两个链表的归并，最终得到一个排序的链表。即：
 1，2合并，遍历2n个节点；(1,2)与3合并，遍历3n个节点。。。(1&hellip;k-1)与k合并，遍历kn个节点。所以总共遍历n<em>(2+3+&hellip;+k)=n</em>(k^2+k-2)/2，那么时间复杂度为O(n*k^2)。</p>
 
-<h3 id="解法二:2f76cdb9ba8135cac819db3ef84952c8">解法二</h3>
+<h3 id="解法二">解法二</h3>
 
 <p>对解法一改进一下，改用分治法，所以时间复杂度变为O(nklogk)。</p>
 
-<h3 id="解法三:2f76cdb9ba8135cac819db3ef84952c8">解法三</h3>
+<h3 id="解法三">解法三</h3>
 
 <p>将K个链表的首元素都取出来，选择出最小的那个作为新链表的head。然后将该元素的next取出来，与其他链表的元素比较再选一个小的，放到新链表中。选择出最小元素的时间复杂度为O(k), 总共要选nk次，所以时间复杂度为O(n*k^2)。</p>
 
-<h3 id="解法四:2f76cdb9ba8135cac819db3ef84952c8">解法四</h3>
+<h3 id="解法四">解法四</h3>
 
 <p>对解法三改进一下，用最小堆来实现选择最小元素的要求，则时间复杂度降为O(logk)，则总的时间复杂度为O(nklogk)，与解法二的时间复杂度一样。在Java中，可以使用基于
 最小堆算法的PriorityQueue来作为最小堆的集合类。代码如下：</p>

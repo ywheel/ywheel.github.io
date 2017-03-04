@@ -191,7 +191,7 @@
 
 <p>前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。</p>
 
-<h2 id="hue是什么:4d91db11f2d84cff72c863adcd70ce66">HUE是什么</h2>
+<h2 id="hue是什么">HUE是什么</h2>
 
 <p>HUE=<strong>Hadoop User Experience</strong></p>
 
@@ -199,7 +199,7 @@
 
 <p>通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等。</p>
 
-<h2 id="hue链接:4d91db11f2d84cff72c863adcd70ce66">HUE链接</h2>
+<h2 id="hue链接">HUE链接</h2>
 
 <ul>
 <li>Site: <a href="http://gethue.com/">http://gethue.com/</a></li>
@@ -207,7 +207,7 @@
 <li>Reviews: <a href="https://review.cloudera.org">https://review.cloudera.org</a></li>
 </ul>
 
-<h2 id="核心功能:4d91db11f2d84cff72c863adcd70ce66">核心功能</h2>
+<h2 id="核心功能">核心功能</h2>
 
 <ul>
 <li>SQL编辑器，支持Hive, Impala, MySQL, Oracle, PostgreSQL, SparkSQL, Solr SQL, Phoenix&hellip;</li>
@@ -220,7 +220,7 @@
 
 <p>HUE中查看Oozie workflow时，也可以很方便的看到整个workflow的DAG图，不过在最新版本中已经将DAG图去掉了，只能看到workflow中的action列表和他们之间的跳转关系，想要看DAG图的仍然可以使用oozie原生的界面系统查看。</p>
 
-<h3 id="hue登录:4d91db11f2d84cff72c863adcd70ce66">HUE登录</h3>
+<h3 id="hue登录">HUE登录</h3>
 
 <p>如果自己搭建了HUE，则可以使用管理员账户创建一个新的用户，然后使用新的用户进行登录，见下图：</p>
 
@@ -230,7 +230,7 @@
 
 <p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Demo.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Demo图" /></p>
 
-<h3 id="hdfs文件浏览:4d91db11f2d84cff72c863adcd70ce66">HDFS文件浏览</h3>
+<h3 id="hdfs文件浏览">HDFS文件浏览</h3>
 
 <p>HUE可以很方便的浏览HDFS中的目录和文件，并且进行文件和目录的创建、复制、删除、下载以及修改权限等操作。</p>
 
@@ -242,7 +242,7 @@
 
 <p><strong>PS:</strong> Live Demo中禁了文件上传功能。</p>
 
-<h3 id="作业浏览:4d91db11f2d84cff72c863adcd70ce66">作业浏览</h3>
+<h3 id="作业浏览">作业浏览</h3>
 
 <p>点击Job Browser，可以查看作业列表，并且可以通过点击右上角的&rdquo;成功&rdquo;,&ldquo;正在运行&rdquo;,&ldquo;失败&rdquo;,&ldquo;停止&rdquo;来筛选不同状态的作业：</p>
 
@@ -250,7 +250,7 @@
 
 <p>我们在实际工作中发现，当集群(CDH5.2) 配置了HA后，当active的ResourceManager自动切换后(比如NN1上的ResourceManager是active，而NN2是standby，当NN1出现故障， NN2上的ResourceManager转变为active状态)，HUE的job browser将不能够正确显示。只有当修复故障后，将NN1上的ResourceManager重新变成active状态，HUE的job browser才能正常工作。不知道这个问题在后续版本是否已经得到修复。</p>
 
-<h3 id="hive查询:4d91db11f2d84cff72c863adcd70ce66">Hive查询</h3>
+<h3 id="hive查询">Hive查询</h3>
 
 <p>HUE的beeswax app提供友好方便的Hive查询功能，能够选择不同的Hive数据库，编写HQL语句，提交查询任务，并且能够在界面下方看到查询作业运行的日志。在得到结果后，还提供进行简单的图表分析能力。</p>
 
@@ -260,7 +260,7 @@
 
 <p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive%20MetaStore.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="HUE Hive MetaStore" /></p>
 
-<h3 id="oozie-workflow编辑:4d91db11f2d84cff72c863adcd70ce66">Oozie Workflow编辑</h3>
+<h3 id="oozie-workflow编辑">Oozie Workflow编辑</h3>
 
 <p>HUE也提供了很好的Oozie的集成，能够在HUE上创建和编辑Bundles, Coordinator, Workflow. Oozie的介绍可以去<a href="https://oozie.apache.org/">官网</a>查看。下图为在HUE上创建一个新的workflow，在该界面上，可以直接拖动不同的组件，变成DAG中的节点，并且设置各个action的流转逻辑。</p>
 
@@ -272,7 +272,7 @@
 
 <p>只是通过命令行提交的workflow就不可以在HUE上进行编辑了。使用配置文件、命令行提交的方式能够保证在生产环境上运行的和在测试环境上运行的版本一致，而使用HUE界面编辑的方式虽然方便，但也可能会带来人工操作在生产环境中失误的风险，有利也有弊吧。</p>
 
-<h2 id="contribution:4d91db11f2d84cff72c863adcd70ce66">Contribution</h2>
+<h2 id="contribution">Contribution</h2>
 
 <p>我在给同事准备培训材料的时候，到HUE的github上去查找资料。在看到HUE的主要功能时，github上的原文是这样的：</p>
 

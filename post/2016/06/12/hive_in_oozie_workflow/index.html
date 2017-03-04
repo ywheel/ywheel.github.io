@@ -193,7 +193,7 @@
 
 <p>在此介绍一下Hive action的编写，也记录一下曾经在这方面踩到的坑。</p>
 
-<h2 id="hive-action:e8691cca3f4bd84c62e729da70d1a038">Hive Action</h2>
+<h2 id="hive-action">Hive Action</h2>
 
 <p>在Oozie的workflow配置中添加一个hive action非常简单。</p>
 
@@ -282,7 +282,7 @@
     &lt;/action&gt;
 </code></pre>
 
-<h2 id="output-data-exceeds-its-limit:e8691cca3f4bd84c62e729da70d1a038">Output data exceeds its limit</h2>
+<h2 id="output-data-exceeds-its-limit">Output data exceeds its limit</h2>
 
 <p>在上面的样例中可以看到，oozie workflow中的hive action不关心hql文件中定义的hive查询逻辑，在oozie workflow中做到了尽量简单，而hive的逻辑正确性保障和作业执行成功的保障都需要hql本身来完成。</p>
 
@@ -300,7 +300,7 @@
 
 <p>PS: 尝试过在Hive action中的<code>configuration</code>参数中添加这样的配置，但经过测试发现并不work.</p>
 
-<h2 id="outofmemoryerror:e8691cca3f4bd84c62e729da70d1a038">OutOfMemoryError</h2>
+<h2 id="outofmemoryerror">OutOfMemoryError</h2>
 
 <p>当执行一个hql脚本时，脚本中包含多个查询语句（好吧，又是好几百个），其中每个语句都经过测试能够正常运行并成功结束，但是放在一起被Oozie调用后缺抛如下错误：</p>
 

@@ -2,12 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>读书笔记 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <link>http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml</link>
     <description>Recent content in 读书笔记 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 Sep 2013 22:43:12 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -21,11 +20,11 @@
 &lt;pre&gt;&lt;code&gt;注： 内容来自师徒网：刘鹏--计算广告学
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;合约广告系统简介:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;合约广告系统简介&lt;/h2&gt;
+&lt;h2 id=&#34;合约广告系统简介&#34;&gt;合约广告系统简介&lt;/h2&gt;
 
 &lt;p&gt;Agreement based Advertising，能够解决什么问题?&lt;/p&gt;
 
-&lt;h3 id=&#34;传统媒体-直接媒体购买:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;传统媒体&amp;ndash;直接媒体购买&lt;/h3&gt;
+&lt;h3 id=&#34;传统媒体-直接媒体购买&#34;&gt;传统媒体&amp;ndash;直接媒体购买&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;供给方：广告排期系统&lt;/li&gt;
@@ -39,7 +38,7 @@
 
 &lt;p&gt;在中国，很多品牌广告还是这样的方式，比如在门户网站按天排期&lt;/p&gt;
 
-&lt;h3 id=&#34;在线广告系统主流做法-担保式投送与广告投放:705e41b2dce0f1c39dbe5f6b4a377069&#34;&gt;在线广告系统主流做法&amp;ndash;担保式投送与广告投放&lt;/h3&gt;
+&lt;h3 id=&#34;在线广告系统主流做法-担保式投送与广告投放&#34;&gt;在线广告系统主流做法&amp;ndash;担保式投送与广告投放&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;担保式投送（Guaranteed Delivery，GD）&lt;/li&gt;
@@ -65,25 +64,25 @@
 &lt;pre&gt;&lt;code&gt;注：内容来自师徒网， 计算广告学 刘鹏
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;使用开源工具搭建广告系统:a6e90f85f40bd54951247cffab503f43&#34;&gt;使用开源工具搭建广告系统&lt;/h2&gt;
+&lt;h2 id=&#34;使用开源工具搭建广告系统&#34;&gt;使用开源工具搭建广告系统&lt;/h2&gt;
 
 &lt;p&gt;Hadoop：大数据处理的平台
 - HDFS
 - MapReduce&lt;/p&gt;
 
-&lt;h3 id=&#34;离线处理工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;离线处理工具&lt;/h3&gt;
+&lt;h3 id=&#34;离线处理工具&#34;&gt;离线处理工具&lt;/h3&gt;
 
 &lt;p&gt;HBase， Hadoop上的列存储数据库。类似的有：BigTable； HypeTable（C语言写的，效率相对高一点）；Cassandra(Facebook, 不过好像他自己也不用了)； mahout（数据挖掘、机器学习算法的MR实现工具）；Elephant-bird: 配合Pig使用；
 两个脚本语言： Pig/Hive， 使用MR实现类SQL的查询；&lt;/p&gt;
 
-&lt;h3 id=&#34;在线工具:a6e90f85f40bd54951247cffab503f43&#34;&gt;在线工具&lt;/h3&gt;
+&lt;h3 id=&#34;在线工具&#34;&gt;在线工具&lt;/h3&gt;
 
 &lt;p&gt;ZooKeeper: 分布式环境下解决一致性问题； Chubby：Google。 Zookeeper可以认为是Chubby的简化版本；
 Avro；Thrift（Facebook）：解决分布式环境里跨语言通信的工具包；
 S4; Storm(twitter) 满足快速计算任务如快速计算粉丝数等；
 Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 
-&lt;h3 id=&#34;thrift:a6e90f85f40bd54951247cffab503f43&#34;&gt;Thrift&lt;/h3&gt;
+&lt;h3 id=&#34;thrift&#34;&gt;Thrift&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;跨语言服务快速搭建（C++, Java, Python, ruby, c#）&lt;/li&gt;
@@ -120,11 +119,11 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;注：内容整理自师徒网：刘鹏 计算广告学
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;广告中的计算问题:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;广告中的计算问题&lt;/h3&gt;
+&lt;h3 id=&#34;广告中的计算问题&#34;&gt;广告中的计算问题&lt;/h3&gt;
 
 &lt;p&gt;Find the best match between a given user u, in a given context c, and s suitable ad a.&lt;/p&gt;
 
-&lt;h4 id=&#34;从优化角度来看:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;从优化角度来看&lt;/h4&gt;
+&lt;h4 id=&#34;从优化角度来看&#34;&gt;从优化角度来看&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;特征提取：受众定向. 把u和c打上标签的过程&lt;/li&gt;
@@ -135,7 +134,7 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;li&gt;个性化重定向：推荐技术&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;从系统角度来看:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;从系统角度来看：&lt;/h4&gt;
+&lt;h4 id=&#34;从系统角度来看&#34;&gt;从系统角度来看：&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;候选查选：实时索引。新的广告能很快上线，超预算的广告能很快的下线&lt;/li&gt;
@@ -145,9 +144,9 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;li&gt;交易市场：实时竞价&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;在线广告计算的主要挑战:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告计算的主要挑战&lt;/h3&gt;
+&lt;h3 id=&#34;在线广告计算的主要挑战&#34;&gt;在线广告计算的主要挑战&lt;/h3&gt;
 
-&lt;h4 id=&#34;大规模:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;大规模&lt;/h4&gt;
+&lt;h4 id=&#34;大规模&#34;&gt;大规模&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;百万量级的页面，十亿量级的用户，需要被分析处理&lt;/li&gt;
@@ -155,29 +154,29 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;li&gt;latency的严格要求。如Ad exchange要求竞价在100ms内返回&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;动态性:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;动态性&lt;/h4&gt;
+&lt;h4 id=&#34;动态性&#34;&gt;动态性&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用户的关注和购物兴趣非常快速的变化。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;丰富的查询信息:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;丰富的查询信息&lt;/h4&gt;
+&lt;h4 id=&#34;丰富的查询信息&#34;&gt;丰富的查询信息&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;需要把用户和上下文中多样的信号一起用于检索广告候选&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;探索与发现:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;探索与发现&lt;/h4&gt;
+&lt;h4 id=&#34;探索与发现&#34;&gt;探索与发现&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用户反馈数据局限于在以往投放中出现的（a,u,c）组合，需要主动探索未观察到的领域，以提高模型正确性&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;在线广告系统的roi:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统的ROI&lt;/h3&gt;
+&lt;h3 id=&#34;在线广告系统的roi&#34;&gt;在线广告系统的ROI&lt;/h3&gt;
 
 &lt;p&gt;eCPM=CTR*CPC*1000&lt;/p&gt;
 
-&lt;h3 id=&#34;搜索-广告与推荐的比较:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;搜索、广告与推荐的比较&lt;/h3&gt;
+&lt;h3 id=&#34;搜索-广告与推荐的比较&#34;&gt;搜索、广告与推荐的比较&lt;/h3&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -241,15 +240,15 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&#34;在线广告系统结构:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统结构&lt;/h3&gt;
+&lt;h3 id=&#34;在线广告系统结构&#34;&gt;在线广告系统结构&lt;/h3&gt;
 
-&lt;h4 id=&#34;在线部分:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线部分：&lt;/h4&gt;
+&lt;h4 id=&#34;在线部分&#34;&gt;在线部分：&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;高并发投送系统。十毫秒级别的实时决策，百亿次/天的广告投放系统&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;离线部分:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;离线部分：&lt;/h4&gt;
+&lt;h4 id=&#34;离线部分&#34;&gt;离线部分：&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;受众定向平台。灵活的海量数据挖掘平台。前沿机器学习算法的分布式架构&lt;/li&gt;
@@ -257,7 +256,7 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
 &lt;li&gt;流式计算平台：日志的准实时挖掘和反馈，反作弊和计价&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;在线广告系统模块:c0340bd40e4e624a3e19068dcd8e110b&#34;&gt;在线广告系统模块&lt;/h3&gt;
+&lt;h3 id=&#34;在线广告系统模块&#34;&gt;在线广告系统模块&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Ad serving  来自用户和来自ad exchange的ad call&lt;/li&gt;

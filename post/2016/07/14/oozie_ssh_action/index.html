@@ -189,7 +189,7 @@
                       
                       
 
-<h2 id="问题描述:2ddc7a6266f35b198948a8a6f795e20a">问题描述</h2>
+<h2 id="问题描述">问题描述</h2>
 
 <p>最近在我们的其中一个现网环境中部署MR程序，MR程序的调度自然是用Oozie了。在Oozie的Workflow中，我们使用ssh action登录到一台节点上，并且在该节点上部署了脚本做数据库的建表操作。</p>
 
@@ -230,21 +230,21 @@ Caused by: java.io.IOException: error=2, No such file or directory
     ... 17 more
 </code></pre>
 
-<h2 id="问题排查:2ddc7a6266f35b198948a8a6f795e20a">问题排查</h2>
+<h2 id="问题排查">问题排查</h2>
 
-<h3 id="排查oozie-server是否有scp命令:2ddc7a6266f35b198948a8a6f795e20a">排查Oozie Server是否有SCP命令</h3>
+<h3 id="排查oozie-server是否有scp命令">排查Oozie Server是否有SCP命令</h3>
 
 <p>Oozie的ssh action是在oozie server所在服务器上，登录到目标机器，这样就需要做oozie server机器到目标机器的免密登录。</p>
 
 <p>由于我们在安装集群时，使用的是自己开发的脚本安装，而在脚本安装过程中， <code>scp</code>是一定会使用的命令，所以Oozie Server节点应该安装有SCP的。在终端中试了一下，<code>scp</code>是能够正常使用的。</p>
 
-<h3 id="排查oozie-ssh免密登录:2ddc7a6266f35b198948a8a6f795e20a">排查Oozie ssh免密登录</h3>
+<h3 id="排查oozie-ssh免密登录">排查Oozie ssh免密登录</h3>
 
 <p>看到上述错误信息，其实应该不属于ssh免密登录问题，但这个<code>scp</code>的问题的确没有头绪（我们的脚本中并没有使用<code>scp</code>，而Oozie Server上又可以使用<code>scp</code>命令。）</p>
 
 <p>于是，我们重做了oozie server到目标机器的免密登录，但无任何效果。更换目标机器、重新部署Oozie Server到另一个节点后再做免密登录均不能解决问题。</p>
 
-<h3 id="查看oozie代码寻找scp过程:2ddc7a6266f35b198948a8a6f795e20a">查看Oozie代码寻找scp过程</h3>
+<h3 id="查看oozie代码寻找scp过程">查看Oozie代码寻找scp过程</h3>
 
 <p>没辙了，只能看看Oozie的代码，看看在ssh action中，为什么需要scp, 在哪里使用到了scp.</p>
 
@@ -356,7 +356,7 @@ drwxr-xr-x 2 oozie oozie 80 6月  12 22:28 ssh
 
 <p>于是，这个问题就变成了: scp其实没问题，在终端下执行命令均可成功，但是Oozie Server执行scp缺不成功。</p>
 
-<h3 id="排查cdh版本问题:2ddc7a6266f35b198948a8a6f795e20a">排查CDH版本问题</h3>
+<h3 id="排查cdh版本问题">排查CDH版本问题</h3>
 
 <p>想来想去，没有头绪。在网上搜也没找到想要的结果。于是想到了土办法：升级。 有时候升级就像是重装系统一样&rdquo;管用&rdquo;。</p>
 
@@ -366,7 +366,7 @@ drwxr-xr-x 2 oozie oozie 80 6月  12 22:28 ssh
 
 <p>总之一句话，升级到了5.6，仍然不能解决问题。</p>
 
-<h3 id="环境变量:2ddc7a6266f35b198948a8a6f795e20a">环境变量！！！</h3>
+<h3 id="环境变量">环境变量！！！</h3>
 
 <p>折腾了各种办法，只有再冷静下来仔细想想。为什么相同的集群版本，相同的软件版本，在其他地方都能执行成功个，而在该环境下就不行了呢？</p>
 
@@ -405,7 +405,7 @@ sh-4.1$ which scp
 /root/oozie-oozi/0000001-160617010847759-oozie-oozi-W/ssh-2ecf--ssh
 </code></pre>
 
-<h3 id="恢复oozie:2ddc7a6266f35b198948a8a6f795e20a">恢复Oozie</h3>
+<h3 id="恢复oozie">恢复Oozie</h3>
 
 <p>本以为解决了这个问题后大功告成。没想到，接下来又是一个深渊，运行oozie作业抛如下错误：</p>
 
@@ -586,6 +586,12 @@ var duoshuoQuery = {short_name:"ywheel"};
         
       </li>
       <li class="previous">
+        
+        <a href="http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/" rel="prev">
+          <i class="fa fa-chevron-left"></i>
+          <strong>Previous Post</strong>
+          <span>我的第一台Mac</span>
+        </a>
         
       </li>
     </ul>

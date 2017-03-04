@@ -2,13 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>思考感悟 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/</link>
+    <link>http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml</link>
     <description>Recent content in 思考感悟 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 05 Jun 2016 20:54:11 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>我的第一台Mac</title>
+      <link>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</link>
+      <pubDate>Sat, 04 Mar 2017 19:43:18 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</guid>
+      <description>&lt;p&gt;我的上一篇文章，还是去年7月份的了，中间隔了大半年。大半年来的忙碌工作，让这个博客就像一个烂尾楼，半死不活，仅靠着几篇文章苟活着。当然，懒也是逃不掉的一个原因。回想这半年多来的工作，在工作内容和职责上出现了一些转变，使得我自己写代码的时间变得越来越少。还记得最近一次写代码还是自己给自己分配的一个单元测试的代码样例，但也同样超出了时间预期，自己成为了整个团队中拖后腿的人。&lt;/p&gt;
+
+&lt;p&gt;工作内容和职责的变化，也导致我需要&amp;rdquo;频繁&amp;rdquo;地出差，2016年共飞了25次，对于一个技术人员来说这个飞行次数显然是一个过大的值。即便在广州也需要频繁地到现场面对客户，写PPT，讲PPT。&lt;/p&gt;
+
+&lt;p&gt;于是我时而为不能写代码而焦虑。从去年年中开始装修房子时，我尽力争取保留下了最小的卧室作为我的书房，就开始构想我要买一张什么样的桌子，换一台电脑，在家也布置一个适宜写代码的环境。慢慢的， 我买回了桌椅、DELL的显示器、Cherry MX 3.0红轴、Cherry的超大鼠标垫。最后，终于等来了我的第一台Macbook pro.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/shufang2.jpg?imageMogr2/auto-orient/thumbnail/800x/blur/1x0/quality/75|watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/560/fill/I0ZBRkFGQQ==/dissolve/100/gravity/SouthWest/dx/10/dy/10|imageslim&#34; alt=&#34;书房图&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;严格的说, 这不是我使用的第一台MBP。两年前我还在北京的时候，前东家对SDE这个职位是默认同意采购macbook pro作为工作使用电脑的，或者是员工私人的macbook拿到IT那里去安装定制的系统，当然有一个限制：不能是macbook air，理由居然是air的性能跟不上工作的需要。好吧，反正我使用着公司的mbp，用了半年多后离开了，mbp也留给了同组的同事，现在可能也把它带去了美国。&lt;/p&gt;
+
+&lt;p&gt;在来到广州后，公司居然对研发人员只配备了一台E系列的联想笔记本，看着也不想称呼他为thinkpad。在无法忍受每天只能对着笔记本的小屏幕开发程序后，我立刻买了一个显示器和键鼠套装，是程序员就该对自己的开发环境负责。&lt;/p&gt;
+
+&lt;p&gt;虽说我的主要开发语言是java，开发环境在windows、Linux、Mac OS下其实都没有太大所谓，但编译打包、代码提交等还是遇到了挺多头大的问题。比如：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;git命令行不友好。作为深度git用户，虽然有git的客户端如github destkop/sourcetree等，我还是觉得git的命令敲起来爽（嘿嘿也许是cherry的手感问题？）. 然后windows下的git bash经常无故崩溃，尤其有段时间一使用git pull，电脑直接蓝屏，只能按电源键强制关机重启来解决。&lt;/li&gt;
+&lt;li&gt;匪夷所思的权限。在使用git切换分支的时候，报无写权限导致切换分支失败；或者是使用git stash pop将之前缓存的修改拿出来的时候，无写权限导致stash pop失败，搞了半天也不知如何是好，只好放弃。这就好比敲了这么多字没保存电脑死机一样的痛苦，于是只好静下心来回忆缓存的代码实现的功能和方式，顺便重构和优化一把。&lt;/li&gt;
+&lt;li&gt;没有终端，没有终端，没有终端，重要的事情说三遍！&lt;/li&gt;
+&lt;li&gt;不够酷&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在等了又等之后，苹果终于发布了2016款的macbook，看完后略伤心，脑补了一下携带各种转换头的场景后，我还是选择买了老款的macbook pro，苹果的Logo还会发光，有USB, MiniDP, HDMI的多种接口，嗯，还有便宜。。。&lt;/p&gt;
+
+&lt;p&gt;Hugo和git的使用感受，果断好了太多，于是又有了写博客的动力。只是mac上的Office要收费，现在的我作为一个PPTer。。。不过，I don&amp;rsquo;t care! 我是一个程序员！&lt;/p&gt;
+
+&lt;p&gt;希望能扭转当前的状态，少一点ppt和xls, 多撸代码多写wiki。不然就太对不起我的第一台Mac了&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>高三楼</title>
@@ -95,7 +129,7 @@
 
 &lt;p&gt;Hi all, 我叫ywheel, 是一名程序员。&lt;/p&gt;
 
-&lt;h3 id=&#34;我的经历:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的经历&lt;/h3&gt;
+&lt;h3 id=&#34;我的经历&#34;&gt;我的经历&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;2006-2013 北京邮电大学本硕&lt;/li&gt;
@@ -103,7 +137,7 @@
 &lt;li&gt;2015.5.7-Now 某大数据公司平台研发主管&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;我的技能:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的技能&lt;/h3&gt;
+&lt;h3 id=&#34;我的技能&#34;&gt;我的技能&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;主攻Java, 也能搞一些脚本语言如Python, perl, awk。正在学习scala&amp;hellip;&lt;/li&gt;
@@ -112,7 +146,7 @@
 &lt;li&gt;逐步承担和和挑战架构设计&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;我的生活:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;我的生活&lt;/h3&gt;
+&lt;h3 id=&#34;我的生活&#34;&gt;我的生活&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;2006-2015 北京九年，之后逃离&lt;/li&gt;
@@ -121,7 +155,7 @@
 &lt;li&gt;现实主义者，强迫症、焦虑症患者&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;一些链接:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;一些链接&lt;/h3&gt;
+&lt;h3 id=&#34;一些链接&#34;&gt;一些链接&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Github: &lt;a href=&#34;https://github.com/ywheel&#34;&gt;github.com/ywheel&lt;/a&gt;&lt;/li&gt;

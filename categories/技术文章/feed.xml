@@ -2,13 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术文章 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</link>
+    <link>http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml</link>
     <description>Recent content in 技术文章 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 14 Jul 2016 20:21:30 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mac上搭建ELK</title>
+      <link>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</link>
+      <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</guid>
+      <description>&lt;p&gt;上一篇文章，还是去年7月份写的&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Oozie ssh action问题排查</title>
@@ -18,7 +27,7 @@
       <guid>http://blog.ywheel.cn/post/2016/07/14/oozie_ssh_action/</guid>
       <description>
 
-&lt;h2 id=&#34;问题描述:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;问题描述&lt;/h2&gt;
+&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 
 &lt;p&gt;最近在我们的其中一个现网环境中部署MR程序，MR程序的调度自然是用Oozie了。在Oozie的Workflow中，我们使用ssh action登录到一台节点上，并且在该节点上部署了脚本做数据库的建表操作。&lt;/p&gt;
 
@@ -59,21 +68,21 @@ Caused by: java.io.IOException: error=2, No such file or directory
     ... 17 more
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;问题排查:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;问题排查&lt;/h2&gt;
+&lt;h2 id=&#34;问题排查&#34;&gt;问题排查&lt;/h2&gt;
 
-&lt;h3 id=&#34;排查oozie-server是否有scp命令:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;排查Oozie Server是否有SCP命令&lt;/h3&gt;
+&lt;h3 id=&#34;排查oozie-server是否有scp命令&#34;&gt;排查Oozie Server是否有SCP命令&lt;/h3&gt;
 
 &lt;p&gt;Oozie的ssh action是在oozie server所在服务器上，登录到目标机器，这样就需要做oozie server机器到目标机器的免密登录。&lt;/p&gt;
 
 &lt;p&gt;由于我们在安装集群时，使用的是自己开发的脚本安装，而在脚本安装过程中， &lt;code&gt;scp&lt;/code&gt;是一定会使用的命令，所以Oozie Server节点应该安装有SCP的。在终端中试了一下，&lt;code&gt;scp&lt;/code&gt;是能够正常使用的。&lt;/p&gt;
 
-&lt;h3 id=&#34;排查oozie-ssh免密登录:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;排查Oozie ssh免密登录&lt;/h3&gt;
+&lt;h3 id=&#34;排查oozie-ssh免密登录&#34;&gt;排查Oozie ssh免密登录&lt;/h3&gt;
 
 &lt;p&gt;看到上述错误信息，其实应该不属于ssh免密登录问题，但这个&lt;code&gt;scp&lt;/code&gt;的问题的确没有头绪（我们的脚本中并没有使用&lt;code&gt;scp&lt;/code&gt;，而Oozie Server上又可以使用&lt;code&gt;scp&lt;/code&gt;命令。）&lt;/p&gt;
 
 &lt;p&gt;于是，我们重做了oozie server到目标机器的免密登录，但无任何效果。更换目标机器、重新部署Oozie Server到另一个节点后再做免密登录均不能解决问题。&lt;/p&gt;
 
-&lt;h3 id=&#34;查看oozie代码寻找scp过程:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;查看Oozie代码寻找scp过程&lt;/h3&gt;
+&lt;h3 id=&#34;查看oozie代码寻找scp过程&#34;&gt;查看Oozie代码寻找scp过程&lt;/h3&gt;
 
 &lt;p&gt;没辙了，只能看看Oozie的代码，看看在ssh action中，为什么需要scp, 在哪里使用到了scp.&lt;/p&gt;
 
@@ -185,7 +194,7 @@ drwxr-xr-x 2 oozie oozie 80 6月  12 22:28 ssh
 
 &lt;p&gt;于是，这个问题就变成了: scp其实没问题，在终端下执行命令均可成功，但是Oozie Server执行scp缺不成功。&lt;/p&gt;
 
-&lt;h3 id=&#34;排查cdh版本问题:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;排查CDH版本问题&lt;/h3&gt;
+&lt;h3 id=&#34;排查cdh版本问题&#34;&gt;排查CDH版本问题&lt;/h3&gt;
 
 &lt;p&gt;想来想去，没有头绪。在网上搜也没找到想要的结果。于是想到了土办法：升级。 有时候升级就像是重装系统一样&amp;rdquo;管用&amp;rdquo;。&lt;/p&gt;
 
@@ -195,7 +204,7 @@ drwxr-xr-x 2 oozie oozie 80 6月  12 22:28 ssh
 
 &lt;p&gt;总之一句话，升级到了5.6，仍然不能解决问题。&lt;/p&gt;
 
-&lt;h3 id=&#34;环境变量:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;环境变量！！！&lt;/h3&gt;
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量！！！&lt;/h3&gt;
 
 &lt;p&gt;折腾了各种办法，只有再冷静下来仔细想想。为什么相同的集群版本，相同的软件版本，在其他地方都能执行成功个，而在该环境下就不行了呢？&lt;/p&gt;
 
@@ -234,7 +243,7 @@ sh-4.1$ which scp
 /root/oozie-oozi/0000001-160617010847759-oozie-oozi-W/ssh-2ecf--ssh
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;恢复oozie:2ddc7a6266f35b198948a8a6f795e20a&#34;&gt;恢复Oozie&lt;/h3&gt;
+&lt;h3 id=&#34;恢复oozie&#34;&gt;恢复Oozie&lt;/h3&gt;
 
 &lt;p&gt;本以为解决了这个问题后大功告成。没想到，接下来又是一个深渊，运行oozie作业抛如下错误：&lt;/p&gt;
 
@@ -346,7 +355,7 @@ Complete!
 
 &lt;p&gt;在此介绍一下Hive action的编写，也记录一下曾经在这方面踩到的坑。&lt;/p&gt;
 
-&lt;h2 id=&#34;hive-action:e8691cca3f4bd84c62e729da70d1a038&#34;&gt;Hive Action&lt;/h2&gt;
+&lt;h2 id=&#34;hive-action&#34;&gt;Hive Action&lt;/h2&gt;
 
 &lt;p&gt;在Oozie的workflow配置中添加一个hive action非常简单。&lt;/p&gt;
 
@@ -435,7 +444,7 @@ Complete!
     &amp;lt;/action&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;output-data-exceeds-its-limit:e8691cca3f4bd84c62e729da70d1a038&#34;&gt;Output data exceeds its limit&lt;/h2&gt;
+&lt;h2 id=&#34;output-data-exceeds-its-limit&#34;&gt;Output data exceeds its limit&lt;/h2&gt;
 
 &lt;p&gt;在上面的样例中可以看到，oozie workflow中的hive action不关心hql文件中定义的hive查询逻辑，在oozie workflow中做到了尽量简单，而hive的逻辑正确性保障和作业执行成功的保障都需要hql本身来完成。&lt;/p&gt;
 
@@ -453,7 +462,7 @@ Complete!
 
 &lt;p&gt;PS: 尝试过在Hive action中的&lt;code&gt;configuration&lt;/code&gt;参数中添加这样的配置，但经过测试发现并不work.&lt;/p&gt;
 
-&lt;h2 id=&#34;outofmemoryerror:e8691cca3f4bd84c62e729da70d1a038&#34;&gt;OutOfMemoryError&lt;/h2&gt;
+&lt;h2 id=&#34;outofmemoryerror&#34;&gt;OutOfMemoryError&lt;/h2&gt;
 
 &lt;p&gt;当执行一个hql脚本时，脚本中包含多个查询语句（好吧，又是好几百个），其中每个语句都经过测试能够正常运行并成功结束，但是放在一起被Oozie调用后缺抛如下错误：&lt;/p&gt;
 
@@ -528,7 +537,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。&lt;/p&gt;
 
-&lt;h2 id=&#34;hue是什么:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE是什么&lt;/h2&gt;
+&lt;h2 id=&#34;hue是什么&#34;&gt;HUE是什么&lt;/h2&gt;
 
 &lt;p&gt;HUE=&lt;strong&gt;Hadoop User Experience&lt;/strong&gt;&lt;/p&gt;
 
@@ -536,7 +545,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;通过使用Hue我们可以在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等。&lt;/p&gt;
 
-&lt;h2 id=&#34;hue链接:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE链接&lt;/h2&gt;
+&lt;h2 id=&#34;hue链接&#34;&gt;HUE链接&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Site: &lt;a href=&#34;http://gethue.com/&#34;&gt;http://gethue.com/&lt;/a&gt;&lt;/li&gt;
@@ -544,7 +553,7 @@ MapReduce Jobs Launched:
 &lt;li&gt;Reviews: &lt;a href=&#34;https://review.cloudera.org&#34;&gt;https://review.cloudera.org&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;核心功能:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;核心功能&lt;/h2&gt;
+&lt;h2 id=&#34;核心功能&#34;&gt;核心功能&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;SQL编辑器，支持Hive, Impala, MySQL, Oracle, PostgreSQL, SparkSQL, Solr SQL, Phoenix&amp;hellip;&lt;/li&gt;
@@ -557,7 +566,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;HUE中查看Oozie workflow时，也可以很方便的看到整个workflow的DAG图，不过在最新版本中已经将DAG图去掉了，只能看到workflow中的action列表和他们之间的跳转关系，想要看DAG图的仍然可以使用oozie原生的界面系统查看。&lt;/p&gt;
 
-&lt;h3 id=&#34;hue登录:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HUE登录&lt;/h3&gt;
+&lt;h3 id=&#34;hue登录&#34;&gt;HUE登录&lt;/h3&gt;
 
 &lt;p&gt;如果自己搭建了HUE，则可以使用管理员账户创建一个新的用户，然后使用新的用户进行登录，见下图：&lt;/p&gt;
 
@@ -567,7 +576,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Demo.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Demo图&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;hdfs文件浏览:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;HDFS文件浏览&lt;/h3&gt;
+&lt;h3 id=&#34;hdfs文件浏览&#34;&gt;HDFS文件浏览&lt;/h3&gt;
 
 &lt;p&gt;HUE可以很方便的浏览HDFS中的目录和文件，并且进行文件和目录的创建、复制、删除、下载以及修改权限等操作。&lt;/p&gt;
 
@@ -579,7 +588,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;&lt;strong&gt;PS:&lt;/strong&gt; Live Demo中禁了文件上传功能。&lt;/p&gt;
 
-&lt;h3 id=&#34;作业浏览:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;作业浏览&lt;/h3&gt;
+&lt;h3 id=&#34;作业浏览&#34;&gt;作业浏览&lt;/h3&gt;
 
 &lt;p&gt;点击Job Browser，可以查看作业列表，并且可以通过点击右上角的&amp;rdquo;成功&amp;rdquo;,&amp;ldquo;正在运行&amp;rdquo;,&amp;ldquo;失败&amp;rdquo;,&amp;ldquo;停止&amp;rdquo;来筛选不同状态的作业：&lt;/p&gt;
 
@@ -587,7 +596,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;我们在实际工作中发现，当集群(CDH5.2) 配置了HA后，当active的ResourceManager自动切换后(比如NN1上的ResourceManager是active，而NN2是standby，当NN1出现故障， NN2上的ResourceManager转变为active状态)，HUE的job browser将不能够正确显示。只有当修复故障后，将NN1上的ResourceManager重新变成active状态，HUE的job browser才能正常工作。不知道这个问题在后续版本是否已经得到修复。&lt;/p&gt;
 
-&lt;h3 id=&#34;hive查询:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Hive查询&lt;/h3&gt;
+&lt;h3 id=&#34;hive查询&#34;&gt;Hive查询&lt;/h3&gt;
 
 &lt;p&gt;HUE的beeswax app提供友好方便的Hive查询功能，能够选择不同的Hive数据库，编写HQL语句，提交查询任务，并且能够在界面下方看到查询作业运行的日志。在得到结果后，还提供进行简单的图表分析能力。&lt;/p&gt;
 
@@ -597,7 +606,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/HUE%20Hive%20MetaStore.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;HUE Hive MetaStore&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;oozie-workflow编辑:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Oozie Workflow编辑&lt;/h3&gt;
+&lt;h3 id=&#34;oozie-workflow编辑&#34;&gt;Oozie Workflow编辑&lt;/h3&gt;
 
 &lt;p&gt;HUE也提供了很好的Oozie的集成，能够在HUE上创建和编辑Bundles, Coordinator, Workflow. Oozie的介绍可以去&lt;a href=&#34;https://oozie.apache.org/&#34;&gt;官网&lt;/a&gt;查看。下图为在HUE上创建一个新的workflow，在该界面上，可以直接拖动不同的组件，变成DAG中的节点，并且设置各个action的流转逻辑。&lt;/p&gt;
 
@@ -609,7 +618,7 @@ MapReduce Jobs Launched:
 
 &lt;p&gt;只是通过命令行提交的workflow就不可以在HUE上进行编辑了。使用配置文件、命令行提交的方式能够保证在生产环境上运行的和在测试环境上运行的版本一致，而使用HUE界面编辑的方式虽然方便，但也可能会带来人工操作在生产环境中失误的风险，有利也有弊吧。&lt;/p&gt;
 
-&lt;h2 id=&#34;contribution:4d91db11f2d84cff72c863adcd70ce66&#34;&gt;Contribution&lt;/h2&gt;
+&lt;h2 id=&#34;contribution&#34;&gt;Contribution&lt;/h2&gt;
 
 &lt;p&gt;我在给同事准备培训材料的时候，到HUE的github上去查找资料。在看到HUE的主要功能时，github上的原文是这样的：&lt;/p&gt;
 
@@ -667,7 +676,7 @@ http://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
 
 &lt;p&gt;You already knew that grep is extremely powerful based on these &lt;a href=&#34;http://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/&#34;&gt;grep command examples&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;grep-or-operator:af29bf61cfd36b81a59758fe3b1cf731&#34;&gt;Grep OR Operator&lt;/h3&gt;
+&lt;h3 id=&#34;grep-or-operator&#34;&gt;Grep OR Operator&lt;/h3&gt;
 
 &lt;p&gt;Use any one of the following 4 methods for grep OR. I prefer method number 3 mentioned below for grep OR operator.&lt;/p&gt;
 
@@ -743,7 +752,7 @@ http://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
 500  Randy   Manager    Sales       $6,000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;grep-and:af29bf61cfd36b81a59758fe3b1cf731&#34;&gt;Grep AND&lt;/h3&gt;
+&lt;h3 id=&#34;grep-and&#34;&gt;Grep AND&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Grep AND using -E ‘pattern1.*pattern2′&lt;/li&gt;
@@ -784,7 +793,7 @@ grep -E &#39;pattern1.*pattern2|pattern2.*pattern1&#39; filename
 500  Randy   Manager    Sales       $6,000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;grep-not:af29bf61cfd36b81a59758fe3b1cf731&#34;&gt;Grep NOT&lt;/h3&gt;
+&lt;h3 id=&#34;grep-not&#34;&gt;Grep NOT&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Grep NOT using grep -v&lt;/li&gt;
@@ -812,7 +821,7 @@ grep -E &#39;pattern1.*pattern2|pattern2.*pattern1&#39; filename
 400  Nisha   Manager    Marketing   $9,500
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;总结:af29bf61cfd36b81a59758fe3b1cf731&#34;&gt;总结&lt;/h3&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
 
 &lt;p&gt;总结起来就是：&lt;/p&gt;
 
@@ -875,20 +884,20 @@ Could you optimize your algorithm to use only O(k) extra space?
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;解法一:2f76cdb9ba8135cac819db3ef84952c8&#34;&gt;解法一&lt;/h3&gt;
+&lt;h3 id=&#34;解法一&#34;&gt;解法一&lt;/h3&gt;
 
 &lt;p&gt;将K个链表做K-1次归并，每次归并是对两个链表的归并，最终得到一个排序的链表。即：
 1，2合并，遍历2n个节点；(1,2)与3合并，遍历3n个节点。。。(1&amp;hellip;k-1)与k合并，遍历kn个节点。所以总共遍历n&lt;em&gt;(2+3+&amp;hellip;+k)=n&lt;/em&gt;(k^2+k-2)/2，那么时间复杂度为O(n*k^2)。&lt;/p&gt;
 
-&lt;h3 id=&#34;解法二:2f76cdb9ba8135cac819db3ef84952c8&#34;&gt;解法二&lt;/h3&gt;
+&lt;h3 id=&#34;解法二&#34;&gt;解法二&lt;/h3&gt;
 
 &lt;p&gt;对解法一改进一下，改用分治法，所以时间复杂度变为O(nklogk)。&lt;/p&gt;
 
-&lt;h3 id=&#34;解法三:2f76cdb9ba8135cac819db3ef84952c8&#34;&gt;解法三&lt;/h3&gt;
+&lt;h3 id=&#34;解法三&#34;&gt;解法三&lt;/h3&gt;
 
 &lt;p&gt;将K个链表的首元素都取出来，选择出最小的那个作为新链表的head。然后将该元素的next取出来，与其他链表的元素比较再选一个小的，放到新链表中。选择出最小元素的时间复杂度为O(k), 总共要选nk次，所以时间复杂度为O(n*k^2)。&lt;/p&gt;
 
-&lt;h3 id=&#34;解法四:2f76cdb9ba8135cac819db3ef84952c8&#34;&gt;解法四&lt;/h3&gt;
+&lt;h3 id=&#34;解法四&#34;&gt;解法四&lt;/h3&gt;
 
 &lt;p&gt;对解法三改进一下，用最小堆来实现选择最小元素的要求，则时间复杂度降为O(logk)，则总的时间复杂度为O(nklogk)，与解法二的时间复杂度一样。在Java中，可以使用基于
 最小堆算法的PriorityQueue来作为最小堆的集合类。代码如下：&lt;/p&gt;
@@ -1176,7 +1185,7 @@ public class Solution {
 
 &lt;p&gt;的确需要有一个分类列表在指导自己在准备时间不够充分的情况下接触到更多考点的题&lt;/p&gt;
 
-&lt;h3 id=&#34;利用堆栈:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;利用堆栈：&lt;/h3&gt;
+&lt;h3 id=&#34;利用堆栈&#34;&gt;利用堆栈：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/evaluate-reverse-polish-notation/&#34;&gt;http://oj.leetcode.com/problems/evaluate-reverse-polish-notation/&lt;/a&gt;&lt;/li&gt;
@@ -1186,7 +1195,7 @@ public class Solution {
 &lt;li&gt;特别注意细节：&lt;a href=&#34;http://oj.leetcode.com/problems/trapping-rain-water/&#34;&gt;http://oj.leetcode.com/problems/trapping-rain-water/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;多种数据结构:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;多种数据结构：&lt;/h3&gt;
+&lt;h3 id=&#34;多种数据结构&#34;&gt;多种数据结构：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/lru-cache/&#34;&gt;http://oj.leetcode.com/problems/lru-cache/&lt;/a&gt;&lt;/li&gt;
@@ -1195,7 +1204,7 @@ public class Solution {
 &lt;li&gt;HASH：&lt;a href=&#34;http://oj.leetcode.com/problems/longest-consecutive-sequence/&#34;&gt;http://oj.leetcode.com/problems/longest-consecutive-sequence/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;简单编程:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;简单编程：&lt;/h3&gt;
+&lt;h3 id=&#34;简单编程&#34;&gt;简单编程：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/longest-common-prefix/&#34;&gt;http://oj.leetcode.com/problems/longest-common-prefix/&lt;/a&gt;&lt;/li&gt;
@@ -1203,7 +1212,7 @@ public class Solution {
 (分析，控制语句）&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;排序-查找:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;排序 &amp;amp; 查找：&lt;/h3&gt;
+&lt;h3 id=&#34;排序-查找&#34;&gt;排序 &amp;amp; 查找：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;二分查找：&lt;a href=&#34;http://oj.leetcode.com/problems/search-a-2d-matrix/&#34;&gt;http://oj.leetcode.com/problems/search-a-2d-matrix/&lt;/a&gt;&lt;/li&gt;
@@ -1214,7 +1223,7 @@ public class Solution {
 &lt;li&gt;二分查找变种：&lt;a href=&#34;http://oj.leetcode.com/problems/search-in-rotated-sorted-array--&#34;&gt;http://oj.leetcode.com/problems/search-in-rotated-sorted-array--&lt;/a&gt; ii/&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;简单数学:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;简单数学：&lt;/h3&gt;
+&lt;h3 id=&#34;简单数学&#34;&gt;简单数学：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/pascals-triangle/&#34;&gt;http://oj.leetcode.com/problems/pascals-triangle/&lt;/a&gt;&lt;/li&gt;
@@ -1234,14 +1243,14 @@ public class Solution {
 &lt;li&gt;区间：&lt;a href=&#34;http://oj.leetcode.com/problems/insert-interval/&#34;&gt;http://oj.leetcode.com/problems/insert-interval/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;大数的数学运算:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;大数的数学运算：&lt;/h3&gt;
+&lt;h3 id=&#34;大数的数学运算&#34;&gt;大数的数学运算：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/add-binary/&#34;&gt;http://oj.leetcode.com/problems/add-binary/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/add-two-numbers/&#34;&gt;http://oj.leetcode.com/problems/add-two-numbers/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;数组:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;数组：&lt;/h3&gt;
+&lt;h3 id=&#34;数组&#34;&gt;数组：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/remove-element/&#34;&gt;http://oj.leetcode.com/problems/remove-element/&lt;/a&gt;&lt;/li&gt;
@@ -1264,13 +1273,13 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/sort-colors/&#34;&gt;http://oj.leetcode.com/problems/sort-colors/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;暴力方法-细节实现:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;暴力方法/细节实现：&lt;/h3&gt;
+&lt;h3 id=&#34;暴力方法-细节实现&#34;&gt;暴力方法/细节实现：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/max-points-on-a-line/&#34;&gt;http://oj.leetcode.com/problems/max-points-on-a-line/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;链表:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;链表：&lt;/h3&gt;
+&lt;h3 id=&#34;链表&#34;&gt;链表：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;归并排序：&lt;a href=&#34;http://oj.leetcode.com/problems/sort-list/&#34;&gt;http://oj.leetcode.com/problems/sort-list/&lt;/a&gt;&lt;/li&gt;
@@ -1291,7 +1300,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/reverse-linked-list-ii/&#34;&gt;http://oj.leetcode.com/problems/reverse-linked-list-ii/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;二叉树遍历-递归-非递归:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;二叉树遍历：递归 &amp;amp; 非递归&lt;/h3&gt;
+&lt;h3 id=&#34;二叉树遍历-递归-非递归&#34;&gt;二叉树遍历：递归 &amp;amp; 非递归&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/same-tree/&#34;&gt;http://oj.leetcode.com/problems/same-tree/&lt;/a&gt;&lt;/li&gt;
@@ -1317,7 +1326,7 @@ public class Solution {
 &lt;li&gt;level 遍历变种：&lt;a href=&#34;http://oj.leetcode.com/problems/populating-next-right-pointers--&#34;&gt;http://oj.leetcode.com/problems/populating-next-right-pointers--&lt;/a&gt; in-each-node-ii/&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;问题分析-智商-细节:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;问题分析/智商/细节：&lt;/h3&gt;
+&lt;h3 id=&#34;问题分析-智商-细节&#34;&gt;问题分析/智商/细节：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/single-number/&#34;&gt;http://oj.leetcode.com/problems/single-number/&lt;/a&gt;&lt;/li&gt;
@@ -1326,7 +1335,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/gas-station/&#34;&gt;http://oj.leetcode.com/problems/gas-station/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;动态规划:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;动态规划：&lt;/h3&gt;
+&lt;h3 id=&#34;动态规划&#34;&gt;动态规划：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/triangle/&#34;&gt;http://oj.leetcode.com/problems/triangle/&lt;/a&gt;
@@ -1351,7 +1360,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/minimum-path-sum/&#34;&gt;http://oj.leetcode.com/problems/minimum-path-sum/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;回溯:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;回溯：&lt;/h3&gt;
+&lt;h3 id=&#34;回溯&#34;&gt;回溯：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/combinations/&#34;&gt;http://oj.leetcode.com/problems/combinations/&lt;/a&gt;&lt;/li&gt;
@@ -1364,7 +1373,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/&#34;&gt;http://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;贪心:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;贪心：&lt;/h3&gt;
+&lt;h3 id=&#34;贪心&#34;&gt;贪心：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock/&#34;&gt;http://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock/&lt;/a&gt;&lt;/li&gt;
@@ -1378,7 +1387,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/longest-substring-without-repeating-characters/&#34;&gt;http://oj.leetcode.com/problems/longest-substring-without-repeating-characters/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;分治-递归:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;分治 &amp;amp; 递归：&lt;/h3&gt;
+&lt;h3 id=&#34;分治-递归&#34;&gt;分治 &amp;amp; 递归：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/unique-binary-search-trees-ii/&#34;&gt;http://oj.leetcode.com/problems/unique-binary-search-trees-ii/&lt;/a&gt;&lt;/li&gt;
@@ -1392,7 +1401,7 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/validate-binary-search-tree/&#34;&gt;http://oj.leetcode.com/problems/validate-binary-search-tree/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;字符串:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;字符串：&lt;/h3&gt;
+&lt;h3 id=&#34;字符串&#34;&gt;字符串：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/count-and-say/&#34;&gt;http://oj.leetcode.com/problems/count-and-say/&lt;/a&gt;&lt;/li&gt;
@@ -1412,13 +1421,13 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/valid-palindrome/&#34;&gt;http://oj.leetcode.com/problems/valid-palindrome/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;图:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;图：&lt;/h3&gt;
+&lt;h3 id=&#34;图&#34;&gt;图：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;深搜/广搜：&lt;a href=&#34;http://oj.leetcode.com/problems/clone-graph/&#34;&gt;http://oj.leetcode.com/problems/clone-graph/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;搜索-遍历:5831b95d540a7954e9cd64ed45727d7b&#34;&gt;搜索 &amp;amp; 遍历：&lt;/h3&gt;
+&lt;h3 id=&#34;搜索-遍历&#34;&gt;搜索 &amp;amp; 遍历：&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/word-ladder/&#34;&gt;http://oj.leetcode.com/problems/word-ladder/&lt;/a&gt;&lt;/li&gt;
@@ -1439,71 +1448,71 @@ public class Solution {
 &lt;pre&gt;&lt;code&gt;转载自：http://blog.csdn.net/feliciafay/article/details/18944093
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;topic-1-反转链表:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Topic 1 反转链表&lt;/h3&gt;
+&lt;h3 id=&#34;topic-1-反转链表&#34;&gt;Topic 1 反转链表&lt;/h3&gt;
 
-&lt;h4 id=&#34;reverse-linked-list-ii:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Reverse Linked List II&lt;/h4&gt;
+&lt;h4 id=&#34;reverse-linked-list-ii&#34;&gt;Reverse Linked List II&lt;/h4&gt;
 
 &lt;p&gt;在第m~n个节点中反转单链表，注意这道题可以把代码写得很长，如果分为区间一[0,m-1],区间二[m-n],区间三[n+1,end]这三个区间的话。也可以写得很短，如果仔细观察发现其实只需要考虑第一个区间是否为NULL就可以了。&lt;/p&gt;
 
-&lt;h4 id=&#34;reverse-nodes-in-k-group:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Reverse Nodes in K Group&lt;/h4&gt;
+&lt;h4 id=&#34;reverse-nodes-in-k-group&#34;&gt;Reverse Nodes in K Group&lt;/h4&gt;
 
 &lt;p&gt;每K个节点为一个单位，反转第1个单位之后，反转第2个单位，反转第i个单位，反转最后一个单位，如果最后一个单位不足K个，就不进行反转。非常有意思的一道题目，依然可以写得很短，也可以写得很长。如果你用递归的办法去写，可以很快写完。如果你用迭代的办法去写，都会比较长。不管是否是调用了Reverse Linked List II中的函数，或者直接写一个大循环。&lt;/p&gt;
 
-&lt;h4 id=&#34;reorder-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Reorder List&lt;/h4&gt;
+&lt;h4 id=&#34;reorder-list&#34;&gt;Reorder List&lt;/h4&gt;
 
 &lt;p&gt;仔细观察后，发现本题的规律是，把链表后半段反转，然后依次插入到链表的前半段。&lt;/p&gt;
 
-&lt;h4 id=&#34;rotate-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Rotate List&lt;/h4&gt;
+&lt;h4 id=&#34;rotate-list&#34;&gt;Rotate List&lt;/h4&gt;
 
 &lt;p&gt;旋转链表。&lt;/p&gt;
 
-&lt;h3 id=&#34;topic-2-从数组排序迁移到链表排序:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Topic 2 从数组排序迁移到链表排序&lt;/h3&gt;
+&lt;h3 id=&#34;topic-2-从数组排序迁移到链表排序&#34;&gt;Topic 2 从数组排序迁移到链表排序&lt;/h3&gt;
 
-&lt;h4 id=&#34;insertion-sort-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Insertion Sort List&lt;/h4&gt;
+&lt;h4 id=&#34;insertion-sort-list&#34;&gt;Insertion Sort List&lt;/h4&gt;
 
 &lt;p&gt;用链表来模拟插入排序&lt;/p&gt;
 
-&lt;h4 id=&#34;partition:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Partition&lt;/h4&gt;
+&lt;h4 id=&#34;partition&#34;&gt;Partition&lt;/h4&gt;
 
 &lt;p&gt;用链表来模拟快排中的partition&lt;/p&gt;
 
-&lt;h4 id=&#34;sort-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Sort List&lt;/h4&gt;
+&lt;h4 id=&#34;sort-list&#34;&gt;Sort List&lt;/h4&gt;
 
 &lt;p&gt;用链表来进行归并排序，完成时间复杂度为O(N lgN),空间复杂度为O(1)的排序&lt;/p&gt;
 
-&lt;h4 id=&#34;merge-two-sorted-lists:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Merge Two Sorted Lists&lt;/h4&gt;
+&lt;h4 id=&#34;merge-two-sorted-lists&#34;&gt;Merge Two Sorted Lists&lt;/h4&gt;
 
 &lt;p&gt;归并两个已经排好序的链表&lt;/p&gt;
 
-&lt;h4 id=&#34;merge-k-sorted-lists:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Merge K Sorted Lists&lt;/h4&gt;
+&lt;h4 id=&#34;merge-k-sorted-lists&#34;&gt;Merge K Sorted Lists&lt;/h4&gt;
 
 &lt;p&gt;归并K个已经排好序的链表&lt;/p&gt;
 
-&lt;h3 id=&#34;topic-3-环形链表:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Topic 3 环形链表&lt;/h3&gt;
+&lt;h3 id=&#34;topic-3-环形链表&#34;&gt;Topic 3 环形链表&lt;/h3&gt;
 
-&lt;h4 id=&#34;linked-list-cycle:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Linked List Cycle&lt;/h4&gt;
+&lt;h4 id=&#34;linked-list-cycle&#34;&gt;Linked List Cycle&lt;/h4&gt;
 
 &lt;p&gt;判断一个链表是否有环&lt;/p&gt;
 
-&lt;h4 id=&#34;linked-list-cycle-ii:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Linked List Cycle II&lt;/h4&gt;
+&lt;h4 id=&#34;linked-list-cycle-ii&#34;&gt;Linked List Cycle II&lt;/h4&gt;
 
 &lt;p&gt;如果一个链表有环，找到环的起始位置&lt;/p&gt;
 
-&lt;h3 id=&#34;topic-4-其它问题:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Topic 4 其它问题&lt;/h3&gt;
+&lt;h3 id=&#34;topic-4-其它问题&#34;&gt;Topic 4 其它问题&lt;/h3&gt;
 
-&lt;h4 id=&#34;copy-list-with-random-pointer:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Copy List with Random Pointer&lt;/h4&gt;
+&lt;h4 id=&#34;copy-list-with-random-pointer&#34;&gt;Copy List with Random Pointer&lt;/h4&gt;
 
 &lt;p&gt;拷贝链表，链表的节点除了有next指针，还有random指针，指向任意一个点。&lt;/p&gt;
 
-&lt;h4 id=&#34;remove-nth-node-from-end-of-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Remove Nth Node From End of List&lt;/h4&gt;
+&lt;h4 id=&#34;remove-nth-node-from-end-of-list&#34;&gt;Remove Nth Node From End of List&lt;/h4&gt;
 
 &lt;p&gt;删除从后向前数的第N个节点&lt;/p&gt;
 
-&lt;h4 id=&#34;remove-duplicates-from-sorted-list:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Remove Duplicates from Sorted List&lt;/h4&gt;
+&lt;h4 id=&#34;remove-duplicates-from-sorted-list&#34;&gt;Remove Duplicates from Sorted List&lt;/h4&gt;
 
 &lt;p&gt;去掉链表中的重复元素，使得原来链表中的所有元素都出现并且只出现一次。&lt;/p&gt;
 
-&lt;h4 id=&#34;remove-duplicates-from-sorted-list-ii:ac6eb2e8e47254236eacd8079d974b95&#34;&gt;Remove Duplicates from Sorted List II&lt;/h4&gt;
+&lt;h4 id=&#34;remove-duplicates-from-sorted-list-ii&#34;&gt;Remove Duplicates from Sorted List II&lt;/h4&gt;
 
 &lt;p&gt;去掉链表中的重复元素，使得原来链表中的非重复元素都出现并且只出现一次，重复元素不出现。&lt;/p&gt;
 </description>
@@ -1724,52 +1733,6 @@ return [3, 4].
         result[1] = r;  
           
         return result;  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 35 Search Insert Position 二叉查找相关（一）</title>
-      <link>http://blog.ywheel.cn/post/2015/03/09/leetcode_35/</link>
-      <pubDate>Mon, 09 Mar 2015 23:41:08 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.cn/post/2015/03/09/leetcode_35/</guid>
-      <description>&lt;p&gt;题目：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/search-insert-position/
-Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
-
-You may assume no duplicates in the array.
-
-Here are few examples.
-[1,3,5,6], 5 → 2
-[1,3,5,6], 2 → 1
-[1,3,5,6], 7 → 4
-[1,3,5,6], 0 → 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;考查基本的二叉查找算法，直接上代码：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Solution {  
-    public int searchInsert(int[] A, int target) {  
-        if (A == null || A.length == 0) {  
-            return 0;  
-        }  
-        int l = 0;  
-        int r = A.length - 1;  
-        while (l &amp;lt;= r) {  
-            int mid = (l + r) / 2;  
-            if (A[mid] == target) {  
-                return mid;  
-            } else if (A[mid] &amp;lt; target) {  
-                l = mid + 1;  
-            } else {  
-                r = mid -1;  
-            }  
-        }  
-        return l;  
     }  
 }  
 &lt;/code&gt;&lt;/pre&gt;
