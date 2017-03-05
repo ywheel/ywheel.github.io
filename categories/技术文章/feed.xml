@@ -15,7 +15,233 @@
       <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
       
       <guid>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</guid>
-      <description>&lt;p&gt;上一篇文章，还是去年7月份写的&lt;/p&gt;
+      <description>
+
+&lt;p&gt;最近的项目需要对文本数据各字段进行快速检索、组合查询、模糊查询，在架构选择上选择了Elasticsearch作为支撑这些功能的存储和搜索引擎。其他的不说了，刚好我的第一台mac到了，直接搞起。&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是elk&#34;&gt;什么是ELK&lt;/h2&gt;
+
+&lt;p&gt;日志分析平台可以有多种技术架构的选型，但经过了多年的演变，现在比较流行的应该就是ELK了。 ELK三个字母的意义如下：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Elasticsearch&lt;/li&gt;
+&lt;li&gt;Logstash&lt;/li&gt;
+&lt;li&gt;Kibana&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;架构图下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/ELK%E6%9E%B6%E6%9E%84.jpg?imageMogr2/auto-orient/thumbnail/800x/blur/1x0/quality/75|watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/560/fill/I0ZBRkFGQQ==/dissolve/100/gravity/SouthWest/dx/10/dy/10|imageslim&#34; alt=&#34;ELK架构图&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图中的Shipper和Indexer都可以是Logstash, Broker一般为Redis，也可以是kafka等。而Search &amp;amp; Storage则主要是Elasticsearch了，一方面接收上游index好的文档，另一方面提供API支持对内容的检索。而kibana则是一个web interface, 可以提供简单易用的界面让用户方便的写出搜索的表达式来访问Elasticsearch.&lt;/p&gt;
+
+&lt;p&gt;对于这三部分都有很多深入的点，以后有机会要深入学习和记录。&lt;/p&gt;
+
+&lt;h2 id=&#34;使用brew安装&#34;&gt;使用brew安装&lt;/h2&gt;
+
+&lt;p&gt;既然使用了mac，那么使用brew安装程序则是一个最简单不过的方式了。&lt;/p&gt;
+
+&lt;p&gt;首先安装Elasticsearch，直接输入以下命令即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install elasticsearch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但可能遇到问题，比如要求Java的版本是1.8（我安装的Elasticsearch的按本是5.2.2），这里面可能涉及到还要安装&lt;code&gt;brew cast&lt;/code&gt;用来安装java8, 然后又提示还有其他依赖（后悔没记录下来。。。），而需要xcode-command-tool, 折腾了不少时间。&lt;/p&gt;
+
+&lt;p&gt;安装完成后，可以查看elasticsearch的版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ elasticsearch --version
+Version: 5.2.2, Build: f9d9b74/2017-02-24T17:26:45.835Z, JVM: 1.8.0_121
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动和停止elasticsearch也很简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew services start elasticsearch
+brew services stop elasticsearch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;浏览器访问&lt;code&gt;http://localhost:9200&lt;/code&gt;可以看到Elasticsearch的信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+name: &amp;quot;bWXgrRX&amp;quot;,
+cluster_name: &amp;quot;elasticsearch_ywheel&amp;quot;,
+cluster_uuid: &amp;quot;m99a1gFWQzKECuwnBfnTug&amp;quot;,
+version: {
+number: &amp;quot;5.2.2&amp;quot;,
+build_hash: &amp;quot;f9d9b74&amp;quot;,
+build_date: &amp;quot;2017-02-24T17:26:45.835Z&amp;quot;,
+build_snapshot: false,
+lucene_version: &amp;quot;6.4.1&amp;quot;
+},
+tagline: &amp;quot;You Know, for Search&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着安装logstash：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install logstash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装好后查看版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ logstash --version
+logstash 5.2.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;浏览器访问&lt;code&gt;http://localhost:9600&lt;/code&gt;可以看到如下信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+host: &amp;quot;ywheeldeMacBook-Pro.local&amp;quot;,
+version: &amp;quot;5.2.2&amp;quot;,
+http_address: &amp;quot;127.0.0.1:9600&amp;quot;,
+id: &amp;quot;70b78f4a-fe0f-4187-bf71-fe1f60b74e0a&amp;quot;,
+name: &amp;quot;ywheeldeMacBook-Pro.local&amp;quot;,
+build_date: &amp;quot;2017-02-24T17:46:55Z&amp;quot;,
+build_sha: &amp;quot;57984d20eb28b0df40a59077c600ec1a399d46f5&amp;quot;,
+build_snapshot: false
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kibana不需要通过brew安装，直接下载压缩包后，解压后执行&lt;code&gt;./kibana&lt;/code&gt;即可。不过我还是在&lt;code&gt;/usr/local/bin/&lt;/code&gt;下创建了&lt;code&gt;kibana&lt;/code&gt;和&lt;code&gt;kibana-plugin&lt;/code&gt;的软连接， &lt;code&gt;elasticsearch&lt;/code&gt;,&lt;code&gt;elasticsearch-plugin&lt;/code&gt;,&lt;code&gt;logstash&lt;/code&gt;和&lt;code&gt;logstash-plugin&lt;/code&gt;都在这个目录下，以后安装插件的话，还都需要用上这些&lt;code&gt;*-plugin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Kibana安装完成后，需要在&lt;code&gt;config/kibana.yml&lt;/code&gt;文件中，确认&lt;code&gt;elasticsearch.url: &amp;quot;http://localhost:9200&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;测试写入和查询&#34;&gt;测试写入和查询&lt;/h2&gt;
+
+&lt;p&gt;写入Elasticsearch可以很简单，其本身就提供了RESTFul的API接口，参考&lt;a href=&#34;https://www.elastic.co/guide/en/kibana/3.0/import-some-data.html&#34;&gt;https://www.elastic.co/guide/en/kibana/3.0/import-some-data.html&lt;/a&gt; ，通过以下命令创建shakespeare index：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;curl -XPUT http://localhost:9200/shakespeare -d &#39;
+{
+ &amp;quot;mappings&amp;quot; : {
+  &amp;quot;_default_&amp;quot; : {
+   &amp;quot;properties&amp;quot; : {
+    &amp;quot;speaker&amp;quot; : {&amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;, &amp;quot;index&amp;quot; : &amp;quot;not_analyzed&amp;quot; },
+    &amp;quot;play_name&amp;quot; : {&amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;, &amp;quot;index&amp;quot; : &amp;quot;not_analyzed&amp;quot; },
+    &amp;quot;line_id&amp;quot; : { &amp;quot;type&amp;quot; : &amp;quot;integer&amp;quot; },
+    &amp;quot;speech_number&amp;quot; : { &amp;quot;type&amp;quot; : &amp;quot;integer&amp;quot; }
+   }
+  }
+ }
+}
+&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过以下命令将数据写入Elasticsearch：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -XPUT localhost:9200/_bulk --data-binary @shakespeare.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;数据写入后，到kibana目录运行&lt;code&gt;./kibana&lt;/code&gt;，启动后访问：&lt;code&gt;http://localhost:5601/&lt;/code&gt; , 看到kibana界面后会提示&amp;rdquo;Configure an index pattern&amp;rdquo;。， 如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%E5%88%9B%E5%BB%BAindex%201.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;刚才在写入数据的时候已经创建了shakespeare index, 且不是按照时间分布的日志文件（shakespeare只有一个json文件），因此，取消勾选&lt;code&gt;Index contains time-based envents&lt;/code&gt;，输入&lt;code&gt;shakespeare&lt;/code&gt;后，就能看到&lt;code&gt;create&lt;/code&gt;按钮了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%E5%88%9B%E5%BB%BAindex%202.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击kibana的Discover页面，输入&lt;code&gt;WESTMORELAND&lt;/code&gt;查询，可以看到有110个结果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20discover.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana 3&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;监控和安全&#34;&gt;监控和安全&lt;/h2&gt;
+
+&lt;p&gt;在Elasticsearch 5.x的时代，监控和管理由X-Pack统一完成，包含：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;安全：用户权限管理&lt;/li&gt;
+&lt;li&gt;告警：自动告警&lt;/li&gt;
+&lt;li&gt;监控：监控Elasticsearch集群的状态&lt;/li&gt;
+&lt;li&gt;报告：发送报告、导出数据&lt;/li&gt;
+&lt;li&gt;图表：可视化数据&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在安装X-Pack之前，需要停止Kibana和Elasticsearch:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;elasticsearch-plugin install x-pack
+kibana-plugin install x-pack
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装完成后，启动elasticsearch和kibana，访问kibana时发现需要登录了， 默认用户名和密码是elastic/changeme。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20login.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana login&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;后续可以在Management面板中进行用户和角色的配置，也可以看到新增了Reporting。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20management.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana management&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在Monitoring页面中可以看到Elasticsearch和Kibana的状态，点击Indices还可以看到具体索引的状态。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20monitoring%201.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana monitoring 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20monitoring%202.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana monitoring 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;告警功能和报表功能后续再进行详细研究。之前在A家的时候，记得有个基于日志的告警功能：当service的日志中出现了ERROR或FATAL，可以自动触发告警。有了X-Pack后，这个功能应该也是可以通过ELK来实现的啦。&lt;/p&gt;
+
+&lt;p&gt;通过访问&lt;code&gt;http://localhost:9200/_cat/indices?v&lt;/code&gt;查看Elasticsearch的Index, 可以发现几个新的与监控有关的index:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;health status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   .monitoring-es-2-2017.03.04     COZvO_dlSkqdEtntrZrzFA   1   1      10240          154      4.5mb          4.5mb
+green  open   .security                       XEeHRF5NT0ud2jpxOzsoHw   1   0          1            0      2.8kb          2.8kb
+yellow open   .kibana                         p-cJGBCXQySNGR0924jRdQ   1   1          2            1      9.8kb          9.8kb
+yellow open   .monitoring-data-2              QZt0hpTISUO_58pWoG5Hyw   1   1          3            0      6.9kb          6.9kb
+yellow open   .monitoring-kibana-2-2017.03.04 nLHKuL1KTiCE2lsWz8tdkA   1   1        849            0      245kb          245kb
+yellow open   shakespeare                     zPCLp4KmTkiu7m4tYcA_Iw   5   1     111396            0     28.1mb         28.1mb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;使用logstash导入博文&#34;&gt;使用Logstash导入博文&lt;/h2&gt;
+
+&lt;p&gt;在上面的操作中，直接使用了elasticsearch的API接口来进行数据的导入，而使用logstash也能够很方便的写入elasticsearch。 首先得生成一个logstash的conf文件，比如我想建立我的博客的索引，在我的家目录下创建了my_blog.conf文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;input{
+    file{
+        path =&amp;gt; [&amp;quot;/Users/ywheel/my_blog/content/about.md&amp;quot;]
+    }
+}   
+output{
+    elasticsearch{
+        hosts =&amp;gt; [&amp;quot;localhost:9200&amp;quot;]
+        index =&amp;gt; &amp;quot;my_blog&amp;quot;
+        user =&amp;gt; &amp;quot;elastic&amp;quot;
+        password =&amp;gt; &amp;quot;changeme&amp;quot;
+   }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意拜X-Pack所赐，这配置文件里面对elasticsearch需要用户名和密码。然后敲入&lt;code&gt;logstash -f my_blog.conf&lt;/code&gt;来执行，但却一直不成功。后来翻logstash的文档 &lt;a href=&#34;https://www.elastic.co/guide/en/logstash/current/pipeline.html&#34;&gt;https://www.elastic.co/guide/en/logstash/current/pipeline.html&lt;/a&gt; ，里面写了一句这样的话：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Inputs
+
+You use inputs to get data into Logstash. Some of the more commonly-used inputs are:
+
+- file: reads from a file on the filesystem, much like the UNIX command tail -0F
+- syslog: listens on the well-known port 514 for syslog messages and parses according to the RFC3164 format
+- redis: reads from a redis server, using both redis channels and redis lists. Redis is often used as a &amp;quot;broker&amp;quot; in a centralized Logstash installation, which queues Logstash events from remote Logstash &amp;quot;shippers&amp;quot;.
+- beats: processes events sent by Filebeat.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;file&lt;/code&gt;这个input相当于使用&lt;code&gt;tail&lt;/code&gt;来获取文件中的数据的啊， 我的about.md压根就没有变化，因此也没有内容被写入了Elasticsearch。于是，我把conf改成了这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;input{
+    file{
+        path =&amp;gt; [&amp;quot;/Users/ywheel/test.md&amp;quot;]
+    }
+}   
+output{
+    elasticsearch{
+        hosts =&amp;gt; [&amp;quot;localhost:9200&amp;quot;]
+        index =&amp;gt; &amp;quot;my_blog&amp;quot;
+        user =&amp;gt; &amp;quot;elastic&amp;quot;
+        password =&amp;gt; &amp;quot;changeme&amp;quot;
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行&lt;code&gt;logstash -f my_blog_conf&lt;/code&gt;后，再运行&lt;code&gt;cat /Users/ywheel/my_blog/content/about.md &amp;gt; /Users/ywheel/test.md&lt;/code&gt;, 然后发现数据写入了Elasticsearch， index也多了一个&lt;code&gt;my_blog&lt;/code&gt;。到Kibana中添加&lt;code&gt;my_blog&lt;/code&gt;这个index pattern后，就可以在Discover进行搜索了。比如我搜索“程序员”：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/kibana%20search.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5a6L5L2T/fontsize/500/fill/Izk3QjhGMw==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;kibana search&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;看来中文分词得改进一下，不过现在也已经很酷了! 以后可以对整个博客进行全文检索了~~&lt;/p&gt;
 </description>
     </item>
     
