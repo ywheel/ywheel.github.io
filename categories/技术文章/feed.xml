@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术文章 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml</link>
+    <link>http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml</link>
     <description>Recent content in 技术文章 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2017. All rights reserved.</copyright>
-    <atom:link href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mac上搭建ELK</title>
-      <link>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</link>
+      <link>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</link>
       <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</guid>
+      <guid>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</guid>
       <description>
 
 &lt;p&gt;最近的项目需要对文本数据各字段进行快速检索、组合查询、模糊查询，在架构选择上选择了Elasticsearch作为支撑这些功能的存储和搜索引擎。其他的不说了，刚好我的第一台mac到了，直接搞起。&lt;/p&gt;
@@ -247,10 +247,10 @@ output{
     
     <item>
       <title>Oozie ssh action问题排查</title>
-      <link>http://blog.ywheel.cn/post/2016/07/14/oozie_ssh_action/</link>
+      <link>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</link>
       <pubDate>Thu, 14 Jul 2016 20:21:30 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/07/14/oozie_ssh_action/</guid>
+      <guid>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</guid>
       <description>
 
 &lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
@@ -571,10 +571,10 @@ Complete!
     
     <item>
       <title>Hive In Oozie Workflow</title>
-      <link>http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/</link>
+      <link>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</link>
       <pubDate>Sun, 12 Jun 2016 00:16:44 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/</guid>
+      <guid>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</guid>
       <description>
 
 &lt;p&gt;在公司搭建和维护大数据平台，并提供给其他数据分析人员使用，hive就是那些非程序员使用的最多（几乎是唯一）的一个服务。当然，在每天的数据处理中，我们为了简化编码工作量，以及使用到数据分析人员积累的成果，可以直接使用或简单修改他们提供的hql脚本进行数据处理，并且使用Oozie调度hive作业。&lt;/p&gt;
@@ -755,10 +755,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>HUE Introduction and Contribution</title>
-      <link>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</link>
+      <link>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</link>
       <pubDate>Sun, 29 May 2016 21:31:44 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</guid>
+      <guid>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</guid>
       <description>
 
 &lt;p&gt;前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。&lt;/p&gt;
@@ -874,10 +874,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>Grep命令的与或非</title>
-      <link>http://blog.ywheel.cn/post/2015/03/17/grep_and_or_not/</link>
+      <link>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</link>
       <pubDate>Tue, 17 Mar 2015 00:37:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/17/grep_and_or_not/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;原文标题：
@@ -1060,10 +1060,10 @@ NOT: -v
     
     <item>
       <title>LeetCode 119 Pascal&#39;s Triangle II</title>
-      <link>http://blog.ywheel.cn/post/2015/03/17/leetcode_119/</link>
+      <link>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</link>
       <pubDate>Tue, 17 Mar 2015 00:16:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/17/leetcode_119/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/pascals-triangle-ii/
@@ -1098,10 +1098,10 @@ Could you optimize your algorithm to use only O(k) extra space?
     
     <item>
       <title>LeetCode 023 Merge K Sorted Lists</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_23/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</link>
       <pubDate>Thu, 12 Mar 2015 02:52:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_23/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</guid>
       <description>
 
 &lt;p&gt;题：&lt;/p&gt;
@@ -1174,10 +1174,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 021 Merge Two Sorted Lists</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_21/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</link>
       <pubDate>Thu, 12 Mar 2015 01:43:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_21/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;p&gt;````
@@ -1292,10 +1292,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 088 Merge Sorted Array</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_88/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</link>
       <pubDate>Thu, 12 Mar 2015 00:36:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_88/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/merge-sorted-array/
@@ -1336,10 +1336,10 @@ You may assume that A has enough space (size that is greater or equal to m + n) 
     
     <item>
       <title>LeetCode 147 Insertion Sort List</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_147/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</link>
       <pubDate>Thu, 12 Mar 2015 00:16:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_147/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/insertion-sort-list/
@@ -1400,10 +1400,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 题目总结/分类</title>
-      <link>http://blog.ywheel.cn/post/2015/03/11/leetcode_summary/</link>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</link>
       <pubDate>Wed, 11 Mar 2015 01:36:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/11/leetcode_summary/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;转载自豆瓣： http://www.douban.com/note/330562764/
@@ -1665,10 +1665,10 @@ public class Solution {
     
     <item>
       <title>LeetCode主题整理(4)链表及相关问题</title>
-      <link>http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/</link>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</link>
       <pubDate>Wed, 11 Mar 2015 01:32:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/11/leetcode_linked_list/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;转载自：http://blog.csdn.net/feliciafay/article/details/18944093
@@ -1746,10 +1746,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 066 Plus one</title>
-      <link>http://blog.ywheel.cn/post/2015/03/11/leetcode_66/</link>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</link>
       <pubDate>Wed, 11 Mar 2015 01:26:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/11/leetcode_66/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</guid>
       <description>&lt;p&gt;题目：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/plus-one/
@@ -1785,10 +1785,10 @@ The digits are stored such that the most significant digit is at the head of the
     
     <item>
       <title>LeetCode 33 Search in Rotated Sorted Array 二叉查找（三）</title>
-      <link>http://blog.ywheel.cn/post/2015/03/10/leetcode_33/</link>
+      <link>http://blog.ywheel.com/post/2015/03/10/leetcode_33/</link>
       <pubDate>Tue, 10 Mar 2015 01:45:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/10/leetcode_33/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/10/leetcode_33/</guid>
       <description>&lt;p&gt;题目：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/search-in-rotated-sorted-array/
@@ -1842,10 +1842,10 @@ You may assume no duplicate exists in the array.
     
     <item>
       <title>LeetCode 34 Search For A Range 二叉查找相关（二）</title>
-      <link>http://blog.ywheel.cn/post/2015/03/10/leetcode_34/</link>
+      <link>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</link>
       <pubDate>Tue, 10 Mar 2015 00:07:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/10/leetcode_34/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</guid>
       <description>&lt;p&gt;题目：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/search-for-a-range/

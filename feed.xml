@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>轮子们</title>
-    <link>http://blog.ywheel.cn/feed/index.xml</link>
+    <link>http://blog.ywheel.com/feed/index.xml</link>
     <description>Recent content on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2017. All rights reserved.</copyright>
     <lastBuildDate>Sat, 04 Mar 2017 20:52:39 +0800</lastBuildDate>
-    <atom:link href="http://blog.ywheel.cn/feed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.ywheel.com/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mac上搭建ELK</title>
-      <link>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</link>
+      <link>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</link>
       <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</guid>
+      <guid>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</guid>
       <description>
 
 &lt;p&gt;最近的项目需要对文本数据各字段进行快速检索、组合查询、模糊查询，在架构选择上选择了Elasticsearch作为支撑这些功能的存储和搜索引擎。其他的不说了，刚好我的第一台mac到了，直接搞起。&lt;/p&gt;
@@ -248,10 +248,10 @@ output{
     
     <item>
       <title>我的第一台Mac</title>
-      <link>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</link>
+      <link>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</link>
       <pubDate>Sat, 04 Mar 2017 19:43:18 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</guid>
+      <guid>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</guid>
       <description>&lt;p&gt;我的上一篇文章，还是去年7月份的了，中间隔了大半年。大半年来的忙碌工作，让这个博客就像一个烂尾楼，半死不活，仅靠着几篇文章苟活着。当然，懒也是逃不掉的一个原因。回想这半年多来的工作，在工作内容和职责上出现了一些转变，使得我自己写代码的时间变得越来越少。还记得最近一次写代码还是自己给自己分配的一个单元测试的代码样例，但也同样超出了时间预期，自己成为了整个团队中拖后腿的人。&lt;/p&gt;
 
 &lt;p&gt;工作内容和职责的变化，也导致我需要&amp;rdquo;频繁&amp;rdquo;地出差，2016年共飞了25次，对于一个技术人员来说这个飞行次数显然是一个过大的值。即便在广州也需要频繁地到现场面对客户，写PPT，讲PPT。&lt;/p&gt;
@@ -283,10 +283,10 @@ output{
     
     <item>
       <title>Oozie ssh action问题排查</title>
-      <link>http://blog.ywheel.cn/post/2016/07/14/oozie_ssh_action/</link>
+      <link>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</link>
       <pubDate>Thu, 14 Jul 2016 20:21:30 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/07/14/oozie_ssh_action/</guid>
+      <guid>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</guid>
       <description>
 
 &lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
@@ -607,10 +607,10 @@ Complete!
     
     <item>
       <title>Hive In Oozie Workflow</title>
-      <link>http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/</link>
+      <link>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</link>
       <pubDate>Sun, 12 Jun 2016 00:16:44 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/06/12/hive_in_oozie_workflow/</guid>
+      <guid>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</guid>
       <description>
 
 &lt;p&gt;在公司搭建和维护大数据平台，并提供给其他数据分析人员使用，hive就是那些非程序员使用的最多（几乎是唯一）的一个服务。当然，在每天的数据处理中，我们为了简化编码工作量，以及使用到数据分析人员积累的成果，可以直接使用或简单修改他们提供的hql脚本进行数据处理，并且使用Oozie调度hive作业。&lt;/p&gt;
@@ -791,10 +791,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>高三楼</title>
-      <link>http://blog.ywheel.cn/post/2016/06/05/examination/</link>
+      <link>http://blog.ywheel.com/post/2016/06/05/examination/</link>
       <pubDate>Sun, 05 Jun 2016 20:54:11 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/06/05/examination/</guid>
+      <guid>http://blog.ywheel.com/post/2016/06/05/examination/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E5%A5%8B%E6%96%97.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;奋斗&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们或在大洋彼岸思念故乡，而又有一群小P孩要自己把握命运。虽说高考并不十分公平，但至少给了我们机会，从小地方到大都市，从家乡土话到京腔甚至life translated。再过十年，人生又大不相同，而十年之前，就在那高三楼里为现在的自己艰苦卓绝着。。。&lt;/p&gt;
@@ -825,10 +825,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>HUE Introduction and Contribution</title>
-      <link>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</link>
+      <link>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</link>
       <pubDate>Sun, 29 May 2016 21:31:44 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/05/29/hue_introduction/</guid>
+      <guid>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</guid>
       <description>
 
 &lt;p&gt;前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。&lt;/p&gt;
@@ -944,10 +944,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>老家</title>
-      <link>http://blog.ywheel.cn/post/2016/05/18/family/</link>
+      <link>http://blog.ywheel.com/post/2016/05/18/family/</link>
       <pubDate>Wed, 18 May 2016 02:41:01 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/05/18/family/</guid>
+      <guid>http://blog.ywheel.com/post/2016/05/18/family/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E8%80%81%E5%AE%B6.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;老家门前的三棵枣树&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图：老家门前的三棵枣树&lt;/p&gt;
@@ -985,10 +985,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>关于我</title>
-      <link>http://blog.ywheel.cn/about/</link>
+      <link>http://blog.ywheel.com/about/</link>
       <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/about/</guid>
+      <guid>http://blog.ywheel.com/about/</guid>
       <description>
 
 &lt;p&gt;Hi all, 我叫ywheel, 是一名程序员。&lt;/p&gt;
@@ -1033,10 +1033,10 @@ MapReduce Jobs Launched:
     
     <item>
       <title>Grep命令的与或非</title>
-      <link>http://blog.ywheel.cn/post/2015/03/17/grep_and_or_not/</link>
+      <link>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</link>
       <pubDate>Tue, 17 Mar 2015 00:37:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/17/grep_and_or_not/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;原文标题：
@@ -1219,10 +1219,10 @@ NOT: -v
     
     <item>
       <title>LeetCode 119 Pascal&#39;s Triangle II</title>
-      <link>http://blog.ywheel.cn/post/2015/03/17/leetcode_119/</link>
+      <link>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</link>
       <pubDate>Tue, 17 Mar 2015 00:16:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/17/leetcode_119/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/pascals-triangle-ii/
@@ -1257,10 +1257,10 @@ Could you optimize your algorithm to use only O(k) extra space?
     
     <item>
       <title>LeetCode 023 Merge K Sorted Lists</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_23/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</link>
       <pubDate>Thu, 12 Mar 2015 02:52:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_23/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</guid>
       <description>
 
 &lt;p&gt;题：&lt;/p&gt;
@@ -1333,10 +1333,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 021 Merge Two Sorted Lists</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_21/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</link>
       <pubDate>Thu, 12 Mar 2015 01:43:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_21/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;p&gt;````
@@ -1451,10 +1451,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 088 Merge Sorted Array</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_88/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</link>
       <pubDate>Thu, 12 Mar 2015 00:36:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_88/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/merge-sorted-array/
@@ -1495,10 +1495,10 @@ You may assume that A has enough space (size that is greater or equal to m + n) 
     
     <item>
       <title>LeetCode 147 Insertion Sort List</title>
-      <link>http://blog.ywheel.cn/post/2015/03/12/leetcode_147/</link>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</link>
       <pubDate>Thu, 12 Mar 2015 00:16:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/12/leetcode_147/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</guid>
       <description>&lt;p&gt;题：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/insertion-sort-list/
@@ -1559,10 +1559,10 @@ public class Solution {
     
     <item>
       <title>LeetCode 题目总结/分类</title>
-      <link>http://blog.ywheel.cn/post/2015/03/11/leetcode_summary/</link>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</link>
       <pubDate>Wed, 11 Mar 2015 01:36:08 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2015/03/11/leetcode_summary/</guid>
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;转载自豆瓣： http://www.douban.com/note/330562764/

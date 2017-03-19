@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-  <base href="http://blog.ywheel.cn/">
+  <base href="http://blog.ywheel.com/">
   <script>
     document._writeOriginal = document.write;
     document.write = function(str) {
@@ -24,12 +24,12 @@
 
 <meta itemprop="name" content="Mac上搭建ELK - 轮子们">
 <meta itemprop="description" content="setup ELK on mac">
-<meta itemprop="image" content="http://blog.ywheel.cn/public/ywheel.jpg">
+<meta itemprop="image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
 <meta property="og:title" content="Mac上搭建ELK - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/" />
-<meta property="og:image" content="http://blog.ywheel.cn/public/ywheel.jpg" />
+<meta property="og:url" content="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/" />
+<meta property="og:image" content="http://blog.ywheel.com/public/ywheel.jpg" />
 <meta property="og:description" content="setup ELK on mac">
 
 <meta name="twitter:card" content="summary">
@@ -37,21 +37,21 @@
 <meta name="twitter:title" content="Mac上搭建ELK - 轮子们">
 <meta name="twitter:description" content="setup ELK on mac">
 <meta name="twitter:creator" content="@ywheel">
-<meta name="twitter:image" content="http://blog.ywheel.cn/public/ywheel.jpg">
+<meta name="twitter:image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/">
-  <link rel='shortlink' href="http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/"/>
-  <link rel="shortcut icon" href="http://blog.ywheel.cn/public/favicon.ico"/>
+  <link rel="canonical" href="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/">
+  <link rel='shortlink' href="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/"/>
+  <link rel="shortcut icon" href="http://blog.ywheel.com/public/favicon.ico"/>
   
-<link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
-<link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.cn/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
-<link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
-<link rel="stylesheet" id="font-awesome-css" href="http://blog.ywheel.cn/wp-content/themes/hueman/fonts/font-awesome.min.css" type="text/css" media="all"/>
-<link rel="stylesheet" href="http://blog.ywheel.cn/public/highlight/styles/github.css">
-<script src="http://blog.ywheel.cn/public/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.com/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.com/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.com/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="font-awesome-css" href="http://blog.ywheel.com/wp-content/themes/hueman/fonts/font-awesome.min.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://blog.ywheel.com/public/highlight/styles/github.css">
+<script src="http://blog.ywheel.com/public/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<link rel="stylesheet" id="human-style-css3" href="http://blog.ywheel.cn/wp-content/themes/hueman-child/user.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="human-style-css3" href="http://blog.ywheel.com/wp-content/themes/hueman-child/user.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="public/font/hack/css/hack.min.css">
 
 <script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
@@ -71,37 +71,37 @@
     <div class="nav-toggle"><i class="fa fa-bars"></i></div>
     <div class="nav-text"></div>
     <div class="nav-wrap container">
-      <a rel="nofollow" href="http://blog.ywheel.cn/" class="nav-cs-icon">
-        <img width="40" height="40" src="http://blog.ywheel.cn/public/ywheel.jpg" alt="ywheel" title="Home">
+      <a rel="nofollow" href="http://blog.ywheel.com/" class="nav-cs-icon">
+        <img width="40" height="40" src="http://blog.ywheel.com/public/ywheel.jpg" alt="ywheel" title="Home">
       </a>
       <ul id="menu-default-menu" class="nav container-inner group">
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/">首页</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/">首页</a>
         </li>
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
         </li>
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
         </li>
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
         </li>
         
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/post/">归档</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/post/">归档</a>
         </li>
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/about/">关于我</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/about/">关于我</a>
         </li>
         
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a rel="nofollow" href="http://blog.ywheel.cn/feed.xml" type="application/rss+xml" target="_blank">订阅</a>
+          <a rel="nofollow" href="http://blog.ywheel.com/feed.xml" type="application/rss+xml" target="_blank">订阅</a>
         </li>
       </ul>
     </div>
@@ -133,8 +133,8 @@
 
         <div class="group pad">
           <h1 class="site-title">
-            <a rel="nofollow" href="http://blog.ywheel.cn/" rel="home">
-              <img style="border-radius: 50%;width:72px;height:72px;margin:0 auto;vertical-align: middle;" alt="ywheel" src="http://blog.ywheel.cn/public/ywheel.jpg"></img>
+            <a rel="nofollow" href="http://blog.ywheel.com/" rel="home">
+              <img style="border-radius: 50%;width:72px;height:72px;margin:0 auto;vertical-align: middle;" alt="ywheel" src="http://blog.ywheel.com/public/ywheel.jpg"></img>
               <span style="padding-top: 5px;">轮子们</span>
             </a>
             
@@ -161,7 +161,7 @@
               <ul class="meta-single group">
                 
                 <li class="category">
-                  <a href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                  <a href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
                 </li>
                 
               </ul>
@@ -419,11 +419,11 @@ output{
                     </div>
                     <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
                         <div style="float:left;margin-top:6px;">
-                        <img src="http://blog.ywheel.cn/public/ywheel.jpg" width="100px" height="100px"/>
+                        <img src="http://blog.ywheel.com/public/ywheel.jpg" width="100px" height="100px"/>
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/">http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/">http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -440,7 +440,7 @@ output{
               
               
               <section id="comments" class="themeform">
-<div class="ds-thread" data-thread-key="/post/2017/03/04/setup_elk_on_mac/" data-title="Mac上搭建ELK" data-url="http://blog.ywheel.cn/post/2017/03/04/setup_elk_on_mac/"></div>
+<div class="ds-thread" data-thread-key="/post/2017/03/04/setup_elk_on_mac/" data-title="Mac上搭建ELK" data-url="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"ywheel"};
 	(function() {
@@ -483,14 +483,14 @@ var duoshuoQuery = {short_name:"ywheel"};
 
     </div>
     <div class="widget qrcode">
-    <img src="http://blog.ywheel.cn/public/qrcode.jpg" alt="qrcode" width="172px" height="172px"/>
+    <img src="http://blog.ywheel.com/public/qrcode.jpg" alt="qrcode" width="172px" height="172px"/>
     <p> 微信扫一扫：<br/> 关注我的公众号： <br /> 轮子们 <br /></p>
 </div>
 
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/" rel="next">
+        <a href="http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
           <span>我的第一台Mac</span>
@@ -522,15 +522,15 @@ var duoshuoQuery = {short_name:"ywheel"};
       <ul>
         
           <li class="cat-item cat-item-1">
-            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
           </li>
         
           <li class="cat-item cat-item-1">
-            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
           </li>
         
           <li class="cat-item cat-item-1">
-            <a rel="nofollow" href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
           </li>
         
       </ul>

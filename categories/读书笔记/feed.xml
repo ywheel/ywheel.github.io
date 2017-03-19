@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>读书笔记 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml</link>
+    <link>http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml</link>
     <description>Recent content in 读书笔记 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2017. All rights reserved.</copyright>
-    <atom:link href="http://blog.ywheel.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>计算广告学笔记3-合约广告系统简介</title>
-      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</link>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</link>
       <pubDate>Sun, 01 Sep 2013 22:43:12 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-03/</guid>
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;注： 内容来自师徒网：刘鹏--计算广告学
@@ -55,10 +55,10 @@
     
     <item>
       <title>计算广告学笔记2-常用广告系统开源工具</title>
-      <link>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</link>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</link>
       <pubDate>Sun, 01 Sep 2013 22:32:39 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2013/09/01/computational-advertising-02/</guid>
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;注：内容来自师徒网， 计算广告学 刘鹏
@@ -110,10 +110,10 @@ Chuhwa；Scribe（facebook）： Data highway；&lt;/p&gt;
     
     <item>
       <title>计算广告学笔记1-计算广告核心问题和挑战</title>
-      <link>http://blog.ywheel.cn/post/2013/08/23/computational-advertising-01/</link>
+      <link>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</link>
       <pubDate>Fri, 23 Aug 2013 00:51:07 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2013/08/23/computational-advertising-01/</guid>
+      <guid>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</guid>
       <description>
 
 &lt;pre&gt;&lt;code&gt;注：内容整理自师徒网：刘鹏 计算广告学

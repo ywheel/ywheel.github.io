@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>思考感悟 on 轮子们</title>
-    <link>http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml</link>
+    <link>http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml</link>
     <description>Recent content in 思考感悟 on 轮子们</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2017. All rights reserved.</copyright>
-    <atom:link href="http://blog.ywheel.cn/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>我的第一台Mac</title>
-      <link>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</link>
+      <link>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</link>
       <pubDate>Sat, 04 Mar 2017 19:43:18 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2017/03/04/my_first_macbookpro/</guid>
+      <guid>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</guid>
       <description>&lt;p&gt;我的上一篇文章，还是去年7月份的了，中间隔了大半年。大半年来的忙碌工作，让这个博客就像一个烂尾楼，半死不活，仅靠着几篇文章苟活着。当然，懒也是逃不掉的一个原因。回想这半年多来的工作，在工作内容和职责上出现了一些转变，使得我自己写代码的时间变得越来越少。还记得最近一次写代码还是自己给自己分配的一个单元测试的代码样例，但也同样超出了时间预期，自己成为了整个团队中拖后腿的人。&lt;/p&gt;
 
 &lt;p&gt;工作内容和职责的变化，也导致我需要&amp;rdquo;频繁&amp;rdquo;地出差，2016年共飞了25次，对于一个技术人员来说这个飞行次数显然是一个过大的值。即便在广州也需要频繁地到现场面对客户，写PPT，讲PPT。&lt;/p&gt;
@@ -46,10 +46,10 @@
     
     <item>
       <title>高三楼</title>
-      <link>http://blog.ywheel.cn/post/2016/06/05/examination/</link>
+      <link>http://blog.ywheel.com/post/2016/06/05/examination/</link>
       <pubDate>Sun, 05 Jun 2016 20:54:11 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/06/05/examination/</guid>
+      <guid>http://blog.ywheel.com/post/2016/06/05/examination/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E5%A5%8B%E6%96%97.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;奋斗&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们或在大洋彼岸思念故乡，而又有一群小P孩要自己把握命运。虽说高考并不十分公平，但至少给了我们机会，从小地方到大都市，从家乡土话到京腔甚至life translated。再过十年，人生又大不相同，而十年之前，就在那高三楼里为现在的自己艰苦卓绝着。。。&lt;/p&gt;
@@ -80,10 +80,10 @@
     
     <item>
       <title>老家</title>
-      <link>http://blog.ywheel.cn/post/2016/05/18/family/</link>
+      <link>http://blog.ywheel.com/post/2016/05/18/family/</link>
       <pubDate>Wed, 18 May 2016 02:41:01 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/post/2016/05/18/family/</guid>
+      <guid>http://blog.ywheel.com/post/2016/05/18/family/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/%E8%80%81%E5%AE%B6.jpg?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;老家门前的三棵枣树&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图：老家门前的三棵枣树&lt;/p&gt;
@@ -121,10 +121,10 @@
     
     <item>
       <title>关于我</title>
-      <link>http://blog.ywheel.cn/about/</link>
+      <link>http://blog.ywheel.com/about/</link>
       <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
       
-      <guid>http://blog.ywheel.cn/about/</guid>
+      <guid>http://blog.ywheel.com/about/</guid>
       <description>
 
 &lt;p&gt;Hi all, 我叫ywheel, 是一名程序员。&lt;/p&gt;
