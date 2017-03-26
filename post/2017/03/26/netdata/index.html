@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <base href="http://blog.ywheel.com/">
+  <script>
+    document._writeOriginal = document.write;
+    document.write = function(str) {
+        if (str.indexOf('livereload.js') > -1) {
+            document._writeOriginal(str);
+        } else {
+            document._writeOriginal('<!-- Be Hijack!! -->');
+        }
+    }
+  </script>
+  <title>Linux服务器监控的神器：Netdata - 轮子们</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="keywords" content="监控, 可视化,">
+<meta name="description" content="Netdata，单服务器监控的神器">
+<meta name="author" content="ywheel">
+<meta name="publisher" content="ywheel">
+<meta name="generator" content="http://gohugo.io/"/>
+
+<meta itemprop="name" content="Linux服务器监控的神器：Netdata - 轮子们">
+<meta itemprop="description" content="Netdata，单服务器监控的神器">
+<meta itemprop="image" content="http://blog.ywheel.com/public/ywheel.jpg">
+
+<meta property="og:title" content="Linux服务器监控的神器：Netdata - 轮子们" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ywheel.com/post/2017/03/26/netdata" />
+<meta property="og:image" content="http://blog.ywheel.com/public/ywheel.jpg" />
+<meta property="og:description" content="Netdata，单服务器监控的神器">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@ywheel">
+<meta name="twitter:title" content="Linux服务器监控的神器：Netdata - 轮子们">
+<meta name="twitter:description" content="Netdata，单服务器监控的神器">
+<meta name="twitter:creator" content="@ywheel">
+<meta name="twitter:image" content="http://blog.ywheel.com/public/ywheel.jpg">
+
+  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+  <link rel="canonical" href="http://blog.ywheel.com/post/2017/03/26/netdata">
+  <link rel='shortlink' href="http://blog.ywheel.com/post/2017/03/26/netdata"/>
+  <link rel="shortcut icon" href="http://blog.ywheel.com/public/favicon.ico"/>
+  
+<link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.com/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.com/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.com/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="font-awesome-css" href="http://blog.ywheel.com/wp-content/themes/hueman/fonts/font-awesome.min.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://blog.ywheel.com/public/highlight/styles/github.css">
+<script src="http://blog.ywheel.com/public/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" id="human-style-css3" href="http://blog.ywheel.com/wp-content/themes/hueman-child/user.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="public/font/hack/css/hack.min.css">
+
+<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/scripts.js"></script>
+<script type="text/javascript" src="assets/picturefill/picturefill.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" async defer src="assets/js/myblog.js"></script>
+
+</head>
+
+<body class="single single-post single-format-standard col-3cm full-width topbar-enabled chrome">
+<div id="wrapper">
+  <header id="header">
+
+  <nav class="nav-container group" id="nav-topbar">
+    <div class="nav-toggle"><i class="fa fa-bars"></i></div>
+    <div class="nav-text"></div>
+    <div class="nav-wrap container">
+      <a rel="nofollow" href="http://blog.ywheel.com/" class="nav-cs-icon">
+        <img width="40" height="40" src="http://blog.ywheel.com/public/ywheel.jpg" alt="ywheel" title="Home">
+      </a>
+      <ul id="menu-default-menu" class="nav container-inner group">
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/">首页</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/post/">归档</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/about/">关于我</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/feed.xml" type="application/rss+xml" target="_blank">订阅</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="container-inner">
+        <div class="toggle-search"><i class="fa fa-search"></i></div>
+        <div class="search-expand">
+          <div class="search-expand-inner">
+            <form method="get" class="searchform themeform" action="https://www.google.com/search">
+              <div>
+                <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+
+  </nav>
+  
+
+  <div class="container group">
+    <div class="container-inner">
+
+      <div class="group pad">
+
+        <div class="group pad">
+          <h1 class="site-title">
+            <a rel="nofollow" href="http://blog.ywheel.com/" rel="home">
+              <img style="border-radius: 50%;width:72px;height:72px;margin:0 auto;vertical-align: middle;" alt="ywheel" src="http://blog.ywheel.com/public/ywheel.jpg"></img>
+              <span style="padding-top: 5px;">轮子们</span>
+            </a>
+            
+          </h1>
+          <p class="site-description"> 勿忘初心，技术无止，做一名文艺的程序员 </p>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+  
+
+</header>
+
+
+
+  <div class="container" id="page">
+    <div class="container-inner">
+      <div class="main">
+        <div class="main-inner group">
+          <section class="content">
+            <div class="page-title pad group">
+              <ul class="meta-single group">
+                
+                <li class="category">
+                  <a href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="pad group">
+
+              <article
+                  class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
+                <div class="post-inner group">
+
+                  <h1 class="post-title">Linux服务器监控的神器：Netdata</h1>
+
+                  <p class="post-byline">
+                    by  · 2017年03月26日 · 1630 Words ·
+                    ~4min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2017/03/26/netdata.md"
+                       target="_blank">Improve on <i class="fa fa-github"></i></a>
+                  </p>
+
+                  <div class="clear"></div>
+
+                  <div class="entry">
+                    <div class="entry-inner">
+                      
+                      
+
+<p>由于工作的关系，最近在思考如何做集群、服务器的监控。在网上东转转西转转，偶然发现了一个单机监控的2016新秀Netdata，眼前着实为之一亮。 令人印象非常之深刻的个主要特性：</p>
+
+<ol>
+<li>界面酷炫，实时监控</li>
+<li>零配置，即装即用</li>
+</ol>
+
+<p>官网地址在这里： <a href="https://my-netdata.io/">https://my-netdata.io/</a> ， 在<a href="https://octoverse.github.com/">The state of the Octoverse 2016</a> 也能看到他的身影：</p>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/GitHub%20octoverse%202016.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="github octoverse 2016" /></p>
+
+<h2 id="netdata-feature">Netdata feature</h2>
+
+<p>从<a href="https://github.com/firehol/netdata#features">Github</a>上能够看到netdata的主要功能，主要有几点（详细的可查看github上的说明）：</p>
+
+<ol>
+<li>interactive bootstrap dashboards, 酷炫（主要是dark主题，light主题就没这感觉了）</li>
+<li>匪夷所思的快。。。所有请求每个metreic都在0.5ms内响应，即便是一台烂机器</li>
+<li>非常高效，每秒采集数千个指标，但仅占cpu单核1%，少量MB的内存以及完全没有磁盘IO</li>
+<li>提供复杂的、各种类型的告警，支持动态阈值、告警模板、多种通知方式等</li>
+<li>可扩展，使用自带的插件API（比如bash, python, perl, node.js, java, go, ruby等）来收集任何可以衡量的数据</li>
+<li>零配置：安装后netdata会自动的监测一切</li>
+<li>零依赖：netdata有自己的web server， 提供静态web文件和web API</li>
+<li>零维护：只管跑上！</li>
+<li>支撑多种时间序列后端服务，比如graphite, opentsdb, prometheus, json document DBs</li>
+</ol>
+
+<p>Netdata监控项也很多，比如CPU, 内存，磁盘，网络这些基础的之外，还可以有IPC, netfilter/iptables Linux firewall, fping, Processes, NFS, <code>Network QoS</code>, Applications, Apache web server, Nginx, Tomcat, mysql, postgres, redis, mongodb, elasticsearch, SNMP devices等等。</p>
+
+<h2 id="netdata-install">Netdata install</h2>
+
+<p>Netdata的安装非常简单，支持几乎所有的Linux版本。刚好我还有一个用于来科学上网的EC2机器是Unbutu系统，果断登上去尝试。</p>
+
+<h3 id="安装准备">安装准备</h3>
+
+<p>Netdata提供了一个非常简便的安装方法，我的Unbutu系统只需要执行下面的命令即可完成安装netdata所依赖的各种东西：</p>
+
+<pre><code>curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' &gt;/tmp/kickstart.sh &amp;&amp; bash /tmp/kickstart.sh -i netdata
+</code></pre>
+
+<p>注意，上面的命令是安装基本的部分，不包括<code>mysql / mariadb, postgres, named, hardware sensors and SNMP</code>. 如果要完整安装，则需要执行下面的命令：</p>
+
+<pre><code>curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' &gt;/tmp/kickstart.sh &amp;&amp; bash /tmp/kickstart.sh -i netdata-all
+</code></pre>
+
+<h3 id="安装netdata">安装Netdata</h3>
+
+<p>安装Netdata也很简单，按照wiki的说明即可：</p>
+
+<pre><code># download it - the directory 'netdata' will be created
+git clone https://github.com/firehol/netdata.git --depth=1
+cd netdata
+
+# run script with root privileges to build, install, start netdata
+./netdata-installer.sh
+</code></pre>
+
+<p>注意上面要使用root权限，执行命令后的提示信息也很丰富有趣，比如刚开头是这样的：</p>
+
+<pre><code>$ sudo ./netdata-installer.sh 
+
+  ^
+  |.-.   .-.   .-.   .-.   .  netdata                                        
+  |   '-'   '-'   '-'   '-'   real-time performance monitoring, done right!  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&gt;
+
+
+  You are about to build and install netdata to your system.
+
+  It will be installed at these locations:
+
+   - the daemon     at /usr/sbin/netdata
+   - config files   in /etc/netdata
+   - web files      in /usr/share/netdata
+   - plugins        in /usr/libexec/netdata
+   - cache files    in /var/cache/netdata
+   - db files       in /var/lib/netdata
+   - log files      in /var/log/netdata
+   - pid file       at /var/run/netdata.pid
+   - logrotate file at /etc/logrotate.d/netdata
+
+  This installer allows you to change the installation path.
+  Press Control-C and run the same command with --help for help.
+</code></pre>
+
+<p>安装结束的最后几行是这样的：</p>
+
+<pre><code>Uninstall script generated: ./netdata-uninstaller.sh
+Update script generated   : ./netdata-updater.sh
+
+netdata-updater.sh can work from cron. It will trigger an email from cron
+only if it fails (it does not print anything if it can update netdata).
+Run this to automatically check and install netdata updates once per day:
+
+ln -s /home/ubuntu/netdata/netdata-updater.sh /etc/cron.daily/netdata-updater.sh
+
+ --- We are done! --- 
+
+  ^
+  |.-.   .-.   .-.   .-.   .-.   .  netdata                          .-.   .-
+  |   '-'   '-'   '-'   '-'   '-'   is installed and running now!  -'   '-'  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&gt;
+
+  enjoy real-time performance and health monitoring...
+
+</code></pre>
+
+<p>安装完后，还可以根据wiki所说的配置开机启动，照做之后执行<code>service netdata start</code>启动服务，可以访问<a href="http://localhost:19999/">http://localhost:19999/</a> 看到监控界面。随后去AWS控制台放通19999端口，我的EC2机器的监控系统就大功告成啦！</p>
+
+<p>由此看出，Netdata的安装非常之简单，只有几行命令，而且根本无需配置。</p>
+
+<h3 id="监控页面">监控页面</h3>
+
+<p>再来看看监控页面，除了配色酷炫，监控项种类繁多之外，页面元素的实时响应、告警设置等都极具亮点。为了更好的展示页面，在这里会盗用github上netdata官方的几个动态图来show一下.</p>
+
+<h4 id="system-overview">System overview</h4>
+
+<p><img src="https://cloud.githubusercontent.com/assets/2662304/14092712/93b039ea-f551-11e5-822c-beadbf2b2a2e.gif" alt="System overview" /></p>
+
+<h4 id="disks">Disks</h4>
+
+<p><img src="https://cloud.githubusercontent.com/assets/2662304/14093195/c882bbf4-f554-11e5-8863-1788d643d2c0.gif" alt="Disks" /></p>
+
+<h4 id="network-interfaces">Network interfaces</h4>
+
+<p><img src="https://cloud.githubusercontent.com/assets/2662304/14093128/4d566494-f554-11e5-8ee4-5392e0ac51f0.gif" alt="Network" /></p>
+
+<h4 id="alarms">Alarms</h4>
+
+<p><img src="http://o75oehjrs.bkt.clouddn.com/image/blog/netdata%20alarm.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="Alarms" /></p>
+
+<h2 id="netdata-backend">Netdata backend</h2>
+
+<p>Netdata也可以后台服务收集监控指标，多服务器的监控指标汇总到前台展示，或者归档汇总后提供给其他工具如grafana， 如下图：</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/2662304/20649711/29f182ba-b4ce-11e6-97c8-ab2c0ab59833.png" alt="netdata backend" /></p>
+
+<p>Netdata支持如下几个backends:</p>
+
+<ul>
+<li>1) graphite;</li>
+<li>2) opentsdb;</li>
+<li>3) json document DBs.</li>
+</ul>
+
+<p>并能够提供3种计算模式：</p>
+
+<ul>
+<li>1) as collected；</li>
+<li>2）average;</li>
+<li>3) sum or volume。</li>
+</ul>
+
+<p>具体的可以到<a href="https://github.com/firehol/netdata/wiki/netdata-backends">netdata wiki</a>查看。利用这种方式，应该也较容易能够折腾出来一个集群监控的解决方案，并且netdata和grafana的界面看起来都非常的酷炫（又一次印证了一个观点：大屏监控系统就得是暗色系！）</p>
+
+<p>看到<a href="https://github.com/firehol/netdata/wiki#is-there-a-roadmap">roadmap</a>里面提到：monitor more applications (hadoop and friends, postgres, etc). 也希望hadoop这方面的监控能早日实现，又可以多一个可选方案啦~</p>
+
+                      
+                    </div>
+                    <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+                        <div style="float:left;margin-top:6px;">
+                        <img src="http://blog.ywheel.com/public/ywheel.jpg" width="100px" height="100px"/>
+                        </div>
+                        <div style="margin-left:110px;">
+                            <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2017/03/26/netdata">http://blog.ywheel.com/post/2017/03/26/netdata</a>
+                            <br />
+                            文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  
+
+                </div>
+                
+              </article>
+              
+              <div class="clear"></div>
+              
+              
+              <section id="comments" class="themeform">
+<div class="ds-thread" data-thread-key="/post/2017/03/26/netdata" data-title="Linux服务器监控的神器：Netdata" data-url="http://blog.ywheel.com/post/2017/03/26/netdata"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ywheel"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+</section>
+            </div>
+          </section>
+          <div class="sidebar s1">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>Follow:</p>
+      <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On LinkedIn"
+        href="https://cn.linkedin.com/in/yuanlun" target="_blank">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+    </div>
+    <div class="widget qrcode">
+    <img src="http://blog.ywheel.com/public/qrcode.jpg" alt="qrcode" width="172px" height="172px"/>
+    <p> 微信扫一扫：<br/> 关注我的公众号： <br /> 轮子们 <br /></p>
+</div>
+
+    <ul class="post-nav group">
+      <li class="next">
+        
+        <a href="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/" rel="next">
+          <i class="fa fa-chevron-right"></i>
+          <strong>Next post</strong>
+          <span>Mac上搭建ELK</span>
+        </a>
+        
+      </li>
+      <li class="previous">
+        
+      </li>
+    </ul>
+    <div id="search-2" class="widget widget_search"><h3>Search</h3>
+      <form method="get" class="searchform themeform" action="https://www.google.com/search">
+        <div>
+          <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+        </div>
+      </form>
+    </div>
+  </div>
+  
+</div>
+
+          <div class="sidebar s2">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>More</p>
+    </div>
+    <div id="categories-2" class="widget widget_categories"><h3>Categories</h3>
+      <ul>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="footer">
+  <section class="container" id="footer-bottom">
+    <div class="container-inner">
+      <a id="back-to-top" href="#"><i class="fa fa-angle-up"></i></a>
+      <div class="pad group">
+        <div class="grid one-half">
+          <div id="copyright">
+            <p>Copyright © 2016. All Rights Reserved. <br>Powered by
+              <a rel="nofollow" href="http://gohugo.io/" target="_blank">Hugo </a>.
+              <a rel="nofollow" href="http://golang.org" target="_blank">#golang</a>.
+              Theme By  
+              <a rel="nofollow" href="https://github.com/coderzh/hugo-rapid-theme" target="_blank">hugo-rapid-theme</a>.
+              Hosted By 
+              <a rel="nofollow" href="https://pages.github.com/" target="_blank">Github Pages</a>.
+            </p>
+          </div>
+          
+        </div>
+        
+        <div class="grid one-half last">
+          <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On LinkedIn"
+        href="https://cn.linkedin.com/in/yuanlun" target="_blank">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+        </div>
+      </div>
+
+    </div>
+    
+  </section>
+  
+</footer>
+
+</div>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-78569384-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = document.domain.endsWith("com") ? "https://hm.baidu.com/hm.js?b57fe7e440d3ae8ddcd0d555dc63a5b9" : "//hm.baidu.com/hm.js?60a53337b38af8ec5a97214ec5c7325b";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
+

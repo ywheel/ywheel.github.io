@@ -7,8 +7,175 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2017. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 04 Mar 2017 20:52:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Mar 2017 23:15:46 +0800</lastBuildDate>
     <atom:link href="http://blog.ywheel.com/post/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Linux服务器监控的神器：Netdata</title>
+      <link>http://blog.ywheel.com/post/2017/03/26/netdata</link>
+      <pubDate>Sun, 26 Mar 2017 23:15:46 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/26/netdata</guid>
+      <description>
+
+&lt;p&gt;由于工作的关系，最近在思考如何做集群、服务器的监控。在网上东转转西转转，偶然发现了一个单机监控的2016新秀Netdata，眼前着实为之一亮。 令人印象非常之深刻的个主要特性：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;界面酷炫，实时监控&lt;/li&gt;
+&lt;li&gt;零配置，即装即用&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;官网地址在这里： &lt;a href=&#34;https://my-netdata.io/&#34;&gt;https://my-netdata.io/&lt;/a&gt; ， 在&lt;a href=&#34;https://octoverse.github.com/&#34;&gt;The state of the Octoverse 2016&lt;/a&gt; 也能看到他的身影：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/GitHub%20octoverse%202016.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;github octoverse 2016&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-feature&#34;&gt;Netdata feature&lt;/h2&gt;
+
+&lt;p&gt;从&lt;a href=&#34;https://github.com/firehol/netdata#features&#34;&gt;Github&lt;/a&gt;上能够看到netdata的主要功能，主要有几点（详细的可查看github上的说明）：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;interactive bootstrap dashboards, 酷炫（主要是dark主题，light主题就没这感觉了）&lt;/li&gt;
+&lt;li&gt;匪夷所思的快。。。所有请求每个metreic都在0.5ms内响应，即便是一台烂机器&lt;/li&gt;
+&lt;li&gt;非常高效，每秒采集数千个指标，但仅占cpu单核1%，少量MB的内存以及完全没有磁盘IO&lt;/li&gt;
+&lt;li&gt;提供复杂的、各种类型的告警，支持动态阈值、告警模板、多种通知方式等&lt;/li&gt;
+&lt;li&gt;可扩展，使用自带的插件API（比如bash, python, perl, node.js, java, go, ruby等）来收集任何可以衡量的数据&lt;/li&gt;
+&lt;li&gt;零配置：安装后netdata会自动的监测一切&lt;/li&gt;
+&lt;li&gt;零依赖：netdata有自己的web server， 提供静态web文件和web API&lt;/li&gt;
+&lt;li&gt;零维护：只管跑上！&lt;/li&gt;
+&lt;li&gt;支撑多种时间序列后端服务，比如graphite, opentsdb, prometheus, json document DBs&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Netdata监控项也很多，比如CPU, 内存，磁盘，网络这些基础的之外，还可以有IPC, netfilter/iptables Linux firewall, fping, Processes, NFS, &lt;code&gt;Network QoS&lt;/code&gt;, Applications, Apache web server, Nginx, Tomcat, mysql, postgres, redis, mongodb, elasticsearch, SNMP devices等等。&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-install&#34;&gt;Netdata install&lt;/h2&gt;
+
+&lt;p&gt;Netdata的安装非常简单，支持几乎所有的Linux版本。刚好我还有一个用于来科学上网的EC2机器是Unbutu系统，果断登上去尝试。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装准备&#34;&gt;安装准备&lt;/h3&gt;
+
+&lt;p&gt;Netdata提供了一个非常简便的安装方法，我的Unbutu系统只需要执行下面的命令即可完成安装netdata所依赖的各种东西：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -Ss &#39;https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh&#39; &amp;gt;/tmp/kickstart.sh &amp;amp;&amp;amp; bash /tmp/kickstart.sh -i netdata
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，上面的命令是安装基本的部分，不包括&lt;code&gt;mysql / mariadb, postgres, named, hardware sensors and SNMP&lt;/code&gt;. 如果要完整安装，则需要执行下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -Ss &#39;https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh&#39; &amp;gt;/tmp/kickstart.sh &amp;amp;&amp;amp; bash /tmp/kickstart.sh -i netdata-all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;安装netdata&#34;&gt;安装Netdata&lt;/h3&gt;
+
+&lt;p&gt;安装Netdata也很简单，按照wiki的说明即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# download it - the directory &#39;netdata&#39; will be created
+git clone https://github.com/firehol/netdata.git --depth=1
+cd netdata
+
+# run script with root privileges to build, install, start netdata
+./netdata-installer.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意上面要使用root权限，执行命令后的提示信息也很丰富有趣，比如刚开头是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo ./netdata-installer.sh 
+
+  ^
+  |.-.   .-.   .-.   .-.   .  netdata                                        
+  |   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   real-time performance monitoring, done right!  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&amp;gt;
+
+
+  You are about to build and install netdata to your system.
+
+  It will be installed at these locations:
+
+   - the daemon     at /usr/sbin/netdata
+   - config files   in /etc/netdata
+   - web files      in /usr/share/netdata
+   - plugins        in /usr/libexec/netdata
+   - cache files    in /var/cache/netdata
+   - db files       in /var/lib/netdata
+   - log files      in /var/log/netdata
+   - pid file       at /var/run/netdata.pid
+   - logrotate file at /etc/logrotate.d/netdata
+
+  This installer allows you to change the installation path.
+  Press Control-C and run the same command with --help for help.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装结束的最后几行是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Uninstall script generated: ./netdata-uninstaller.sh
+Update script generated   : ./netdata-updater.sh
+
+netdata-updater.sh can work from cron. It will trigger an email from cron
+only if it fails (it does not print anything if it can update netdata).
+Run this to automatically check and install netdata updates once per day:
+
+ln -s /home/ubuntu/netdata/netdata-updater.sh /etc/cron.daily/netdata-updater.sh
+
+ --- We are done! --- 
+
+  ^
+  |.-.   .-.   .-.   .-.   .-.   .  netdata                          .-.   .-
+  |   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   is installed and running now!  -&#39;   &#39;-&#39;  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&amp;gt;
+
+  enjoy real-time performance and health monitoring...
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装完后，还可以根据wiki所说的配置开机启动，照做之后执行&lt;code&gt;service netdata start&lt;/code&gt;启动服务，可以访问&lt;a href=&#34;http://localhost:19999/&#34;&gt;http://localhost:19999/&lt;/a&gt; 看到监控界面。随后去AWS控制台放通19999端口，我的EC2机器的监控系统就大功告成啦！&lt;/p&gt;
+
+&lt;p&gt;由此看出，Netdata的安装非常之简单，只有几行命令，而且根本无需配置。&lt;/p&gt;
+
+&lt;h3 id=&#34;监控页面&#34;&gt;监控页面&lt;/h3&gt;
+
+&lt;p&gt;再来看看监控页面，除了配色酷炫，监控项种类繁多之外，页面元素的实时响应、告警设置等都极具亮点。为了更好的展示页面，在这里会盗用github上netdata官方的几个动态图来show一下.&lt;/p&gt;
+
+&lt;h4 id=&#34;system-overview&#34;&gt;System overview&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14092712/93b039ea-f551-11e5-822c-beadbf2b2a2e.gif&#34; alt=&#34;System overview&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;disks&#34;&gt;Disks&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14093195/c882bbf4-f554-11e5-8863-1788d643d2c0.gif&#34; alt=&#34;Disks&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;network-interfaces&#34;&gt;Network interfaces&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14093128/4d566494-f554-11e5-8ee4-5392e0ac51f0.gif&#34; alt=&#34;Network&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;alarms&#34;&gt;Alarms&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/netdata%20alarm.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;Alarms&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-backend&#34;&gt;Netdata backend&lt;/h2&gt;
+
+&lt;p&gt;Netdata也可以后台服务收集监控指标，多服务器的监控指标汇总到前台展示，或者归档汇总后提供给其他工具如grafana， 如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/20649711/29f182ba-b4ce-11e6-97c8-ab2c0ab59833.png&#34; alt=&#34;netdata backend&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Netdata支持如下几个backends:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1) graphite;&lt;/li&gt;
+&lt;li&gt;2) opentsdb;&lt;/li&gt;
+&lt;li&gt;3) json document DBs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;并能够提供3种计算模式：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1) as collected；&lt;/li&gt;
+&lt;li&gt;2）average;&lt;/li&gt;
+&lt;li&gt;3) sum or volume。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;具体的可以到&lt;a href=&#34;https://github.com/firehol/netdata/wiki/netdata-backends&#34;&gt;netdata wiki&lt;/a&gt;查看。利用这种方式，应该也较容易能够折腾出来一个集群监控的解决方案，并且netdata和grafana的界面看起来都非常的酷炫（又一次印证了一个观点：大屏监控系统就得是暗色系！）&lt;/p&gt;
+
+&lt;p&gt;看到&lt;a href=&#34;https://github.com/firehol/netdata/wiki#is-there-a-roadmap&#34;&gt;roadmap&lt;/a&gt;里面提到：monitor more applications (hadoop and friends, postgres, etc). 也希望hadoop这方面的监控能早日实现，又可以多一个可选方案啦~&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Mac上搭建ELK</title>
@@ -1771,87 +1938,6 @@ public class Solution {
 &lt;li&gt;&lt;a href=&#34;http://oj.leetcode.com/problems/word-ladder-ii/&#34;&gt;http://oj.leetcode.com/problems/word-ladder-ii/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;广搜：&lt;a href=&#34;http://oj.leetcode.com/problems/surrounded-regions/&#34;&gt;http://oj.leetcode.com/problems/surrounded-regions/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>LeetCode主题整理(4)链表及相关问题</title>
-      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</link>
-      <pubDate>Wed, 11 Mar 2015 01:32:08 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</guid>
-      <description>
-
-&lt;pre&gt;&lt;code&gt;转载自：http://blog.csdn.net/feliciafay/article/details/18944093
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;topic-1-反转链表&#34;&gt;Topic 1 反转链表&lt;/h3&gt;
-
-&lt;h4 id=&#34;reverse-linked-list-ii&#34;&gt;Reverse Linked List II&lt;/h4&gt;
-
-&lt;p&gt;在第m~n个节点中反转单链表，注意这道题可以把代码写得很长，如果分为区间一[0,m-1],区间二[m-n],区间三[n+1,end]这三个区间的话。也可以写得很短，如果仔细观察发现其实只需要考虑第一个区间是否为NULL就可以了。&lt;/p&gt;
-
-&lt;h4 id=&#34;reverse-nodes-in-k-group&#34;&gt;Reverse Nodes in K Group&lt;/h4&gt;
-
-&lt;p&gt;每K个节点为一个单位，反转第1个单位之后，反转第2个单位，反转第i个单位，反转最后一个单位，如果最后一个单位不足K个，就不进行反转。非常有意思的一道题目，依然可以写得很短，也可以写得很长。如果你用递归的办法去写，可以很快写完。如果你用迭代的办法去写，都会比较长。不管是否是调用了Reverse Linked List II中的函数，或者直接写一个大循环。&lt;/p&gt;
-
-&lt;h4 id=&#34;reorder-list&#34;&gt;Reorder List&lt;/h4&gt;
-
-&lt;p&gt;仔细观察后，发现本题的规律是，把链表后半段反转，然后依次插入到链表的前半段。&lt;/p&gt;
-
-&lt;h4 id=&#34;rotate-list&#34;&gt;Rotate List&lt;/h4&gt;
-
-&lt;p&gt;旋转链表。&lt;/p&gt;
-
-&lt;h3 id=&#34;topic-2-从数组排序迁移到链表排序&#34;&gt;Topic 2 从数组排序迁移到链表排序&lt;/h3&gt;
-
-&lt;h4 id=&#34;insertion-sort-list&#34;&gt;Insertion Sort List&lt;/h4&gt;
-
-&lt;p&gt;用链表来模拟插入排序&lt;/p&gt;
-
-&lt;h4 id=&#34;partition&#34;&gt;Partition&lt;/h4&gt;
-
-&lt;p&gt;用链表来模拟快排中的partition&lt;/p&gt;
-
-&lt;h4 id=&#34;sort-list&#34;&gt;Sort List&lt;/h4&gt;
-
-&lt;p&gt;用链表来进行归并排序，完成时间复杂度为O(N lgN),空间复杂度为O(1)的排序&lt;/p&gt;
-
-&lt;h4 id=&#34;merge-two-sorted-lists&#34;&gt;Merge Two Sorted Lists&lt;/h4&gt;
-
-&lt;p&gt;归并两个已经排好序的链表&lt;/p&gt;
-
-&lt;h4 id=&#34;merge-k-sorted-lists&#34;&gt;Merge K Sorted Lists&lt;/h4&gt;
-
-&lt;p&gt;归并K个已经排好序的链表&lt;/p&gt;
-
-&lt;h3 id=&#34;topic-3-环形链表&#34;&gt;Topic 3 环形链表&lt;/h3&gt;
-
-&lt;h4 id=&#34;linked-list-cycle&#34;&gt;Linked List Cycle&lt;/h4&gt;
-
-&lt;p&gt;判断一个链表是否有环&lt;/p&gt;
-
-&lt;h4 id=&#34;linked-list-cycle-ii&#34;&gt;Linked List Cycle II&lt;/h4&gt;
-
-&lt;p&gt;如果一个链表有环，找到环的起始位置&lt;/p&gt;
-
-&lt;h3 id=&#34;topic-4-其它问题&#34;&gt;Topic 4 其它问题&lt;/h3&gt;
-
-&lt;h4 id=&#34;copy-list-with-random-pointer&#34;&gt;Copy List with Random Pointer&lt;/h4&gt;
-
-&lt;p&gt;拷贝链表，链表的节点除了有next指针，还有random指针，指向任意一个点。&lt;/p&gt;
-
-&lt;h4 id=&#34;remove-nth-node-from-end-of-list&#34;&gt;Remove Nth Node From End of List&lt;/h4&gt;
-
-&lt;p&gt;删除从后向前数的第N个节点&lt;/p&gt;
-
-&lt;h4 id=&#34;remove-duplicates-from-sorted-list&#34;&gt;Remove Duplicates from Sorted List&lt;/h4&gt;
-
-&lt;p&gt;去掉链表中的重复元素，使得原来链表中的所有元素都出现并且只出现一次。&lt;/p&gt;
-
-&lt;h4 id=&#34;remove-duplicates-from-sorted-list-ii&#34;&gt;Remove Duplicates from Sorted List II&lt;/h4&gt;
-
-&lt;p&gt;去掉链表中的重复元素，使得原来链表中的非重复元素都出现并且只出现一次，重复元素不出现。&lt;/p&gt;
 </description>
     </item>
     

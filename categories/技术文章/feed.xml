@@ -10,6 +10,173 @@
     <atom:link href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Linux服务器监控的神器：Netdata</title>
+      <link>http://blog.ywheel.com/post/2017/03/26/netdata</link>
+      <pubDate>Sun, 26 Mar 2017 23:15:46 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/26/netdata</guid>
+      <description>
+
+&lt;p&gt;由于工作的关系，最近在思考如何做集群、服务器的监控。在网上东转转西转转，偶然发现了一个单机监控的2016新秀Netdata，眼前着实为之一亮。 令人印象非常之深刻的个主要特性：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;界面酷炫，实时监控&lt;/li&gt;
+&lt;li&gt;零配置，即装即用&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;官网地址在这里： &lt;a href=&#34;https://my-netdata.io/&#34;&gt;https://my-netdata.io/&lt;/a&gt; ， 在&lt;a href=&#34;https://octoverse.github.com/&#34;&gt;The state of the Octoverse 2016&lt;/a&gt; 也能看到他的身影：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/GitHub%20octoverse%202016.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;github octoverse 2016&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-feature&#34;&gt;Netdata feature&lt;/h2&gt;
+
+&lt;p&gt;从&lt;a href=&#34;https://github.com/firehol/netdata#features&#34;&gt;Github&lt;/a&gt;上能够看到netdata的主要功能，主要有几点（详细的可查看github上的说明）：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;interactive bootstrap dashboards, 酷炫（主要是dark主题，light主题就没这感觉了）&lt;/li&gt;
+&lt;li&gt;匪夷所思的快。。。所有请求每个metreic都在0.5ms内响应，即便是一台烂机器&lt;/li&gt;
+&lt;li&gt;非常高效，每秒采集数千个指标，但仅占cpu单核1%，少量MB的内存以及完全没有磁盘IO&lt;/li&gt;
+&lt;li&gt;提供复杂的、各种类型的告警，支持动态阈值、告警模板、多种通知方式等&lt;/li&gt;
+&lt;li&gt;可扩展，使用自带的插件API（比如bash, python, perl, node.js, java, go, ruby等）来收集任何可以衡量的数据&lt;/li&gt;
+&lt;li&gt;零配置：安装后netdata会自动的监测一切&lt;/li&gt;
+&lt;li&gt;零依赖：netdata有自己的web server， 提供静态web文件和web API&lt;/li&gt;
+&lt;li&gt;零维护：只管跑上！&lt;/li&gt;
+&lt;li&gt;支撑多种时间序列后端服务，比如graphite, opentsdb, prometheus, json document DBs&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Netdata监控项也很多，比如CPU, 内存，磁盘，网络这些基础的之外，还可以有IPC, netfilter/iptables Linux firewall, fping, Processes, NFS, &lt;code&gt;Network QoS&lt;/code&gt;, Applications, Apache web server, Nginx, Tomcat, mysql, postgres, redis, mongodb, elasticsearch, SNMP devices等等。&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-install&#34;&gt;Netdata install&lt;/h2&gt;
+
+&lt;p&gt;Netdata的安装非常简单，支持几乎所有的Linux版本。刚好我还有一个用于来科学上网的EC2机器是Unbutu系统，果断登上去尝试。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装准备&#34;&gt;安装准备&lt;/h3&gt;
+
+&lt;p&gt;Netdata提供了一个非常简便的安装方法，我的Unbutu系统只需要执行下面的命令即可完成安装netdata所依赖的各种东西：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -Ss &#39;https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh&#39; &amp;gt;/tmp/kickstart.sh &amp;amp;&amp;amp; bash /tmp/kickstart.sh -i netdata
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，上面的命令是安装基本的部分，不包括&lt;code&gt;mysql / mariadb, postgres, named, hardware sensors and SNMP&lt;/code&gt;. 如果要完整安装，则需要执行下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -Ss &#39;https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh&#39; &amp;gt;/tmp/kickstart.sh &amp;amp;&amp;amp; bash /tmp/kickstart.sh -i netdata-all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;安装netdata&#34;&gt;安装Netdata&lt;/h3&gt;
+
+&lt;p&gt;安装Netdata也很简单，按照wiki的说明即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# download it - the directory &#39;netdata&#39; will be created
+git clone https://github.com/firehol/netdata.git --depth=1
+cd netdata
+
+# run script with root privileges to build, install, start netdata
+./netdata-installer.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意上面要使用root权限，执行命令后的提示信息也很丰富有趣，比如刚开头是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo ./netdata-installer.sh 
+
+  ^
+  |.-.   .-.   .-.   .-.   .  netdata                                        
+  |   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   real-time performance monitoring, done right!  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&amp;gt;
+
+
+  You are about to build and install netdata to your system.
+
+  It will be installed at these locations:
+
+   - the daemon     at /usr/sbin/netdata
+   - config files   in /etc/netdata
+   - web files      in /usr/share/netdata
+   - plugins        in /usr/libexec/netdata
+   - cache files    in /var/cache/netdata
+   - db files       in /var/lib/netdata
+   - log files      in /var/log/netdata
+   - pid file       at /var/run/netdata.pid
+   - logrotate file at /etc/logrotate.d/netdata
+
+  This installer allows you to change the installation path.
+  Press Control-C and run the same command with --help for help.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装结束的最后几行是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Uninstall script generated: ./netdata-uninstaller.sh
+Update script generated   : ./netdata-updater.sh
+
+netdata-updater.sh can work from cron. It will trigger an email from cron
+only if it fails (it does not print anything if it can update netdata).
+Run this to automatically check and install netdata updates once per day:
+
+ln -s /home/ubuntu/netdata/netdata-updater.sh /etc/cron.daily/netdata-updater.sh
+
+ --- We are done! --- 
+
+  ^
+  |.-.   .-.   .-.   .-.   .-.   .  netdata                          .-.   .-
+  |   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   &#39;-&#39;   is installed and running now!  -&#39;   &#39;-&#39;  
+  +----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+---&amp;gt;
+
+  enjoy real-time performance and health monitoring...
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装完后，还可以根据wiki所说的配置开机启动，照做之后执行&lt;code&gt;service netdata start&lt;/code&gt;启动服务，可以访问&lt;a href=&#34;http://localhost:19999/&#34;&gt;http://localhost:19999/&lt;/a&gt; 看到监控界面。随后去AWS控制台放通19999端口，我的EC2机器的监控系统就大功告成啦！&lt;/p&gt;
+
+&lt;p&gt;由此看出，Netdata的安装非常之简单，只有几行命令，而且根本无需配置。&lt;/p&gt;
+
+&lt;h3 id=&#34;监控页面&#34;&gt;监控页面&lt;/h3&gt;
+
+&lt;p&gt;再来看看监控页面，除了配色酷炫，监控项种类繁多之外，页面元素的实时响应、告警设置等都极具亮点。为了更好的展示页面，在这里会盗用github上netdata官方的几个动态图来show一下.&lt;/p&gt;
+
+&lt;h4 id=&#34;system-overview&#34;&gt;System overview&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14092712/93b039ea-f551-11e5-822c-beadbf2b2a2e.gif&#34; alt=&#34;System overview&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;disks&#34;&gt;Disks&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14093195/c882bbf4-f554-11e5-8863-1788d643d2c0.gif&#34; alt=&#34;Disks&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;network-interfaces&#34;&gt;Network interfaces&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/14093128/4d566494-f554-11e5-8ee4-5392e0ac51f0.gif&#34; alt=&#34;Network&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;alarms&#34;&gt;Alarms&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://o75oehjrs.bkt.clouddn.com/image/blog/netdata%20alarm.png?watermark/2/text/YmxvZy55d2hlZWwuY24=/font/5b6u6L2v6ZuF6buR/fontsize/500/fill/I0Y1RUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&#34; alt=&#34;Alarms&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;netdata-backend&#34;&gt;Netdata backend&lt;/h2&gt;
+
+&lt;p&gt;Netdata也可以后台服务收集监控指标，多服务器的监控指标汇总到前台展示，或者归档汇总后提供给其他工具如grafana， 如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/2662304/20649711/29f182ba-b4ce-11e6-97c8-ab2c0ab59833.png&#34; alt=&#34;netdata backend&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Netdata支持如下几个backends:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1) graphite;&lt;/li&gt;
+&lt;li&gt;2) opentsdb;&lt;/li&gt;
+&lt;li&gt;3) json document DBs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;并能够提供3种计算模式：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1) as collected；&lt;/li&gt;
+&lt;li&gt;2）average;&lt;/li&gt;
+&lt;li&gt;3) sum or volume。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;具体的可以到&lt;a href=&#34;https://github.com/firehol/netdata/wiki/netdata-backends&#34;&gt;netdata wiki&lt;/a&gt;查看。利用这种方式，应该也较容易能够折腾出来一个集群监控的解决方案，并且netdata和grafana的界面看起来都非常的酷炫（又一次印证了一个观点：大屏监控系统就得是暗色系！）&lt;/p&gt;
+
+&lt;p&gt;看到&lt;a href=&#34;https://github.com/firehol/netdata/wiki#is-there-a-roadmap&#34;&gt;roadmap&lt;/a&gt;里面提到：monitor more applications (hadoop and friends, postgres, etc). 也希望hadoop这方面的监控能早日实现，又可以多一个可选方案啦~&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mac上搭建ELK</title>
       <link>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</link>
       <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
@@ -1834,131 +2001,6 @@ You may assume no duplicate exists in the array.
             }  
         }  
         return -1;  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 34 Search For A Range 二叉查找相关（二）</title>
-      <link>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</link>
-      <pubDate>Tue, 10 Mar 2015 00:07:08 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</guid>
-      <description>&lt;p&gt;题目：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/search-for-a-range/
-Given a sorted array of integers, find the starting and ending position of a given target value.
-
-Your algorithm&#39;s runtime complexity must be in the order of O(log n).
-
-If the target is not found in the array, return [-1, -1].
-
-For example,
-Given [5, 7, 7, 8, 8, 10] and target value 8,
-return [3, 4].
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最直接的想法就是先二叉查找到target的一个index，然后再往左往右分别查找边界，这样实际上有三遍二叉查找，代码如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Solution {  
-    public int[] searchRange(int[] A, int target) {  
-        int[] result = {-1, -1};  
-        if (A == null || A.length == 0) {  
-            return result;  
-        }  
-        int l = 0;  
-        int r = A.length - 1;  
-        boolean hasTarget = false;  
-        int mid = (l + r) / 2;  
-        while (l &amp;lt;= r) {  
-            mid = (l + r) / 2;  
-            if (A[mid] == target) {  
-                hasTarget = true;  
-                break;  
-            } else if (A[mid] &amp;lt; target) {  
-                l = mid + 1;  
-            } else {  
-                r = mid -1;  
-            }  
-        }  
-        if (!hasTarget) {  
-            return result;  
-        }  
-        // at this point, A[mid] = target, then need to find the range  
-        // 1. find left range  
-        l = 0;  
-        r = mid;  
-        result[1] = mid;  
-        while (l &amp;lt;= r) {  
-            mid = (l + r) / 2;  
-            if (A[mid] == target) {  
-                r = mid - 1;  
-            } else {  
-                // must be less than target  
-                l = mid + 1;  
-            }  
-        }  
-        result[0] = l;  
-        // 2. find right range  
-        l = result[1];  
-        r = A.length - 1;  
-        while (l &amp;lt;= r) {  
-            mid = (l + r) / 2;  
-            if (A[mid] == target) {  
-                l = mid + 1;  
-            } else {  
-                // must be great than target  
-                r = mid - 1;  
-            }  
-        }  
-        result[1] = r;  
-          
-        return result;  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;提交之后发现运行时间排在JAVA类的靠后，有没有优化的空间呢？
-发现其实并不需要先找到一个Index之后再找左右的边界，可以一遍二叉查找左边界，再来一次查找右边界，代码如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Solution {  
-    public int[] searchRange(int[] A, int target) {  
-        int[] result = {-1, -1};  
-        if (A == null || A.length == 0) {  
-            return result;  
-        }  
-        int l = 0;  
-        int r = A.length - 1;  
-        // 1. find left range  
-        while (l &amp;lt;= r) {  
-            int mid = (l + r) / 2;  
-            if (A[mid] &amp;gt;= target) {  
-                r = mid - 1;  
-            } else {  
-                l = mid + 1;  
-            }  
-        }  
-        if (l &amp;gt;= A.length || A[l] != target) {  
-            // not found  
-            return result;  
-        }  
-        result[0] = l;  
-        // 2. find right range  
-        r = A.length - 1;  
-        while (l &amp;lt;= r) {  
-            int mid = (l + r) / 2;  
-            if (A[mid] == target) {  
-                l = mid + 1;  
-            } else {  
-                // must be great than target  
-                r = mid - 1;  
-            }  
-        }  
-        result[1] = r;  
-          
-        return result;  
     }  
 }  
 &lt;/code&gt;&lt;/pre&gt;
