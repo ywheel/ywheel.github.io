@@ -12,40 +12,38 @@
         }
     }
   </script>
-  <title>轮子们</title>
+  <title>Win下访问安全集群的Web界面 - 轮子们</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="程序员,思考,读书笔记,技术分享,心路历程">
-<meta name="description" content="轮子们">
+<meta name="keywords" content="kerberos,hadoop web,">
+<meta name="description" content="本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="轮子们">
-<meta itemprop="description" content="轮子们">
+<meta itemprop="name" content="Win下访问安全集群的Web界面 - 轮子们">
+<meta itemprop="description" content="本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。">
 <meta itemprop="image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
-<meta property="og:title" content="轮子们" />
+<meta property="og:title" content="Win下访问安全集群的Web界面 - 轮子们" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.com/" />
+<meta property="og:url" content="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos" />
 <meta property="og:image" content="http://blog.ywheel.com/public/ywheel.jpg" />
-<meta property="og:description" content="轮子们">
+<meta property="og:description" content="本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="轮子们">
-<meta name="twitter:description" content="轮子们">
+<meta name="twitter:title" content="Win下访问安全集群的Web界面 - 轮子们">
+<meta name="twitter:description" content="本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.com/">
-  <link rel='shortlink' href="http://blog.ywheel.com/"/>
+  <link rel="canonical" href="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos">
+  <link rel='shortlink' href="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos"/>
   <link rel="shortcut icon" href="http://blog.ywheel.com/public/favicon.ico"/>
   
- <link href="http://blog.ywheel.com/feed.xml" rel="alternate" type="application/rss+xml" title="轮子们" />
-
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.com/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
 <link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.com/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
 <link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.com/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
@@ -65,8 +63,7 @@
 
 </head>
 
-<body class="archive category col-3cm full-width topbar-enabled chrome">
-
+<body class="single single-post single-format-standard col-3cm full-width topbar-enabled chrome">
 <div id="wrapper">
   <header id="header">
 
@@ -154,273 +151,191 @@
 </header>
 
 
+
   <div class="container" id="page">
     <div class="container-inner">
       <div class="main">
         <div class="main-inner group">
           <section class="content">
+            <div class="page-title pad group">
+              <ul class="meta-single group">
+                
+                <li class="category">
+                  <a href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                </li>
+                
+              </ul>
+            </div>
+
             <div class="pad group">
+
+              <article
+                  class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
+                <div class="post-inner group">
+
+                  <h1 class="post-title">Win下访问安全集群的Web界面</h1>
+
+                  <p class="post-byline">
+                    by  · 2018年03月21日 · 947 Words ·
+                    ~2min reading time |
+                    <a href="https://github.com/ywheel/my-blog/blob/master/content/post/2018/03/21/access_hadoop_web_with_kerberos.md"
+                       target="_blank">Improve on <i class="fa fa-github"></i></a>
+                  </p>
+
+                  <div class="clear"></div>
+
+                  <div class="entry">
+                    <div class="entry-inner">
+                      
+                      
+
+<p>本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。</p>
+
+<hr />
+
+<h3 id="1-install-and-setup-mit-kerberos">1. Install and Setup MIT Kerberos</h3>
+
+<p>下载一个MIT的，64位的程序下载地址： <a href="http://web.mit.edu/kerberos/dist/kfw/4.1/kfw-4.1-amd64.msi">http://web.mit.edu/kerberos/dist/kfw/4.1/kfw-4.1-amd64.msi</a></p>
+
+<p>安装完成之后，需要配置环境变量，将<code>C:\Program Files\MIT\Kerberos\bin;</code>添加在Path的最前面（有些windows机器中Oracle JDK可能带了kinit，需要将刚安装的MIT的放在Path的前面，执行kinit时才是用到正确的）</p>
+
+<p>添加新的环境变量：</p>
+
+<ul>
+<li>KRB5_CONFIG ： C:\ProgramData\MIT\Kerberos5\krb5.ini</li>
+</ul>
+
+<p>PS: 有的资料说还需要添加 KRB5CCNAME 环境变量用于缓存票据，但在windows下会报无权限访问该目录的问题，实际验证时不需添加这个环境变量，使用默认的就好</p>
+
+<p>修改<code>C:\ProgramData\MIT\Kerberos5\krb5.ini</code>内容如下：</p>
+
+<pre><code class="language-ini">[libdefaults]
+  default_realm = YWHEEL.COM
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  ticket_lifetime = 24h
+  forwardable = yes
+  udp_preference_limit = 0
+
+
+[realms]
+  YWHEEL.COM = {
+    kdc = ipa.ywheel.com:88
+    master_kdc = ipa.ywheel.com:88
+    admin_server = ipa.ywheel.com:749
+    default_domain = YWHEEL.COM
+  }
+
+
+[domain_realm]
+  .YWHEEL.COM = YWHEEL.COM
+  YWHEEL.COM = YWHEEL.COM
+  .ywheel.com = YWHEEL.COM
+  ywheel.com = YWHEEL.COM
+</code></pre>
+
+<p>修改hosts文件，添加如下内容(以实际情况为准)</p>
+
+<pre><code>192.168.1.11 nn1.ywheel.com
+192.168.1.12 nn2.ywheel.com
+192.168.1.13 cm.ywheel.com
+192.168.1.14 services.ywheel.com
+192.168.1.200 ipa.ywheel.com
+</code></pre>
+
+<p>更改完环境变量后重启系统。</p>
+
+<h3 id="2-install-firefox">2. Install Firefox</h3>
+
+<p>这里没啥，找到firefox最新版安装即可。</p>
+
+<h3 id="3-enable-mit-kerberos-on-firefox">3. Enable MIT Kerberos on Firefox</h3>
+
+<p>打开firefox，输入<code>about:config</code>，进行如下设置：</p>
+
+<ul>
+<li>network.negotiate-auth.trusted-uris = .ywheel.com</li>
+<li>network.negotiate-auth.using-native-gsslib = false</li>
+<li>network.auth.use-sspi = false</li>
+<li>network.negotiate-auth.allow-non-fqdn = true</li>
+</ul>
+
+<p>设置后关闭firefox，重启。</p>
+
+<h3 id="4-get-kerberos-ticket-using-mit-kerberos-utility">4. Get Kerberos Ticket using MIT Kerberos Utility</h3>
+
+<p>打开<code>cmd</code>， 执行<code>kinit</code>命令，如下：</p>
+
+<pre><code>C:\Users\User&gt;kinit ywheel
+Password for ywheel@YWHEEL.COM:
+
+C:\Users\User&gt;klist
+Ticket cache: API:krb5cc
+Default principal: ywheel@YWHEEL.COM
+
+Valid starting     Expires            Service principal
+12/14/17 21:14:57  12/15/17 21:14:54  krbtgt/YWHEEL.COM@YWHEEL.COM
+</code></pre>
+
+<h3 id="5-open-nn-rm-uis-using-firefox">5. Open NN, RM UIs using Firefox</h3>
+
+<p>如果使用chrome，或者没有执行kinit，直接访问<a href="http://nn2.ywheel.com:50070/">http://nn2.ywheel.com:50070/</a> , 会返回401（Authentication required）或者403（ GSSException: Defective token detected (Mechanism level: GSSHeader did not find the right tag)）错误</p>
+
+<p>使用Firefox， 打开<a href="http://nn2.ywheel.com:50070/explorer.html#/">http://nn2.ywheel.com:50070/explorer.html#/</a> 访问WebHDFS， 比如认证的是 <code>ywheel</code>， 那么尝试访问有权限的目录，比如<code>/user/ywheel/</code>，验证可以访问。</p>
+
+<p>再访问<code>/hbase</code>目录，提示<code>Permission denied: user=ywheel, access=READ_EXECUTE, inode=&quot;/hbase&quot;:hbase:hbase:drwx------</code></p>
+
+<p>同样，访问YARN的8088端口，<a href="http://nn1.ywheel.com:8088/cluster/apps/RUNNING">http://nn1.ywheel.com:8088/cluster/apps/RUNNING</a> , 也可以看到右上角显示用户为<code>ywheel</code>.</p>
+
+<hr />
+
+<p>【主要参考】：</p>
+
+<ol>
+<li><a href="https://www.cnblogs.com/kischn/p/7443343.html">https://www.cnblogs.com/kischn/p/7443343.html</a></li>
+<li><a href="https://community.hortonworks.com/articles/28537/user-authentication-from-windows-workstation-to-hd.html">https://community.hortonworks.com/articles/28537/user-authentication-from-windows-workstation-to-hd.html</a></li>
+</ol>
+
+                      
+                    </div>
+                    <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+                        <div style="float:left;margin-top:6px;">
+                        <img src="http://blog.ywheel.com/public/ywheel.jpg" width="100px" height="100px"/>
+                        </div>
+                        <div style="margin-left:110px;">
+                            <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos">http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos</a>
+                            <br />
+                            文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  
+
+                </div>
+                
+              </article>
               
-              <div class="featured">
-  <article class="post type-post status-publish format-standard has-post-thumbnail hentry group">
-      <div class="post-inner post-hover">
-          <div class="post-meta group">
-              <p class="post-category">
+              <div class="clear"></div>
               
-              <a href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" title="All posts in 技术文章" rel="category tag">技术文章</a>
               
-              </p>
-              <p class="post-date">2018年03月21日</p>
-          </div>
-          <h2 class="post-title">
-              <a href="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos" rel="bookmark" title="Win下访问安全集群的Web界面">Win下访问安全集群的Web界面</a>
-          </h2>
-          <div class="entry excerpt">
-              <p>本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。</p>
-          </div>
-      </div>
-  </article>
-</div>
-
               
-              <div class="post-list group">
-                
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2018年02月13日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2018/02/13/multipleoutput" rel="bookmark" title="多作业输出到同一组的多个目录的问题">多作业输出到同一组的多个目录的问题</a></p>
+              
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_cqq"></a>
+	<a href="http://www.jiathis.com/share?uid=2147120" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
 </div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2017年03月26日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2017/03/26/netdata" rel="bookmark" title="Linux服务器监控的神器：Netdata">Linux服务器监控的神器：Netdata</a></p>
-</div>
-
-  </div>
-  
-</article>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2147120" charset="utf-8"></script>
 
 
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2017年03月04日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/" rel="bookmark" title="Mac上搭建ELK">Mac上搭建ELK</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2017年03月04日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/" rel="bookmark" title="我的第一台Mac">我的第一台Mac</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年07月14日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/" rel="bookmark" title="Oozie ssh action问题排查">Oozie ssh action问题排查</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年06月12日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/" rel="bookmark" title="Hive In Oozie Workflow">Hive In Oozie Workflow</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年06月05日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2016/06/05/examination/" rel="bookmark" title="高三楼">高三楼</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年05月29日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2016/05/29/hue_introduction/" rel="bookmark" title="HUE Introduction and Contribution">HUE Introduction and Contribution</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年05月18日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/post/2016/05/18/family/" rel="bookmark" title="老家">老家</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                <div class="post-row">
-                <article class="post-row type-post status-publish format-standard has-post-thumbnail hentry group">
-  <div class="post-inner post-hover">
-    <div class="post-meta group">
-  <p class="post-date">2016年04月28日</p>
-  <p class="post-title-small"><a href="http://blog.ywheel.com/about/" rel="bookmark" title="关于我">关于我</a></p>
-</div>
-
-  </div>
-  
-</article>
-
-
-                </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-              </div>
-              <nav class="pagination group">
-                <div class="wp-pagenavi">
-                  <a class="page" href="http://blog.ywheel.com/post/">More...</a>
-                </div>
-              </nav>
             </div>
           </section>
           <div class="sidebar s1">
@@ -455,6 +370,20 @@
     <p> 微信扫一扫：<br/> 关注我的公众号： <br /> 轮子们 <br /></p>
 </div>
 
+    <ul class="post-nav group">
+      <li class="next">
+        
+        <a href="http://blog.ywheel.com/post/2018/02/13/multipleoutput" rel="next">
+          <i class="fa fa-chevron-right"></i>
+          <strong>Next post</strong>
+          <span>多作业输出到同一组的多个目录的问题</span>
+        </a>
+        
+      </li>
+      <li class="previous">
+        
+      </li>
+    </ul>
     <div id="search-2" class="widget widget_search"><h3>Search</h3>
       <form method="get" class="searchform themeform" action="https://www.google.com/search">
         <div>
@@ -463,6 +392,7 @@
       </form>
     </div>
   </div>
+  
 </div>
 
           <div class="sidebar s2">

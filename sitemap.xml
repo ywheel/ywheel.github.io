@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos</loc>
+    <lastmod>2018-03-21T23:22:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.ywheel.com/post/2018/02/13/multipleoutput</loc>
     <lastmod>2018-02-13T10:08:23+08:00</lastmod>
   </url>
@@ -203,7 +208,7 @@
   
   <url>
     <loc>http://blog.ywheel.com/post/</loc>
-    <lastmod>2018-02-13T10:08:23+08:00</lastmod>
+    <lastmod>2018-03-21T23:22:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -215,7 +220,7 @@
   
   <url>
     <loc>http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2018-02-13T10:08:23+08:00</lastmod>
+    <lastmod>2018-03-21T23:22:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,7 +232,7 @@
   
   <url>
     <loc>http://blog.ywheel.com/</loc>
-    <lastmod>2018-02-13T10:08:23+08:00</lastmod>
+    <lastmod>2018-03-21T23:22:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   

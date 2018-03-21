@@ -10,6 +10,124 @@
     <atom:link href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Win下访问安全集群的Web界面</title>
+      <link>http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos</link>
+      <pubDate>Wed, 21 Mar 2018 23:22:33 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos</guid>
+      <description>
+
+&lt;p&gt;本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;1-install-and-setup-mit-kerberos&#34;&gt;1. Install and Setup MIT Kerberos&lt;/h3&gt;
+
+&lt;p&gt;下载一个MIT的，64位的程序下载地址： &lt;a href=&#34;http://web.mit.edu/kerberos/dist/kfw/4.1/kfw-4.1-amd64.msi&#34;&gt;http://web.mit.edu/kerberos/dist/kfw/4.1/kfw-4.1-amd64.msi&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;安装完成之后，需要配置环境变量，将&lt;code&gt;C:\Program Files\MIT\Kerberos\bin;&lt;/code&gt;添加在Path的最前面（有些windows机器中Oracle JDK可能带了kinit，需要将刚安装的MIT的放在Path的前面，执行kinit时才是用到正确的）&lt;/p&gt;
+
+&lt;p&gt;添加新的环境变量：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;KRB5_CONFIG ： C:\ProgramData\MIT\Kerberos5\krb5.ini&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;PS: 有的资料说还需要添加 KRB5CCNAME 环境变量用于缓存票据，但在windows下会报无权限访问该目录的问题，实际验证时不需添加这个环境变量，使用默认的就好&lt;/p&gt;
+
+&lt;p&gt;修改&lt;code&gt;C:\ProgramData\MIT\Kerberos5\krb5.ini&lt;/code&gt;内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[libdefaults]
+  default_realm = YWHEEL.COM
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  rdns = false
+  ticket_lifetime = 24h
+  forwardable = yes
+  udp_preference_limit = 0
+
+
+[realms]
+  YWHEEL.COM = {
+    kdc = ipa.ywheel.com:88
+    master_kdc = ipa.ywheel.com:88
+    admin_server = ipa.ywheel.com:749
+    default_domain = YWHEEL.COM
+  }
+
+
+[domain_realm]
+  .YWHEEL.COM = YWHEEL.COM
+  YWHEEL.COM = YWHEEL.COM
+  .ywheel.com = YWHEEL.COM
+  ywheel.com = YWHEEL.COM
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改hosts文件，添加如下内容(以实际情况为准)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;192.168.1.11 nn1.ywheel.com
+192.168.1.12 nn2.ywheel.com
+192.168.1.13 cm.ywheel.com
+192.168.1.14 services.ywheel.com
+192.168.1.200 ipa.ywheel.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更改完环境变量后重启系统。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-install-firefox&#34;&gt;2. Install Firefox&lt;/h3&gt;
+
+&lt;p&gt;这里没啥，找到firefox最新版安装即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-enable-mit-kerberos-on-firefox&#34;&gt;3. Enable MIT Kerberos on Firefox&lt;/h3&gt;
+
+&lt;p&gt;打开firefox，输入&lt;code&gt;about:config&lt;/code&gt;，进行如下设置：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;network.negotiate-auth.trusted-uris = .ywheel.com&lt;/li&gt;
+&lt;li&gt;network.negotiate-auth.using-native-gsslib = false&lt;/li&gt;
+&lt;li&gt;network.auth.use-sspi = false&lt;/li&gt;
+&lt;li&gt;network.negotiate-auth.allow-non-fqdn = true&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;设置后关闭firefox，重启。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-get-kerberos-ticket-using-mit-kerberos-utility&#34;&gt;4. Get Kerberos Ticket using MIT Kerberos Utility&lt;/h3&gt;
+
+&lt;p&gt;打开&lt;code&gt;cmd&lt;/code&gt;， 执行&lt;code&gt;kinit&lt;/code&gt;命令，如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\Users\User&amp;gt;kinit ywheel
+Password for ywheel@YWHEEL.COM:
+
+C:\Users\User&amp;gt;klist
+Ticket cache: API:krb5cc
+Default principal: ywheel@YWHEEL.COM
+
+Valid starting     Expires            Service principal
+12/14/17 21:14:57  12/15/17 21:14:54  krbtgt/YWHEEL.COM@YWHEEL.COM
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;5-open-nn-rm-uis-using-firefox&#34;&gt;5. Open NN, RM UIs using Firefox&lt;/h3&gt;
+
+&lt;p&gt;如果使用chrome，或者没有执行kinit，直接访问&lt;a href=&#34;http://nn2.ywheel.com:50070/&#34;&gt;http://nn2.ywheel.com:50070/&lt;/a&gt; , 会返回401（Authentication required）或者403（ GSSException: Defective token detected (Mechanism level: GSSHeader did not find the right tag)）错误&lt;/p&gt;
+
+&lt;p&gt;使用Firefox， 打开&lt;a href=&#34;http://nn2.ywheel.com:50070/explorer.html#/&#34;&gt;http://nn2.ywheel.com:50070/explorer.html#/&lt;/a&gt; 访问WebHDFS， 比如认证的是 &lt;code&gt;ywheel&lt;/code&gt;， 那么尝试访问有权限的目录，比如&lt;code&gt;/user/ywheel/&lt;/code&gt;，验证可以访问。&lt;/p&gt;
+
+&lt;p&gt;再访问&lt;code&gt;/hbase&lt;/code&gt;目录，提示&lt;code&gt;Permission denied: user=ywheel, access=READ_EXECUTE, inode=&amp;quot;/hbase&amp;quot;:hbase:hbase:drwx------&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;同样，访问YARN的8088端口，&lt;a href=&#34;http://nn1.ywheel.com:8088/cluster/apps/RUNNING&#34;&gt;http://nn1.ywheel.com:8088/cluster/apps/RUNNING&lt;/a&gt; , 也可以看到右上角显示用户为&lt;code&gt;ywheel&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;【主要参考】：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/kischn/p/7443343.html&#34;&gt;https://www.cnblogs.com/kischn/p/7443343.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://community.hortonworks.com/articles/28537/user-authentication-from-windows-workstation-to-hd.html&#34;&gt;https://community.hortonworks.com/articles/28537/user-authentication-from-windows-workstation-to-hd.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>多作业输出到同一组的多个目录的问题</title>
       <link>http://blog.ywheel.com/post/2018/02/13/multipleoutput</link>
       <pubDate>Tue, 13 Feb 2018 10:08:23 +0800</pubDate>
@@ -2218,45 +2336,6 @@ public class Solution {
 &lt;h4 id=&#34;remove-duplicates-from-sorted-list-ii&#34;&gt;Remove Duplicates from Sorted List II&lt;/h4&gt;
 
 &lt;p&gt;去掉链表中的重复元素，使得原来链表中的非重复元素都出现并且只出现一次，重复元素不出现。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>LeetCode 066 Plus one</title>
-      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</link>
-      <pubDate>Wed, 11 Mar 2015 01:26:08 +0800</pubDate>
-      
-      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</guid>
-      <description>&lt;p&gt;题目：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://leetcode.com/problems/plus-one/
-Given a non-negative number represented as an array of digits, plus one to the number.
-
-The digits are stored such that the most significant digit is at the head of the list.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;题目虽简单，但是要注意的是当最高位是9的时候， 需要重新new一个长一位的新数组来存储结果。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Solution {  
-    public int[] plusOne(int[] digits) {  
-        if (digits == null || digits.length == 0) return digits;  
-        int carry = 1;  
-        for (int i=digits.length - 1; i &amp;gt;= 0; i--) {  
-            digits[i] = digits[i] + carry;  
-            if (digits[i] &amp;lt; 10) {  
-                return digits;  
-            } else {  
-                digits[i] = 0;  
-                carry = 1;  
-            }  
-        }  
-        int[] newDigits = new int[digits.length + 1];  
-        newDigits[0] = 1;  
-        System.arraycopy(digits, 0, newDigits, 1, digits.length);  
-        return newDigits;  
-    }  
-}  
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
