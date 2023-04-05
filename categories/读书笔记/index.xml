@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>读书笔记 on 轮子同学</title>
+    <link>http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 读书笔记 on 轮子同学</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2018. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 01 Sep 2013 22:43:12 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算广告学笔记3-合约广告系统简介</title>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</link>
+      <pubDate>Sun, 01 Sep 2013 22:43:12 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</guid>
+      <description>注： 内容来自师徒网：刘鹏--计算广告学 合约广告系统简介 Agreement based Advertising，能够解决什么问题? 传统媒体&amp;ndash;直接媒体购买 供给方</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记2-常用广告系统开源工具</title>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</link>
+      <pubDate>Sun, 01 Sep 2013 22:32:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</guid>
+      <description>注：内容来自师徒网， 计算广告学 刘鹏 使用开源工具搭建广告系统 Hadoop：大数据处理的平台 - HDFS - MapReduce 离线处理工具 HBase， Hadoop上的列存</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记1-计算广告核心问题和挑战</title>
+      <link>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</link>
+      <pubDate>Fri, 23 Aug 2013 00:51:07 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</guid>
+      <description>注：内容整理自师徒网：刘鹏 计算广告学 广告中的计算问题 Find the best match between a given user u, in a given context c, and s suitable ad a. 从优化角度来看 特征提取：受众定向. 把u和c打上标签</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>思考感悟 on 轮子同学</title>
+    <link>http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/</link>
+    <description>Recent content in 思考感悟 on 轮子同学</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2018. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 04 Mar 2017 19:43:18 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我的第一台Mac</title>
+      <link>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</link>
+      <pubDate>Sat, 04 Mar 2017 19:43:18 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</guid>
+      <description>我的上一篇文章，还是去年7月份的了，中间隔了大半年。大半年来的忙碌工作，让这个博客就像一个烂尾楼，半死不活，仅靠着几篇文章苟活着。当然，懒也</description>
+    </item>
+    
+    <item>
+      <title>高三楼</title>
+      <link>http://blog.ywheel.com/post/2016/06/05/examination/</link>
+      <pubDate>Sun, 05 Jun 2016 20:54:11 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/06/05/examination/</guid>
+      <description>明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们</description>
+    </item>
+    
+    <item>
+      <title>老家</title>
+      <link>http://blog.ywheel.com/post/2016/05/18/family/</link>
+      <pubDate>Wed, 18 May 2016 02:41:01 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/05/18/family/</guid>
+      <description>图：老家门前的三棵枣树 5年前的今天，老家拆除了，在老家的原址上，早已盖起一栋新楼。这边文章就是在老家拆除后的几天写的，用来纪念我们心中的&amp;r</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>http://blog.ywheel.com/about/</link>
+      <pubDate>Thu, 28 Apr 2016 23:52:12 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/about/</guid>
+      <description>Hi all, 我叫ywheel, 是一名程序员。 我的经历 2006-2013 本硕毕业 2013-2015 外企A记广告团队研发 2015-2018 某大数据公司平台研发主管 2018-Now BAT大厂打工人 我的技能 哪里需要哪里</description>
+    </item>
+    
+  </channel>
+</rss>

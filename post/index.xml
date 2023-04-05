@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 轮子同学</title>
+    <link>http://blog.ywheel.com/post/</link>
+    <description>Recent content in Posts on 轮子同学</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2018. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 21 Mar 2018 23:22:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ywheel.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Win下访问安全集群的Web界面</title>
+      <link>http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos/</link>
+      <pubDate>Wed, 21 Mar 2018 23:22:33 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos/</guid>
+      <description>本文将简单记录在windows环境下，安装kerberos、进行环境配置、认证后，成功访问安全的hadoop集群的web页面并验证访问权限。</description>
+    </item>
+    
+    <item>
+      <title>多作业输出到同一组的多个目录的问题</title>
+      <link>http://blog.ywheel.com/post/2018/02/13/multipleoutput/</link>
+      <pubDate>Tue, 13 Feb 2018 10:08:23 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2018/02/13/multipleoutput/</guid>
+      <description>场景1：一个作业输出到多个目录 RDDMultipleTextOutputFormat的实现 在一个典型的MR或者Spark作业中，作业输出到H</description>
+    </item>
+    
+    <item>
+      <title>Linux服务器监控的神器：Netdata</title>
+      <link>http://blog.ywheel.com/post/2017/03/26/netdata/</link>
+      <pubDate>Sun, 26 Mar 2017 23:15:46 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/26/netdata/</guid>
+      <description>由于工作的关系，最近在思考如何做集群、服务器的监控。在网上东转转西转转，偶然发现了一个单机监控的2016新秀Netdata，眼前着实为之一亮</description>
+    </item>
+    
+    <item>
+      <title>Mac上搭建ELK</title>
+      <link>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</link>
+      <pubDate>Sat, 04 Mar 2017 20:52:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/04/setup_elk_on_mac/</guid>
+      <description>最近的项目需要对文本数据各字段进行快速检索、组合查询、模糊查询，在架构选择上选择了Elasticsearch作为支撑这些功能的存储和搜索引擎</description>
+    </item>
+    
+    <item>
+      <title>我的第一台Mac</title>
+      <link>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</link>
+      <pubDate>Sat, 04 Mar 2017 19:43:18 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2017/03/04/my_first_macbookpro/</guid>
+      <description>我的上一篇文章，还是去年7月份的了，中间隔了大半年。大半年来的忙碌工作，让这个博客就像一个烂尾楼，半死不活，仅靠着几篇文章苟活着。当然，懒也</description>
+    </item>
+    
+    <item>
+      <title>Oozie ssh action问题排查</title>
+      <link>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</link>
+      <pubDate>Thu, 14 Jul 2016 20:21:30 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/07/14/oozie_ssh_action/</guid>
+      <description>问题描述 最近在我们的其中一个现网环境中部署MR程序，MR程序的调度自然是用Oozie了。在Oozie的Workflow中，我们使用ssh ac</description>
+    </item>
+    
+    <item>
+      <title>Hive In Oozie Workflow</title>
+      <link>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</link>
+      <pubDate>Sun, 12 Jun 2016 00:16:44 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/06/12/hive_in_oozie_workflow/</guid>
+      <description>在公司搭建和维护大数据平台，并提供给其他数据分析人员使用，hive就是那些非程序员使用的最多（几乎是唯一）的一个服务。当然，在每天的数据处理</description>
+    </item>
+    
+    <item>
+      <title>高三楼</title>
+      <link>http://blog.ywheel.com/post/2016/06/05/examination/</link>
+      <pubDate>Sun, 05 Jun 2016 20:54:11 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/06/05/examination/</guid>
+      <description>明天又是一年高考了，转眼间我的高考已经过去十年。十年前，我们还是一群无知的小P孩，而十年后，我们或在北上广深打拼，我们或在老家开创天地，我们</description>
+    </item>
+    
+    <item>
+      <title>HUE Introduction and Contribution</title>
+      <link>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</link>
+      <pubDate>Sun, 29 May 2016 21:31:44 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/05/29/hue_introduction/</guid>
+      <description>前段时间给同事们做了一次HUE入门使用的培训，就顺便整理出来。本篇文章先简单介绍HUE，再介绍如何给HUE贡献代码。 HUE是什么 HUE=Hadoop User Experience Hue</description>
+    </item>
+    
+    <item>
+      <title>老家</title>
+      <link>http://blog.ywheel.com/post/2016/05/18/family/</link>
+      <pubDate>Wed, 18 May 2016 02:41:01 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2016/05/18/family/</guid>
+      <description>图：老家门前的三棵枣树 5年前的今天，老家拆除了，在老家的原址上，早已盖起一栋新楼。这边文章就是在老家拆除后的几天写的，用来纪念我们心中的&amp;r</description>
+    </item>
+    
+    <item>
+      <title>Grep命令的与或非</title>
+      <link>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</link>
+      <pubDate>Tue, 17 Mar 2015 00:37:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/17/grep_and_or_not/</guid>
+      <description>原文标题： 7 Linux Grep OR, Grep AND, Grep NOT Operator Examples 原文地址： http://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/ Question: Can you explain how to use OR, AND and NOT operators in Unix grep command with some examples? Answer: In grep, we have options equivalent to OR and NOT operators. There is no grep AND opearator. But, you can simulate AND using patterns. The examples mentioned below will</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 119 Pascal&#39;s Triangle II</title>
+      <link>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</link>
+      <pubDate>Tue, 17 Mar 2015 00:16:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/17/leetcode_119/</guid>
+      <description>题： https://leetcode.com/problems/pascals-triangle-ii/ Given an index k, return the kth row of the Pascal&#39;s triangle. For example, given k = 3, Return [1,3,3,1]. Note: Could you optimize your algorithm to use only O(k) extra space? 解法较容易，时间复杂度依然是0(n^2)，要实现空间复杂度得考虑在内层</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 023 Merge K Sorted Lists</title>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</link>
+      <pubDate>Thu, 12 Mar 2015 02:52:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_23/</guid>
+      <description>题： https://leetcode.com/problems/merge-k-sorted-lists/ Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 解法一 将K个链表做K-1次归并，每次归并是对两个链表的归并，最终得到一个排序的链表。即： 1，2合并，</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 021 Merge Two Sorted Lists</title>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</link>
+      <pubDate>Thu, 12 Mar 2015 01:43:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_21/</guid>
+      <description>题： ```` https://leetcode.com/problems/merge-two-sorted-lists/ Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists. 解法一：创建一个新的链表： ```java /** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode(int x) { * val =</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 088 Merge Sorted Array</title>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</link>
+      <pubDate>Thu, 12 Mar 2015 00:36:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_88/</guid>
+      <description>题： https://leetcode.com/problems/merge-sorted-array/ Given two sorted integer arrays A and B, merge B into A as one sorted array. Note: You may assume that A has enough space (size that is greater or equal to m + n) to hold additional elements from B. The number of elements initialized in A and B are m and n respectively. public class Solution { public void merge(int A[], int m, int B[],</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 147 Insertion Sort List</title>
+      <link>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</link>
+      <pubDate>Thu, 12 Mar 2015 00:16:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/12/leetcode_147/</guid>
+      <description>题： https://leetcode.com/problems/insertion-sort-list/ Sort a linked list using insertion sort. /** * Definition for singly-linked list. * public class ListNode { * int val; * ListNode next; * ListNode(int x) { * val = x; * next = null; * } * } */ public class Solution { public ListNode insertionSortList(ListNode head) { if (head == null) return head; // start from second node ListNode node = head.next; ListNode nodePrev</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 题目总结/分类</title>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</link>
+      <pubDate>Wed, 11 Mar 2015 01:36:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_summary/</guid>
+      <description>转载自豆瓣： http://www.douban.com/note/330562764/ 的确需要有一个分类列表在指导自己在准备时间不够充分的情况下接触到更多考点的题 利用堆栈： http://oj.leetcode.com/problems/evaluate-reverse-polish-notation/ http://oj.leetcode.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode主题整理(4)链表及相关问题</title>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</link>
+      <pubDate>Wed, 11 Mar 2015 01:32:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_linked_list/</guid>
+      <description>转载自：http://blog.csdn.net/feliciafay/article/details/18944093 Topic 1 反转链表 Reverse Linked List II</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 066 Plus one</title>
+      <link>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</link>
+      <pubDate>Wed, 11 Mar 2015 01:26:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/11/leetcode_66/</guid>
+      <description>题目： https://leetcode.com/problems/plus-one/ Given a non-negative number represented as an array of digits, plus one to the number. The digits are stored such that the most significant digit is at the head of the list. 题目虽简单，但是要注意的是当最高位是9的时候， 需要重新new一个长一</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 33 Search in Rotated Sorted Array 二叉查找（三）</title>
+      <link>http://blog.ywheel.com/post/2015/03/10/leetcode_33/</link>
+      <pubDate>Tue, 10 Mar 2015 01:45:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/10/leetcode_33/</guid>
+      <description>题目： https://leetcode.com/problems/search-in-rotated-sorted-array/ Suppose a sorted array is rotated at some pivot unknown to you beforehand. (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2). You are given a target value to search. If found in the array return its index, otherwise return -1. You may assume no duplicate exists in the array. 想当年校招的时候</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 34 Search For A Range 二叉查找相关（二）</title>
+      <link>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</link>
+      <pubDate>Tue, 10 Mar 2015 00:07:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/10/leetcode_34/</guid>
+      <description>题目： https://leetcode.com/problems/search-for-a-range/ Given a sorted array of integers, find the starting and ending position of a given target value. Your algorithm&#39;s runtime complexity must be in the order of O(log n). If the target is not found in the array, return [-1, -1]. For example, Given [5, 7, 7, 8, 8, 10] and target value 8, return [3, 4]. 最直接的想法就是先</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 35 Search Insert Position 二叉查找相关（一）</title>
+      <link>http://blog.ywheel.com/post/2015/03/09/leetcode_35/</link>
+      <pubDate>Mon, 09 Mar 2015 23:41:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/09/leetcode_35/</guid>
+      <description>题目： https://leetcode.com/problems/search-insert-position/ Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order. You may assume no duplicates in the array. Here are few examples. [1,3,5,6], 5 → 2 [1,3,5,6], 2 → 1 [1,3,5,6], 7 → 4 [1,3,5,6], 0 → 0 考查基本的二叉</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 22 Generate Parentheses</title>
+      <link>http://blog.ywheel.com/post/2015/03/08/leetcode_22/</link>
+      <pubDate>Sun, 08 Mar 2015 23:55:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/08/leetcode_22/</guid>
+      <description>连续两次随机到关于括号的题了，跟括号真有缘。。。 package ywheel.leetcode._22_generate_parentheses; import java.util.ArrayList; import java.util.List; /** * Given n pairs of parentheses, write a function to generate all combinations * of well-formed parentheses. * * For example, given n = 3, a solution set is: * &amp;quot;((()))&amp;quot;, &amp;quot;(()())&amp;quot;, &amp;quot;(())()&amp;quot;, &amp;quot;()(())&amp;quot;, &amp;quot;()()()&amp;quot; * * @author ywheel</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 32 Longest Valid Parentheses</title>
+      <link>http://blog.ywheel.com/post/2015/03/08/leetcode_32/</link>
+      <pubDate>Sun, 08 Mar 2015 22:20:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/08/leetcode_32/</guid>
+      <description>题目大意是给定一个只有左右括号组成的字符串，求最长的valid字串长度，比如“()”的最长valid字串长度为2，“)()())”的最长va</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 75 Sort Colors</title>
+      <link>http://blog.ywheel.com/post/2015/03/07/leetcode_75/</link>
+      <pubDate>Sat, 07 Mar 2015 22:30:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/07/leetcode_75/</guid>
+      <description>public class Solution { public void sortColors(int[] A) { if (A == null || A.length == 0) return; int zero = 0; int two = A.length - 1; int i = 0; while (i &amp;lt;= two) { if (A[i] == 0) { swap(A, zero, i); zero++; } if (A[i] == 2) { swap(A, i, two); two--; } else { i++; } } } private void swap(int[] A, int a, int b) { int temp = A[a]; A[a] = A[b]; A[b] = temp; } }  </description>
+    </item>
+    
+    <item>
+      <title>LeetCode 129 Sum Root to Leaf Numbers</title>
+      <link>http://blog.ywheel.com/post/2015/03/07/leetcode_129/</link>
+      <pubDate>Sat, 07 Mar 2015 21:59:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/03/07/leetcode_129/</guid>
+      <description>/** * Definition for binary tree * public class TreeNode { * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) { val = x; } * } */ public class Solution { public int sumNumbers(TreeNode root) { return sumSubTree(0, root); } private int sumSubTree(int decade, TreeNode subTreeRoot) { int sum = 0; if (subTreeRoot == null) { return 0; } else { if (subTreeRoot.left == null &amp;amp;&amp;amp; subTreeRoot.</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 003 Longest Substring Without Repeating Characters</title>
+      <link>http://blog.ywheel.com/post/2015/02/15/leetcode_003/</link>
+      <pubDate>Sun, 15 Feb 2015 20:59:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/15/leetcode_003/</guid>
+      <description>package ywheel.leetcode._003_longest_substring_without_repeating_characters; /** * Given a string, find the length of the longest substring without repeating * characters. For example, the longest substring without repeating letters for * &amp;quot;abcabcbb&amp;quot; is &amp;quot;abc&amp;quot;, which the length is 3. For &amp;quot;bbbbb&amp;quot; the longest substring * is &amp;quot;b&amp;quot;, with the length of 1. * * @author ywheel * */ public class LongestSubString { public int lengthOfLongestSubstring(String s) { if (s == null || s.isEmpty()) { return 0; } int maxLength = 0; int[] index = new int[256]; for (int i = 0; i &amp;lt; 256; i++) { index[i] = -1; } int strLen = s.</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (六) jQuery中的Ajax</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/learn_jquery_ajax/</link>
+      <pubDate>Sat, 14 Feb 2015 19:40:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/learn_jquery_ajax/</guid>
+      <description>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371782.html</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (四) 使用jQuery操作元素的属性与样式</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/learn_jquery_4/</link>
+      <pubDate>Sat, 14 Feb 2015 18:01:45 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/learn_jquery_4/</guid>
+      <description>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371488.html</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (二) 万能的选择器</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/learn_jquery_2/</link>
+      <pubDate>Sat, 14 Feb 2015 17:31:42 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/learn_jquery_2/</guid>
+      <description>节选转载自 http://www.cnblogs.com/engine1984/archive/2012/02/28/2371214.html 秋出品!博客园首发! Dom对象和jQuery包装集 无论是在写程序还是看API文档, 我们要时刻注意区分Dom对象和jQuery包装</description>
+    </item>
+    
+    <item>
+      <title>从零开始学习jQuery (一) 开天辟地入门篇</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/learn_jquery_1/</link>
+      <pubDate>Sat, 14 Feb 2015 17:01:30 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/learn_jquery_1/</guid>
+      <description>节选转载自http://www.cnblogs.com/engine1984/archive/2012/02/28/2371105.html</description>
+    </item>
+    
+    <item>
+      <title>合并两个文件的交叉项</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/same_content_in_two_files/</link>
+      <pubDate>Sat, 14 Feb 2015 16:30:53 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/same_content_in_two_files/</guid>
+      <description>题： 合并两个文件的交叉项。比如： file1.txt 111111 222222 333 4444 55555 file2.txt 7777,abc,abcd 222222,adfghjk,sdfsdfs 1111,qwertyu 55555,zxcvbn,asdfgh 希望能够得到如下结果： 222222,adfghjk,sdfsdfs 55555,zxcvbn,asdfgh 解： awk &#39;BEGIN{FS=&amp;quot;,&amp;quot;}{if(NF==1){a[$1]++;}else if(a[$1]){printf&amp;quot;%s\n&amp;quot;,$0}}&#39; file1.txt file2.txt &amp;gt; file3.txt awk一个好处就是多长的句子都能写在一行里</description>
+    </item>
+    
+    <item>
+      <title>vbox command</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/vbox_command/</link>
+      <pubDate>Sat, 14 Feb 2015 15:59:44 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/vbox_command/</guid>
+      <description>Controlling the VirtualBox VM Nowthat we have VirtualBox installed and a VM guest created we need to control andmodify the VM
+How to List VM information How to show the VirtualBox VM info vmadmin$VBoxManage showvminfo &amp;lt;vmname&amp;gt;  How to show the VM Harddrive info vmadmin$VBoxManage showhdinfo &amp;lt;filename&amp;gt;  How to list running VM vmadmin$VBoxManage list runningvms  How to list available VM vmadmin$VBoxManage list vms  How to list available VM Harddrives vmadmin$VBoxManage list hdds  How to list available ISO’s vmadmin$VBoxManage list dvds  How to Control VM How to Start VM nohupand &amp;amp; to place process in background, so VM continues to run after closingconsole.</description>
+    </item>
+    
+    <item>
+      <title>leetcode_002_addtwonumbers</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/leetcode_002_addtwonumbers/</link>
+      <pubDate>Sat, 14 Feb 2015 14:59:23 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/leetcode_002_addtwonumbers/</guid>
+      <description>package ywheel.leetcode._002_add_two_numbers; /** * You are given two linked lists representing two non-negative numbers. The * digits are stored in reverse order and each of their nodes contain a single * digit. Add the two numbers and return it as a linked list. * * Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) Output: 7 -&amp;gt; 0 -&amp;gt; 8 * * @author ywheel * */ public class AddTwoNumbers { public ListNode addTwoNumbers(ListNode l1, ListNode l2) { ListNode next = null; ListNode head = null; int decade = 0; while (l1 !</description>
+    </item>
+    
+    <item>
+      <title>leetcode_001_twosum</title>
+      <link>http://blog.ywheel.com/post/2015/02/14/leetcode_001_twosum/</link>
+      <pubDate>Sat, 14 Feb 2015 13:59:08 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2015/02/14/leetcode_001_twosum/</guid>
+      <description>package ywheel.leetcode._001_two_sum; import java.util.Arrays; import java.util.Comparator; /** * Given an array of integers, find two numbers such that they add up to a * specific target number. * * The function twoSum should return indices of the two numbers such that they * add up to the target, where index1 must be less than index2. Please note that * your returned answers (both index1 and index2) are not zero-based. You may * assume that each input would have exactly one solution.</description>
+    </item>
+    
+    <item>
+      <title>vim command</title>
+      <link>http://blog.ywheel.com/post/2013/09/08/vim-command/</link>
+      <pubDate>Sun, 08 Sep 2013 22:47:35 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/09/08/vim-command/</guid>
+      <description>打开窗口 :new windowname(filename if saved) :split windowname | :sp windowname :vsplit windowname | :vsp windowname 关闭多窗口 q!, close 最后一个窗口不能使用close关闭。使用close只是暂时关闭窗口，其内容还在缓存中，只有</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记3-合约广告系统简介</title>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</link>
+      <pubDate>Sun, 01 Sep 2013 22:43:12 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-03/</guid>
+      <description>注： 内容来自师徒网：刘鹏--计算广告学 合约广告系统简介 Agreement based Advertising，能够解决什么问题? 传统媒体&amp;ndash;直接媒体购买 供给方</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记2-常用广告系统开源工具</title>
+      <link>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</link>
+      <pubDate>Sun, 01 Sep 2013 22:32:39 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/09/01/computational-advertising-02/</guid>
+      <description>注：内容来自师徒网， 计算广告学 刘鹏 使用开源工具搭建广告系统 Hadoop：大数据处理的平台 - HDFS - MapReduce 离线处理工具 HBase， Hadoop上的列存</description>
+    </item>
+    
+    <item>
+      <title>计算广告学笔记1-计算广告核心问题和挑战</title>
+      <link>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</link>
+      <pubDate>Fri, 23 Aug 2013 00:51:07 +0800</pubDate>
+      
+      <guid>http://blog.ywheel.com/post/2013/08/23/computational-advertising-01/</guid>
+      <description>注：内容整理自师徒网：刘鹏 计算广告学 广告中的计算问题 Find the best match between a given user u, in a given context c, and s suitable ad a. 从优化角度来看 特征提取：受众定向. 把u和c打上标签</description>
+    </item>
+    
+  </channel>
+</rss>
