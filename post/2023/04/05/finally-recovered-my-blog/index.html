@@ -12,36 +12,36 @@
         }
     }
   </script>
-  <title>LeetCode 021 Merge Two Sorted Lists - 轮子同学</title>
+  <title>时隔五年终于恢复了这个博客 - 轮子同学</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="leetcode,">
-<meta name="description" content="leetcode">
+<meta name="keywords" content="hugo,docker,blog,">
+<meta name="description" content="引言 自从“卖身”给了本厂之后，就一直没有更新过这个blog。回头看看上一篇文章还是5年前，那个时候自己还在对着hadoop大数据体系不断的折">
 <meta name="author" content="ywheel">
 <meta name="publisher" content="ywheel">
 <meta name="generator" content="http://gohugo.io/"/>
 
-<meta itemprop="name" content="LeetCode 021 Merge Two Sorted Lists - 轮子同学">
-<meta itemprop="description" content="leetcode">
+<meta itemprop="name" content="时隔五年终于恢复了这个博客 - 轮子同学">
+<meta itemprop="description" content="引言 自从“卖身”给了本厂之后，就一直没有更新过这个blog。回头看看上一篇文章还是5年前，那个时候自己还在对着hadoop大数据体系不断的折">
 <meta itemprop="image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
-<meta property="og:title" content="LeetCode 021 Merge Two Sorted Lists - 轮子同学" />
+<meta property="og:title" content="时隔五年终于恢复了这个博客 - 轮子同学" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.ywheel.com/post/2015/03/12/leetcode_21/" />
+<meta property="og:url" content="http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/" />
 <meta property="og:image" content="http://blog.ywheel.com/public/ywheel.jpg" />
-<meta property="og:description" content="leetcode">
+<meta property="og:description" content="引言 自从“卖身”给了本厂之后，就一直没有更新过这个blog。回头看看上一篇文章还是5年前，那个时候自己还在对着hadoop大数据体系不断的折">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@ywheel">
-<meta name="twitter:title" content="LeetCode 021 Merge Two Sorted Lists - 轮子同学">
-<meta name="twitter:description" content="leetcode">
+<meta name="twitter:title" content="时隔五年终于恢复了这个博客 - 轮子同学">
+<meta name="twitter:description" content="引言 自从“卖身”给了本厂之后，就一直没有更新过这个blog。回头看看上一篇文章还是5年前，那个时候自己还在对着hadoop大数据体系不断的折">
 <meta name="twitter:creator" content="@ywheel">
 <meta name="twitter:image" content="http://blog.ywheel.com/public/ywheel.jpg">
 
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="canonical" href="http://blog.ywheel.com/post/2015/03/12/leetcode_21/">
-  <link rel='shortlink' href="http://blog.ywheel.com/post/2015/03/12/leetcode_21/"/>
+  <link rel="canonical" href="http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/">
+  <link rel='shortlink' href="http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/"/>
   <link rel="shortcut icon" href="http://blog.ywheel.com/public/favicon.ico"/>
   
 <link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.com/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
@@ -173,11 +173,11 @@
                   class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
                 <div class="post-inner group">
 
-                  <h1 class="post-title">LeetCode 021 Merge Two Sorted Lists</h1>
+                  <h1 class="post-title">时隔五年终于恢复了这个博客</h1>
 
                   <p class="post-byline">
-                    by ywheel · 2015年03月12日 · 391 Words ·
-                    ~1min reading time
+                    by ywheel · 2023年04月05日 · 1315 Words ·
+                    ~3min reading time
                   </p>
 
                   <div class="clear"></div>
@@ -185,115 +185,141 @@
                   <div class="entry">
                     <div class="entry-inner">
                       
-                      <p>题：</p>
+                      
 
-<p>````
-<a href="https://leetcode.com/problems/merge-two-sorted-lists/">https://leetcode.com/problems/merge-two-sorted-lists/</a>
-Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<h2 id="引言">引言</h2>
 
-<pre><code>
-解法一：创建一个新的链表：
+<p>自从“卖身”给了本厂之后，就一直没有更新过这个blog。回头看看上一篇文章还是5年前，那个时候自己还在对着hadoop大数据体系不断的折腾。五年过去了，自己也从大数据，迈向了云计算和AI的大潮中。最最近ChatGPT掀起来的浪潮，也最终&rdquo;迫使&rdquo;重拾“技术学习”的热情.</p>
 
-```java
-/** 
- * Definition for singly-linked list. 
- * public class ListNode { 
- *     int val; 
- *     ListNode next; 
- *     ListNode(int x) { 
- *         val = x; 
- *         next = null; 
- *     } 
- * } 
- */  
-public class Solution {  
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {  
-        if (l1 == null &amp;&amp; l2 == null) {  
-            return null;  
-        } else if (l1 == null) {  
-            return l2;  
-        } else if (l2 == null) {  
-            return l1;  
-        } else {  
-            ListNode head = null;  
-            ListNode next = new ListNode(0); // before head  
-            while (l1 != null || l2 != null) {  
-                if (l1 != null &amp;&amp; l2 != null) {  
-                    if (l1.val &lt; l2.val) {  
-                        next.next = l1;  
-                        l1 = l1.next;  
-                    } else {  
-                        next.next = l2;  
-                        l2 = l2.next;  
-                    }  
-                } else if (l1 == null) {  
-                    next.next = l2;  
-                    l2 = l2.next;  
-                } else {  
-                    next.next = l1;  
-                    l1 = l1.next;  
-                }  
-                head = head == null ? next.next : head;  
-                next = next.next;  
-            }  
-            return head;  
-        }  
-    }  
-}  
+<p>所以赶紧重新折腾起这个博客，还好，<code>ywheel.com</code>这个域名还在，还不需要所有都重头开始。但没想到还没开头，就碰到了“难题”</p>
+
+<h2 id="重装环境">重装环境</h2>
+
+<p>这个博客，整体方案是通过<code>hugo</code>生成静态页面，并交由github托管，定义CNAME并将域名绑定到github.io。方案不再赘述，但由于过了这么久的时间，本地环境也早已不存在。</p>
+
+<p>因此先开始装环境，mac上的安装可以说“异常”顺利。</p>
+
+<pre><code>brew install hugo
 </code></pre>
 
-<p>解法二：将l2加入到l1中</p>
+<p>一句话就安装好了。</p>
 
-<pre><code class="language-java">/** 
- * Definition for singly-linked list. 
- * public class ListNode { 
- *     int val; 
- *     ListNode next; 
- *     ListNode(int x) { 
- *         val = x; 
- *         next = null; 
- *     } 
- * } 
- */  
-public class Solution {  
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {  
-        if (l1 == null &amp;&amp; l2 == null) {  
-            return null;  
-        } else if (l1 == null) {  
-            return l2;  
-        } else if (l2 == null) {  
-            return l1;  
-        } else {  
-            // merge l2 to l1  
-            ListNode head = null;  
-            ListNode prev = null;  
-            while (l2 != null) {  
-                if (l1 == null) {  
-                    prev.next = l2;  
-                    break;  
-                }  
-                if (l1.val &gt; l2.val) {  
-                    if (prev == null) {  
-                        prev = l2;  
-                    } else {  
-                        prev.next = l2;  
-                    }  
-                    ListNode node = l2.next;  
-                    l2.next = l1;  
-                    prev = l2;  
-                    l2 = node;  
-                } else {  
-                    prev = l1;  
-                    l1 = l1.next;  
-                }  
-                head = head == null ? prev : head;  
-                  
-            }  
-            return head;  
-        }  
-    }  
-}  
+<p>那么新建工作目录，从github上拉代码</p>
+
+<pre><code>git clone https://github.com/ywheel/my-blog.git
 </code></pre>
+
+<p>完成后进入<code>my-blog</code>目录, 执行<code>hugo server</code>即可在本地启动服务并能够访问本地生成的静态页面了。但，出错了(精简)：</p>
+
+<pre><code>✗ hugo server
+Start building sites … 
+hugo v0.101.0+extended darwin/amd64 BuildDate=unknown
+...
+Error: Error building site: failed to render pages: render of &quot;page&quot; failed: &quot;/Users/ywheel/Documents/GitHub/my-blog/themes/hugo-rapid-theme/layouts/_default/single.html:1:3&quot;: execute of template failed: template: _default/single.html:1:3: executing &quot;_default/single.html&quot; at &lt;partial &quot;head.html&quot; .&gt;: error calling partial: &quot;/Users/ywheel/Documents/GitHub/my-blog/themes/hugo-rapid-theme/layouts/partials/head.html:15:5&quot;: execute of template failed: template: partials/head.html:15:5: executing &quot;partials/head.html&quot; at &lt;partial &quot;head.meta.html&quot; .&gt;: error calling partial: &quot;/Users/ywheel/Documents/GitHub/my-blog/themes/hugo-rapid-theme/layouts/partials/head.meta.html:1:16&quot;: execute of template failed: template: partials/head.meta.html:1:16: executing &quot;partials/head.meta.html&quot; at &lt;.URL&gt;: can't evaluate field URL in type *hugolib.pageState
+Built in 127 ms
+</code></pre>
+
+<p>虽然按照问题找了几个解决方法，但错误就像打地鼠，解决一个就会冒出来一个新的。这时候意识到是版本问题，毕竟五年时间过去，一切都变了。</p>
+
+<p>于是我找到之前最后一篇文章发布的时间是18年的3月，通过hugo的github release页找到对应到大致时间的版本:0.40; 而最新的hugo版本已经是v0.111.3，而我刚装的版本是：</p>
+
+<pre><code>✗ hugo version
+hugo v0.101.0+extended darwin/amd64 BuildDate=unknown
+</code></pre>
+
+<p>既然<code>brew</code>方案不好使，那么就源码安装吧。按照 <a href="https://gohugo.io/installation/macos/">https://gohugo.io/installation/macos/</a> 的指引，先安装了go，然后通过go来安装hugo:</p>
+
+<pre><code>go install -tags extended github.com/gohugoio/hugo@v0.40.1
+</code></pre>
+
+<p>而结果，毫无意外仍然是安装失败，要对齐所有相关依赖的版本确实是一件麻烦的事儿。</p>
+
+<h2 id="解决版本冲突">解决版本冲突</h2>
+
+<p>好在，官方文档中还提到了使用docker：</p>
+
+<blockquote>
+<p>Erlend Klakegg Bergheim graciously maintains Docker images based on images for Alpine Linux, Busybox, Debian, and Ubuntu.</p>
+
+<p>docker pull klakegg/hugo</p>
+</blockquote>
+
+<p>在docker hub中寻找一番，找到了接近的版本：</p>
+
+<pre><code>docker pull klakegg/hugo:0.40
+cd my-blog
+docker run --rm -it -v $(pwd):/src klakegg/hugo:0.40
+Building sites … ERROR 2023/04/05 04:20:27 Site config's rssURI is deprecated and will be removed in Hugo 0.41. Set baseName in outputFormats.RSS
+ERROR 2023/04/05 04:20:29 Error while rendering &quot;page&quot; in &quot;post/2018/03/21/&quot;: template: theme/_default/single.html:1:3: executing &quot;theme/_default/single.html&quot; at &lt;partial &quot;head.html&quot; ...&gt;: error calling partial: template: theme/partials/head.html:20:5: executing &quot;theme/partials/head.html&quot; at &lt;partial &quot;head.includ...&gt;: error calling partial: template: theme/partials/head.includes.html:1:6: executing &quot;theme/partials/head.includes.html&quot; at &lt;.RSSlink&gt;: can't evaluate field RSSlink in type *hugolib.PageOutput
+</code></pre>
+
+<p>虽然有一点点报错，但简单解决一下就成功了。不得不说，docker还是保存“环境”的最佳实践。</p>
+
+<h2 id="5年后的第一篇文章">5年后的第一篇文章</h2>
+
+<p>终于，可以开始写新文章了。计划中的《chatGPT钉钉机器人》已经搁置了好几天，那还不如，先记录下今天恢复blog踩过的坑。万一后来又一次断更5年，还能通过这篇记录恢复10年前的环境快速开工。</p>
+
+<p>新建一篇新的文章：</p>
+
+<pre><code>docker run --rm -it -v $(pwd):/src -v $(pwd)/public:/target klakegg/hugo:0.40 &quot;new post/2023/04/05/finally-recovered-my-blog.md&quot;
+
+Error: unknown flag: --destination
+
+Usage:
+  hugo new [path] [flags]
+  hugo new [command]
+
+Available Commands:
+  site        Create a new site (skeleton)
+  theme       Create a new theme
+
+Flags:
+      --editor string   edit new content with this editor, if provided
+  -h, --help            help for new
+  -k, --kind string     content type to create
+  -s, --source string   filesystem path to read files relative from
+
+Global Flags:
+      --config string    config file (default is path/config.yaml|json|toml)
+      --debug            debug output
+      --log              enable Logging
+      --logFile string   log File path (if set, logging enabled automatically)
+      --quiet            build in quiet mode
+  -v, --verbose          verbose output
+      --verboseLog       verbose logging
+
+Use &quot;hugo new [command] --help&quot; for more information about a command.
+</code></pre>
+
+<p>好吧，那就手工创建吧，<code>hugo new</code>命令的好处是创建文件后还会直接加上文件开头的定义内容，而手工创建文件后这部分要自己填一下，不麻烦。</p>
+
+<p>稍作修改后，本地调起来看看：</p>
+
+<pre><code>docker run --rm -it -v $(pwd):/src -p 1313:1313 klakegg/hugo:0.40 server
+
+                   | EN   
++------------------+-----+
+  Pages            |  50  
+  Paginator pages  |   0  
+  Non-page files   |   0  
+  Static files     | 105  
+  Processed images |   0  
+  Aliases          |   0  
+  Sitemaps         |   1  
+  Cleaned          |   0  
+
+Total in 4655 ms
+Watching for changes in /src/{content,data,layouts,static,themes}
+Watching for config changes in /src/config.yaml
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
+</code></pre>
+
+<p>打开浏览器访问<code>http://localhost:1313</code></p>
+
+<p>搞定，收工。</p>
 
                       
                     </div>
@@ -303,7 +329,7 @@ public class Solution {
                         </div>
                         <div style="margin-left:110px;">
                             <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
-                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2015/03/12/leetcode_21/">http://blog.ywheel.com/post/2015/03/12/leetcode_21/</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/">http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/</a>
                             <br />
                             文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
                         </div>
@@ -371,20 +397,14 @@ var jiathis_config = {data_track_clickback:'true'};
     <ul class="post-nav group">
       <li class="next">
         
-        <a href="http://blog.ywheel.com/post/2015/03/12/leetcode_88/" rel="next">
+        <a href="http://blog.ywheel.com/post/2018/03/21/access_hadoop_web_with_kerberos/" rel="next">
           <i class="fa fa-chevron-right"></i>
           <strong>Next post</strong>
-          <span>LeetCode 088 Merge Sorted Array</span>
+          <span>Win下访问安全集群的Web界面</span>
         </a>
         
       </li>
       <li class="previous">
-        
-        <a href="http://blog.ywheel.com/post/2015/03/12/leetcode_23/" rel="prev">
-          <i class="fa fa-chevron-left"></i>
-          <strong>Previous Post</strong>
-          <span>LeetCode 023 Merge K Sorted Lists</span>
-        </a>
         
       </li>
     </ul>
