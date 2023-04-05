@@ -1,2 +1,2 @@
 # My Blog
-URL: http://blog.ywheel.cn
+URL: http://blog.ywheel.com
