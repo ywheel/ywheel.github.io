@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <base href="http://blog.ywheel.com/">
+  <script>
+    document._writeOriginal = document.write;
+    document.write = function(str) {
+        if (str.indexOf('livereload.js') > -1) {
+            document._writeOriginal(str);
+        } else {
+            document._writeOriginal('<!-- Be Hijack!! -->');
+        }
+    }
+  </script>
+  <title>基于ChatGPT的钉钉聊天机器人 - 轮子同学</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="keywords" content="chatGPT,laf,sealos,dingTalk,">
+<meta name="description" content="ChatGPT的横空出世，给业界带来了巨大的震撼。作为一种新型的语言模型，它可以生成与人类交流极为接近的文本，被誉为“最接近人类思维的AI”">
+<meta name="author" content="ywheel">
+<meta name="publisher" content="ywheel">
+<meta name="generator" content="http://gohugo.io/"/>
+
+<meta itemprop="name" content="基于ChatGPT的钉钉聊天机器人 - 轮子同学">
+<meta itemprop="description" content="ChatGPT的横空出世，给业界带来了巨大的震撼。作为一种新型的语言模型，它可以生成与人类交流极为接近的文本，被誉为“最接近人类思维的AI”">
+<meta itemprop="image" content="http://blog.ywheel.com/public/ywheel.jpg">
+
+<meta property="og:title" content="基于ChatGPT的钉钉聊天机器人 - 轮子同学" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ywheel.com/post/2023/04/08/dingtalk-chatbot-with-chatgpt/" />
+<meta property="og:image" content="http://blog.ywheel.com/public/ywheel.jpg" />
+<meta property="og:description" content="ChatGPT的横空出世，给业界带来了巨大的震撼。作为一种新型的语言模型，它可以生成与人类交流极为接近的文本，被誉为“最接近人类思维的AI”">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@ywheel">
+<meta name="twitter:title" content="基于ChatGPT的钉钉聊天机器人 - 轮子同学">
+<meta name="twitter:description" content="ChatGPT的横空出世，给业界带来了巨大的震撼。作为一种新型的语言模型，它可以生成与人类交流极为接近的文本，被誉为“最接近人类思维的AI”">
+<meta name="twitter:creator" content="@ywheel">
+<meta name="twitter:image" content="http://blog.ywheel.com/public/ywheel.jpg">
+
+  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
+  <link rel="canonical" href="http://blog.ywheel.com/post/2023/04/08/dingtalk-chatbot-with-chatgpt/">
+  <link rel='shortlink' href="http://blog.ywheel.com/post/2023/04/08/dingtalk-chatbot-with-chatgpt/"/>
+  <link rel="shortcut icon" href="http://blog.ywheel.com/public/favicon.ico"/>
+  
+<link rel="stylesheet" id="human-style-css" href="http://blog.ywheel.com/wp-content/themes/hueman/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="human-style-css2" href="http://blog.ywheel.com/wp-content/themes/hueman-child/style.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="responsive-css" href="http://blog.ywheel.com/wp-content/themes/hueman/responsive.css" type="text/css" media="all"/>
+<link rel="stylesheet" id="font-awesome-css" href="http://blog.ywheel.com/wp-content/themes/hueman/fonts/font-awesome.min.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://blog.ywheel.com/public/highlight/styles/github.css">
+<script src="http://blog.ywheel.com/public/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" id="human-style-css3" href="http://blog.ywheel.com/wp-content/themes/hueman-child/user.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="public/font/hack/css/hack.min.css">
+
+<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="wp-content/themes/hueman/js/scripts.js"></script>
+<script type="text/javascript" src="assets/picturefill/picturefill.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" async defer src="assets/js/myblog.js"></script>
+
+</head>
+
+<body class="single single-post single-format-standard col-3cm full-width topbar-enabled chrome">
+<div id="wrapper">
+  <header id="header">
+
+  <nav class="nav-container group" id="nav-topbar">
+    <div class="nav-toggle"><i class="fa fa-bars"></i></div>
+    <div class="nav-text"></div>
+    <div class="nav-wrap container">
+      <a rel="nofollow" href="http://blog.ywheel.com/" class="nav-cs-icon">
+        <img width="40" height="40" src="http://blog.ywheel.com/public/ywheel.jpg" alt="ywheel" title="Home">
+      </a>
+      <ul id="menu-default-menu" class="nav container-inner group">
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/">首页</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/post/">归档</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/about/">关于我</a>
+        </li>
+        
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a rel="nofollow" href="http://blog.ywheel.com/feed.xml" type="application/rss+xml" target="_blank">订阅</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="container-inner">
+        <div class="toggle-search"><i class="fa fa-search"></i></div>
+        <div class="search-expand">
+          <div class="search-expand-inner">
+            <form method="get" class="searchform themeform" action="https://www.google.com/search">
+              <div>
+                <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+
+  </nav>
+  
+
+  <div class="container group">
+    <div class="container-inner">
+
+      <div class="group pad">
+
+        <div class="group pad">
+          <h1 class="site-title">
+            <a rel="nofollow" href="http://blog.ywheel.com/" rel="home">
+              <img style="border-radius: 50%;width:72px;height:72px;margin:0 auto;vertical-align: middle;" alt="ywheel" src="http://blog.ywheel.com/public/ywheel.jpg"></img>
+              <span style="padding-top: 5px;">轮子同学</span>
+            </a>
+            
+          </h1>
+          <p class="site-description"> 勿忘初心，技术无止 </p>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+  
+
+</header>
+
+
+
+  <div class="container" id="page">
+    <div class="container-inner">
+      <div class="main">
+        <div class="main-inner group">
+          <section class="content">
+            <div class="page-title pad group">
+              <ul class="meta-single group">
+                
+                <li class="category">
+                  <a href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="category tag">技术文章</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="pad group">
+
+              <article
+                  class="post type-post status-publish format-standard has-post-thumbnail hentry category-australien tag-bondi-beach tag-city2surf tag-sydney">
+                <div class="post-inner group">
+
+                  <h1 class="post-title">基于ChatGPT的钉钉聊天机器人</h1>
+
+                  <p class="post-byline">
+                    by ywheel · 2023年04月08日 · 3412 Words ·
+                    ~7min reading time
+                  </p>
+
+                  <div class="clear"></div>
+
+                  <div class="entry">
+                    <div class="entry-inner">
+                      
+                      
+
+<blockquote>
+<p>ChatGPT的横空出世，给业界带来了巨大的震撼。作为一种新型的语言模型，它可以生成与人类交流极为接近的文本，被誉为“最接近人类思维的AI”。其强大的自然语言处理能力和广泛的应用场景，已经在各个领域引起了广泛的关注和应用。不使用ChatGPT，几乎就意味着在科技愈发发达的今天落伍了。</p>
+</blockquote>
+
+<p>没错，上面这一段就是chatGPT自己写的。作为程序员群体的一员，肯定是尽快的尝鲜，在自己惊叹之余也想装个逼，那就得转换成其他人更容易接触的方式。毕竟，有梯子、注册账号等都是有门槛的。如何做到更容易使用？最简单的述求无非就是：随时能用(比如有手机)，随地能用(不用爬梯子)</p>
+
+<p>基于wx/dingDing的机器人就是比较方便使用的一种方式。</p>
+
+<h2 id="注册openai">注册OpenAI</h2>
+
+<p>首先，你得能使用google（<code>劝退第一步</code>）</p>
+
+<p>打开ChatGPT的官方网站：<a href="https://openai.com/">https://openai.com/</a> ，找到API，点击SIGN UP:</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/signup.jpeg" alt="signup" /></p>
+
+<p>这里可以直接使用google或microsoft账户（我两者都有，所以也就注册了两个openai账户）会更方便。如果使用邮箱也可以，验证完邮箱之后进入到手机号码验证（<code>劝退第二步</code>）</p>
+
+<p>这里会用到<a href="https://sms-activate.org/">https://sms-activate.org/</a> 来注册一个国外的临时手机号码，用来接受验证码。详细的过程，可以参考《ChatGPT注册教程攻略》<sup>[1]</sup>. 这里说个有意思的事情：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/sms.jpeg" alt="sms" /></p>
+
+<p>登录时提示：“我们怀疑你是人类。” 有点细思极恐的感觉了。。。</p>
+
+<p>我选择的是“英国”的手机号码，收到验证码的速度还是可以的。注册了两个都能正常快速收到验证码。参考文章中使用支付宝付款时只需要0.2美元，而我使用的时候已经涨价到2美元了。当然，2美元可以买多个号码</p>
+
+<p>回到openai的注册过程，输入刚刚购买的临时号码，获取验证码，验证后就完成openAI的注册啦~</p>
+
+<p>访问<a href="https://chat.openai.com/chat">https://chat.openai.com/chat</a> 进入聊(tiao)天(xi)体验:</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/chatgpt.jpeg" alt="chat" /></p>
+
+<h2 id="开发代理服务">开发代理服务</h2>
+
+<p>毕竟想要随时随地使用官方的chatGPT会有诸多限制带来的不便，因此我们需要搞一个代理服务（<code>劝退第三步</code>）。整体的方案如下：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/sa.jpeg" alt="sa" /></p>
+
+<p>选择一个合适的地方部署代理很重要，使得国内访问代理不被Q，代理访问OpenAI不被F, 太难了。。。</p>
+
+<p>可选的方案有好多种，比如：</p>
+
+<ul>
+<li>在aws上搞一台ec2部署代理（新手送一台小规格12个月）</li>
+<li>类似的，在aliyun上买一台ecs，注意选择海外的region； 或者使用函数计算服务，serverless</li>
+<li>既然是serverless，那就更彻底一些，可以使用<a href="https://docs.aircode.io/getting-started/">aircode</a>创建cloud function</li>
+<li>国内也有一家，使用laf创建应用函数，提供http接口调用</li>
+</ul>
+
+<p>我选择使用laf创建函数。访问 <a href="https://laf.dev/login">https://laf.dev/login</a> 通过手机号码登录/注册；</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/laflogin.jpeg" alt="laflogin" /></p>
+
+<p>新用户可以创建一个免费的资源受限的应用，对于自用chatGPT已经足够用了（更何况openai的账号本身也是有限制的呢）</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/lafnew.jpeg" alt="lafnew" /></p>
+
+<p>不过这里提示的<code>根据当前平台资源负载情况，不定期停止应用实例</code> 我已经碰到过实例被停止，这点体验确实不太好，不过谁让它是免费的呢。。。</p>
+
+<p>可用区只有新加坡，就它了。创建好应用后，就进入了开发页面。</p>
+
+<p>参考《三分钟 ChatGPT 接入钉钉机器人》<sup>[2]</sup>，我也搭建了一个可调用chatGPT api的函数。不过，正如作者所提到的, 这段代码还存在一些问题，比如：</p>
+
+<ul>
+<li>不支持连续对话，需要传入<code>parentMessageId</code>让chatGPT理解上下文</li>
+<li>不支持多用户、多群
+
+<ul>
+<li>钉钉webhook地址是固定的，无法推送到多个聊天窗口</li>
+<li>没有做不同用户聊天会话的隔离</li>
+</ul></li>
+</ul>
+
+<p>这里暂时打住，先不解决这些问题，我们先去创建钉钉机器人并进行调试。</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/lafdev.jpeg" alt="lafdev" /></p>
+
+<p>laf开发结束后可发布为公开接口，例如：https://*******.laf.dev/request-openai</p>
+
+<h2 id="创建钉钉机器人">创建钉钉机器人</h2>
+
+<p>从网上各种文章、以及我们内部使用的专有钉的群来说，都是可以在钉钉群聊中创建机器人，并配置outging。而我却看到了这个：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/outgoing.jpeg" alt="outgoing" /></p>
+
+<p>好在还可以通过创建一个企业/组织，然后使用钉钉开放平台后台对企业内部应用创建机器人。在钉钉上创建一个公司也很方便，只是公司名字叫啥好呢？<code>找ChatGPT帮忙想一个名字吧</code>~~</p>
+
+<p>随后进入钉钉开放平台，创建应用和配置机器人，具体步骤可参考《企业内部开发机器人》<sup>[3]</sup></p>
+
+<p>我给这个机器人取名叫&rdquo;小G&rdquo;, 记得给机器人上传一个chatGPT的icon~~</p>
+
+<p>最后填入上一章节发布的laf接口，点击“调试”，钉钉会自定创建一个包含自己和机器人的群，就可以发消息进行调试了。</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/debug1.jpeg" alt="debug1" /></p>
+
+<p>从文档中可以找到艾特机器人后钉钉发送出来的消息格式：</p>
+
+<pre><code class="language-json">{
+    &quot;conversationId&quot;: &quot;xxx&quot;,
+    &quot;atUsers&quot;: [
+        {
+            &quot;dingtalkId&quot;: &quot;xxx&quot;,
+            &quot;staffId&quot;:&quot;xxx&quot;
+        }
+    ],
+    &quot;chatbotCorpId&quot;: &quot;dinge8a565xxxx&quot;,
+    &quot;chatbotUserId&quot;: &quot;$:LWCP_v1:$Cxxxxx&quot;,
+    &quot;msgId&quot;: &quot;msg0xxxxx&quot;,
+    &quot;senderNick&quot;: &quot;杨xx&quot;,
+    &quot;isAdmin&quot;: true,
+    &quot;senderStaffId&quot;: &quot;user123&quot;,
+    &quot;sessionWebhookExpiredTime&quot;: 1613635652738,
+    &quot;createAt&quot;: 1613630252678,
+    &quot;senderCorpId&quot;: &quot;dinge8a565xxxx&quot;,
+    &quot;conversationType&quot;: &quot;2&quot;,
+    &quot;senderId&quot;: &quot;$:LWCP_v1:$Ff09GIxxxxx&quot;,
+    &quot;conversationTitle&quot;: &quot;机器人测试-TEST&quot;,
+    &quot;isInAtList&quot;: true,
+    &quot;sessionWebhook&quot;: &quot;https://oapi.dingtalk.com/robot/sendBySession?session=xxxxx&quot;,
+    &quot;text&quot;: {
+        &quot;content&quot;: &quot; 你好&quot;
+    },
+    &quot;msgtype&quot;: &quot;text&quot;
+}
+</code></pre>
+
+<p>在调试阶段，也可以在laf中，通过打印request body来验证消息。修改laf代码中的dingtalk_robot_url为群中的小G机器人的webhook地址，这样就调通了！</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/debug2.jpeg" alt="debug2" /></p>
+
+<h2 id="会话隔离-群聊">会话隔离&amp;群聊</h2>
+
+<p>上上个章节留了几个laf中的node.js程序的问题。现在钉钉机器人已经调通了，改来解决遗留问题了。我对这一段node.js代码做了修改，主要有：</p>
+
+<ul>
+<li>从chatGPT的response里获取<code>parentMessageId</code>，下一个request带上这个id，从而实现连续对话</li>
+<li>通过dingding消息中的<code>sessionWebhook</code>来动态设置每一个response要推送到dingding的webhook地址，这样就不再局限于一个群聊中添加机器人的固定的webhook地址，实现了多个窗口同时和&rdquo;小G&rdquo;聊天，回复的消息可以准确的推送回到相应的那一个窗口</li>
+
+<li><p>从钉钉消息中获取<code>conversationId</code>, 通过laf提供的<code>cloud.shared</code>来保存每个会话的<code>parentMessageId</code>; 因此在钉钉的不同窗口向chatGPT发送消息时将是不同的会话上下文。这样的效果是：</p>
+
+<ul>
+<li>可以对&rdquo;小G&rdquo;单聊，每个人和他的聊天窗口不一样，<code>conversationId</code>就不同，因此和chatGPT的连续对话就实现了会话隔离</li>
+<li>在群聊时，同一个群里的多个人，和&rdquo;小G&rdquo;聊天讲是同一个主题，正所谓群聊嘛。当然也可以再区分人，比如通过<code>conversationId+senderStaffId</code>来保存<code>parentMessageId</code>，那么同一个群里的人艾特&rdquo;小G&rdquo;时，就是各聊各的，那还不如和他单独一个窗口聊呢</li>
+</ul></li>
+</ul>
+
+<p>最终的代码如下：</p>
+
+<pre><code class="language-javascript">import cloud from '@lafjs/cloud'
+import axios from 'axios'
+
+const dingtalk_robot_url = 'https://oapi.dingtalk.com/robot/send?access_token=xxxxxxx'
+const sendDingDing = async (md, sessionWebhook) =&gt; {
+  const sendMessage = {
+    msgtype: &quot;markdown&quot;,
+    markdown: {
+      title: &quot;ChatGPT消息&quot;,
+      text: md,
+    }
+  };
+  if (sessionWebhook) {
+    return await axios.post(sessionWebhook, sendMessage);
+  } else {
+    return await axios.post(dingtalk_robot_url, sendMessage);
+  }
+};
+
+export async function main(ctx: FunctionContext) {
+  // body, query 为请求参数, auth 是授权对象
+  const { auth, body, query } = ctx;
+
+  const { ChatGPTAPI } = await import('chatgpt')
+
+  let api=cloud.shared.get('api')
+  if(!api){
+    api = new ChatGPTAPI({ apiKey: cloud.env.OPENAI_API_KEY })
+    cloud.shared.set('api', api)
+  }
+  const prompt = body.text.content;
+  console.log(body)
+  const conversationId = body.conversationId;
+  // const senderStaffId = body.senderStaffId;
+  const sessionWebhook = body.sessionWebhook;
+  const parentMessageId = cloud.shared.get(conversationId+'.parentMessageId')
+
+  let res
+  // 这里前端如果传过来 parentMessageId 则代表需要追踪上下文
+  if (!parentMessageId) {
+    console.log(&quot;parentId is null&quot;)
+    res = await api.sendMessage(prompt)
+  } else {
+    console.log(&quot;Using parentId &quot; + parentMessageId)
+    res = await api.sendMessage(prompt, { parentMessageId })
+  }
+
+  console.log(res.text)
+  sendDingDing(res.text, sessionWebhook)
+  cloud.shared.set(conversationId+'.parentMessageId',res.id)
+  return {&quot;id&quot;: res.id, &quot;resp&quot;: res.text}
+}
+</code></pre>
+
+<p>改好后，重启laf应用。开始愉快的聊天啦。</p>
+
+<p>先看看多轮对话：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/qun1.jpeg" alt="qun1" /></p>
+
+<p>再看一下群聊(多人共享一个会话上下文)：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/qun2.jpeg" alt="qun2" /></p>
+
+<p>同样的问题，在单聊的聊天窗口问，可以看到时没有上文理解的，与刚才的群聊是隔离的：</p>
+
+<p><img src="http://blog.ywheel.com/public/img/chat/single.jpeg" alt="single" /></p>
+
+<h2 id="其他方案">其他方案</h2>
+
+<p>由于上面的钉钉机器人使用的是 企业内部应用的方案，因此需要加入到该企业组织内才能使用。并且上述方案仅仅使用了文本格式，对于包含表格、代码等回答无法提供好的显示体验。想要玩到功能齐备、体验良好的能力，还得有一些其他办法，如：</p>
+
+<ul>
+<li>直接去访问官方chatGPT</li>
+<li>国内大厂发布的对标产品（外部同学需要邀请码），也有好多“蹭热度”的直播博主
+
+<ul>
+<li>百度“文心一言”</li>
+<li>阿里“通义千问”： <a href="https://tongyi.aliyun.com">https://tongyi.aliyun.com</a></li>
+</ul></li>
+<li>找一些国内能访问到的客户端或者web，如：
+
+<ul>
+<li><a href="https://chunpiao.xin/#/chat">https://chunpiao.xin/#/chat</a> (网页版，国内直接能访问，不需要登录，偶有不稳定报5XX)<sup>[4]</sup></li>
+</ul></li>
+<li>写代码调用本文中使用的laf，也就不需要加入我的钉钉组织了</li>
+</ul>
+
+<p>以前有时候瞎想，如果哪一天有个AI担任个人助理帮忙处理一些简单的事情，我就可以有更多时间去撸代码、写文章、画画了。而现实情况是，AI可以去撸代码、写文章、画画，<code>那我干什么去呢？</code></p>
+
+<blockquote>
+<p>现在是2050年4月9日8:00，我醒了，已植入在我眼角膜的moss就检测到我睁开了眼，随后我看到moss在我的眼睛里投射出一行字：我们怀疑你是一个人类，请先通过验证。。。</p>
+</blockquote>
+
+<h2 id="参考文章">参考文章</h2>
+
+<ul>
+<li>[1] ChatGPT注册教程攻略：解决手机无法接收验证码问题（亲测有效）: <a href="https://www.xnbeast.com/create-openai-chatgpt-account/">https://www.xnbeast.com/create-openai-chatgpt-account/</a></li>
+<li>[2] 三分钟 ChatGPT 接入钉钉机器人: <a href="https://juejin.cn/post/7211061398680305725">https://juejin.cn/post/7211061398680305725</a></li>
+<li>[3] 钉钉官方文档-企业内部开发机器人: <a href="https://open.dingtalk.com/document/orgapp/enterprise-created-chatbot">https://open.dingtalk.com/document/orgapp/enterprise-created-chatbot</a></li>
+<li>[4] 用 Express 和 Vue3 搭建的 ChatGPT 演示网页: <a href="https://github.com/Chanzhaoyu/chatgpt-web">https://github.com/Chanzhaoyu/chatgpt-web</a></li>
+</ul>
+
+                      
+                    </div>
+                    <div style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+                        <div style="float:left;margin-top:6px;">
+                        <img src="http://blog.ywheel.com/public/ywheel.jpg" width="100px" height="100px"/>
+                        </div>
+                        <div style="margin-left:110px;">
+                            <p style="margin-top:0px;">作者：<a target="_blank" href="http://ywheel.github.io/">ywheel</a>
+                            <br />本文出处：<a target="_blank" href="http://blog.ywheel.com/post/2023/04/08/dingtalk-chatbot-with-chatgpt/">http://blog.ywheel.com/post/2023/04/08/dingtalk-chatbot-with-chatgpt/</a>
+                            <br />
+                            文章版权归本人所有，欢迎转载，但必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。 </p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  
+
+                </div>
+                
+              </article>
+              
+              <div class="clear"></div>
+              
+              
+              
+              
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_cqq"></a>
+	<a href="http://www.jiathis.com/share?uid=2147120" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2147120" charset="utf-8"></script>
+
+
+            </div>
+          </section>
+          <div class="sidebar s1">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>Follow:</p>
+      <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On LinkedIn"
+        href="https://cn.linkedin.com/in/yuanlun" target="_blank">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+    </div>
+    <div class="widget qrcode">
+    <img src="http://blog.ywheel.com/public/qrcode.jpg" alt="qrcode" width="172px" height="172px"/>
+    <p> 微信扫一扫：<br/> 关注我的公众号： <br /> 轮子同学 <br /></p>
+</div>
+
+    <ul class="post-nav group">
+      <li class="next">
+        
+        <a href="http://blog.ywheel.com/post/2023/04/05/finally-recovered-my-blog/" rel="next">
+          <i class="fa fa-chevron-right"></i>
+          <strong>Next post</strong>
+          <span>时隔五年终于恢复了这个博客</span>
+        </a>
+        
+      </li>
+      <li class="previous">
+        
+      </li>
+    </ul>
+    <div id="search-2" class="widget widget_search"><h3>Search</h3>
+      <form method="get" class="searchform themeform" action="https://www.google.com/search">
+        <div>
+          <input type="text" class="search" name="q" placeholder="Press enter to start searching">
+        </div>
+      </form>
+    </div>
+  </div>
+  
+</div>
+
+          <div class="sidebar s2">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="fa icon-sidebar-toggle"></i></a>
+  <div class="sidebar-content">
+    <div class="sidebar-top group">
+      <p>More</p>
+    </div>
+    <div id="categories-2" class="widget widget_categories"><h3>Categories</h3>
+      <ul>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+          </li>
+        
+          <li class="cat-item cat-item-1">
+            <a rel="nofollow" href="http://blog.ywheel.com/categories/%E6%80%9D%E8%80%83%E6%84%9F%E6%82%9F/">思考感悟</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="footer">
+  <section class="container" id="footer-bottom">
+    <div class="container-inner">
+      <a id="back-to-top" href="#"><i class="fa fa-angle-up"></i></a>
+      <div class="pad group">
+        <div class="grid one-half">
+          <div id="copyright">
+            <p>Copyright (c) 2023. All rights reserved. <br>Powered by
+              <a rel="nofollow" href="http://gohugo.io/" target="_blank">Hugo </a>.
+              <a rel="nofollow" href="http://golang.org" target="_blank">#golang</a>.
+              Theme By  
+              <a rel="nofollow" href="https://github.com/coderzh/hugo-rapid-theme" target="_blank">hugo-rapid-theme</a>.
+              
+                  Hosted By <a rel="nofollow" href="https://pages.github.com/" target="_blank">Github Pages</a>.
+              
+
+            </p>
+          </div>
+          
+        </div>
+        
+        <div class="grid one-half last">
+          <ul class="social-links">
+    <li>
+    <a class="social-tooltip" title="On WeiBo"
+        href="http://weibo.com/ywheel" target="_blank">
+        <i class="fa fa-weibo"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On LinkedIn"
+        href="https://cn.linkedin.com/in/yuanlun" target="_blank">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    </li>
+    <li>
+    <a class="social-tooltip" title="On GitHub"
+        href="https://github.com/ywheel" target="_blank">
+        <i class="fa fa-github"></i>
+    </a>
+    </li>
+</ul>
+
+        </div>
+      </div>
+
+    </div>
+    
+  </section>
+  
+</footer>
+
+</div>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-78569384-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = document.domain.endsWith("com") ? "https://hm.baidu.com/hm.js?b57fe7e440d3ae8ddcd0d555dc63a5b9" : "//hm.baidu.com/hm.js?60a53337b38af8ec5a97214ec5c7325b";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
+
